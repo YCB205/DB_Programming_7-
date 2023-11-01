@@ -1,4 +1,5 @@
 import {drawLineFunc} from './LineChartRender.js'
+import {dropDownMenueForSale} from './SalesDetailOption.js'
 const LINECHART = "salesInformationRegistrationID"
 const PRODUCTTABLE ="registerOrderForm"
 
@@ -7,6 +8,7 @@ const chooseRadioButtonWhatSelect=(radioBtnValue)=> {
 
         if (radioBtnValueWhatSelected === LINECHART) {
             drawLineFunc();
+            dropDownMenueForSale();
         } else if (radioBtnValueWhatSelected === PRODUCTTABLE) {
             console.log("아직 구현 안함");
         }
