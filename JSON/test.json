@@ -1,0 +1,36 @@
+{
+  "year": "2023",
+  "financialreport": [
+
+        {
+          "date": "January1",
+          "revenue": 90,
+          "expense": 30,
+          "profits": 60
+        },
+        {
+          "date": "Feb",
+          "revenue": 70,
+          "expense": 50,
+          "profits": 60
+        },
+        {
+          "date": "Mar",
+          "revenue": 20,
+          "expense": 10,
+          "profits": 20
+        },
+        {
+          "date": "Apr",
+          "revenue": 90,
+          "expense": 30,
+          "profits": 60
+        },
+      {
+        "date": "Apr",
+        "revenue": 90,
+        "expense": 30,
+        "profits": 60
+      }
+  ]
+}

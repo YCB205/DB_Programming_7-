@@ -1,11 +1,10 @@
 
 const drawLineFunc=()=> {
-    let myChart = document.getElementById('myChart');
-    //이전 차트 파괴 메서드 있으면 오류나서 파괴하고 다시 그리기
-    let existingChart = Chart.getChart(myChart);
-    if(existingChart){
-        existingChart.destroy();
-    }
+    let myChartDiv = document.getElementById('scrollable-div-id');
+
+    //canvas를 생성 넣기
+    let myChart = document.createElement('canvas');
+    myChart.setAttribute('id','myChartHist');
     myChart.innerHTML='';
     new Chart(myChart, {
         type: 'line',
@@ -30,5 +29,6 @@ const drawLineFunc=()=> {
             }
         }
     });
+    myChartDiv.appendChild(myChart);
 }
 export {drawLineFunc};

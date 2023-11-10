@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',function () {
     dropBoxs.forEach(function (selected) {
         selected.addEventListener('click', function () {
             const selectedValue = this.id;
-            console.log(selectedValue.toString());
+            // console.log(selectedValue.toString());
             chooseRadioButtonWhatSelect(selectedValue.toString());
         })
     })

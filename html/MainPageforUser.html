@@ -1,58 +1,127 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <link href="../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
-  <title>메인화면</title>
+    <meta charset="UTF-8">
+    <link href="../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <title>메인화면</title>
 </head>
 <body>
 <header class="header">
-      <div class="container">
+    <div class="container">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div class="hover-text">
-          <p>옵션 1</p>
-          <div class="dropdown-content">
-            <a id="salesInformationRegistrationID" class="dropdown-item">매출 정보 조회</a>
-            <a id="registerOrderForm"  class="dropdown-item">주문서 등록</a>
-          </div>
+            <p>옵션 1</p>
+            <div class="dropdown-content">
+                <a id="salesInformationRegistrationID" class="dropdown-item">매출 정보 조회</a>
+                <a id="registerOrderForm" class="dropdown-item">주문서 등록</a>
+            </div>
         </div>
         <div></div>
         <div class="hover-text">
-          <p>옵션 2</p>
-          <div class="dropdown-content">
-            <a href="" class="dropdown-item">옵션1</a>
-            <a href="" class="dropdown-item">옵션1</a>
-            <a href="" class="dropdown-item">옵션1</a>
-          </div>
+            <p>옵션 2</p>
+            <div class="dropdown-content">
+                <a href="" class="dropdown-item">옵션1</a>
+                <a href="" class="dropdown-item">옵션1</a>
+                <a href="" class="dropdown-item">옵션1</a>
+            </div>
         </div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-      </div>
+    </div>
 </header>
+<section class="section">
+    <main>
+        <div id="scrollable-div-id">
+            <!--      <canvas id = "myChartHisto"></canvas>-->
+            <!--      <canvas id = "my"></canvas>-->
+        </div>
+    </main>
+</section>
 <nav class="nav">
-  <main>
-    <div class="navMain1Info">
-      <div>
-        <div>a3</div>
-        <div>a3</div>
-      </div>
+    <div class="navFirstChildDiv">
+        <div class="navClassChildInfoUser">
+            <div>
+                <div>a3</div>
+                <div>a3</div>
+            </div>
+        </div>
+        <!--selectDivOptionDetails에 옵션 세부정보 추가 -->
+        <div class="navMainInfoOption" id="selectDivOptionDetails">
+        <!--5프로 차지-->
+            <div class="navMainInfoOptionFrame">
+                <!--div태그의 radio버튼 테이블 or chart-->
+                <div class="radioOptionNav" id="radioOptionNavID">
+                    <form class="radioOptionNavForm">
+                        <fieldset class="form-group">
+                            <div style = "display:flex; width : 100%; height : 100%; flex-direction : row; justify-content:center;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                <label class="form-check-label" for="optionsRadios1">
+                                    차트
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <label class="form-check-label" for="optionsRadios2">
+                                    테이블
+                                </label>
+                            </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!--시간 옵션을 담는 전체틀 30프로차지-->
+                <div class>
+                    <!--시간 옵션 중에서 폼요소를 위한 내부 div-->
+                    <form class="timeFormCssParent" name = "timeFormOption">
+                        <div>시간 옵션 선택</div>
+                        <div>
+                            <label for="weekOrMonth"></label>
+                            <select id = "weekOrMonth">
+                                <option value="month">월 별</option>
+                                <option value="week">주 별</option>
+                                <option value="daily">일 별</option>
+
+                            </select>
+                        </div>
+                            <div>
+                                <label for="chooseStartDate">시작일&nbsp; </label>
+                                <input type="date" id="chooseStartDate" name="startDate">
+                            </div>
+                            <div>
+                                <label for="chooseEndDate">종료일&nbsp;</label>
+                                <input type="date" id="chooseEndDate" name="endDate">
+                            </div>
+                        <div class="entireORchart">
+                            <label>
+                                <input type="radio" name="entireSales" id="entire" checked>전체 상품
+                            </label>
+                            <label>
+                                <input type="radio" name="entireSales" id="part">부분 상품
+                            </label>
+                        </div>
+                        <div class><input class="submitSearchButton" id="submitFormButton" type="button" value="검색"></div>
+                    </form>
+                </div>
+                <!--65프로 차지-->
+                <div class="navMainInfoOptionFrameTable">
+
+                </div>
+
+            </div>
+        </div>
     </div>
-  </main>
-  <main>
-    <div class="navMain1Info">
-    <!--selectDivOptionDetails에 옵션 세부정보 추가 -->
-      <div class="navMainInfoOption" id="selectDivOptionDetails"></div>
-    </div>
-  </main>
 </nav>
-<section class="section"><main><canvas id="myChart"></canvas></main><aside style="color: aliceblue;">side1</aside></section>
 <footer class="footer"></footer>
 <script type="module" src="../javascripts/MainPageRadioBtn.js"></script>
+<script type="module" src="../javascripts/EventListenerForChoose.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
