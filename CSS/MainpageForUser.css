@@ -162,7 +162,7 @@ html,body{margin: 0; padding: 0; height: 100%;}
 
 
 .section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormAside{
-    background-color: red;
+
     width: 20%;
     height: 90%;
     float: left;
@@ -188,6 +188,7 @@ html,body{margin: 0; padding: 0; height: 100%;}
     height: 40%;
     display: flex;
     flex-direction: row;
+    background-color: yellow;
 }
 
 .section>.mainForJumjuSecond>div{
