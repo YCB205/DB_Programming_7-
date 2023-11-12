@@ -106,21 +106,27 @@ html,body{margin: 0; padding: 0; height: 100%;}
     width : 80%;
     height: 90%;
     float: left;
-    overflow: auto;
 }
 
 .aside{
     width: 20%;
     height: 90%;
     float: left;
-    background-color: red;
+
 }
 
 .aside>.first{
     width: 100%;
-    height: 20%;
+    height: 30%;
     display: flex;
     flex-direction:column;
+}
+
+.aside>.second{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
 }
 
 .aside>.first>.firstchild1{
@@ -141,12 +147,34 @@ html,body{margin: 0; padding: 0; height: 100%;}
     float: left;
 }
 
-.section>.aside{
-    float: left;
-    width: 40%;
+.section>.mainForJumjuRegisterOrder{
+    width: 100%;
     height: 100%;
-    background-color: black;
+    float: left;
 }
+
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormHeader{
+
+    width: 100%;
+    height: 10%;
+}
+
+
+
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormAside{
+    background-color: red;
+    width: 20%;
+    height: 90%;
+    float: left;
+}
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormMain{
+    float: left;
+    width: 80%;
+    height: 90%;
+    background-color: rebeccapurple;
+
+}
+
 
 .section>.mainForJumju{
     width:100%;
@@ -154,6 +182,18 @@ html,body{margin: 0; padding: 0; height: 100%;}
     display: flex;
     flex-direction: row;
 }
+
+.section>.mainForJumjuSecond{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+}
+
+.section>.mainForJumjuSecond>div{
+    flex: 1;
+}
+
 .section>.mainForJumju>div{
     border: 1px solid black;
     flex: 1;
@@ -187,7 +227,7 @@ html,body{margin: 0; padding: 0; height: 100%;}
 
 
 /*div태그 내의 스크롤 기능 넣음*/
-.\.scrollable-div{
+.scrollable-div{
     overflow: auto;
 }
 

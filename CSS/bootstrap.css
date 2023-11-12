@@ -3304,6 +3304,9 @@
     .gradient-primary{
         background-image: linear-gradient(to right, #fff, #78c2ad);
     }
+    .gradient-primary-reverse{
+        background-image: linear-gradient(to left, #fff, #78c2ad);
+    }
 
     .btn-outline-light {
         --bs-btn-color: #f8f9fa;
