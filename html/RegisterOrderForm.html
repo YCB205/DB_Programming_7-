@@ -6,6 +6,10 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+    </style>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
@@ -46,13 +50,13 @@
 </header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder">
-        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center">
-            <h3 class="text-white">주문서 등록</h3>
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">주문서 등록</h3>
         </div>
         <div class="mainForJumjuRegisterOrderFormAside">
             <div style="height: 10%"></div>
             <div class="rounded" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px;">
-                <div class="text-center text-white fs-5">품묵</div>
+                <div class="text-center text-white fs-5"><strong>품 목</strong></div>
                 <div class="btn-group-vertical bg-white d-flex" role="group"
                      aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
@@ -67,11 +71,11 @@
             </div>
 
         </div>
-        <div class="mainForJumjuRegisterOrderFormMain d-flex justify-content-center align-items-center p-3">
-            <div class="scrollable-div w-100 h-100 d-flex align-items-center">
-                <table class="table table-hover">
+        <div class="mainForJumjuRegisterOrderFormMain d-flex justify-content-center align-items-center " style="padding-left: 1%;">
+            <div class="scrollable-div w-100 h-100 align-items-center" >
+                <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <thead class>
-                    <tr class="table-primary sticky-top">
+                    <tr class="table-primary sticky-top" style="font-size: 120%;">
                         <th scope="col">상품번호</th>
                         <th scope="col">상품명</th>
                         <th scope="col">원가</th>
@@ -80,7 +84,55 @@
                     </thead>
                     <tbody>
                     <tr class="table-light">
-                        <th scope="row">Warning</th>
+                        <th scope="row">1</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">2</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">3</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">Info</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">4</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">5</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">6</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">7</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">8</th>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -224,60 +276,12 @@
                         <td>Column content</td>
                     </tr>
                     <tr class="table-light">
-                        <th scope="row">Warning</th>
+                        <th scope="row">TEST</th>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                     </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
+                    <tr class="table-success" >
                         <th scope="row">Info</th>
                         <td>Column content</td>
                         <td>Column content</td>
