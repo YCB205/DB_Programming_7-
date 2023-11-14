@@ -8,6 +8,11 @@
             .card.border-primary.mb-3{ width: 600px;height: 600px;margin: 0 auto; display: flex;}
             .card-header{background-color: #78C2AD; height: 30px;}
             .card-body{ height: 515px;}
+            .body_first{width: 100%; height: 70%; display: flex; justify-content: center; flex-direction: column;}
+            .input_store_name{width: 60%; height: 80%; line-height: 80%; border: 3px solid #78C2AD; margin-top: 5px;}
+
+            .body_second{width: 100%; height: 30%; border-bottom: 3px solid #89cfdd; color: #000000; font-weight: bold;}
+
             .card-footer {display: flex; justify-content: flex-end;}
             .card-footer .btn{margin-left: 10px;}
             .form-control{width: 300px; display: inline; margin: 15px;}
@@ -21,7 +26,6 @@
             .product_table_thead th { font-size: medium; padding: 1em .5em; vertical-align: middle;}
             .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
             .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 1em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
-            .product_table_tbody .delete_td{background-color: transparent; border: transparent; padding-left: auto;padding-right: 0;}
 
             .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
             .product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
@@ -59,32 +63,15 @@
         <div class="card-header"></div>
         <div class="card-body">
           
-          <div class="scrollable-div w-100 align-items-center" style="height: 21%;">         
-            <div style="display: flex; justify-content: flex-start;">
-              <div class="circle-square">
-                <div class="triangle"></div>
+          <div class="scrollable-div w-100 align-items-center" style="height: 21%; margin-bottom: 3px;">         
+            <div class="body_first">
+              <div style="display: flex; justify-content: center; ">
+                <img src="../image/Icon_serch.png" alt="" style="width: 10%;">
+                <input class="input_store_name" type="text" value="" placeholder="상품의 이름을 입력하세요">
               </div>
-              <table class="table table-hover" style="width: 90%; margin: 0; padding: 0; text-align: center; display: inline;">
-                  <thead class>
-                  <tr class="table-primary sticky-top" style="font-size: 120%;">
-                      <th scope="col">주문번호</th>
-                      <th scope="col">날짜 및 시간</th>
-                      <th scope="col">매출액</th>
-                      <th scope="col">영업이익</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr class="table-light">
-                      <th scope="row">1</th>
-                      <td>Column content</td>
-                      <td>Column content</td>
-                      <td>Column content</td>
-                  </tr>
-          
-                  </tbody>
-              </table>
             </div>
-        </div>
+            <div class="body_second">검색결과</div>
+          </div>
 
         <div class="product_table_div">
         
@@ -105,7 +92,7 @@
                 <td>(713) 123-8965</td>
                 <td>test</td>
                 <td>01/13/1979</td>
-                <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+                
             </tr>
             <tr>
                 <td>Johnny</td>
@@ -113,7 +100,7 @@
                 <td>(713) 584-9614</td>
                 <td>test</td>
                 <td>06/09/1971</td>
-                <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+                
             </tr>
             <tr>
                 <td>Susan</td>
@@ -121,7 +108,7 @@
                 <td>(713) 847-1124</td>
                 <td>test</td>
                 <td>08/25/1965</td>
-                <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+                
             </tr>
             <tr>
                 <td>Tracy</td>
@@ -129,7 +116,7 @@
                 <td>(713) 245-4821</td>
                 <td>test</td>
                 <td>03/13/1980</td>
-                <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+                
             </tr>
             <tr>
               <td>Tracy</td>
@@ -137,7 +124,7 @@
               <td>(713) 245-4821</td>
               <td>test</td>
               <td>03/13/1980</td>
-              <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+              
             </tr>
             <tr>
               <td>Tracy</td>
@@ -145,7 +132,7 @@
               <td>(713) 245-4821</td>
               <td>test</td>
               <td>03/13/1980</td>
-              <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+              
             </tr>
             <tr>
               <td>Tracy</td>
@@ -153,21 +140,15 @@
               <td>(713) 245-4821</td>
               <td>test</td>
               <td>03/13/1980</td>
-              <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+              
             </tr>
             </tbody>
         </table>
         </div>
 
-        <div style="height: 8%; display: flex; justify-content: flex-end;">
-          <button type="button" class="btn btn-primary" style="margin-right: 0;" onclick="showPopup('.html',600,558)">상품추가</button>
-        </div>
-
-
-        
         </div>
         <div class="card-footer">
-            <button type="button" class="btn btn-info">수 정</button>
+            <button type="button" class="btn btn-info">등 록</button>
             <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
         </div>
       </div>

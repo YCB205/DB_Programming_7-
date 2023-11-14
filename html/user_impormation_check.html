@@ -7,7 +7,8 @@
         #main{
             .card.border-primary.mb-3{ width: 100%;height: 100%;margin: 0 auto; display: flex;}
             .card-header{background-color: #78C2AD; height: 30px;}
-            .card-footer .btn{position: relative; right: -70%;}
+            .card-footer {display: flex; justify-content: flex-end;}
+            .card-footer .btn{margin-left: 10px;}
             .form-control{width: 300px; display: inline; margin: 15px;}
             .form-group{display: flex; justify-content: flex-end; margin-right: 60px;}
         }
@@ -70,7 +71,7 @@
 
         </div>
         <div class="card-footer">
-            <button type="button" class="btn btn-primary">수 정</button>
+            <button type="button" class="btn btn-info">수 정</button>
             <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
         </div>
       </div>
