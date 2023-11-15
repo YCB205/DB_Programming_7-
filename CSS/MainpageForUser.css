@@ -3,6 +3,7 @@ html,body{margin: 0; padding: 0; height: 100%;}
     border-radius: 10px;
     height: 10%;
     width: 100%;
+    z-index: 10;
 }
 
 .nav {
@@ -129,6 +130,7 @@ html,body{margin: 0; padding: 0; height: 100%;}
     flex-direction: column;
 }
 
+
 .aside>.first>.firstchild1{
     flex: 1;
 
@@ -225,6 +227,10 @@ html,body{margin: 0; padding: 0; height: 100%;}
     clear: both;
 }
 
+/*스크롤 숨기기*/
+.scroll-hidden::-webkit-scrollbar{
+    display: none;
+}
 
 /*div태그 내의 스크롤 기능 넣음*/
 .scrollable-div{

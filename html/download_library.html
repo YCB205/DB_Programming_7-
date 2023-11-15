@@ -2,44 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Number Input with Increment/Decrement Buttons</title>
 </head>
 <body>
-<table class="table">
-    <thead>
-    <tr>
-        <th></th>
-        <th scope="col">ID</th>
-        <th scope="col">이름</th>
-        <th scope="col">나이</th>
-    </tr>
-    </thead>
-    <tbody>
 
-    <tr class="accordion accordion-item" id="accodianHead1">
+<div class="container mt-5">
+    <div class="input-group">
+        <span class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
+        </span>
+        <input type="number" class="form-control text-center" value="1" id="quantityInput" min="1">
+        <span class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
+        </span>
+    </div>
+</div>
 
-        <th></th>
-        <th scope="col">202001826</th>
-        <th scope="col">정동주</th>
-        <th scope="col">22</th>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 수량 증가 버튼 클릭 시
+        $('#plusBtn').click(function () {
+            var currentQuantity = parseInt($('#quantityInput').val());
+            $('#quantityInput').val(currentQuantity + 1);
+        });
 
-        <div class="accordion-header">
-        <table class="table">
-            <thead>
-            <tr>
-
-            </tr>
-            </thead>
-        </table>
-        </div>
-
-
-
-
-</table>
+        // 수량 감소 버튼 클릭 시
+        $('#minusBtn').click(function () {
+            var currentQuantity = parseInt($('#quantityInput').val());
+            if (currentQuantity > 1) {
+                $('#quantityInput').val(currentQuantity - 1);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
