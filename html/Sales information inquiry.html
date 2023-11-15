@@ -422,7 +422,7 @@
     </div>
     <br><br>
     &nbsp;&nbsp;&nbsp;&nbsp;시작일: <input id="fromDate" type="date">
-    <br><br>
+    <br>
     &nbsp;&nbsp;&nbsp;&nbsp;종료일: <input id="toDate" type="date">
     </div>
     
@@ -442,6 +442,31 @@
         <button type="button" button id="showPopup" class="btn btn-primary">
         &nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
+    <br>
+    <div class="border" style="width: 100%; height: 60%;">
+        <table class="search table" table id="product search">
+            <thead>
+                <tr class="text-center" >
+                    <th scope="col" style="background-color:rgb(0, 198, 122)">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)">상품명</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td scope="row">001</td>
+                <td>아이스 아메리카노</td>
+            </tr>
+            <tr>
+                <td scope="row">002</td>
+                <td>아메리카노</td>
+            </tr>
+            <tr>
+                <td scope="row">003</td>
+                <td>아이스 카페라떼</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </aside>
 <script>
     document.getElementById('showPopup').addEventListener('click', function() {
@@ -449,7 +474,7 @@
         var topPosition = (screen.height - 570) / 2;
         var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
-        window.open('product_registration.html', 'Popup', options);
+        window.open('#', 'Popup', options);
     });
 </script>
 </body>
