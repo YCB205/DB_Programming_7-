@@ -5598,6 +5598,7 @@
 
     .modal-dialog-centered {
         display: flex;
+        justify-content: center;
         align-items: center;
         min-height: calc(100% - var(--bs-modal-margin) * 2);
     }
@@ -5694,7 +5695,7 @@
     @media (min-width: 992px) {
         .modal-lg,
         .modal-xl {
-            --bs-modal-width: 800px;
+            --bs-modal-width: 620px;
         }
     }
     @media (min-width: 1200px) {
@@ -5707,7 +5708,18 @@
         max-width: none;
         height: 100%;
         margin: 0;
+
     }
+
+    .modal-midScreen{
+        width: 50vw;
+        max-width: none;
+        height: 80%;
+        margin: 0;
+    }
+
+
+
     .modal-fullscreen .modal-content {
         height: 100%;
         border: 0;
