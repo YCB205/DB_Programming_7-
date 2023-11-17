@@ -1,0 +1,279 @@
+html,body{margin: 0; padding: 0; height: 100%;}
+.header {
+    border-radius: 10px;
+    height: 10%;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    width : 20%;
+    height: 90%;
+}
+
+/*nav 밑에 들어가는 div태그로 써 전체 태그이다*/
+.navFirstChildDiv{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    width : 100%;
+    height: 100%;
+    margin: 0;
+}
+
+/* navFirstChildDiv의 자식CSS로 --> 유저 정보*/
+/*부모의 20%를 가진다*/
+.navClassChildInfoUser{
+    height: 25%;
+    width : 100%;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+
+}
+/*navFirstChildDiv의 자식CSS로 --> 세보 선택 옵션*/
+/*부모의 80프로를 가짐*/
+.navMainInfoOption{
+    display : none;
+    height: 75%;
+    width : 100%;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.navMainInfoOptionFrame{
+    height: 100%;
+    width : 100%;
+}
+
+
+
+.radioOptionNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    background-color: white;
+    margin: 0;
+
+}
+.radioOptionNavForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.timeFormCssParent{
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+    background-color: cyan;
+}
+
+/*timeFormCss nav에 들어가고 요소 배치 */
+.timeFormCssChild{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 40%;
+}
+.timeFormCssChildChild{
+    width: 100%;
+    height: 100%;
+
+}
+
+.navMainInfoOptionFrameTable{
+    width: 100%;
+    height: 65%;
+    background-color: white;
+}
+
+.section{
+    width : 80%;
+    height: 90%;
+    float: left;
+}
+
+.aside{
+    width: 20%;
+    height: 90%;
+    float: left;
+
+}
+
+.aside>.first{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction:column;
+}
+
+.aside>.second{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.aside>.first>.firstchild1{
+    flex: 1;
+
+}
+.aside>.first>.firstchild1>.firstchild2{
+    width: 30%;
+    height: 100%;
+    text-align: left;
+    float: left;
+}
+
+.aside>.first>.firstchild1>.firstchild3{
+    width: 70%;
+    height: 100%;
+    text-align: left;
+    float: left;
+}
+
+.section>.mainForJumjuRegisterOrder{
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormHeader{
+
+    width: 100%;
+    height: 10%;
+}
+
+
+
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormAside{
+
+    width: 20%;
+    height: 90%;
+    float: left;
+}
+.section>.mainForJumjuRegisterOrder>.mainForJumjuRegisterOrderFormMain{
+    float: left;
+    width: 80%;
+    height: 90%;
+}
+
+
+.section>.mainForJumju{
+    width:100%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+}
+
+.section>.mainForJumjuSecond{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    background-color: yellow;
+}
+
+.section>.mainForJumjuSecond>div{
+    flex: 1;
+}
+
+.section>.mainForJumju>div{
+    border: 1px solid black;
+    flex: 1;
+}
+.section>.mainForJumju>.mainForJumjuSecond{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.section>.mainForJumju>.mainForJumjuSecond>div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    border: 1px solid crimson;
+}
+
+.section>.mainForJumju>.mainForJumjuSecond>div>div{
+    display: flex;
+    flex: 1;
+    border: 1px solid yellow;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.footer{
+    width: 100%;
+    height: 0%;
+    clear: both;
+}
+
+/*스크롤 숨기기*/
+.scroll-hidden::-webkit-scrollbar{
+    display: none;
+}
+
+/*div태그 내의 스크롤 기능 넣음*/
+.scrollable-div{
+    overflow: auto;
+}
+
+fieldset{
+    border: none;
+}
+/*마우스가 특정 위치에 올라갔을 때 설정하기 위해 작성*/
+.hover-text {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 20px;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.hover-text:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+/* header의 폼요소의 radio버튼을 정렬하는데 쓰임 */
+.containerMainPageForUSer{
+    display: flex;
+    justify-content: space-between;
+}
+

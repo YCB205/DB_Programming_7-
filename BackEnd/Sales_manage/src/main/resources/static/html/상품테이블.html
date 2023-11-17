@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+
+
+.product_table {font-size: .9em;width: 100%;border-collapse: collapse;overflow: hidden;text-align: center;vertical-align: middle;}
+.product_table_thead th {font-size: large; padding: 1em .5em; vertical-align: middle;}
+.product_table_thead {font-weight: bold;color: #fff;background: #89cfdd;}
+.product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 1em .5em; vertical-align: middle;}
+.product_table_tbody .delete_td{background-color: transparent; border: transparent; padding-left: 0;padding-right: 0;}
+
+.product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
+.product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
+.highlighted {background-color: #9addeb !important;}
+
+</style>
+</head>
+
+ <body>
+    
+
+<table class="product_table">
+    <thead class="product_table_thead">
+    <tr>
+        <th>품목명</th>
+        <th>상품번호</th>
+        <th>상품명</th>
+        <th>원가</th>
+        <th>판매가</th>
+    </tr>
+    </thead>
+    <tbody class="product_table_tbody">
+    <tr>
+        <td>James</td>
+        <td>Matman</td>
+        <td>(713) 123-8965</td>
+        <td>test</td>
+        <td>01/13/1979</td>
+        <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+    </tr>
+    <tr>
+        <td>Johnny</td>
+        <td>Smith</td>
+        <td>(713) 584-9614</td>
+        <td><a href="mailto:jsmith@stewart.com">jsmith@stewart.com</a></td>
+        <td>06/09/1971</td>
+        <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+    </tr>
+    <tr>
+        <td>Susan</td>
+        <td>Johnson</td>
+        <td>(713) 847-1124</td>
+        <td><a href="mailto:sjohnson@stewart.com">sjohnson@stewart.com</a></td>
+        <td>08/25/1965</td>
+        <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+    </tr>
+    <tr>
+        <td>Tracy</td>
+        <td>Richardson</td>
+        <td>(713) 245-4821</td>
+        <td><a href="mailto:trichard@stewart.com">trichard@stewart.com</a></td>
+        <td>03/13/1980</td>
+        <td class="delete_td"><img src="../image/Icon_delete.png" alt=""></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    var rows = document.getElementsByClassName('product_table_tbody')[0].getElementsByTagName('tr');
+
+    for (var i = 0; i < rows.length; i++) {
+        rows[i].addEventListener('mouseover', function () {
+            var tds = this.getElementsByTagName('td');
+            for (var j = 0; j < tds.length; j++) {
+                if (!tds[j].classList.contains('delete_td')) {
+                    tds[j].classList.add('highlighted');
+                }
+            }
+        });
+
+        rows[i].addEventListener('mouseout', function () {
+            var tds = this.getElementsByTagName('td');
+            for (var j = 0; j < tds.length; j++) {
+                tds[j].classList.remove('highlighted');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

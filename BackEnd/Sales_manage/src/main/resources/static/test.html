@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data from API</title>
+</head>
+<body>
+
+<button onclick="fetchData()">데이터 가져오기</button>
+<div id="data-container"></div>
+
+<script>
+    function fetchData() {
+        fetch('/store') // API 엔드포인트
+            .then(response => response.json())
+            .then(data => {
+                // 가져온 데이터를 처리
+                displayData(data);
+            })
+            .catch(error => {
+                console.error('데이터 가져오기 실패:', error);
+            });
+    }
+
+    function displayData(data) {
+        // 데이터를 표시할 요소 가져오기
+        var container = document.getElementById('data-container');
+        container.innerHTML = ""; // 기존 내용 비우기
+
+        // 데이터 순회하며 HTML에 추가
+        data.forEach(member => {
+            var memberInfo = document.createElement('p');
+            memberInfo.textContent = `
+                ID: ${member.id_store_manager}
+                Passwd: ${member.passwd}
+                Name: ${member.name}
+                Email: ${member.email}
+                Number: ${member.number}
+            `;
+            container.appendChild(memberInfo);
+        });
+    }
+</script>
+
+</body>
+</html>
