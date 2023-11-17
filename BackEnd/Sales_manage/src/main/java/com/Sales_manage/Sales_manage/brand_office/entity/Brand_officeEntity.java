@@ -1,5 +1,6 @@
 package com.Sales_manage.Sales_manage.brand_office.entity;
 
+import com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,5 @@ public class Brand_officeEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_store_manager")
-    private com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity id_store_manager;
+    private Store_managerEntity id_store_manager;
 }

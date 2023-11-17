@@ -1,7 +1,6 @@
 package com.Sales_manage.Sales_manage.brand_office.dto;
 
 import com.Sales_manage.Sales_manage.brand_office.entity.Brand_officeEntity;
-import com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

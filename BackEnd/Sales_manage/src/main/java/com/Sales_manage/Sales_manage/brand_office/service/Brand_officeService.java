@@ -12,16 +12,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class Brand_officeService {
-    private final Store_managerRepository storeManagerRepository;
+    private final Store_managerRepository brandOfficeRepository;
 
     public List<Store_managerDTO> getAll() {
-        List<Store_managerEntity> storeManagerEntityList = storeManagerRepository.findAll();
-        List<Store_managerDTO> storeManagerDTOList = new ArrayList<>();
-        for (Store_managerEntity memberTestEntity: storeManagerEntityList){
-            Store_managerDTO storeManagerDTO = Store_managerDTO.toMemberTestDTO(memberTestEntity);
-            storeManagerDTOList.add(storeManagerDTO);
+        List<Store_managerEntity> brandOfficeEntityList = brandOfficeRepository.findAll();
+        List<Store_managerDTO> brandOfficeDTOList = new ArrayList<>();
+        for (Store_managerEntity brandOfficeEntity: brandOfficeEntityList){
+            Store_managerDTO brandOfficeDTO = Store_managerDTO.toMemberTestDTO(brandOfficeEntity);
+            brandOfficeDTOList.add(brandOfficeDTO);
         }
-        return storeManagerDTOList;
+        return brandOfficeDTOList;
     }
 
 }

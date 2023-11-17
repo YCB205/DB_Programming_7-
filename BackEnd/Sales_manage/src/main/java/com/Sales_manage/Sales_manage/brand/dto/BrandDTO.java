@@ -1,6 +1,6 @@
 package com.Sales_manage.Sales_manage.brand.dto;
 
-import com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity;
+import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,10 +15,10 @@ public class BrandDTO {
     private String brand_name;
 
 
-    public static BrandDTO toBrandDTO(Store_managerEntity storemanagerEntity) {
+    public static BrandDTO toBrandDTO(BrandEntity brandEntity) {
         BrandDTO brandDTO = new BrandDTO();
-        brandDTO.setId_brand(storemanagerEntity.getId_brand());
-        brandDTO.setBrand_name(storemanagerEntity.getPasswd());
+        brandDTO.setId_brand(brandEntity.getId_brand());
+        brandDTO.setBrand_name(brandEntity.getBrand_name());
         return brandDTO;
     }
 }

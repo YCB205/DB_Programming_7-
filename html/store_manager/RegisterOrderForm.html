@@ -1,61 +1,16 @@
+<!--주문서 등록 지점-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="../CSS/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    
-<style>
-.table-success th, .table-success td { background-color: #d9f2eb; color: black;}
-.scrollable-div {
-    overflow-y: auto;
-    max-height: 500px;
- }
- .form-check-input:checked {
-    background-color: #78c2ad;
-    border-color: #78c2ad;
-}
-.form-check-input:checked[type=radio] {
-    --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
-}
-.form-check-input:checked {
-    background-color: #78c2ad;
-    border-color: #78c2ad;
-}
-.form-check-input[type=radio] {
-    border-radius: 50%;
-}
-.form-check .form-check-input {
-    float: left;
-    margin-left: -1.5em;
-}
-.form-check-input {
-    --bs-form-check-bg: var(--bs-body-bg);
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.25em;
-    vertical-align: top;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: var(--bs-form-check-bg);
-    background-image: var(--bs-form-check-bg-image);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-}
-
-
-
-</style>
+    <style>
+        .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+    </style>
 </head>
-
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <header class="header bg-primary">
@@ -94,17 +49,33 @@
     </div>
 </header>
 <section class="section">
-    <div class="mainForJumjuproductinquiry">
-        <div class="mainForJumjuproductinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
-            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품조회</h3>
+    <div class="mainForJumjuRegisterOrder">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">주문서 등록</h3>
         </div>
-        <div class="mainForJumjuproductinquiryFormMain p-2" 
-        style="width: 100%; padding-left: 1%; overflow: auto;">
-            <div class="scrollable-div w-100 h-100">
+        <div class="mainForJumjuRegisterOrderFormAside">
+            <div style="height: 10%"></div>
+            <div class="rounded" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px;">
+                <div class="text-center text-white fs-5"><strong>품 목</strong></div>
+                <div class="btn-group-vertical bg-white d-flex" role="group"
+                     aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio1">Radio 1</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio2">Radio 2</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio3">Radio 2</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary rounded-bottom-0 m-0" for="btnradio4">Radio 3</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="mainForJumjuRegisterOrderFormMain d-flex justify-content-center align-items-center " style="padding-left: 1%;">
+            <div class="m-2 scrollable-div w-100 h-100 align-items-center" >
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <thead class>
                     <tr class="table-primary sticky-top" style="font-size: 120%;">
-                        <th scope="col">품목명</th>
                         <th scope="col">상품번호</th>
                         <th scope="col">상품명</th>
                         <th scope="col">원가</th>
@@ -113,50 +84,43 @@
                     </thead>
                     <tbody>
                     <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1101</td>
-                        <td>아이스 아메리카노</td>
-                        <td>1,000원</td>
-                        <td>2,000원</td>
+                        <th scope="row">1</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1102</td>
-                        <td>아메리카노</td>
-                        <td>1,000원</td>
-                        <td>2,000원</td>
+                        <th scope="row">2</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1103</td>
-                        <td>아이스 카페라떼</td>
-                        <td>2,000원</td>
-                        <td>3,000원</td>
+                        <th scope="row">3</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1104</td>
-                        <td>카페라떼</td>
-                        <td>2,000원</td>
-                        <td>3,000원</td>
+                        <th scope="row">Info</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1105</td>
-                        <td>아이스 카라멜 마끼아또</td>
-                        <td>3,000원</td>
-                        <td>4,000원</td>
+                        <th scope="row">4</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1106</td>
-                        <td>카라멜 마끼아또</td>
-                        <td>3,000원</td>
-                        <td>4,000원</td>
+                        <th scope="row">5</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                     </tr>
                     <tr class="table-light">
                         <th scope="row">6</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -166,18 +130,15 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-light">
                         <th scope="row">8</th>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -187,11 +148,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -201,11 +160,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -215,11 +172,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -229,11 +184,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -243,11 +196,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -257,11 +208,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -271,11 +220,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -285,11 +232,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -299,11 +244,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -313,11 +256,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -327,11 +268,9 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">Info</th>
-                        <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
@@ -341,17 +280,17 @@
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
                     <tr class="table-success" >
                         <th scope="row">Info</th>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                        <td>Column content</td>
                     </tr>
+
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
@@ -398,47 +337,77 @@
     <div class="second border">
         <div class="form-group position-relative" style="width: 100%; height: 15%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
-                <input type="text" class="form-control" placeholder="Recipient's productname"
-                       aria-label="Recipient's productname" aria-describedby="button-addon2">
-                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                <input type="text" class="form-control" placeholder="Recipient's username"
+                       aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
             </div>
         </div>
         <div class="border" style="width: 100%; height: 60%;">
             <div>
-                <br><h4 style="text-align: center;">상세 검색</h4>
+                <h4 style="text-align: center;">주문 목록</h4>
             </div>
-<br>
-            <div class="form-check-radio">
-                &nbsp;&nbsp;&nbsp;
-                <input class="form-check-input" type="radio" name="viewOption" id="showAll" onchange="toggleView('all')" checked>
-                <label for="showAll">전체 상품 </label>
-                &nbsp;&nbsp;&nbsp;
-                <input class="form-check-input" type="radio" name="viewOption" id="showCheckbox" onchange="toggleView('checkbox')">
-                <label for="showCheckbox">품목 별</label><br><br>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col" class="col-5" style="border: 1px solid red;">상품명</th>
+                        <th scope="col" class="col-3">수량</th>
+                        <th scope="col" class="col-3 ">가격</th>
+                        <th scope="col" class="col-1">취소</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center">
+                    <td scope="row">1</td>
+                    <td class=" m-0">
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="coffeeCheckbox" onchange="filterTable()">
-                        <label for="coffeeCheckbox">커피</label>
-                    </div>
-                <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="drinkCheckbox" onchange="filterTable()">
-                        <label for="drinkCheckbox">음료</label>
-                    </div>
-                <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">
-                        <label for="shakeCheckbox">쉐이크</label>
-                    </div>
-                <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">
-                          <label for="dessertCheckbox">디저트</label>
-                      </div>
-                <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">
-                        <label for="MDproduct">MD상품</label>
-                      </div>
+                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
+                    </td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr class="text-center">
+                    <td scope="row">1</td>
+                    <td class=" m-0">
+
+                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
+                    </td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr class="text-center">
+                    <td scope="row">1</td>
+                    <td class=" m-0">
+
+                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
+                    </td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr class="text-center">
+                    <td scope="row">1</td>
+                    <td class=" m-0">
+
+                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
+                    </td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+
+                </tbody>
+            </table>
         </div>
+        <div class="border d-flex bg-info" style="width: 100%; height: 8%;">
+           <div class="d-flex justify-content-end align-items-center fs-5 text-white p-1" style="width: 30%;">가격</div>
+            <div class="d-flex align-items-center text-start fs-5 text-white" style="width: 70%; border: 1px solid red;">200000</div>
     </div>
+        <div class="d-flex flex-row" style="width: 100%; height: 10%; border: 1px solid red; margin-top: 0.5rem;">
+            <div class="d-flex align-items-center justify-content-center p-0" style="border: 1px solid blue; width: 50%; height: 100%;">
+                <button class="btn btn-info m-1 w-100">등록</button>
+            </div>
+            <div class="d-flex align-items-center justify-content-center p-0" style="border: 1px solid blue; width: 50%; height: 100%;">
+                <button class="btn btn-secondary m-1 w-100">취소</button>
+            </div>
+            </div>
 </aside>
 </body>
 </html>

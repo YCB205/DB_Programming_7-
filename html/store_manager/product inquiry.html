@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="../CSS/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 
     
 <style>
@@ -55,6 +52,7 @@
 }
 
 
+
 </style>
 </head>
 
@@ -96,11 +94,11 @@
     </div>
 </header>
 <section class="section">
-    <div class="mainForJumjuSalesinformationinquiry">
-        <div class="mainForJumjuSalesinformationinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
-            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">매출 정보 조회</h3>
+    <div class="mainForJumjuproductinquiry">
+        <div class="mainForJumjuproductinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품조회</h3>
         </div>
-        <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
+        <div class="mainForJumjuproductinquiryFormMain p-2" 
         style="width: 100%; padding-left: 1%; overflow: auto;">
             <div class="scrollable-div w-100 h-100">
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
@@ -109,8 +107,8 @@
                         <th scope="col">품목명</th>
                         <th scope="col">상품번호</th>
                         <th scope="col">상품명</th>
-                        <th scope="col">영업이익</th>
-                        <th scope="col">총매출</th>
+                        <th scope="col">원가</th>
+                        <th scope="col">판매가</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -397,85 +395,50 @@
             </div>
         </div>
     </div>
-<br>
-    <div class="form-check-radio1">
-        &nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios1" value="option1" checked="">
-        <label class="form-check-label" for="optionsRadios1">Chart </label>
-        &nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios2" value="option2">
-        <label class="form-check-label" for="optionsRadios2">Table </label><br><br>
-      </div>
-
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-primary">Year -- Month -- Day</button>
-        <div class="btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Year</a>
-            <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Month</a>
-            <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Day</a>
-          </div>
+    <div class="second border">
+        <div class="form-group position-relative" style="width: 100%; height: 15%;">
+            <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
+                <input type="text" class="form-control" placeholder="Recipient's productname"
+                       aria-label="Recipient's productname" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+            </div>
         </div>
-      </div>
-    </div>
-    <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;시작일: <input id="fromDate" type="date">
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;종료일: <input id="toDate" type="date">
-    </div>
-    
-    <div class="form-check-radio2">
-        <br>
-        &nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-        <label class="form-check-label" for="optionsRadios1">총 상품 </label>
-        &nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        <label class="form-check-label" for="optionsRadios2">상품별 보기 </label><br><br>
-      </div>
-      <div class="searchButton">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;
-        <button type="button" button id="showPopup" class="btn btn-primary">
-        &nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;</button>
-    </div>
-    <br>
-    <div class="border" style="width: 100%; height: 60%;">
-        <table class="search table" table id="product search">
-            <thead>
-                <tr class="text-center" >
-                    <th scope="col" style="background-color:rgb(0, 198, 122)">상품 번호</th>
-                    <th scope="col" style="background-color:rgb(0, 198, 122)">상품명</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td scope="row">001</td>
-                <td>아이스 아메리카노</td>
-            </tr>
-            <tr>
-                <td scope="row">002</td>
-                <td>아메리카노</td>
-            </tr>
-            <tr>
-                <td scope="row">003</td>
-                <td>아이스 카페라떼</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="border" style="width: 100%; height: 60%;">
+            <div>
+                <br><h4 style="text-align: center;">상세 검색</h4>
+            </div>
+<br>
+            <div class="form-check-radio">
+                &nbsp;&nbsp;&nbsp;
+                <input class="form-check-input" type="radio" name="viewOption" id="showAll" onchange="toggleView('all')" checked>
+                <label for="showAll">전체 상품 </label>
+                &nbsp;&nbsp;&nbsp;
+                <input class="form-check-input" type="radio" name="viewOption" id="showCheckbox" onchange="toggleView('checkbox')">
+                <label for="showCheckbox">품목 별</label><br><br>
+            </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="coffeeCheckbox" onchange="filterTable()">
+                        <label for="coffeeCheckbox">커피</label>
+                    </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="drinkCheckbox" onchange="filterTable()">
+                        <label for="drinkCheckbox">음료</label>
+                    </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">
+                        <label for="shakeCheckbox">쉐이크</label>
+                    </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">
+                          <label for="dessertCheckbox">디저트</label>
+                      </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">
+                        <label for="MDproduct">MD상품</label>
+                      </div>
+        </div>
     </div>
 </aside>
-<script>
-    document.getElementById('showPopup').addEventListener('click', function() {
-        var leftPosition = (screen.width - 600) / 2;
-        var topPosition = (screen.height - 570) / 2;
-        var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
-        //아래에 있는 user_impormation_check.html로 열림
-        window.open('#', 'Popup', options);
-    });
-</script>
 </body>
 </html>
