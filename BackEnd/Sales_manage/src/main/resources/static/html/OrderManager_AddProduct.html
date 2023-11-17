@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        #main{
+            .card.border-primary.mb-3{ width: 600px;height: 600px;margin: 0 auto; display: flex;}
+            .card-header{background-color: #78C2AD; height: 30px;}
+            .card-body{ height: 515px;}
+            .body_first{width: 100%; height: 70%; display: flex; justify-content: center; flex-direction: column;}
+            .input_store_name{width: 60%; height: 80%; line-height: 80%; border: 3px solid #78C2AD; border-radius: 10px; padding-left: 15px; margin-top: 5px;}
+
+            .body_second{width: 100%; height: 30%; border-bottom: 3px solid #1C664E; color: #000000; font-weight: bold;}
+
+            .card-footer {display: flex; justify-content: flex-end;}
+            .card-footer .btn{margin-left: 10px;}
+            .form-control{width: 300px; display: inline; margin: 15px;}
+            .form-group{display: flex; justify-content: flex-end; margin-right: 60px;}
+
+            .parents_product_table_div{height: 74%;}
+            .product_table_header{display: inline-block; width: 50%; height: 10%;  text-align: center; background-color: #1C664E;}
+            .product_table_header.right{background-color: #467D88;}
+            .table_header_txt{ color: #ffffff; font-weight: bold; position: relative; top: 50%; transform: translateY(-50%);}
+            .center_line {
+              position: absolute;
+              left: 50%;
+              top: 24%;
+              transform: translateX(-60%);
+              border: 3px solid #1C664E;
+              height: 67%;
+              z-index: 1;
+            }
+
+            .product_table_div{ display: inline-block; width: 49.5%; height: 100%; overflow-y: scroll;}
+            .second.product_table_div{display: inline-block; width: 49.5%;}
+            .product_table_div::-webkit-scrollbar {display: none;}
+
+            .product_table {font-size: .9em;width: 100%; height: 100%; border-collapse: collapse;
+              text-align: center;vertical-align: middle; margin: 0; padding: 0;}
+            .product_table_thead th { font-size: medium; padding: 0.8em .5em; vertical-align: middle;}
+            .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #78C2AD; }
+            .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
+
+            .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
+            .product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #d9f2eb;}
+            .highlighted {background-color: #63d0a4 !important;}
+            .second-highlighted{background-color: #9addeb !important;}
+            
+            .second.product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
+            .second.product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
+
+            .second.product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
+            .second.product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
+
+            
+        }
+        
+/* .back_ground {
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4);
+} */
+
+.circle-square {width: 50px;height: 50px;background-color: #78C2AD; border-radius: 10%; position: relative; margin-right: 18px; margin-top: 38px;}
+
+.triangle {width: 0;height: 0;border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-bottom: 20px solid #fff; /* Set border color to white */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);; 
+        }
+
+    </style>
+</head>
+<body>
+<div class="back_ground">
+  <div id="main">
+    <div class="card border-primary mb-3">
+        <div class="card-header"></div>
+        <div class="card-body">
+          
+          <div class="scrollable-div w-100 align-items-center" style="height: 21%; margin-bottom: 0px;">         
+            <div class="body_first">
+              <div style="display: flex; justify-content: center; ">
+                <img src="../image/Icon_serch.png" alt="" style="width: 10%;">
+                <input class="input_store_name" type="text" value="" placeholder="상품의 이름을 입력하세요.">
+              </div>
+            </div>
+            <div class="body_second"></div>
+          </div>
+
+          <div class="parents_product_table_div">
+            <div class="product_table_header"><div class="table_header_txt">차트에 입력되는 상품리스트</div>
+          </div><div class="product_table_header right"><div  class="table_header_txt">검색 결과</div></div>
+          <div class="center_line"></div>
+            <div class="product_table_div">
+              <table class="product_table">
+                <thead class="product_table_thead">
+                <tr>
+                    <th style="position:sticky; top:0px;">상품번호</th>
+                    <th style="position:sticky; top:0px;">상품명</th>
+                </tr>
+                </thead>
+                <tbody class="product_table_tbody">
+                <tr>
+                    <td>James</td>
+                    <td>Matman</td>
+                </tr>
+                <tr>
+                    <td>Johnny</td>
+                    <td>Smith</td>
+                </tr>
+                <tr>
+                    <td>Susan</td>
+                    <td>Johnson</td>
+                </tr>
+                <tr>
+                    <td>Tracy</td>
+                    <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="second product_table_div">
+              <table class="second product_table">
+                <thead class="second product_table_thead">
+                <tr>
+                    <th style="position:sticky; top:0px;">상품번호</th>
+                    <th style="position:sticky; top:0px;">상품명</th>
+                </tr>
+                </thead>
+                <tbody class="second product_table_tbody">
+                <tr>
+                    <td>James</td>
+                    <td>Matman</td>
+                </tr>
+                <tr>
+                    <td>Johnny</td>
+                    <td>Smith</td>
+                </tr>
+                <tr>
+                    <td>Susan</td>
+                    <td>Johnson</td>
+                </tr>
+                <tr>
+                    <td>Tracy</td>
+                    <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                <tr>
+                  <td>Tracy</td>
+                  <td>Richardson</td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-info">등 록</button>
+            <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
+        </div>
+      </div>
+</div> 
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
+<script src="../javascripts/팝업모듈/showPopup.js"></script>
+<script>
+  //취소버튼 구현
+document.getElementById('closeBtn').addEventListener('click', function () {
+    window.close();
+  });
+
+
+// 테이블에 마우스 올릴때 배경색 변경 코드
+var tables = document.querySelectorAll('.product_table_tbody, .second.product_table_tbody');
+
+for (let t = 0; t < tables.length; t++) {
+  var rows = tables[t].getElementsByTagName('tr');
+
+  for (var i = 0; i < rows.length; i++) {
+    rows[i].addEventListener('mouseover', function () {
+      var tds = this.getElementsByTagName('td');
+      for (var j = 0; j < tds.length; j++) {
+        if (!tds[j].classList.contains('delete_td')) {
+          tds[j].classList.add(t === 0 ? 'highlighted' : 'second-highlighted');
+        }
+      }
+    });
+
+    rows[i].addEventListener('mouseout', function () {
+      var tds = this.getElementsByTagName('td');
+      for (var j = 0; j < tds.length; j++) {
+        tds[j].classList.remove(t === 0 ? 'highlighted' : 'second-highlighted');
+      }
+    });
+  }
+}
+
+
+
+</script>
+</body>
+</html>
