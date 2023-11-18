@@ -11,6 +11,6 @@ import lombok.Setter;
 public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_brand;
-    private String brand_name;
+    private Long idBrand;
+    private String brandName;
 }

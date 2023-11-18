@@ -1,7 +1,7 @@
 package com.Sales_manage.Sales_manage.brand.controller;
 
-import com.Sales_manage.Sales_manage.store_manager.dto.Store_managerDTO;
-import com.Sales_manage.Sales_manage.store_manager.service.Store_managerService;
+import com.Sales_manage.Sales_manage.brand.dto.BrandDTO;
+import com.Sales_manage.Sales_manage.brand.service.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +14,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/brand")
 public class BrandController {
-    private final Store_managerService storemanagerService;
+    private final BrandService brandService;
 
 
     @GetMapping("/store")
     @ResponseBody
-    public List<Store_managerDTO> getAll() {
-        System.out.println(storemanagerService.getAll());
-        return storemanagerService.getAll();
+    public List<BrandDTO> getAll() {
+        System.out.println(brandService.getAll());
+        return brandService.getAll();
     }
 
 }

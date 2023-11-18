@@ -1,4 +1,4 @@
-package com.Sales_manage.Sales_manage.manager.service;
+package com.Sales_manage.Sales_manage.store_manager.service;
 
 import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ManagerService {
+public class StoreManagerService {
     private final StoreManagerRepository storeManagerRepository;
 
     public List<StoreManagerDTO> getAll() {

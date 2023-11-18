@@ -10,13 +10,13 @@ import lombok.Setter;
 @Table(name= "manager")
 public class ManagerEntity {
     @Id
-    private String id_manager;
+    private String idManager;
 
     private String passwd;
     private String name;
     private String email;
-    private String phone_number;
+    private String phoneNumber;
     @ManyToOne
     @JoinColumn(name = "id_brand", nullable = false)
-    private com.Sales_manage.Sales_manage.brand.entity.BrandEntity id_brand;
+    private com.Sales_manage.Sales_manage.brand.entity.BrandEntity idBrand;
 }

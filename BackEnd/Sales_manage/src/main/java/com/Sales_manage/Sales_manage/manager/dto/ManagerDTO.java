@@ -11,22 +11,22 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ManagerDTO {
-    private String id_manager;
+    private String idManager;
     private String passwd;
     private String name;
     private String email;
-    private String phone_number;
-    private Long id_brand;
+    private String phoneNumber;
+    private Long idBrand;
 
 
     public static ManagerDTO toManagerDTO(ManagerEntity managerEntity) {
         ManagerDTO managerDTO = new ManagerDTO();
-        managerDTO.setId_manager(managerEntity.getId_manager());
+        managerDTO.setIdManager(managerEntity.getIdManager());
         managerDTO.setPasswd(managerEntity.getPasswd());
         managerDTO.setName(managerEntity.getName());
         managerDTO.setEmail(managerEntity.getEmail());
-        managerDTO.setPhone_number(managerEntity.getPhone_number());
-        managerDTO.setId_brand(managerEntity.getId_brand().getId_brand());
+        managerDTO.setPhoneNumber(managerEntity.getPhoneNumber());
+        managerDTO.setIdBrand(managerEntity.getIdBrand().getIdBrand());
         return managerDTO;
     }
 }

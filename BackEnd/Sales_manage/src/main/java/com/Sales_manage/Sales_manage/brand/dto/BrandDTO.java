@@ -11,14 +11,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class BrandDTO {
-    private Long id_brand;
-    private String brand_name;
+    private Long idBrand;
+    private String brandName;
 
 
     public static BrandDTO toBrandDTO(BrandEntity brandEntity) {
         BrandDTO brandDTO = new BrandDTO();
-        brandDTO.setId_brand(brandEntity.getId_brand());
-        brandDTO.setBrand_name(brandEntity.getBrand_name());
+        brandDTO.setIdBrand(brandEntity.getIdBrand());
+        brandDTO.setBrandName(brandEntity.getBrandName());
         return brandDTO;
     }
 }

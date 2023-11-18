@@ -1,5 +1,6 @@
 package com.Sales_manage.Sales_manage.store_manager.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -10,9 +11,9 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name= "store_manager")
-public class Store_managerEntity {
+public class StoreManagerEntity {
     @Id
-    private String id_store_manager;
+    private String idStoreManager;
 
     private String passwd;
     private String name;
