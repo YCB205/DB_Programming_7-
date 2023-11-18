@@ -1,6 +1,5 @@
 package com.Sales_manage.Sales_manage.user.service;
 
-import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
 import com.Sales_manage.Sales_manage.brand.repository.BrandRepository;
 import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
@@ -8,12 +7,10 @@ import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
 import com.Sales_manage.Sales_manage.manager.repository.ManagerRepository;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
+import com.Sales_manage.Sales_manage.user.dto.UserData;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Service
@@ -62,11 +59,35 @@ public class UserService {
 
     public BrandOfficeEntity getBrandOfficeInfo(StoreManagerEntity storeManagerEntity) {
         return brandOfficeRepository.findByIdStoreManger(storeManagerEntity);
-        //위 한줄은 하단의 두줄과 같음
-//        BrandOfficeEntity brandOfficeEntity = brandOfficeRepository.findByIdStoreManger(storeManagerId);
-//        return brandOfficeEntity;
     }
 
+    public void updateStoreManager(UserData userData) {
+        StoreManagerEntity storeManagerEntity = storeManagerRepository.findById(userData.getId()).orElse(null);
+
+        if (storeManagerEntity != null) {
+
+            storeManagerEntity.setEmail(userData.getEmail());
+            storeManagerEntity.setPasswd(userData.getPasswd());
+            storeManagerEntity.setName(userData.getName());
+            storeManagerEntity.setPhoneNumber(userData.getPhoneNumber());
+
+            storeManagerRepository.save(storeManagerEntity);
+        }
+    }
+
+    public void updateManager(UserData userData) {
+        ManagerEntity managerEntity = managerRepository.findById(userData.getId()).orElse(null);
+
+        if (managerEntity != null) {
+
+            managerEntity.setEmail(userData.getEmail());
+            managerEntity.setPasswd(userData.getPasswd());
+            managerEntity.setName(userData.getName());
+            managerEntity.setPhoneNumber(userData.getPhoneNumber());
+
+            managerRepository.save(managerEntity);
+        }
+    }
 
 
 

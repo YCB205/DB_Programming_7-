@@ -15,7 +15,7 @@ public class StoreManagerDTO {
     private String passwd;
     private String name;
     private String email;
-    private String number;
+    private String phoneNumber;
 
 
     public static StoreManagerDTO toMemberTestDTO(StoreManagerEntity storeManagerEntity) {
@@ -24,7 +24,7 @@ public class StoreManagerDTO {
         storeManagerDTO.setPasswd(storeManagerEntity.getPasswd());
         storeManagerDTO.setName(storeManagerEntity.getName());
         storeManagerDTO.setEmail(storeManagerEntity.getEmail());
-        storeManagerDTO.setNumber(storeManagerEntity.getNumber());
+        storeManagerDTO.setPhoneNumber(storeManagerEntity.getPhoneNumber());
         return storeManagerDTO;
     }
 }

@@ -4,15 +4,15 @@ import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
 import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.user.dto.UserData;
 import com.Sales_manage.Sales_manage.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,12 +67,32 @@ public class UserController {
             result.put("idStoreManager", storeManagerEntity.getIdStoreManager());
             result.put("name", storeManagerEntity.getName());
             result.put("email", storeManagerEntity.getEmail());
-            result.put("number", storeManagerEntity.getNumber());
+            result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
             result.put("officeName", brandOfficeEntity.getOfficeName());
             result.put("position","점주");
         }
 
         return result;
+    }
+
+    @PutMapping("/user")
+    @ResponseBody
+    public ResponseEntity<String> updateUser(@RequestBody UserData userData, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        try {
+            if ("store_manager".equals(loggedInUserRole)) {
+                userService.updateStoreManager(userData);
+            } else if ("manager".equals(loggedInUserRole)) {
+                userService.updateManager(userData);
+            } else {
+                return new ResponseEntity<>("Invalid user role", HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
