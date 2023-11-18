@@ -1,6 +1,7 @@
 package com.Sales_manage.Sales_manage.user.service;
 
 import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
+import com.Sales_manage.Sales_manage.brand.repository.BrandRepository;
 import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
 import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
@@ -21,13 +22,17 @@ public class UserService {
     private final StoreManagerRepository storeManagerRepository;
     private final ManagerRepository managerRepository;
     private final BrandOfficeRepository brandOfficeRepository;
+    private final BrandRepository brandRepository;
+
     @Autowired
     public UserService(StoreManagerRepository storeManagerRepository,
                        ManagerRepository managerRepository,
-                       BrandOfficeRepository brandOfficeRepository) {
+                       BrandOfficeRepository brandOfficeRepository,
+                       BrandRepository brandRepository) {
         this.storeManagerRepository = storeManagerRepository;
         this.managerRepository = managerRepository;
         this.brandOfficeRepository = brandOfficeRepository;
+        this.brandRepository = brandRepository;
     }
 
     public String login(String id, String password, HttpSession session) {
@@ -46,5 +51,23 @@ public class UserService {
             return null;
         }
     }
+
+    public ManagerEntity getManagerInfo(String id) {
+        return managerRepository.findById(id).orElse(null);
+    }
+
+    public StoreManagerEntity getStoreManagerInfo(String id) {
+        return storeManagerRepository.findById(id).orElse(null);
+    }
+
+    public BrandOfficeEntity getBrandOfficeInfo(StoreManagerEntity storeManagerEntity) {
+        return brandOfficeRepository.findByIdStoreManger(storeManagerEntity);
+        //위 한줄은 하단의 두줄과 같음
+//        BrandOfficeEntity brandOfficeEntity = brandOfficeRepository.findByIdStoreManger(storeManagerId);
+//        return brandOfficeEntity;
+    }
+
+
+
 
 }

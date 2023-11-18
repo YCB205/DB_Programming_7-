@@ -25,5 +25,4 @@ public class BrandOfficeEntity {
     @JoinColumn(name = "id_store_manager")
     private StoreManagerEntity idStoreManger;
 
-    // getter와 setter 메소드는 생략 (Lombok을 사용하고 있기 때문에)
 }
