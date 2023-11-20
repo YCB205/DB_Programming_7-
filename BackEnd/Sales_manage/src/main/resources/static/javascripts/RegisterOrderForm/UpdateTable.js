@@ -16,8 +16,6 @@ function checkDuplicatedId(parentID, id) {
     //반복해서 id값 찾기
     //부모요소의 모든 자식 요소에서 반복
     parentIdList.find('[id]').each(function () {
-        console.log(this.id);
-        console.log(childId);
         //이미 Set에 있을 때(즉 중복이 될때)
         if (this.id.toString() === childId.toString()) {
             throw new DuplicatedIdError(`중복된 상품의 아이디: ${childId}`);
@@ -47,11 +45,11 @@ $(window).on('load', function () {
                     // product가 배열인 경우
                     data.products.forEach(function (item, index) {
                         addTableRow(index + 1, item.id, item.title, item.price);
-                        console.log(item.id);
+
                     });
                 } else {
                     // data가 배열이 아니라면 전체 data를 로그로 출력
-                    console.log(data.products);
+
                 }
             },
             error: function (error) {
@@ -74,7 +72,7 @@ function addTableRow(index, id, title, price) {
     newRow.append($("<th>").attr("scope", "row").text(id));
     newRow.append($("<td>").text(title));
     newRow.append($("<td>").text(price));
-    console.log(name);
+
     const querySearchAfterScript = $('#querySearchAfterScript');
     //클릭 이벤트 리스너를 등록...
     newRow.on('dblclick', function () {
@@ -111,16 +109,20 @@ const idPriceMap = new Map();
 
 //추가하는 함수
 function addMap(id,price,count){
+    console.log( " "+ id + " "+ price + " " + count + " ")
     idPriceMap.set(`${id}`,[price,count]);
 }
-
 
 
 //총합을 구하는 함수
 function calSum() {
     let sum = 0;
     idPriceMap.forEach((value,key)=>{
-        sum += key[0] * key[1];
+        console.log(value[0]);
+        console.log(key[1]);
+        sum += Number(value[0]) * Number(value[1]);
+        //출력해주는 함수(콘솔창 띄우기)
+        console.log(sum);
     })
 
 }
