@@ -57,16 +57,18 @@
             <div style="height: 10%"></div>
             <div class="rounded" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px;">
                 <div class="text-center text-white fs-5"><strong>품 목</strong></div>
-                <div class="btn-group-vertical bg-white d-flex" role="group"
+                <div class="bg-white" role="group"
                      aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio1">Radio 1</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio2">Radio 2</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio3">Radio 2</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked="">
+                    <form id="category" class="btn-group-vertical d-flex">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked value="smartphones">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio1">smartphones</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="laptops">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio2">laptops</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio3">fragrances</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                     <label class="btn btn-outline-primary rounded-bottom-0 m-0" for="btnradio4">Radio 3</label>
+                    </form>
                 </div>
             </div>
 
@@ -82,12 +84,12 @@
                         <th scope="col">판매가</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id = "querySearchScript">
                     <tr class="table-light">
                         <th scope="row">1</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>Column </td>
+                        <td>Column</td>
+                        <td>Column</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">2</th>
@@ -316,7 +318,7 @@
                     알파메일
                 </span>
             </div>
-        </div>
+      x  </div>
         <div class="firstchild1">
             <div class="container-fluid h-100">
                 <div class="row h-100">
@@ -342,56 +344,21 @@
                 <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
             </div>
         </div>
-        <div class="border" style="width: 100%; height: 60%;">
+        <div class="border overflow-y-auto" style="width: 100%; height: 60%;">
             <div>
                 <h4 style="text-align: center;">주문 목록</h4>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col" class="col-5" style="border: 1px solid red;">상품명</th>
+                        <th scope="col" class="col-4" style="border: 1px solid red;">상품명</th>
                         <th scope="col" class="col-3">수량</th>
                         <th scope="col" class="col-3 ">가격</th>
-                        <th scope="col" class="col-1">취소</th>
+                        <th scope="col" class="col-2">취소</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tr class="text-center">
-                    <td scope="row">1</td>
-                    <td class=" m-0">
 
-                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr class="text-center">
-                    <td scope="row">1</td>
-                    <td class=" m-0">
-
-                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr class="text-center">
-                    <td scope="row">1</td>
-                    <td class=" m-0">
-
-                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr class="text-center">
-                    <td scope="row">1</td>
-                    <td class=" m-0">
-
-                        <label for="quantityInput" style="display: none"></label><input type="number" class="form-control text-center p-0" value="1" id="quantityInput" min="1">
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                <tbody id="querySearchAfterScript">
 
                 </tbody>
             </table>
@@ -408,6 +375,8 @@
                 <button class="btn btn-secondary m-1 w-100">취소</button>
             </div>
             </div>
+    </div>
 </aside>
+<script src="../javascripts/RegisterOrderForm/UpdateTable.js"></script>
 </body>
 </html>
