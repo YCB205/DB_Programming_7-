@@ -1,8 +1,8 @@
 package com.Sales_manage.Sales_manage.brand_office.service;
 
-import com.Sales_manage.Sales_manage.store_manager.dto.Store_managerDTO;
-import com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity;
-import com.Sales_manage.Sales_manage.store_manager.repository.Store_managerRepository;
+import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
+import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +12,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class Brand_officeService {
-    private final Store_managerRepository storeManagerRepository;
+    private final StoreManagerRepository brandOfficeRepository;
 
-    public List<Store_managerDTO> getAll() {
-        List<Store_managerEntity> storeManagerEntityList = storeManagerRepository.findAll();
-        List<Store_managerDTO> storeManagerDTOList = new ArrayList<>();
-        for (Store_managerEntity memberTestEntity: storeManagerEntityList){
-            Store_managerDTO storeManagerDTO = Store_managerDTO.toMemberTestDTO(memberTestEntity);
-            storeManagerDTOList.add(storeManagerDTO);
+    public List<StoreManagerDTO> getAll() {
+        List<StoreManagerEntity> brandOfficeEntityList = brandOfficeRepository.findAll();
+        List<StoreManagerDTO> brandOfficeDTOList = new ArrayList<>();
+        for (StoreManagerEntity brandOfficeEntity: brandOfficeEntityList){
+            StoreManagerDTO brandOfficeDTO = StoreManagerDTO.toMemberTestDTO(brandOfficeEntity);
+            brandOfficeDTOList.add(brandOfficeDTO);
         }
-        return storeManagerDTOList;
+        return brandOfficeDTOList;
     }
 
 }

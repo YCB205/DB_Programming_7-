@@ -1,35 +1,94 @@
 package com.Sales_manage.Sales_manage.user.service;
 
-import com.Sales_manage.Sales_manage.store_manager.dto.Store_managerDTO;
-import com.Sales_manage.Sales_manage.store_manager.entity.Store_managerEntity;
-import com.Sales_manage.Sales_manage.store_manager.repository.Store_managerRepository;
-import lombok.RequiredArgsConstructor;
+import com.Sales_manage.Sales_manage.brand.repository.BrandRepository;
+import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
+import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
+import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
+import com.Sales_manage.Sales_manage.manager.repository.ManagerRepository;
+import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
+import com.Sales_manage.Sales_manage.user.dto.UserData;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
-    private final Store_managerRepository storeManagerRepository;
 
-    public boolean isValidLogin(String id, String password) {
-        // 아이디와 비밀번호 검증 로직을 구현 (예: 데이터베이스에서 조회 후 확인)
-        Optional<Store_managerEntity> user = storeManagerRepository.findById(id);
-        return user.map(entity -> entity.getPasswd().equals(password)).orElse(false);
+    private final StoreManagerRepository storeManagerRepository;
+    private final ManagerRepository managerRepository;
+    private final BrandOfficeRepository brandOfficeRepository;
+    private final BrandRepository brandRepository;
+
+    @Autowired
+    public UserService(StoreManagerRepository storeManagerRepository,
+                       ManagerRepository managerRepository,
+                       BrandOfficeRepository brandOfficeRepository,
+                       BrandRepository brandRepository) {
+        this.storeManagerRepository = storeManagerRepository;
+        this.managerRepository = managerRepository;
+        this.brandOfficeRepository = brandOfficeRepository;
+        this.brandRepository = brandRepository;
     }
 
+    public String login(String id, String password, HttpSession session) {
+        StoreManagerEntity storeManager = storeManagerRepository.findById(id).orElse(null);
+        ManagerEntity manager = managerRepository.findById(id).orElse(null);
 
-    public List<Store_managerDTO> getAll() {
-        List<Store_managerEntity> storeManagerEntityList = storeManagerRepository.findAll();
-        List<Store_managerDTO> storeManagerDTOList = new ArrayList<>();
-        for (Store_managerEntity memberTestEntity: storeManagerEntityList){
-            Store_managerDTO storeManagerDTO = Store_managerDTO.toMemberTestDTO(memberTestEntity);
-            storeManagerDTOList.add(storeManagerDTO);
+        if (storeManager != null && storeManager.getPasswd().equals(password)) {
+            session.setAttribute("loggedInUserId", id);
+            session.setAttribute("loggedInUserRole", "store_manager");
+            return "store_manager";
+        } else if (manager != null && manager.getPasswd().equals(password)) {
+            session.setAttribute("loggedInUserId", id);
+            session.setAttribute("loggedInUserRole", "manager");
+            return "manager";
+        } else {
+            return null;
         }
-        return storeManagerDTOList;
     }
+
+    public ManagerEntity getManagerInfo(String id) {
+        return managerRepository.findById(id).orElse(null);
+    }
+
+    public StoreManagerEntity getStoreManagerInfo(String id) {
+        return storeManagerRepository.findById(id).orElse(null);
+    }
+
+    public BrandOfficeEntity getBrandOfficeInfo(StoreManagerEntity storeManagerEntity) {
+        return brandOfficeRepository.findByIdStoreManger(storeManagerEntity);
+    }
+
+    public void updateStoreManager(UserData userData) {
+        StoreManagerEntity storeManagerEntity = storeManagerRepository.findById(userData.getId()).orElse(null);
+
+        if (storeManagerEntity != null) {
+
+            storeManagerEntity.setEmail(userData.getEmail());
+            storeManagerEntity.setPasswd(userData.getPasswd());
+            storeManagerEntity.setName(userData.getName());
+            storeManagerEntity.setPhoneNumber(userData.getPhoneNumber());
+
+            storeManagerRepository.save(storeManagerEntity);
+        }
+    }
+
+    public void updateManager(UserData userData) {
+        ManagerEntity managerEntity = managerRepository.findById(userData.getId()).orElse(null);
+
+        if (managerEntity != null) {
+
+            managerEntity.setEmail(userData.getEmail());
+            managerEntity.setPasswd(userData.getPasswd());
+            managerEntity.setName(userData.getName());
+            managerEntity.setPhoneNumber(userData.getPhoneNumber());
+
+            managerRepository.save(managerEntity);
+        }
+    }
+
+
 
 }

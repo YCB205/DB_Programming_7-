@@ -1,45 +1,98 @@
 package com.Sales_manage.Sales_manage.user.controller;
 
-import com.Sales_manage.Sales_manage.store_manager.dto.Store_managerDTO;
-import com.Sales_manage.Sales_manage.store_manager.service.Store_managerService;
+import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
+import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
+import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
+import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.user.dto.UserData;
+import com.Sales_manage.Sales_manage.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
-@RequiredArgsConstructor
 public class UserController {
-    private final Store_managerService storeManagerService;
 
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
-    public String login(@RequestParam String id, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
-        // 아이디와 비밀번호 검증 로직 추가 (여기서는 간단히 생략)
-        if (storeManagerService.isValidLogin(id, password)) {
-            // 로그인 성공 시 세션에 아이디 저장
-            session.setAttribute("loggedInUserId", id);
-            // 로그인 성공 시 리다이렉션
-            return "redirect:/html/htlmMainJumju.html";
+    public String login(HttpSession session, String id, String password, Model model) {
+        if (userService.login(id, password, session).equals("store_manager")) {
+            return "redirect:/html/store_manager/MainJumju.html"; //아이디가 점주 일때 점주 메인페이지로 이동
+        } else if (userService.login(id, password, session).equals("manager")) {
+            return "redirect:/html/manager/MainJumju.html"; //아이디가 매니저 일때 매니저 메인페이지로 이동
         } else {
-            // 로그인 실패 시 알람을 띄우고 loginPage로 이동
             model.addAttribute("loginError", "Fail to Login");
-            return "index";
+            return "index"; // 로그인 실패 시 로그인페이지로 이동
         }
     }
 
-    @GetMapping("/store")
+    @GetMapping("/user")
     @ResponseBody
-    public List<Store_managerDTO> getAll() {
-        System.out.println(storeManagerService.getAll());
-        return storeManagerService.getAll();
+    public Map<String, Object> getUserInfo(HttpSession session) {
+        Map<String, Object> result = new HashMap<>();
+
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
+        if ("manager".equals(loggedInUserRole)) {
+            ManagerEntity managerEntity = userService.getManagerInfo(loggedInUserId);
+            BrandEntity brandEntity = managerEntity.getIdBrand();
+
+            result.put("brandName", brandEntity.getBrandName());
+            result.put("idManager", managerEntity.getIdManager());
+            result.put("name", managerEntity.getName());
+            result.put("email", managerEntity.getEmail());
+            result.put("phoneNumber", managerEntity.getPhoneNumber());
+            result.put("position","매니저");
+        } else if ("store_manager".equals(loggedInUserRole)) {
+            StoreManagerEntity storeManagerEntity = userService.getStoreManagerInfo(loggedInUserId);
+            BrandOfficeEntity brandOfficeEntity = userService.getBrandOfficeInfo(storeManagerEntity);
+            BrandEntity brandEntity = brandOfficeEntity.getIdBrand();
+
+            result.put("brandName", brandEntity.getBrandName());
+            result.put("idStoreManager", storeManagerEntity.getIdStoreManager());
+            result.put("name", storeManagerEntity.getName());
+            result.put("email", storeManagerEntity.getEmail());
+            result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
+            result.put("officeName", brandOfficeEntity.getOfficeName());
+            result.put("position","점주");
+        }
+
+        return result;
+    }
+
+    @PutMapping("/user")
+    @ResponseBody
+    public ResponseEntity<String> updateUser(@RequestBody UserData userData, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        try {
+            if ("store_manager".equals(loggedInUserRole)) {
+                userService.updateStoreManager(userData);
+            } else if ("manager".equals(loggedInUserRole)) {
+                userService.updateManager(userData);
+            } else {
+                return new ResponseEntity<>("Invalid user role", HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
