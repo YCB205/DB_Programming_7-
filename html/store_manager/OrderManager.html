@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+
     <style>
         .table-success th, .table-success td {
             background-color: #d9f2eb;
@@ -72,8 +72,8 @@
                     <div class="col-2 text-center" style=" border: 1px solid red;">날짜/시간</div>
                     <div class="col-3 text-center" style=" border: 1px solid red;">매출액</div>
                     <div class="col-3 text-center" style=" border: 1px solid red;">영업이익</div>
-                    <div class="col-1 text-center" style=" border: 1px solid red;">v</div>
-                    <div class="col-1 text-center" style="border: 1px solid red;">v</div>
+                    <div class="col-1 text-center" style=" border: 1px solid red;">수정</div>
+                    <div class="col-1 text-center" style="border: 1px solid red;">삭제</div>
                 </div>
             </div>
             <div class="scroll-hidden w-100 h-100 m-0 p-0 scrollable-div overflow-x-hidden">
@@ -85,26 +85,79 @@
                         <td class="col-2 text-center m-0" style="border: 1px solid black"></td>
                         <td class="col-3 text-center m-0" style="border: 1px solid black">Column content</td>
                         <td class="col-3 text-center m-0" style="border: 1px solid black"></td>
-                        <td class="col-1 text-center m-0"><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-pencil-square"></i></a>
+                        <td class="col-1 text-center m-0"><a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)"><i class="bi bi-pencil-square"></i></a>
                         </td>
-                        <td class="col-1 text-center m-0" style="border: 1px solid black"><a class="btn btn-primary"><i class="bi bi-check"></i></a></td>
+                        <td class="col-1 text-center m-0" style="border: 1px solid black"><a class="btn btn-primary"><i class="bi bi-trash"></i></a></td>
                     </tr>
                     <tr class="collapse" id="collapseExample">
                         <td colspan="12">
                             <div class="card card-body">
-                                <table>
-                                    <thead>
+                                <table class="product_table">
+                                    <thead class="product_table_thead">
                                     <tr>
-                                        <th>공주대</th>
-                                        <th>티벳여우</th>
-                                        <th>김완규</th>
+                                        <th style="position:sticky; top:0px;">품목명</th>
+                                        <th style="position:sticky; top:0px;">상품번호</th>
+                                        <th style="position:sticky; top:0px;">상품명</th>
+                                        <th style="position:sticky; top:0px;">원가</th>
+                                        <th style="position:sticky; top:0px;">판매가</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="product_table_tbody">
                                     <tr>
-                                        <th>공주대</th>
-                                        <th>티벳여우</th>
-                                        <th>김완규</th>
+                                        <td>James</td>
+                                        <td>Matman</td>
+                                        <td>(713) 123-8965</td>
+                                        <td>test</td>
+                                        <td>01/13/1979</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Johnny</td>
+                                        <td>Smith</td>
+                                        <td>(713) 584-9614</td>
+                                        <td>test</td>
+                                        <td>06/09/1971</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Susan</td>
+                                        <td>Johnson</td>
+                                        <td>(713) 847-1124</td>
+                                        <td>test</td>
+                                        <td>08/25/1965</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1test</td>
+                                        <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -317,34 +370,6 @@
                     </tr>
 
                     </tbody>
-                    <!--모달 창을 띄우기 위한 함수와 모달 요소를 지정하고 있따......-->
-                    <div class="modal fade p-0" id="myModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg p-0 " style="border: 2px solid yellow; margin-top: 0; margin-bottom: 0;">
-                            <div class="modal-content m-0" style="height: 99vh; border: 2px solid magenta;">
-
-                                <!-- 모달 내용 -->
-                                <div class="modal-body p-0" style="border: 2px solid blue;">
-                                    <iframe src="./UpdateOrderForm.html" class="m-0" style="border: 3px solid chartreuse;width: 100%; height: 100%;"></iframe>
-                                </div>
-                                <!--모달 닫힐 때 오버플로우 방지 메서드-->
-                                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body p-0" style="border: 2px solid blue;">
-                                    <iframe src="./UpdateOrderForm.html" class="m-0" style="border: 3px solid chartreuse;width: 100%; height: 100%;"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        $('#myModal').on('hidden.bs.modal', function () {
-                            $('body').css('overflow', 'hidden');
-                        });
-                    </script>
                 </table>
 
             </div>
@@ -407,17 +432,7 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item p-0 text-center" href="#">월 별</a></li>
-                            <li><a class="dropdown-item p-0 text-center" href="#">주 별</a></li>
-                            <li><a class="dropdown-item p-0 text-center" href="#">일 별</a></li>
-
-                        </ul>
-                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                        <input type="text" class="form-control" placeholder="상품별 검색" aria-label="Text input with segmented dropdown button">
                         <button type="button" class="btn btn-primary">검색</button>
                     </div>
                 </form>
@@ -425,6 +440,6 @@
         </div>
     </div>
 </aside>
-<script></script>
+<script src="../../javascripts/module_popup/showPopup.js"></script>
 </body>
 </html>
