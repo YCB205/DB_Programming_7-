@@ -152,12 +152,12 @@
             <div class="container-fluid h-100" style="">
                 <div class="row h-100" style="">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,546)">
+                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -173,5 +173,15 @@
 </aside>
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/userAPI/logout.js"></script>
+
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.data === 'refreshParent') {
+            location.reload(true);
+            window.close();
+        }
+    });
+</script>
 </body>
 </html>
