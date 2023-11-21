@@ -52,9 +52,9 @@
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
+                        <li><a href="Sales%20information%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
+                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
+                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
                     </ul>
                 </div>
             </div>
@@ -157,7 +157,7 @@
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,580)">
+                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -174,5 +174,14 @@
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
+
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.data === 'refreshParent') {
+            location.reload(true);
+            window.close();
+        }
+    });
+</script>
 </body>
 </html>

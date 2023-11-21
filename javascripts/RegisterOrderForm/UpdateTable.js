@@ -1,4 +1,10 @@
+//아이디 맵
 const inputIdMap = new Map();
+
+//가격과 아이디 매핑
+const idPriceMap = new Map();
+
+
 class DuplicatedIdError extends Error {
     constructor(message) {
         super(message);
@@ -28,10 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const url = `https://dummyjson.com/products/category/${category}`;
 
-            // 생성된 url로 ajax 요청 보내기
+            // 생성된 url
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     if (Array.isArray(data.products)) {
                         // product가 배열인 경우
                         data.products.forEach(function (item, index) {
@@ -43,8 +50,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => console.error('Error', error));
         });
+
+    });
+    const btnAddProduct = document.getElementById("registerPostBtn");
+    btnAddProduct.addEventListener('click',function (){
+        let id = "id";
+        let productArray = [];
+        let productJson = {
+            "jumjuID" : id,
+            "productsOrderForm" : productArray
+        };
+        for(const [key,value]of idPriceMap)
+        {
+            let arrayList={
+                "productID": key.toString(),
+                "count": value[1]
+
+
+            }
+            productArray.push(arrayList);
+        }
+        console.log(productJson);
+        const url = `https://dummyjson.com/posts/add`;
+        fetch(url,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(productJson)
+        })
+            .then(res=>res.json())
+            .then(console.log);
+        idPriceMap.clear();
+        inputIdMap.clear();
+        const querySearchAfterScript = document.getElementById('querySearchAfterScript');
+        querySearchAfterScript.innerHTML = ''
     });
 });
+
+
 
 // 내용을 채워 넣는 함수
 function addTableRow(index, id, title, price) {
@@ -54,9 +98,10 @@ function addTableRow(index, id, title, price) {
     newRow.className = index % 2 === 1 ? 'table-light' : 'table-success';
     newRow.classList.add('text-center');
     newRow.innerHTML = `
-        <th scope="row">${id.toString()}</th>
-        <td class="text-center p-0">${title}</td>
-        <td class="text-center p-0">${price}</td>
+        <th scope="row" class="col-3">${id.toString()}</th>
+        <td class="col-3">${title}</td>
+        <td class="col-3">${price}</td>
+        <td class="col-3">null값</td>
     `;
 
     const querySearchAfterScript = document.getElementById('querySearchAfterScript');
@@ -68,13 +113,17 @@ function addTableRow(index, id, title, price) {
             const value = document.createElement('tr');
             value.className = 'text-center';
             value.innerHTML = `
-                <th scope="row" class="fw-normal">${title}</th>
-                <td class="m-0">
+                <th scope="row" class="fw-normal col-4">${title}</th>
+                <td class="m-0 text-center col-3">
                     <label for="${id.toString()}" style="display: none"></label>
                     <input type="number" class="form-control text-center p-0" value="1" id="${id.toString()}" min="1">
                 </td>
-                <td>${price}</td>
-                <td>@mdo</td>
+                <td class="col-3">${price}</td>
+                <td class="col-2">
+                <div class="p-0 btn btn-primary w-100" >
+                   <i><img alt="" src="../../image/svg/x.svg"></i>
+                </div>
+                </td>
             `;
             const valueLabel = value.querySelector('input');
             checkDuplicatedId(valueLabel.id.toString());
@@ -97,7 +146,6 @@ function addTableRow(index, id, title, price) {
     querySearchScript.appendChild(newRow);
 }
 
-const idPriceMap = new Map();
 
 // 추가하는 함수
 function addMap(id, price, count) {

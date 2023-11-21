@@ -58,7 +58,7 @@ public class UserService {
     }
 
     public BrandOfficeEntity getBrandOfficeInfo(StoreManagerEntity storeManagerEntity) {
-        return brandOfficeRepository.findByIdStoreManger(storeManagerEntity);
+        return brandOfficeRepository.findByIdStoremanger(storeManagerEntity);
     }
 
     public void updateStoreManager(UserData userData) {
@@ -67,7 +67,11 @@ public class UserService {
         if (storeManagerEntity != null) {
 
             storeManagerEntity.setEmail(userData.getEmail());
-            storeManagerEntity.setPasswd(userData.getPasswd());
+            if (userData.getPasswd().equals("")){
+                storeManagerEntity.setPasswd(storeManagerEntity.getPasswd());
+            } else {
+                storeManagerEntity.setPasswd(userData.getPasswd());
+            }
             storeManagerEntity.setName(userData.getName());
             storeManagerEntity.setPhoneNumber(userData.getPhoneNumber());
 
@@ -81,7 +85,11 @@ public class UserService {
         if (managerEntity != null) {
 
             managerEntity.setEmail(userData.getEmail());
-            managerEntity.setPasswd(userData.getPasswd());
+            if (userData.getPasswd().equals("")){
+                managerEntity.setPasswd(managerEntity.getPasswd());
+            } else {
+                managerEntity.setPasswd(userData.getPasswd());
+            }
             managerEntity.setName(userData.getName());
             managerEntity.setPhoneNumber(userData.getPhoneNumber());
 

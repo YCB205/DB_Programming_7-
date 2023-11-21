@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface BrandOfficeRepository extends JpaRepository<BrandOfficeEntity, Long> {
-    BrandOfficeEntity findByIdStoreManger(StoreManagerEntity idStoreManger);
+    BrandOfficeEntity findByIdStoremanger(StoreManagerEntity idStoremanger);
 
 }

@@ -10,6 +10,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
     
 <style>
+
+.checkbox-group-container {
+        max-height: 200px;  /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
+        overflow-y: scroll;  /* 세로 스크롤을 표시하도록 설정합니다. */
+        -ms-overflow-style: none;
+        display: flex;
+        justify-content: center;
+    }
+    .checkbox-group-container::-webkit-scrollbar{
+        display: none;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;  /* 체크박스들 사이의 간격을 조절합니다. */
+    }
+
+    .checkbox-group label {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .checkbox-group input {
+        margin-right: 5px;
+    }
+
 .mainForJumjuproductinquiryFormMain {
     margin: 30px; /* 위아래 여백 조절 */
     padding: 10px; /* 내부 여백 조절 */
@@ -18,7 +48,7 @@
 }
 
 .scrollable-div {
-    max-height: 700px;
+    max-height: 800px;
     overflow: hidden; /* 스크롤바를 숨김 */
 }
 
@@ -70,6 +100,32 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
 }
+.brand_name_div span {
+        font-weight: 700;
+        letter-spacing: 0;
+        color: #ffffff;
+        -webkit-text-stroke: 1px #3E7E69;
+        position: relative;
+        }
+        .brand_name_div span:before {
+        content: "";
+        position: absolute;
+        left: -2%;
+        bottom: 10%;
+        height: 5px;
+        width: 55px;
+        background-color: #ffffff;
+        }
+        .brand_name_div span:after {
+        content: "";
+        position: absolute;
+        left: 5%;
+        bottom: 12%;
+        height: 1px;
+        width: 95%;
+        max-width: 255px;
+        background-color: #ffffff;
+        }
 
 
 
@@ -81,8 +137,9 @@
     <header class="header bg-primary">
         <div class="container-fluid h-100">
             <div class="row h-100">
-                <div class="col-2 g-0">
-                    <span class="d-flex align-items-center justify-content-center fs-1 text-white" style="width: 100%; height: 100%;">BrandName</span>
+                <div class="col-2 g-0 brand_name_div">
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
+                    style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-1 g-0">
@@ -90,32 +147,34 @@
                         <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                             매출
                         </button>
-                        <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-white">매출 정보 조회</a></li>
-                            <li><a class="dropdown-item text-white">매출 정보 관리</a></li>
-                            <li><a class="dropdown-item text-white">주문서 등록</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 관리</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-1 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
                         <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                             상품
                         </button>
-                        <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-white">상품 조회</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
                         </ul>
                     </div>
                 </div>
+                <div class="col-1 g-0"></div>
+                <div class="col-2 g-0">
                 <div class="col-6 g-0"></div>
             </div>
         </div>
     </header>
 <section class="section">
-    <div class="mainForJumjuproductinquiry">
-        <div class="mainForJumjuproductinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
-            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품조회</h3>
+    <div class="mainForJumjuRegisterOrder">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품 조회</h3>
         </div>
         <div class="mainForJumjuproductinquiryFormMain p-2" 
         style="width: 100%; padding-left: 1%; overflow: auto;">
@@ -428,39 +487,167 @@
             </div>
         </div>
         <div class="border" style="margin: 10px; padding: 10px; text-align: center;">
-        <br><h5 style="color:rgb(0, 198, 122)">상세 검색</h5><br>
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <input class="form-check-input" type="radio" name="viewOption" id="showAll" onchange="toggleView('all')" checked>
-            <label for="showAll">전체 상품 </label>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <input class="form-check-input" type="radio" name="viewOption" id="showCheckbox" onchange="toggleView('checkbox')">
-            <label for="showCheckbox">품목 별</label>
+            <br><h4 style="color: rgb(0, 198, 122)">상세 검색</h4><br>
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <input class="form-check-input" type="radio" name="viewOption" id="showAll" onchange="toggleView('all')" checked>
+                <label for="showAll">전체 상품 </label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input class="form-check-input" type="radio" name="viewOption" id="showCheckbox" onchange="toggleCheckboxGroup()">
+                    <label for="showCheckbox">품목 별</label>
+                </div>
+            <br><br>
+            <div class="checkbox-group-container" style="display:inline-block">
+                <div class="checkbox-group">
+                    <div>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="coffeeCheckbox" onchange="filterTable()" value="커피">
+                        커피
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="drinkCheckbox" onchange="filterTable()">
+                        음료
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">
+                        쉐이크
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">
+                        디저트
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">
+                        MD상품
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">
+                        콜라보상품
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">
+                        샌드위치
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">
+                        케이크
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">
+                        스무디
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">
+                        아이스크림
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">
+                        콜라보상품
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">
+                        샌드위치
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">
+                        케이크
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">
+                        스무디
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">
+                        아이스크림
+                    </label>
+                    </div>
+                    <div>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="frappeCheckbox" onchange="filterTable()">
+                        프라페
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="shavediceCheckbox" onchange="filterTable()">
+                        빙수
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">
+                        차
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">
+                        빵
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">
+                        에이드
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="limitedCheckbox" onchange="filterTable()">
+                        한정판
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="calenderCheckbox" onchange="filterTable()">
+                        달력
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">
+                        다이어리
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">
+                        우산
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">
+                        원두
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">
+                        콜라보상품
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">
+                        샌드위치
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">
+                        케이크
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">
+                        스무디
+                    </label>
+                    <label>
+                        <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">
+                        아이스크림
+                    </label>
+                    </div>
+                    <!-- 새로운 체크박스 추가될 때마다 자동으로 여백이 늘어남 -->
+                </div>
+            </div>
         </div>
-        <br><br>
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <div style="display: flex; align-items: center;">
-                <input class="form-check-input" type="checkbox" id="coffeeCheckbox" onchange="filterTable()">
-                <label for="coffeeCheckbox">커피</label>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <input class="form-check-input" type="checkbox" id="drinkCheckbox" onchange="filterTable()">
-                <label for="drinkCheckbox">음료</label>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">
-                <label for="shakeCheckbox">쉐이크</label>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">
-                <label for="dessertCheckbox">디저트</label>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">
-                <label for="MDproduct">MD상품</label>
-            </div>
-        </div>
-    </div>
-</div>
-</aside>
+    </aside>
 </body>
+<script>
+    function toggleCheckboxVisibility() {
+    var checkboxGroup = document.querySelector('.checkbox-group');
+
+    // 라디오 버튼의 상태에 따라 체크박스를 표시 또는 감춤
+    var showCheckboxRadio = document.getElementById('showCheckbox');
+    if (showCheckboxRadio.checked) {
+      checkboxGroup.style.display = 'flex';
+    } else {
+      checkboxGroup.style.display = 'none';
+    }
+  }
+
+  // 라디오 버튼의 변경 이벤트에 대한 핸들러 등록
+  var radioButtons = document.querySelectorAll('input[name="viewOption"]');
+  radioButtons.forEach(function (radioButton) {
+    radioButton.addEventListener('change', toggleCheckboxVisibility);
+  });
+
+  // 페이지 로드 시 초기 설정 적용
+  toggleCheckboxVisibility();
+  </script>
 </html>

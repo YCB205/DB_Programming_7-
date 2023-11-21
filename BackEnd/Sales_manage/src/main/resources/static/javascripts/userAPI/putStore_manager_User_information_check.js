@@ -34,8 +34,7 @@ function putStore_manager_User_information_check() {
         .then(data => {
             // 데이터가 JSON 형식이 아니라면 파싱을 시도하지 않음
             console.log(data);
-            const mainPage= window.open('../../html/store_manager/MainJumju.html')
-            opener.location.replace('../../html/store_manager/MainJumju.html');
+            window.opener.postMessage('refreshParent', '*');
             window.close();
         })
         .catch(error => {

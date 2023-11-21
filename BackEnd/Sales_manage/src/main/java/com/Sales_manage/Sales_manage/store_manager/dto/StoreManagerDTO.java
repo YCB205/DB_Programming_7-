@@ -20,7 +20,7 @@ public class StoreManagerDTO {
 
     public static StoreManagerDTO toMemberTestDTO(StoreManagerEntity storeManagerEntity) {
         StoreManagerDTO storeManagerDTO = new StoreManagerDTO();
-        storeManagerDTO.setIdStoreManager(storeManagerEntity.getIdStoreManager());
+        storeManagerDTO.setIdStoreManager(storeManagerEntity.getIdStoremanager());
         storeManagerDTO.setPasswd(storeManagerEntity.getPasswd());
         storeManagerDTO.setName(storeManagerEntity.getName());
         storeManagerDTO.setEmail(storeManagerEntity.getEmail());
