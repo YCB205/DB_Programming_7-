@@ -58,7 +58,7 @@ public class UserService {
     }
 
     public BrandOfficeEntity getBrandOfficeInfo(StoreManagerEntity storeManagerEntity) {
-        return brandOfficeRepository.findByIdStoreManger(storeManagerEntity);
+        return brandOfficeRepository.findByIdStoremanger(storeManagerEntity);
     }
 
     public void updateStoreManager(UserData userData) {

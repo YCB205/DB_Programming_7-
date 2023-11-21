@@ -20,11 +20,11 @@ public class BrandOfficeDTO {
 
     public static BrandOfficeDTO toBrandOfficeDTO(BrandOfficeEntity brandOfficeEntity) {
         BrandOfficeDTO brandOfficeDTO = new BrandOfficeDTO();
-        brandOfficeDTO.setIdBrandOffice(brandOfficeEntity.getIdBrandOffice());
+        brandOfficeDTO.setIdBrandOffice(brandOfficeEntity.getIdBrandoffice());
         brandOfficeDTO.setOfficeName(brandOfficeEntity.getOfficeName());
         brandOfficeDTO.setAddress(brandOfficeEntity.getAddress());
         brandOfficeDTO.setIdBrand(brandOfficeEntity.getIdBrand().getIdBrand());
-        brandOfficeDTO.setIdStoreManager(brandOfficeEntity.getIdStoreManger().getIdStoreManager());
+        brandOfficeDTO.setIdStoreManager(brandOfficeEntity.getIdStoremanger().getIdStoremanager());
         return brandOfficeDTO;
     }
 }

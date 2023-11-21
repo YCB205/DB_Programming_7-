@@ -66,7 +66,7 @@ public class UserController {
             BrandEntity brandEntity = brandOfficeEntity.getIdBrand();
 
             result.put("brandName", brandEntity.getBrandName());
-            result.put("idStoreManager", storeManagerEntity.getIdStoreManager());
+            result.put("idStoreManager", storeManagerEntity.getIdStoremanager());
             result.put("name", storeManagerEntity.getName());
             result.put("email", storeManagerEntity.getEmail());
             result.put("phoneNumber", storeManagerEntity.getPhoneNumber());

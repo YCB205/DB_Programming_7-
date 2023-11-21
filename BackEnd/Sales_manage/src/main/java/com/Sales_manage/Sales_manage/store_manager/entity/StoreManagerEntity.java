@@ -9,10 +9,10 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name= "store_manager")
+@Table(name= "storemanager")
 public class StoreManagerEntity {
     @Id
-    private String idStoreManager;
+    private String idStoremanager;
 
     private String passwd;
     private String name;
