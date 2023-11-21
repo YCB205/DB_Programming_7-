@@ -6,6 +6,8 @@ import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.user.dto.UserData;
 import com.Sales_manage.Sales_manage.user.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -93,6 +95,20 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/logout")
+    @ResponseBody
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+            return "success to logout";
+        } else {
+            return "fail to logout";
+        }
+
     }
 
 }
