@@ -5,7 +5,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 @Embeddable
 public class IncludeId implements Serializable {
-    private Long sellNumber;
+    private Long idOrdersheet;
     private Long idMerchandise;
 
 }
