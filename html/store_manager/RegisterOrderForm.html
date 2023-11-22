@@ -7,6 +7,32 @@
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
+        .brand_name_div span {
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #ffffff;
+            -webkit-text-stroke: 1px #3E7E69;
+            position: relative;
+        }
+        .brand_name_div span:before {
+            content: "";
+            position: absolute;
+            left: -2%;
+            bottom: 10%;
+            height: 5px;
+            width: 55px;
+            background-color: #ffffff;
+        }
+        .brand_name_div span:after {
+            content: "";
+            position: absolute;
+            left: 5%;
+            bottom: 12%;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #ffffff;
+        }
         .table-success th, .table-success td {
             background-color: #d9f2eb;
             color: black;
@@ -331,16 +357,16 @@
             </div>
 
         </div>
-        <div class="firstchild1" style="">
-            <div class="container-fluid h-100" style="">
-                <div class="row h-100" style="">
+        <div class="firstchild1">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,546)">
+                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -355,8 +381,8 @@
         <div class="form-group position-relative" style="width: 100%; height: 15%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
                 <input type="text" class="form-control" placeholder="상품명을 입력하세요"
-                       aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-primary" type="button" id="button-addon2">검색</button>
+                       aria-label="Recipient's username" aria-describedby="button_add2">
+                <button class="btn btn-primary" type="button" id="button_add2">검색</button>
             </div>
         </div>
         <div class="p-0" style="width: 100%; height: 60%; margin-top: 6%;">
@@ -402,6 +428,9 @@
         </div>
     </div>
 </aside>
+<script src="../../javascripts/userAPI/getUser.js"></script>
+<script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/RegisterOrderForm/UpdateTable.js"></script>
 </body>
 </html>
