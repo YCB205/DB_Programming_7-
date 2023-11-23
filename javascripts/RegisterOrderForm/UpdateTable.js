@@ -23,35 +23,8 @@ function checkDuplicatedId(id) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // 모든 리소스가 로드 된 후에 실행되는 함수
-    //카테고리 아이디 찾기
-    const radioButtons = document.querySelectorAll('input');
-    radioButtons.forEach(function (radioButton) {
-        radioButton.addEventListener('change', function () {
-            const category = this.value;
-            const querySearchScript = document.getElementById('querySearchScript');
-            querySearchScript.innerHTML = '';
-
-            const url = `https://dummyjson.com/products/category/${category}`;
-
-            // 생성된 url
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (Array.isArray(data.products)) {
-                        // product가 배열인 경우
-                        data.products.forEach(function (item, index) {
-                            addTableRow(index + 1, item.id, item.title, item.price);
-                        });
-                    } else {
-                        // data가 배열이 아니라면 전체 data를 로그로 출력
-                    }
-                })
-                .catch(error => console.error('Error', error));
-        });
-
-    });
+    //먼저 품목별 카테고리 radio버튼을 만든다
+    createRadioBtnCategory();
     const btnAddProduct = document.getElementById("registerPostBtn");
 
     btnAddProduct.addEventListener('click',function (){
@@ -218,27 +191,63 @@ function calSum() {
     });
     priceSum.textContent = sum;
 }
+function createRadioBtnCategory(){
+    const url ="https://dummyjson.com/products/categories";
+    fetch(url)
+        .then(response => response.json())
+        .then(data=>{
+            console.log(data);
+            //페치된 데이터 보내기
+            creatRadioBtn(data);
+        })
+}
 
-function funcCategoryFetch(){
-    const url = `https://dummyjson.com/products/category/${category}`;
+//라디오 버튼을 넣는 함수
+function creatRadioBtn(categoryOption){
+    //카테고리 품목 라디오 버튼 넣기
+    const category = document.getElementById('category');
 
+    categoryOption.forEach(function (item,index) {
+        const input = document.createElement('input');
+        const label = document.createElement('label');
+        //품목 라디오 input, label넣기
+        input.setAttribute('type','radio');
+        input.setAttribute('name','btnradio');
+        input.setAttribute('id',`btnRadio${item.toString()}`); //아이디 지정 방식 btnRadio + 상품명
+        input.setAttribute('autocomplete','off');
+        input.setAttribute('value',`${item.toString()}`);
+        input.className = 'btn-check';
+        //input에 이벤트 리스너 등록하기
+        //품목 클릭후 품목별 검색에서 테이블 가져오기
+        //품목 클릭시 테이블 그리기
+        input.addEventListener('change',funcCategoryFetch(input.value.toString()));
+
+        label.classList.add('btn', 'btn-outline-primary', 'rounded-0','m-0');
+        label.setAttribute('for',`btnRadio${item.toString()}`);
+        label.textContent = `${item.toString()}`;
+        category.appendChild(input);
+        category.appendChild(label);
+    })
+}
+
+
+function funcCategoryFetch(value){
+    const url = `https://dummyjson.com/products/category/${value}`;
+    const querySearchScript = document.getElementById('querySearchScript');
+    while (querySearchScript.firstChild) {
+        querySearchScript.removeChild(querySearchScript.firstChild);
+    }
     // 생성된 url
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-
-            //return data.products
-            return  data.products;
-
-
             if (Array.isArray(data.products)) {
                 // product가 배열인 경우
                 data.products.forEach(function (item, index) {
                     addTableRow(index + 1, item.id, item.title, item.price);
                 });
             } else {
-                // data가 배열이 아니라면 전체 data를 로그로 출력
+
             }
         })
         .catch(error => console.error('Error', error));
