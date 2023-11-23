@@ -1,11 +1,17 @@
 
 //윈도우의 모든 리소스가 등록 된 후 실행하는 함수
+//동기화가 필요하기 때문에 이렇게 해 놓음
+
 window.onload = async function (){
     //category 아이디 값 가져오기
     const category =document.getElementById('category');
     await initCategory(category);
     //라디오 이벤트 리스너 및 상품별 테이블 띄우기
     await radioEventListner(category);
+    //category별 찾기 함수
+    search();
+    //주문서 등록 함수
+    eventListenerPostProduct();
 }
 async function initCategory(category){
     //fetch함수 부르기
@@ -119,18 +125,20 @@ function dbClickEventListener(newRow){
     const querySearchAfterScript = document.getElementById('querySearchAfterScript');
     const querySearchAfterScriptchild = querySearchAfterScript.getElementsByTagName('tr');
     //세번째 행값을 가져옴
-    let tdThird1 = newRow.getElementsByTagName('td')[1];
-
+    //즉 판매가를 가져옴
+    let tdList = newRow.getElementsByTagName('td');
+    let tdPrice = tdList[1];
+    //두번째 행값 가져오기 (상품이름)
+    let tdName = tdList[0];
     for(let i=0; i < querySearchAfterScriptchild.length; i++) {
         //이미 추가된 자식들 중에 값이 있다면
         const trId = querySearchAfterScriptchild[i].id.toString();
-        console.log(trId);
-        console.log(newRow.id.toString());
         if( trId === newRow.id.toString()){
             //자식 태그 중 input 요소 들고 오기 trId의 input값
             const trInput = querySearchAfterScriptchild[i].querySelector('input');
             //자식 태그에 1추가하기 그 다음 종료
             trInput.value++;
+            calSum();
             return;
         }
     }
@@ -149,7 +157,7 @@ function dbClickEventListener(newRow){
 
     thFirst.setAttribute("scope","row");
     thFirst.classList.add("fw-normal","col-4");
-    thFirst.textContent = newRow.id.toString();
+    thFirst.textContent = tdName.textContent.toString();
 
     tdSecond.classList.add("p-0", 'col-3', "text-center");
 
@@ -161,22 +169,28 @@ function dbClickEventListener(newRow){
     input.setAttribute("id",`${newRow.id.toString()}`);
     input.setAttribute("min","1");
     input.classList.add("form-control", "text-center", "p-0");
+    //input값이 바귈 때의 이벤트 리스너 등록하기
+    input.addEventListener('change',calSum);
 
     tdSecond.appendChild(label);
     tdSecond.appendChild(input);
 
-    //상품 수량 입력
+    //가격입력
     tdThird.className = 'col-3';
-    tdThird.textContent = tdThird1.textContent;
+    console.log(tdPrice.textContent);
+    tdThird.textContent = tdPrice.textContent;
 
     tdForth.className = "col-2";
 
     i.classList.add("p-0","btn","btn-primary","w-100");
     img.setAttribute("alt","");
     img.setAttribute("src","../../image/svg/x.svg");
-
     i.appendChild(img);
 
+    //행삭제 메서드 실행
+    i.addEventListener('click', function (){
+        deleteRow(value);
+    });
     tdForth.appendChild(i);
 
     value.appendChild(thFirst);
@@ -184,7 +198,95 @@ function dbClickEventListener(newRow){
     value.appendChild(tdThird);
     value.appendChild(tdForth);
     querySearchAfterScript.appendChild(value);
-    console.log(newRow.id.toString());
+    //행 추가후 덧셈 실시
+    calSum();
 
 }
 
+//합계를 구하는 함수
+function calSum(){
+    const querySearchAfterScript = document.getElementById('querySearchAfterScript');
+    const tr = querySearchAfterScript.getElementsByTagName('tr');
+    //총합을 구하는 sum
+    let sum = 0;
+    for(let i=0; i < tr.length;i++) {
+        let tableTd = tr[i].getElementsByTagName('td');
+        //수량 가져오기
+        console.log(tableTd);
+        let tableCount = tableTd[0].querySelector('input');
+        tableCount = tableCount.value;
+        let tablePrice = tableTd[1].textContent;
+        console.log(tableCount);
+        console.log(tablePrice);
+        sum += Number(tablePrice) *  tableCount;
+    }
+    const priceSum = document.getElementById('priceSum');
+    priceSum.textContent = sum;
+}
+
+function deleteRow(value){
+    value.remove();
+    calSum();
+}
+
+//상품별 검색 옵션
+function search(){
+    const optionInput = document.getElementById('optionInput');
+    const optionBtn = document.getElementById('optionBtn');
+    optionBtn.addEventListener('click',function (){
+        console.log(optionInput.value);
+        //옵션 검색 함수 실행
+        serachOptionFetch(optionInput.value);
+    })
+
+}
+
+function serachOptionFetch(optionInput){
+    const url = `https://dummyjson.com/products/search?q=${optionInput}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data=>{
+                addTableRow(data).then();
+            })
+}
+
+//등록 이벤트 리스너
+function eventListenerPostProduct(){
+    const postBtn = document.getElementById('registerPostBtn');
+    postBtn.addEventListener('click',postProduct);
+}
+
+//등록할 때
+function postProduct(){
+    //url만들고
+    const url = 'https://dummyjson.com/posts/add';
+    //점주 id
+    const JumjuID = "text";
+
+    //주문 목록
+    let productArray = [];
+
+    //보내는 json 파일
+    let productJson = {
+        "jumjuID" : JumjuID,
+        "productArray" :productArray
+    };
+    const querySearchAfterScript = document.getElementById('querySearchAfterScript');
+    const querySearchAfterScriptchild = querySearchAfterScript.getElementsByTagName('input');
+    for(let i=0; i<querySearchAfterScriptchild.length; i++){
+        //string
+        let productID =  querySearchAfterScriptchild[i].id.toString();
+        //value 숫자(개수)
+        let count = querySearchAfterScriptchild[i].value;
+        let arrayList = {
+            "productID" : productID,
+            "count" : count
+        }
+        productArray.push(arrayList);
+    }
+    const destroyChild = querySearchAfterScript.children;
+    //테이블 모두 삭제
+    Array.from(destroyChild).forEach(function(element) {
+        element.remove();
+    });
+}
