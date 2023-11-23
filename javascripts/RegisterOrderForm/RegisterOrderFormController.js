@@ -289,4 +289,5 @@ function postProduct(){
     Array.from(destroyChild).forEach(function(element) {
         element.remove();
     });
+    calSum();
 }
