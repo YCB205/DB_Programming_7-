@@ -50,12 +50,13 @@
         .product_table_tbody tr:nth-child(2n) td:nth-child(-n+6) {background-color: #EBFCFF;}
         .highlighted {background-color: #9addeb !important;}
 
-
         .table-success th, .table-success td {
             background-color: #d9f2eb;
             color: black;
         }
 
+        #table-body .table-light-ycb td{font-size: 130%}
+        #table-body .table-success td{font-size: 130%}
 
     </style>
 </head>
@@ -104,10 +105,10 @@
         </div>
         <div class="mainForJumjuRegisterOrderFormMain p-2"
              style="width: 100%; height: 85%; padding-left: 1%;">
-            <div class="bg-primary m-0" style="font-size: 120%;">
+            <div class="bg-primary m-0" style="font-size: 130%;">
                 <div class="mainTableHeader row w-100 m-0 p-0" style="font-size: 140%;">
                     <div class="col-2 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">주문번호</div>
-                    <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">날짜/시간</div>
+                    <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">날짜-시간</div>
                     <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">매출액</div>
                     <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">영업이익</div>
                     <div class="col-1 text-center" style=" color: #ffffff; font-weight: 500; background-color: #ffffff;"></div>
@@ -115,7 +116,7 @@
             </div>
             <div class="scroll-hidden w-100 h-100 m-0 p-0 scrollable-div overflow-x-hidden">
                 <table class="table table-hover m-0 p-0 w-100">
-                    <tbody>
+                    <tbody id="table-body">
                     <tr style="border-bottom:#78c2ad;" class="table-light-ycb" data-bs-toggle="collapse" data-bs-target="#collapseExample1"
                         aria-expanded="false">
                         <td class="col-2 text-center m-0" >Column 1</td>
@@ -123,7 +124,7 @@
                         <td class="col-3 text-center m-0" >Column 3</td>
                         <td class="col-3 text-center m-0" >Column 4</td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-primary">
                                 <i class="bi bi-trash"></i></a>
@@ -214,7 +215,7 @@
                         <td class="col-3 text-center m-0" >Column 3</td>
                         <td class="col-3 text-center m-0" >Column 4</td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-primary">
                                 <i class="bi bi-trash"></i></a>
@@ -396,7 +397,7 @@
                         <td class="col-3 text-center m-0" >Column 3</td>
                         <td class="col-3 text-center m-0" >Column 4</td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-primary">
                                 <i class="bi bi-trash"></i></a>
@@ -545,7 +546,7 @@
             <div style=" margin-left: 5%; margin-right: 5%;">
                 <form>
                     <div class="mb-3">
-                        <label for="startDateTime" class="form-label">from</label><!-- value:"2023-10-30T21:37"-->
+                        <label for="startDateTime" class="form-label">from</label>
                         <input type="datetime-local" class="form-control" id="startDateTime" aria-describedby="dateTimeHelp">
                         <label for="endDateTime" class="form-label">to</label>
                         <input type="datetime-local" class="form-control" id="endDateTime" aria-describedby="dateTimeHelp">
@@ -553,8 +554,8 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
-                        <button type="button" class="btn btn-primary">검색</button>
+                        <input id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
+                        <button onclick="getOrderSheet()" type="button" class="btn btn-primary">검색</button>
                     </div>
                 </form>
             </div>
@@ -564,6 +565,7 @@
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
+<script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {

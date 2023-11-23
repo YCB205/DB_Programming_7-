@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Setter
@@ -21,4 +22,7 @@ public class OrderSheetEntity {
     @ManyToOne
     @JoinColumn(name = "id_brandoffice", nullable = false)
     private BrandOfficeEntity idBrandoffice;
+
+    @OneToMany(mappedBy = "idOrdersheet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IncludeEntity> includes;
 }

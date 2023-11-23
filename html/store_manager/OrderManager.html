@@ -10,92 +10,93 @@
 
     <style>
         .brand_name_div span {
-        font-weight: 700;
-        letter-spacing: 0;
-        color: #ffffff;
-        -webkit-text-stroke: 1px #3E7E69;
-        position: relative;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #ffffff;
+            -webkit-text-stroke: 1px #3E7E69;
+            position: relative;
         }
         .brand_name_div span:before {
-        content: "";
-        position: absolute;
-        left: -2%;
-        bottom: 10%;
-        height: 5px;
-        width: 55px;
-        background-color: #ffffff;
+            content: "";
+            position: absolute;
+            left: -2%;
+            bottom: 10%;
+            height: 5px;
+            width: 55px;
+            background-color: #ffffff;
         }
         .brand_name_div span:after {
-        content: "";
-        position: absolute;
-        left: 5%;
-        bottom: 12%;
-        height: 1px;
-        width: 95%;
-        max-width: 255px;
-        background-color: #ffffff;
+            content: "";
+            position: absolute;
+            left: 5%;
+            bottom: 12%;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #ffffff;
         }
 
 
-            .product_table_div{height: 74%; overflow-y: scroll; margin-top: 0%;}
-            .product_table_div::-webkit-scrollbar {display: none;}
+        .product_table_div{height: 74%; overflow-y: scroll; margin-top: 0%;}
+        .product_table_div::-webkit-scrollbar {display: none;}
 
-            .product_table {font-size: 1.1em;width: 100%; height: 100%; border-collapse: collapse;
-              text-align: center;vertical-align: middle; margin: 0; padding: 0;}
-            .product_table_thead th { font-size: medium; padding: 0.8em .5em; vertical-align: middle;}
-            .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
-            .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0.2em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
+        .product_table {font-size: 1.1em;width: 100%; height: 100%; border-collapse: collapse;
+            text-align: center;vertical-align: middle; margin: 0; padding: 0;}
+        .product_table_thead th { font-size: medium; padding: 0.8em .5em; vertical-align: middle;}
+        .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
+        .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0.2em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
 
-            .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+6) {background-color: #ffffff;}
-            .product_table_tbody tr:nth-child(2n) td:nth-child(-n+6) {background-color: #EBFCFF;}
-            .highlighted {background-color: #9addeb !important;}
-        
+        .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+6) {background-color: #ffffff;}
+        .product_table_tbody tr:nth-child(2n) td:nth-child(-n+6) {background-color: #EBFCFF;}
+        .highlighted {background-color: #9addeb !important;}
 
         .table-success th, .table-success td {
             background-color: #d9f2eb;
             color: black;
         }
 
+        #table-body .table-light-ycb td{font-size: 130%}
+        #table-body .table-success td{font-size: 130%}
 
     </style>
 </head>
 <body style="overflow-y: hidden;">
-    <header class="header bg-primary">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-2 g-0 brand_name_div">
-                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
-                    style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
-                </div>
-    
-                <div class="col-1 g-0"></div>
-                <div class="col-1 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
-                            매출
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-1 g-0"></div>
-                <div class="col-1 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
-                            상품
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-6 g-0"></div>
+<header class="header bg-primary">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-2 g-0 brand_name_div">
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
+                          style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
             </div>
+
+            <div class="col-1 g-0"></div>
+            <div class="col-1 g-0">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                        매출
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1 g-0"></div>
+            <div class="col-1 g-0">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                        상품
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 g-0"></div>
         </div>
-    </header>
+    </div>
+</header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder" style="height: 100%;">
         <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center"
@@ -104,10 +105,10 @@
         </div>
         <div class="mainForJumjuRegisterOrderFormMain p-2"
              style="width: 100%; height: 85%; padding-left: 1%;">
-            <div class="bg-primary m-0" style="font-size: 120%;">
+            <div class="bg-primary m-0" style="font-size: 130%;">
                 <div class="mainTableHeader row w-100 m-0 p-0" style="font-size: 140%;">
                     <div class="col-2 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">주문번호</div>
-                    <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">날짜/시간</div>
+                    <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">날짜-시간</div>
                     <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">매출액</div>
                     <div class="col-3 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">영업이익</div>
                     <div class="col-1 text-center" style=" color: #ffffff; font-weight: 500; background-color: #ffffff;"></div>
@@ -115,7 +116,7 @@
             </div>
             <div class="scroll-hidden w-100 h-100 m-0 p-0 scrollable-div overflow-x-hidden">
                 <table class="table table-hover m-0 p-0 w-100">
-                    <tbody>
+                    <tbody id="table-body">
                     <tr style="border-bottom:#78c2ad;" class="table-light-ycb" data-bs-toggle="collapse" data-bs-target="#collapseExample1"
                         aria-expanded="false">
                         <td class="col-2 text-center m-0" >Column 1</td>
@@ -123,115 +124,15 @@
                         <td class="col-3 text-center m-0" >Column 3</td>
                         <td class="col-3 text-center m-0" >Column 4</td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-primary">
                                 <i class="bi bi-trash"></i></a>
                         </td>
-
-                        <td class="col-1 text-center m-0"><a class="btn btn-primary"><i class="bi bi-trash"></i></a></td>
-                    </tr>
-                    <tr class="collapse" id="collapseExample">
-                        <td colspan="12">
-                            <div class="card card-body">
-                                <link rel="stylesheet" href="../../CSS/updateOrderForm.css">
-
                     </tr>
                     <tr  class="collapse" id="collapseExample1">
                         <td colspan="4" style="background-color: #e0e0e0;">
                             <div class="product_table_div">
-        
-                                <table class="product_table">
-                                  <thead class="product_table_thead">
-                                  <tr>
-                                      <th style="position:sticky; top:0px;">품목명</th>
-                                      <th style="position:sticky; top:0px;">상품번호</th>
-                                      <th style="position:sticky; top:0px;">상품명</th>
-                                      <th style="position:sticky; top:0px;">원가</th>
-                                      <th style="position:sticky; top:0px;">판매가</th>
-                                      <th style="position:sticky; top:0px;">판매수량</th>
-                                  </tr>
-                                  </thead>
-                                  <tbody class="product_table_tbody">
-                                  <tr>
-                                      <td>James</td>
-                                      <td>Matman</td>
-                                      <td>(713) 123-8965</td>
-                                      <td>test</td>
-                                      <td>01/13/1979</td>
-                                      <td>13</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Johnny</td>
-                                      <td>Smith</td>
-                                      <td>(713) 584-9614</td>
-                                      <td>test</td>
-                                      <td>06/09/1971</td>
-                                      <td>13</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Susan</td>
-                                      <td>Johnson</td>
-                                      <td>(713) 847-1124</td>
-                                      <td>test</td>
-                                      <td>08/25/1965</td>
-                                      <td>13</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Tracy</td>
-                                    <td>Richardson</td>
-                                    <td>(713) 245-4821</td>
-                                    <td>test</td>
-                                    <td>03/13/1980</td>
-                                    <td>13</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Tracy</td>
-                                    <td>Richardson</td>
-                                    <td>(713) 245-4821</td>
-                                    <td>test</td>
-                                    <td>03/13/1980</td>
-                                    <td>13</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Tracy</td>
-                                    <td>Richardson</td>
-                                    <td>(713) 245-4821</td>
-                                    <td>test</td>
-                                    <td>03/13/1980</td>
-                                    <td>13</td>
-                                  </tr>
-                                  </tbody>
-                              </table>
-                              </div>
-                        </td>
-                    </tr>
-
-                    <tr class="table-success" data-bs-toggle="collapse" data-bs-target="#collapseExample2"
-                        aria-expanded="false">
-                        <td class="col-2 text-center m-0" >Column 1</td>
-                        <td class="col-3 text-center m-0" >Column 2</td>
-                        <td class="col-3 text-center m-0" >Column 3</td>
-                        <td class="col-3 text-center m-0" >Column 4</td>
-                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
-                                <i class="bi bi-pencil-square"></i></a>
-                            <a class="btn btn-primary">
-                                <i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr  class="collapse" id="collapseExample2">
-                        <td colspan="4" style="background-color: #e0e0e0;">
-                            <div class="product_table_div">
-        
 
                                 <table class="product_table">
                                     <thead class="product_table_thead">
@@ -278,32 +179,123 @@
                                         <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     </tbody>
                                 </table>
-                              </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="table-success" data-bs-toggle="collapse" data-bs-target="#collapseExample2"
+                        aria-expanded="false">
+                        <td class="col-2 text-center m-0" >Column 1</td>
+                        <td class="col-3 text-center m-0" >Column 2</td>
+                        <td class="col-3 text-center m-0" >Column 3</td>
+                        <td class="col-3 text-center m-0" >Column 4</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr  class="collapse" id="collapseExample2">
+                        <td colspan="4" style="background-color: #e0e0e0;">
+                            <div class="product_table_div">
+
+                                <table class="product_table">
+                                    <thead class="product_table_thead">
+                                    <tr>
+                                        <th style="position:sticky; top:0px;">품목명</th>
+                                        <th style="position:sticky; top:0px;">상품번호</th>
+                                        <th style="position:sticky; top:0px;">상품명</th>
+                                        <th style="position:sticky; top:0px;">원가</th>
+                                        <th style="position:sticky; top:0px;">판매가</th>
+                                        <th style="position:sticky; top:0px;">판매수량</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="product_table_tbody">
+                                    <tr>
+                                        <td>James</td>
+                                        <td>Matman</td>
+                                        <td>(713) 123-8965</td>
+                                        <td>test</td>
+                                        <td>01/13/1979</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Johnny</td>
+                                        <td>Smith</td>
+                                        <td>(713) 584-9614</td>
+                                        <td>test</td>
+                                        <td>06/09/1971</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Susan</td>
+                                        <td>Johnson</td>
+                                        <td>(713) 847-1124</td>
+                                        <td>test</td>
+                                        <td>08/25/1965</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </td>
                     </tr>
 
@@ -323,7 +315,7 @@
                     <tr  class="collapse" id="collapseExample3">
                         <td colspan="4" style="background-color: #e0e0e0;">
                             <div class="product_table_div">
-        
+
                                 <table class="product_table">
                                     <thead class="product_table_thead">
                                     <tr>
@@ -369,32 +361,32 @@
                                         <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     </tbody>
                                 </table>
-                              </div>
+                            </div>
                         </td>
                     </tr>
 
@@ -405,7 +397,7 @@
                         <td class="col-3 text-center m-0" >Column 3</td>
                         <td class="col-3 text-center m-0" >Column 4</td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a style="" class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+                            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-primary">
                                 <i class="bi bi-trash"></i></a>
@@ -414,7 +406,7 @@
                     <tr  class="collapse" id="collapseExample4">
                         <td colspan="4" style="background-color: #e0e0e0;">
                             <div class="product_table_div">
-        
+
                                 <table class="product_table">
                                     <thead class="product_table_thead">
                                     <tr>
@@ -460,36 +452,36 @@
                                         <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     <tr>
-                                      <td>Tracy</td>
-                                      <td>Richardson</td>
-                                      <td>(713) 245-4821</td>
-                                      <td>test</td>
-                                      <td>03/13/1980</td>
-                                      <td>13</td>
+                                        <td>Tracy</td>
+                                        <td>Richardson</td>
+                                        <td>(713) 245-4821</td>
+                                        <td>test</td>
+                                        <td>03/13/1980</td>
+                                        <td>13</td>
                                     </tr>
                                     </tbody>
                                 </table>
-                              </div>
+                            </div>
                         </td>
                     </tr>
-                   
-                    
+
+
 
                     </tbody>
                 </table>
@@ -550,7 +542,7 @@
             <div class="m-4" >
                 <h4 style="text-align: center; font-weight: 800;">주문서 검색</h4>
             </div>
-            
+
             <div style=" margin-left: 5%; margin-right: 5%;">
                 <form>
                     <div class="mb-3">
@@ -562,8 +554,8 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
-                        <button type="button" class="btn btn-primary">검색</button>
+                        <input id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
+                        <button onclick="getOrderSheet()" type="button" class="btn btn-primary">검색</button>
                     </div>
                 </form>
             </div>
@@ -573,6 +565,7 @@
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
+<script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
@@ -582,26 +575,27 @@
     });
 
 
-//마우스 올릴때 테이블 색깔 변경 코드
-var rows = document.getElementsByClassName('product_table_tbody')[0].getElementsByTagName('tr');
+    // 마우스 올릴때 테이블 색깔 변경 코드
+    var rows = document.querySelectorAll('.product_table_tbody tr');
 
-for (var i = 0; i < rows.length; i++) {
-  rows[i].addEventListener('mouseover', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      if (!tds[j].classList.contains('delete_td')) {
-        tds[j].classList.add('highlighted');
-      }
-    }
-  });
+    for (var i = 0; i < rows.length; i++) {
+        rows[i].addEventListener('mouseover', function () {
+            var tds = this.getElementsByTagName('td');
+            for (var j = 0; j < tds.length; j++) {
+                if (!tds[j].classList.contains('delete_td')) {
+                    tds[j].classList.add('highlighted');
+                }
+            }
+        });
 
-  rows[i].addEventListener('mouseout', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      tds[j].classList.remove('highlighted');
+        rows[i].addEventListener('mouseout', function () {
+            var tds = this.getElementsByTagName('td');
+            for (var j = 0; j < tds.length; j++) {
+                tds[j].classList.remove('highlighted');
+            }
+        });
     }
-  });
-}
+
 
 </script>
 </body>
