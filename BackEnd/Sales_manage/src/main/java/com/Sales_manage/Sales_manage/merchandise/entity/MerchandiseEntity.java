@@ -1,9 +1,10 @@
 package com.Sales_manage.Sales_manage.merchandise.entity;
 
-import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.orderSheet.entity.IncludeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.List;
 
 @Entity
 @Setter
@@ -23,4 +24,6 @@ public class MerchandiseEntity {
     @JoinColumn(name = "id_brand", nullable = false)
     private com.Sales_manage.Sales_manage.brand.entity.BrandEntity idBrand;
 
+    @OneToMany(mappedBy = "idMerchandise", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IncludeEntity> includes;
 }
