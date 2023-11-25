@@ -23,7 +23,7 @@ public class IncludeEntity {
     public MerchandiseEntity idMerchandise;
 
     private short orderCount;
-    private Long profit;
+    private Long totalCost;
     private Long sales;
 
 }

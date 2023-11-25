@@ -18,7 +18,7 @@ public class MerchandiseController {
     @Autowired
     private MerchandiseService merchandiseService;
 
-    @GetMapping("/product")
+    @GetMapping("/products")
     @ResponseBody
     public Map<String, List<Map<String, Object>>> getProductsOrder(@RequestParam(value = "product_name", defaultValue = "") String productName,
                                                               @RequestParam(value = "category") List<String> categories,
