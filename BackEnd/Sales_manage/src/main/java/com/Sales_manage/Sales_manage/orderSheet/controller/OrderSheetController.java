@@ -1,5 +1,6 @@
 package com.Sales_manage.Sales_manage.orderSheet.controller;
 
+import com.Sales_manage.Sales_manage.orderSheet.dto.MerchandiseRequest;
 import com.Sales_manage.Sales_manage.orderSheet.dto.OrderSheetResponse;
 import com.Sales_manage.Sales_manage.orderSheet.service.OrderSheetService;
 import jakarta.servlet.http.HttpSession;
@@ -38,11 +39,30 @@ public class OrderSheetController {
             return ResponseEntity.badRequest().build();
         } else {
         // 서비스를 통해 주문서 목록 조회
-            System.out.println("41번줄 실행");
         List<OrderSheetResponse> orderSheetList = orderSheetService.getOrderSheetList(loggedInUserId, startDateTime, endDateTime, searchMerchandiseValue);
         return ResponseEntity.ok(orderSheetList);
         }
     }
+
+    @PutMapping("/orderSheet")
+    @ResponseBody
+    public ResponseEntity<Void> updateOrderSheet(
+            @RequestBody MerchandiseRequest merchandiseRequest,
+            HttpSession session) {
+
+        // 로그인한 사용자의 역할과 아이디 확인
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        // 역할이 store_manager인지 확인
+        if (!"store_manager".equals(loggedInUserRole)) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            // 서비스를 통해 주문서 업데이트 수행
+            orderSheetService.updateOrderSheet(merchandiseRequest);
+            return ResponseEntity.ok().build();
+        }
+    }
+
 }
 
 

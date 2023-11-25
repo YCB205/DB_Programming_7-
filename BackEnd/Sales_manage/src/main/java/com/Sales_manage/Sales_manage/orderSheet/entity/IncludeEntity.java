@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @IdClass(IncludeId.class)
-@Table(name= "include")
+@Table(name = "include")
 public class IncludeEntity {
 
     @Id
@@ -23,7 +23,6 @@ public class IncludeEntity {
     public MerchandiseEntity idMerchandise;
 
     private short orderCount;
-    private Long profit;
+    private Long totalCost;
     private Long sales;
-
 }

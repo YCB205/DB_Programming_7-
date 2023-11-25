@@ -45,7 +45,7 @@ function generateOrderTable(data) {
 // Create a table row for the main order information
 function createTableRow(order, index, rowClass) {
     const row = document.createElement('tr');
-    row.setAttribute('class', rowClass);
+    row.classList.add(rowClass, `orderTable${index+1}`);
     row.setAttribute('data-bs-toggle', 'collapse');
     row.setAttribute('data-bs-target', `#collapseExample${index + 1}`);
     row.setAttribute('aria-expanded', 'false');
@@ -56,7 +56,7 @@ function createTableRow(order, index, rowClass) {
         <td class="col-3 text-center m-0">${order.sales}원</td>
         <td class="col-3 text-center m-0">${order.profit}원</td>
         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px; background-color: #fff;">
-            <a class="btn btn-primary" target="_self" onclick="showPopup('UpdateOrderForm.html',620,625)">
+            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateOrderForm.html',660,661,\`tr.orderTable${index + 1}\` )">
                 <i class="bi bi-pencil-square"></i>
             </a>
             <a class="btn btn-primary">

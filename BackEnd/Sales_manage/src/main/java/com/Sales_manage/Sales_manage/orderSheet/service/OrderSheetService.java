@@ -4,6 +4,7 @@ import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.ropository.MerchandiseRepository;
+import com.Sales_manage.Sales_manage.orderSheet.dto.MerchandiseRequest;
 import com.Sales_manage.Sales_manage.orderSheet.dto.MerchandiseResponse;
 import com.Sales_manage.Sales_manage.orderSheet.dto.OrderSheetResponse;
 import com.Sales_manage.Sales_manage.orderSheet.entity.IncludeEntity;
@@ -12,6 +13,7 @@ import com.Sales_manage.Sales_manage.orderSheet.ropository.IncludeRepository;
 import com.Sales_manage.Sales_manage.orderSheet.ropository.OrderSheetRepository;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,18 +31,21 @@ public class OrderSheetService {
     private final OrderSheetRepository orderSheetRepository;
     private final MerchandiseRepository merchandiseRepository;
     private final StoreManagerRepository storeManagerRepository;
+    private final IncludeRepository includeRepository;
 
     @Autowired
     public OrderSheetService(
             BrandOfficeRepository brandOfficeRepository,
             OrderSheetRepository orderSheetRepository,
             MerchandiseRepository merchandiseRepository,
-            StoreManagerRepository storeManagerRepository
+            StoreManagerRepository storeManagerRepository,
+            IncludeRepository includeRepository
     ){
         this.brandOfficeRepository = brandOfficeRepository;
         this.orderSheetRepository = orderSheetRepository;
         this.merchandiseRepository = merchandiseRepository;
         this.storeManagerRepository= storeManagerRepository;
+        this.includeRepository = includeRepository;
     }
 
 
@@ -106,6 +111,48 @@ public class OrderSheetService {
 
         return orderSheetResponses;
     }
+
+    @Transactional
+    public void updateOrderSheet(MerchandiseRequest merchandiseRequest) {
+        Optional<OrderSheetEntity> orderSheetOptional = orderSheetRepository.findById(merchandiseRequest.getIdOrdersheet());
+
+        if (orderSheetOptional.isPresent()) {
+            OrderSheetEntity orderSheet = orderSheetOptional.get();
+
+            // 기존의 IncludeEntity 삭제
+            includeRepository.removeIncludeEntityByIdOrdersheet(orderSheet);
+
+            // merchandise 업데이트
+//            List<IncludeEntity> updatedIncludes = new ArrayList<>();
+            for (MerchandiseRequest.Merchandise merchandise : merchandiseRequest.getMerchandise()) {
+                // MerchandiseEntity 찾기
+                Long merchandiseId = merchandise.getId_merchandise();
+                MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(merchandiseId)
+                        .orElseThrow(() -> new IllegalArgumentException("Merchandise not found"));
+
+                // Include 엔티티 생성 및 추가
+                IncludeEntity newInclude = new IncludeEntity();
+                newInclude.setIdMerchandise(merchandiseEntity);
+                newInclude.setOrderCount(merchandise.getOrderCount());
+                newInclude.setSales(merchandise.getSales());
+                newInclude.setTotalCost(merchandise.getTotalCost());
+                newInclude.setIdOrdersheet(orderSheet);
+                includeRepository.save(newInclude);
+
+//                updatedIncludes.add(newInclude);
+            }
+
+            // 기존의 Includes를 새로운 목록으로 교체
+//            orderSheet.setIncludes(updatedIncludes);
+            // 주문서의 변경 내용 저장
+//            orderSheetRepository.save(orderSheet);
+        }
+    }
+
+
+
+
+
 }
 
 
