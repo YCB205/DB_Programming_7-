@@ -7,10 +7,136 @@
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-        .table-success th, .table-success td {
-            background-color: #d9f2eb;
-            color: black;
+        /* 드롭다운 메뉴의 z-index를 더 높게 설정하여 위로 올리기 */
+    .dropdown-menu {
+        position: relative;
+        z-index: 1001;
+    }
+    
+    /* 테이블 헤더가 드롭다운 메뉴를 가리지 않도록 설정 */
+    thead {
+        position: relative;
+        z-index: 1000; /* 드롭다운 메뉴보다 위에 위치하도록 설정 */
+    }
+    
+    .checkbox-group-container {
+            max-height: 200px;  /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
+            overflow-y: scroll;  /* 세로 스크롤을 표시하도록 설정합니다. */
+            -ms-overflow-style: none;
+            display: flex;
+            justify-content: center;
         }
+        .checkbox-group-container::-webkit-scrollbar{
+            display: none;
+        }
+    
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;  /* 체크박스들 사이의 간격을 조절합니다. */
+        }
+    
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+    
+    .mainForJumjuproductinquiryFormMain {
+        margin: 30px; /* 위아래 여백 조절 */
+        padding: 10px; /* 내부 여백 조절 */
+        max-width: calc(100% - 70px); /* 최대 너비 설정 (전체 너비에서 오른쪽 aside 너비를 뺀 값) */
+        overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    }
+    
+    .scrollable-div {
+        max-height: 700px;
+        overflow: hidden; /* 스크롤바를 숨김 */
+    }
+    
+    .product_table_div {
+        height: 74%;
+        overflow-y: scroll;
+    }
+    
+    .product_table_div::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+    
+     .form-check-input:checked {
+        background-color: #78c2ad;
+        border-color: #78c2ad;
+    }
+    .form-check-input:checked[type=radio] {
+        --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
+    }
+    .form-check-input:checked {
+        background-color: #78c2ad;
+        border-color: #78c2ad;
+    }
+    .form-check-input[type=radio] {
+        border-radius: 50%;
+    }
+    .form-check .form-check-input {
+        float: left;
+        margin-left: -1.5em;
+    }
+    .form-check-input {
+        --bs-form-check-bg: var(--bs-body-bg);
+        flex-shrink: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.25em;
+        vertical-align: top;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: var(--bs-form-check-bg);
+        background-image: var(--bs-form-check-bg-image);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .brand_name_div span {
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #ffffff;
+            -webkit-text-stroke: 1px #3E7E69;
+            position: relative;
+            }
+            .brand_name_div span:before {
+            content: "";
+            position: absolute;
+            left: -2%;
+            bottom: 10%;
+            height: 5px;
+            width: 55px;
+            background-color: #ffffff;
+            }
+            .brand_name_div span:after {
+            content: "";
+            position: absolute;
+            left: 5%;
+            bottom: 12%;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #ffffff;
+            }
+    
+    
+    
     </style>
 </head>
 <body style="overflow-y: hidden">
@@ -19,8 +145,10 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-2 g-0 brand_name_div">
-                <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
-                      style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                <a href="MainJumju.html">
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
+                    style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                </a>
             </div>
 
             <div class="col-1 g-0"></div>
@@ -29,21 +157,22 @@
                     <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95; margin-top: -10px;">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Sales information inquiry.html">매출 정보 조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="OrderManager.html">주문서 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="RegisterOrderForm.html">주문서 등록</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-1 g-0"></div>
+            
+            <!-- 상품 Dropdown -->
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
                     <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product inquiry.html">상품 조회</a></li>
                     </ul>
                 </div>
             </div>
@@ -335,12 +464,12 @@
             <div class="container-fluid h-100" style="">
                 <div class="row h-100" style="">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,546)">
+                    <div class="col d-flex align-items-center justify-content-center" onclick="showPopup('user_information_check.html',600,700)">
+                        <button type="button" class="btn btn-primary" >
                             회원정보
                         </button>
                     </div>
@@ -402,6 +531,18 @@
         </div>
     </div>
 </aside>
+<script src="../../javascripts/userAPI/getUser.js"></script>
+  <script src="../../javascripts/module_popup/showPopup.js"></script>
+  <script src="../../javascripts/userAPI/logout.js"></script>
+  
+  <script>
+      window.addEventListener('message', function (event) {
+          if (event.data === 'refreshParent') {
+              location.reload(true);
+              window.close();
+          }
+      });
+  </script>
 <script src="../../javascripts/RegisterOrderForm/UpdateTable.js"></script>
 </body>
 </html>
