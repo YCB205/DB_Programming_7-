@@ -46,6 +46,18 @@ public class MerchandiseService {
         return response;
     }
 
+    public List<MerchandiseEntity> getProducts(String productName, String loggedInUserId) {
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+
+        if (productName.isEmpty()) {
+            return merchandiseRepository.findAll();
+        } else {
+            return merchandiseRepository.findByMerchandiseNameContaining(productName);
+        }
+    }
+
     // MerchandiseEntity를 Map<String, Object>으로 매핑하는 메서드
     private Map<String, Object> mapMerchandiseEntity(MerchandiseEntity entity) {
         Map<String, Object> mapped = new HashMap<>();
