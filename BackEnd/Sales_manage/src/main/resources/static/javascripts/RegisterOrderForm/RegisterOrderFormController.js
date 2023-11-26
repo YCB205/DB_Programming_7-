@@ -39,14 +39,12 @@ async function initCategory(category){
 function categoryRadioFetch(){
     //url get을 요청함
     //카테고리별 값 가져오기
-    const url = '/products';
+    let productName = "";
+    let category = "커피";
+    const url = `/orderproducts?product_name=${productName.toString()}&category=${category}`;
+    console.log(url);
     return  fetch(url)
-        .then(response => {response.json()
-            if(response.ok){
-               console.log(response.ok);
-               return response.json();
-            }
-        })
+        .then(response => {return  response.json()})
         .then(data=>{
             console.log(data);
             return data;
