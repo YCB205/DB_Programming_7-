@@ -29,7 +29,12 @@ public class MerchandiseService {
             // productName에 해당하는 상품 데이터만 가져오기
             filteredList = merchandiseRepository.findByMerchandiseNameContaining(productName);
         }
-
+        if (categories == null || categories.isEmpty()) {
+            categories = filteredList.stream()
+                    .map(MerchandiseEntity::getCategori)
+                    .distinct()
+                    .collect(Collectors.toList());
+        }
         // 결과를 JSON으로 반환하기 위한 Map 구성
         Map<String, List<Map<String, Object>>> response = new HashMap<>();
 

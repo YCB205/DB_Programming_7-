@@ -21,7 +21,7 @@ public class MerchandiseController {
 
     @GetMapping("/orderproducts")
     @ResponseBody
-    public Map<String, List<Map<String, Object>>> getProductsOrder(@RequestParam(value = "product_name", defaultValue = "") String productName,
+    public Map<String, List<Map<String, Object>>> getProductsOrder(@RequestParam(value = "product_name") String productName,
                                                               @RequestParam(value = "category") List<String> categories,
                                                               HttpSession session)
     {
@@ -31,7 +31,7 @@ public class MerchandiseController {
 
     @GetMapping("/products")
     @ResponseBody
-    public List<MerchandiseEntity> getProducts(@RequestParam(value = "product_name", defaultValue = "") String productName, HttpSession session) {
+    public List<MerchandiseEntity> getProducts(@RequestParam(value = "product_name") String productName, HttpSession session) {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
         return merchandiseService.getProducts(productName, loggedInUserId);
     }
