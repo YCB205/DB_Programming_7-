@@ -167,26 +167,6 @@ document.getElementById('closeBtn').addEventListener('click', function () {
     window.close();
   });
 
-//테이블에 마우스 올릴때 배경색 변경 코드
-var rows = document.getElementsByClassName('product_table_tbody')[0].getElementsByTagName('tr');
-
-for (var i = 0; i < rows.length; i++) {
-  rows[i].addEventListener('mouseover', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      if (!tds[j].classList.contains('delete_td')) {
-        tds[j].classList.add('highlighted');
-      }
-    }
-  });
-
-  rows[i].addEventListener('mouseout', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      tds[j].classList.remove('highlighted');
-    }
-  });
-}
 
   function getChoiceData() {
       var choiceData = [];

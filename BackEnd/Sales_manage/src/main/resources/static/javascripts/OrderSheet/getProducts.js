@@ -1,9 +1,9 @@
 function getProducts() {
     const productName = document.querySelector('.input_store_name').value;
-    const categories = ["프라푸치노", "티", "초콜릿", "스타벅스 피지오", "커피", "블렌디드", "리프레셔"];
+    const categories = [];
 
     // 서버로 데이터 요청
-    fetch(`/products?product_name=${productName}&category=${categories}`, {
+    fetch(`/orderproducts?product_name=${productName}&category=${categories}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

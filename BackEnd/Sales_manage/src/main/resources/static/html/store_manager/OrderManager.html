@@ -370,7 +370,7 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <input id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
+                        <input onkeydown="handleKeyDown(event)" getOrderSheet()" id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
                         <button onclick="getOrderSheet()" type="button" class="btn btn-primary">검색</button>
                     </div>
                 </form>
@@ -391,7 +391,12 @@
         }
     });
 
-
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // "Enter" 키의 기본 동작 방지
+            getOrderSheet();
+        }
+    }
 
     // 마우스 올릴때 테이블 색깔 변경 코드
     var rows = document.querySelectorAll('.product_table_tbody tr');
