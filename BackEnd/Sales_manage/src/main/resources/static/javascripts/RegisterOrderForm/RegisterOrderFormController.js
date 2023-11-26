@@ -17,31 +17,35 @@ async function initCategory(category){
     //fetch함수 부르기
     //비동기 실행을 동기적으로 바꾸기
     const data = await categoryRadioFetch();
-    data.forEach(function (item, index){
+
+
+    for(const key in data){
         //input과 label을 초기화 하기
         const input = document.createElement('input');
         const label = document.createElement('label');
         input.setAttribute('type','radio');
         input.setAttribute('class','btn-check');
         input.setAttribute('name','btnradio');
-        input.setAttribute('id', `btnRadio${item.toString()}`);
+        input.setAttribute('id', `btnRadio${key.toString()}`);
         input.setAttribute('autocompleted','off');
-        input.setAttribute('value',`${item.toString()}`);
+        input.setAttribute('value',`${key.toString()}`);
         label.setAttribute('class','btn btn-outline-primary rounded-0 m-0');
-        label.setAttribute('for',`btnRadio${item.toString()}`);
-        label.textContent = `${item.toString()}`;
+        label.setAttribute('for',`btnRadio${key.toString()}`);
+        label.textContent = `${key.toString()}`;
         //category에 넣기 id = category
         category.appendChild(input);
         category.appendChild(label);
-    })
+        console.log(key.toString());
+    }
+    addTableRow(data);
 }
 
 function categoryRadioFetch(){
     //url get을 요청함
     //카테고리별 값 가져오기
     let productName = "";
-    let category = "커피";
-    const url = `/orderproducts?product_name=${productName.toString()}&category=${category}`;
+    let category = [];
+    const url = `/orderproducts?product_name=${productName}&category=${category}`;
     console.log(url);
     return  fetch(url)
         .then(response => {return  response.json()})
@@ -64,6 +68,7 @@ async function radioEventListner(category){
         inputElement.addEventListener('click', async function () {
             console.log(inputElement);
             const data = await categoryProductFetch(inputElement.value.toString());
+            console.log(data);
             await addTableRow(data);
         });
     }
@@ -76,52 +81,53 @@ async function addTableRow(data){
         tbodyId.removeChild(tbodyId.firstChild);
     }
     console.log(data);
-    data.products.forEach(function (item,index){
-        const newRow  = document.createElement('tr');
-        (index%2 === 0) ? newRow.classList.add('table-light') : newRow.classList.add('table-success');
-        newRow.classList.add('text-center');
-        newRow.setAttribute('id',`${item.id.toString()}`);
+    for(const key in data) {
+        data[key].forEach(function (item, index) {
+            const newRow = document.createElement('tr');
+            (index % 2 === 0) ? newRow.classList.add('table-light') : newRow.classList.add('table-success');
+            newRow.classList.add('text-center');
+            newRow.setAttribute('id', `${item.id_merchandise.toString()}`);
 
-        // 각 열에 해당하는 요소 생성
-        const thFirst = document.createElement('th');
-        const tdSecond = document.createElement('td');
-        const tdThird = document.createElement('td');
-        const tdFourth = document.createElement('td');
+            // 각 열에 해당하는 요소 생성
+            const thFirst = document.createElement('th');
+            const tdSecond = document.createElement('td');
+            const tdThird = document.createElement('td');
+            const tdFourth = document.createElement('td');
 
-        // 각 열의 속성 및 텍스트 설정
-        thFirst.setAttribute('scope', 'row');
-        thFirst.className = 'col-3';
-        thFirst.textContent = item.id.toString();
+            // 각 열의 속성 및 텍스트 설정
+            thFirst.setAttribute('scope', 'row');
+            thFirst.className = 'col-3';
+            thFirst.textContent = item.id_merchandise.toString();
 
-        tdSecond.className = 'col-3';
-        tdSecond.textContent = item.title.toString();
+            tdSecond.className = 'col-3';
+            tdSecond.textContent = item.merchandiseName.toString();
 
-        tdThird.className = 'col-3';
-        tdThird.textContent = item.price;
+            tdThird.className = 'col-3';
+            tdThird.textContent = item.price;
 
-        tdFourth.className = 'col-3';
-        tdFourth.textContent = "null";
+            tdFourth.className = 'col-3';
+            tdFourth.textContent = item.cost;
 
-        // 행에 열 요소들 추가
-        newRow.appendChild(thFirst);
-        newRow.appendChild(tdSecond);
-        newRow.appendChild(tdThird);
-        newRow.appendChild(tdFourth);
+            // 행에 열 요소들 추가
+            newRow.appendChild(thFirst);
+            newRow.appendChild(tdSecond);
+            newRow.appendChild(tdThird);
+            newRow.appendChild(tdFourth);
 
-        //newRow행클릭시 이벤트 리스너 등록;
-        newRow.addEventListener('dblclick',function (){
-            console.log(newRow.id.toString());
-            dbClickEventListener(newRow);
+            //newRow행클릭시 이벤트 리스너 등록;
+            newRow.addEventListener('dblclick', function () {
+                console.log(newRow.id.toString());
+                dbClickEventListener(newRow);
+            })
+            // tbody에 행 추가
+            tbodyId.appendChild(newRow);
         })
-
-        // tbody에 행 추가
-        tbodyId.appendChild(newRow);
-
-    })
+    }
 }
 //상품별 데이터 패치하기
 function categoryProductFetch(inputElement) {
-    const url = `https://dummyjson.com/products/category/${inputElement.toString()}`;
+    let productName = '';
+    const url = `/orderproducts?product_name=${productName}&category=${inputElement}`;
     return fetch(url).then(response => response.json());
 }
 
@@ -221,6 +227,8 @@ function calSum(){
         //수량 가져오기
         console.log(tableTd);
         let tableCount = tableTd[0].querySelector('input');
+        if(tableCount.value < 0)
+            tableCount.value = 1;
         tableCount = tableCount.value;
         let tablePrice = tableTd[1].textContent;
         console.log(tableCount);
@@ -249,7 +257,8 @@ function search(){
 }
 
 function serachOptionFetch(optionInput){
-    const url = `https://dummyjson.com/products/search?q=${optionInput}`;
+    const categoryList =[]
+    const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
     fetch(url)
         .then(response => response.json())
         .then(data=>{

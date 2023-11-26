@@ -14,6 +14,7 @@
             -webkit-text-stroke: 1px #3E7E69;
             position: relative;
         }
+
         .brand_name_div span:before {
             content: "";
             position: absolute;
@@ -23,6 +24,7 @@
             width: 55px;
             background-color: #ffffff;
         }
+
         .brand_name_div span:after {
             content: "";
             position: absolute;
@@ -33,9 +35,14 @@
             max-width: 255px;
             background-color: #ffffff;
         }
+
         .table-success th, .table-success td {
             background-color: #d9f2eb;
             color: black;
+        }
+
+        .product_table_div::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
@@ -52,7 +59,8 @@
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
@@ -65,7 +73,8 @@
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2"
+                            data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -116,7 +125,8 @@
                 </div>
             </div>
             <div class="scroll-hidden w-100 h-100 m-0 p-0 scrollable-div overflow-x-hidden">
-                <table class="table table-hover align-middle" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                <table class="table table-hover align-middle"
+                       style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <tbody id="querySearchScript">
                     <!--                    <tr class="table-light">-->
                     <!--                        <th scope="row" class="col-3">1</th>-->
@@ -348,7 +358,8 @@
             </div>
         </div>
         <div class="firstchild1">
-            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white"
+                 style="height: 60%;">
                 직급:
             </div>
             <div class="firstchild3">
@@ -366,7 +377,8 @@
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
+                        <button type="button" class="btn btn-primary"
+                                onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -377,37 +389,36 @@
         </div>
 
     </div>
-    <div class="second ">
-        <div class="form-group position-relative" style="width: 100%; height: 15%;">
+    <div class="second">
+        <div class="form-group position-relative" style="width: 100%; height: 15%; margin-top: 4%; margin-bottom: 7%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
                 <input type="text" class="form-control" placeholder="상품명을 입력하세요"
-                       aria-label="Recipient's username" aria-describedby="button_add2" id ='optionInput'>
+                       aria-label="Recipient's username" aria-describedby="button_add2" id='optionInput'>
                 <button class="btn btn-primary" type="button" id="optionBtn">검색</button>
             </div>
         </div>
-        <div class="p-0" style="width: 100%; height: 60%; margin-top: 6%;">
+
             <div style="width: 100%; height: 13%;">
-                <h4 style="text-align: center;  margin-bottom: 0; padding-bottom: 0;" class="">주문
+                <h4 style="text-align: center;" class="">주문
                     목록</h4>
             </div>
-            <table class="table table-bordered align-middle m-0">
-                <thead>
-                <tr class="text-center">
-                    <th scope="col" class="col-4">상품명</th>
-                    <th scope="col" class="col-3">수량</th>
-                    <th scope="col" class="col-3 ">가격</th>
-                    <th scope="col" class="col-2">취소</th>
-                </tr>
-                </thead>
-            </table>
-            <div class="m-0">
-                <table class="table table-bordered align-middle p-0" style="padding-bottom: 8%;">
-                    <tbody id="querySearchAfterScript">
-
-                    </tbody>
+                <table class="table table-bordered align-middle m-0">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col" class="col-4">상품명</th>
+                        <th scope="col" class="col-3">수량</th>
+                        <th scope="col" class="col-3 ">가격</th>
+                        <th scope="col" class="col-2">취소</th>
+                    </tr>
+                    </thead>
                 </table>
-            </div>
-        </div>
+                <div style="width: 100%; height: 80%;" class="product_table_div overflow-scroll">
+                    <table class="table table-bordered align-middle p-0"
+                           style=" margin-bottom: 0; padding-bottom: 0;">
+                        <tbody id="querySearchAfterScript">
+                        </tbody>
+                    </table>
+                </div>
         <div class=" d-flex bg-info" style="width: 100%; height: 8%;">
             <div class="d-flex justify-content-end align-items-center fs-5 text-white p-3" id="price"
                  style="width: 30%;">가격
