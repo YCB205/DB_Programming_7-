@@ -149,6 +149,19 @@ public class OrderSheetService {
         }
     }
 
+    @Transactional
+    public void deleteOrderSheet(Long idOrdersheet) {
+        // 주문서 ID에 해당하는 주문서 엔터티 조회
+        OrderSheetEntity orderSheet = orderSheetRepository.findById(idOrdersheet)
+                .orElseThrow(() -> new IllegalArgumentException("Order sheet not found"));
+
+        // 주문서에 속한 IncludeEntity 삭제
+        includeRepository.removeIncludeEntityByIdOrdersheet(orderSheet);
+
+        // 주문서 삭제
+        orderSheetRepository.delete(orderSheet);
+    }
+
 
 
 

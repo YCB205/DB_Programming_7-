@@ -63,6 +63,19 @@ public class OrderSheetController {
         }
     }
 
+    @DeleteMapping("/orderSheet/{idOrdersheet}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteOrderSheet(@PathVariable Long idOrdersheet, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if (!"store_manager".equals(loggedInUserRole)) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            // 서비스를 통해 주문서 및 관련 IncludeEntity 삭제
+            orderSheetService.deleteOrderSheet(idOrdersheet);
+            return ResponseEntity.ok().build();
+        }
+    }
+
 }
 
 

@@ -59,7 +59,7 @@ function createTableRow(order, index, rowClass) {
             <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateOrderForm.html',660,661,\`tr.orderTable${index + 1}\` )">
                 <i class="bi bi-pencil-square"></i>
             </a>
-            <a class="btn btn-primary">
+            <a class="btn btn-primary" onclick="deleteOrderSheet(\`tr.orderTable${index + 1}\`)">
                 <i class="bi bi-trash"></i>
             </a>
         </td>`;
