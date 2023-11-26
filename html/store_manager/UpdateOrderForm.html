@@ -27,7 +27,7 @@
             .product_table_tbody tr:nth-child(2n) td:nth-child(-n+6) {background-color: #EBFCFF;}
             .highlighted {background-color: #9addeb !important;}
         }
-        
+
 /* .back_ground {
   position: fixed;
   z-index: 1;
@@ -47,7 +47,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(180deg);; 
+            transform: translate(-50%, -50%) rotate(180deg);;
         }
 
     </style>
@@ -58,8 +58,8 @@
     <div class="card border-primary mb-3">
         <div class="card-header"></div>
         <div class="card-body">
-          
-          <div class="scrollable-div w-100 align-items-center" style="height: 21%;">         
+
+          <div class="scrollable-div w-100 align-items-center" style="height: 21%;">
             <div style="display: flex; justify-content: flex-start;">
               <div class="circle-square">
                 <div class="triangle"></div>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="product_table_div">
-        
+
           <table class="product_table">
             <thead class="product_table_thead">
             <tr>
@@ -102,18 +102,18 @@
         </div>
 
         <div style="height: 8%; display: flex; justify-content: flex-end;">
-          <button type="button" class="btn btn-primary" style="margin-right: 0;" onclick="showPopup('./UpdateOrderFormAddProduct.html',620,625)">상품추가</button>
+          <button type="button" class="btn btn-primary" style="margin-right: 0;" onclick="showPopup('./UpdateOrderFormAddProduct.html',660,661)">상품추가</button>
         </div>
 
 
-        
+
         </div>
         <div class="card-footer">
             <button type="button" onclick="putOrderSheet()" class="btn btn-info">수 정</button>
             <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
         </div>
       </div>
-</div> 
+</div>
 </div>
 
 
@@ -123,6 +123,12 @@
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/OrderSheet/putOrderSheet.js"></script>
 <script>
+
+    window.addEventListener('message', function (event) {
+        if (event.data === 'UpdateProduct') {
+            addProduct();
+        }
+    });
 
     function deleteProduct(){
         // 현재 클릭된 이미지의 부모 요소인 td를 찾음
@@ -168,6 +174,7 @@ document.getElementById('closeBtn').addEventListener('click', function () {
       // 제품 정보 동적으로 추가
       var productTableBody = document.getElementById('productTableBody');
 
+
         for (var i = 1; i < productData.length; i += 6) {
             var productRow = document.createElement('tr');
             for (var j = i; j < i + 6; j++) {
@@ -189,6 +196,68 @@ document.getElementById('closeBtn').addEventListener('click', function () {
 
           productTableBody.appendChild(productRow);
       }
+
+
+
+    function addProduct() {
+        var storedData = localStorage.getItem('addProduct');
+
+        if (storedData) {
+            var productData = JSON.parse(storedData);
+            localStorage.removeItem('addProduct'); // 데이터를 가져온 후 키 삭제
+
+            var productTableBody = document.getElementById('productTableBody');
+
+            for (var i = 0; i < productData.length; i++) {
+                var rowData = productData[i];
+                var productNumber = rowData[1];
+
+                // 이미 존재하는 상품 번호와 일치하는 경우 추가하지 않음
+                if (isProductNumberExist(productTableBody, productNumber)) {
+                    console.log('Product with number ' + productNumber + ' already exists. Skipping...');
+                    alert(`상품번호 ${productNumber}는 이미 주문서에 있습니다!`)
+                    continue;
+                }
+
+                var productRow = document.createElement('tr');
+
+                for (var j = 0; j < rowData.length; j++) {
+                    var td = document.createElement('td');
+
+                    td.textContent = rowData[j];
+                    productRow.appendChild(td);
+                }
+                var inputTd = document.createElement('td');
+                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()" value="${1}" >`;
+                productRow.appendChild(inputTd);
+
+                // Add the 7th td with the delete button
+                var deleteTd = document.createElement('td');
+                deleteTd.classList.add('delete_td');
+                deleteTd.innerHTML = `<img onclick="deleteProduct()" src="../../image/Icon_delete.png" alt="">`;
+                productRow.appendChild(deleteTd);
+
+                productTableBody.appendChild(productRow);
+            }
+
+            updateOrderRow();
+        }
+    }
+
+    // 상품 번호가 이미 존재하는지 확인하는 함수
+    function isProductNumberExist(productTableBody, productNumber) {
+        var existingRows = productTableBody.getElementsByTagName('tr');
+
+        for (var i = 0; i < existingRows.length; i++) {
+            var existingProductNumber = existingRows[i].getElementsByTagName('td')[1].textContent;
+            if (existingProductNumber === productNumber) {
+                return true;  // 이미 존재하는 경우 true 반환
+            }
+        }
+
+        return false;  // 존재하지 않는 경우 false 반환
+    }
+
 
 
 

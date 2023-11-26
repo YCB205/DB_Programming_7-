@@ -33,6 +33,7 @@ public class MerchandiseService {
         // 결과를 JSON으로 반환하기 위한 Map 구성
         Map<String, List<Map<String, Object>>> response = new HashMap<>();
 
+
         // 카테고리 별로 상품 리스트를 구성하여 Map에 추가
         for (String category : categories) {
             List<Map<String, Object>> categoryList = filteredList.stream()

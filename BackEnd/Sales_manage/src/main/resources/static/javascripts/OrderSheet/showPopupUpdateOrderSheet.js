@@ -4,7 +4,7 @@ function showPopupUpdateOrderSheet(destination_html, width, height, tagClass) {
     var topPosition = (screen.height - 661) / 2;
     var options = `width=${width},height=${height},left=` + leftPosition + ',top=' + topPosition + ',location=no,resizable=no,toolbar=no,menubar=no';
 
-    var popupWindow = window.open(html, 'Popup', options);
+    var popupWindow = window.open(html, 'Popup' + Date.now(), options);
     var tdContentList = getParentValues(tagClass);
     // 기존 창이 정상적으로 열렸을 때
     if (popupWindow) {
