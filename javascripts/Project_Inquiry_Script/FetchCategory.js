@@ -9,6 +9,8 @@ let testUrl = 'https://dummyjson.com/products/categories';
 window.onload = function () {
     fetchDataOrder();
     fetchDataSearch();
+    //모든 데이터 가져오기
+    fetchAllProduct();
 }
 
 function fetchDataOrder() {
@@ -71,6 +73,10 @@ function eventFetchBtn2() {
     fetch(searchProductUrl)
         .then(response => response.json())
         .then(data => {
+            const table = document.getElementById('productName');
+            destroyTable(table);
+            addTableRow(data,'productName');
+            unlockCheckList();
             console.log(data);
         })
 }
@@ -92,7 +98,7 @@ function getProdcutByTag(categoryId) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            addTableRow(data, categoryId);
+            addTableRow(data, data.products[0].category.toString());
         })
         .catch(error => {
             //예외 처리 함수
@@ -100,13 +106,14 @@ function getProdcutByTag(categoryId) {
         });
 }
 
-function addTableRow(data) {
+function addTableRow(data, category) {
+    console.log(category.toString());
+    console.log(data);
     //테이블 리스트에서
     let tableList = document.getElementById('tableList');
     //table 아이디 찾기
-    let table = tableList.querySelector(`#${data.products[0].category}`);
+    let table = tableList.querySelector(`#${category.toString()}`);
     data.products.forEach(function (value, index) {
-        let tableList = document.getElementById('tableList');
         let tr = document.createElement('tr');
         let th = document.createElement('th');
         th.setAttribute('scope', 'row');
@@ -152,3 +159,26 @@ function destroyTable(categoryId){
         }
     }
 }
+
+//전체 상품 혹은 부분 상품 보여주기
+function fetchAllProduct(){
+    const url = 'https://dummyjson.com/products';
+    fetch(url)
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            addTableRow(data,'productAll');
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+}
+
+function unlockCheckList(){
+    const showAll = document.querySelector('#showAll');
+    const showCheckbox = document.querySelector('#showCheckbox');
+    showAll.checked = false;
+    showCheckbox.checked = false;
+    toggleCheckboxVisibility();
+}
+

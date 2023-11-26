@@ -189,6 +189,8 @@
             </div>
             <div class="scrollable-div w-100 h-100 product_table_div">
                 <table class="table table-hover align-middle" style="width: 100%; margin: 0; padding: 0; text-align: center;" id="tableList">
+                    <tbody id="productAll"></tbody>
+                    <tbody id="productName"></tbody>
                     <tbody>
 <!--                    <tr class="table-light">-->
 <!--                        <th scope="row" class="col-20">커피</th>-->
@@ -489,10 +491,10 @@
         <div class="border" style="margin: 10px; padding: 10px; text-align: center;">
             <br><h4 style="color: rgb(0, 198, 122)">상세 검색</h4><br>
             <div style="display: flex; align-items: center; justify-content: center;">
-                <input class="form-check-input" type="radio" name="viewOption" id="showAll" onchange="toggleView('all')" checked>
+                <input value="showAll" class="form-check-input" type="radio" name="viewOption" id="showAll" checked>
                 <label for="showAll">전체 상품 </label>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input class="form-check-input" type="radio" name="viewOption" id="showCheckbox" onchange="toggleCheckboxGroup()">
+                <input value="showAll" class="form-check-input" type="radio" name="viewOption" id="showCheckbox" >
                 <label for="showCheckbox">품목 별</label>
             </div>
             <br><br>
@@ -633,24 +635,58 @@
 <script>
     function toggleCheckboxVisibility() {
         var checkboxGroup = document.querySelector('.checkbox-group');
-
+        let allproductTable = document.querySelector('#productAll');
+        let productName = document.querySelector('#productName');
+        let showAll = document.querySelector('#showAll');
+        let tbodys = document.querySelectorAll('tbody');
         // 라디오 버튼의 상태에 따라 체크박스를 표시 또는 감춤
         var showCheckboxRadio = document.getElementById('showCheckbox');
-        if (showCheckboxRadio.checked) {
+        try{
+            //카테고리별 보기 설정
+        if (showCheckboxRadio.checked && !showAll.checked) {
+            console.log('카테고리별');
             checkboxGroup.style.display = 'flex';
-        } else {
-            checkboxGroup.style.display = 'none';
+            for(let i =0;i<tbodys.length;i++){
+                console.log(i);
+                if((tbodys[i].id.toString() === productName.id.toString()) ||(tbodys[i].id.toString() === showAll.id.toString()))
+                    tbodys[i].style.display = 'none';
+                else
+                    tbodys[i].style.display = '';
+            }
+        }
+        else if(!showCheckboxRadio.checked && showAll.checked) {
+            checkboxGroup.style.display = 'none'
+            console.log('전체상품');
+            for(let i =0;i<tbodys.length;i++){
+                console.log(i);
+                    tbodys[i].style.display = 'none';
+            }
+            allproductTable.style.display = '';
+        }
+        else if(!showCheckboxRadio.checked && !showAll.checked){
+            checkboxGroup.style.display = 'none'
+            for(let i =0;i<tbodys.length;i++){
+                tbodys[i].style.display = 'none';
+            }
+            productName.style.display = '';
+
+            console.log('다비우기');
+        }
+        console.log('함수실행 종료');
+        }
+        catch (e) {
+            console.log(e);
         }
     }
+
+    // 페이지 로드 시 초기 설정 적용
+    toggleCheckboxVisibility();
 
     // 라디오 버튼의 변경 이벤트에 대한 핸들러 등록
     var radioButtons = document.querySelectorAll('input[name="viewOption"]');
     radioButtons.forEach(function (radioButton) {
         radioButton.addEventListener('change', toggleCheckboxVisibility);
     });
-
-    // 페이지 로드 시 초기 설정 적용
-    toggleCheckboxVisibility();
 </script>
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
