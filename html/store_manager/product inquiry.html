@@ -5,26 +5,28 @@
     <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
     <style>
 
         .checkbox-group-container {
-            max-height: 200px;  /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
-            overflow-y: scroll;  /* 세로 스크롤을 표시하도록 설정합니다. */
+            max-height: 200px; /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
+            overflow-y: scroll; /* 세로 스크롤을 표시하도록 설정합니다. */
             -ms-overflow-style: none;
             display: flex;
             justify-content: center;
         }
-        .checkbox-group-container::-webkit-scrollbar{
+
+        .checkbox-group-container::-webkit-scrollbar {
             display: none;
         }
 
         .checkbox-group {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;  /* 체크박스들 사이의 간격을 조절합니다. */
+            justify-content: space-between; /* 체크박스들 사이의 간격을 조절합니다. */
         }
 
         .checkbox-group label {
@@ -60,26 +62,34 @@
             display: none;
         }
 
-        .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+        .table-success th, .table-success td {
+            background-color: #d9f2eb;
+            color: black;
+        }
 
         .form-check-input:checked {
             background-color: #78c2ad;
             border-color: #78c2ad;
         }
+
         .form-check-input:checked[type=radio] {
-            --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
+            --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns= 'http://www.w3.org/2000/svg' viewBox= '-4 -4 8 8' %3e%3ccircle r= '2' fill= '%23fff' /%3e%3c/svg%3e);
         }
+
         .form-check-input:checked {
             background-color: #78c2ad;
             border-color: #78c2ad;
         }
+
         .form-check-input[type=radio] {
             border-radius: 50%;
         }
+
         .form-check .form-check-input {
             float: left;
             margin-left: -1.5em;
         }
+
         .form-check-input {
             --bs-form-check-bg: var(--bs-body-bg);
             flex-shrink: 0;
@@ -99,6 +109,7 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+
         .brand_name_div span {
             font-weight: 700;
             letter-spacing: 0;
@@ -106,6 +117,7 @@
             -webkit-text-stroke: 1px #3E7E69;
             position: relative;
         }
+
         .brand_name_div span:before {
             content: "";
             position: absolute;
@@ -115,6 +127,7 @@
             width: 55px;
             background-color: #ffffff;
         }
+
         .brand_name_div span:after {
             content: "";
             position: absolute;
@@ -125,7 +138,6 @@
             max-width: 255px;
             background-color: #ffffff;
         }
-
 
 
     </style>
@@ -143,7 +155,8 @@
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
@@ -156,7 +169,8 @@
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2"
+                            data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -173,7 +187,8 @@
 </header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder">
-        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center"
+             style="width: 30%;">
             <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품 조회</h3>
         </div>
         <div class="mainForJumjuproductinquiryFormMain p-2"
@@ -188,248 +203,249 @@
                 </div>
             </div>
             <div class="scrollable-div w-100 h-100 product_table_div">
-                <table class="table table-hover align-middle" style="width: 100%; margin: 0; padding: 0; text-align: center;" id="tableList">
+                <table class="table table-hover align-middle"
+                       style="width: 100%; margin: 0; padding: 0; text-align: center;" id="tableList">
                     <tbody id="productAll"></tbody>
                     <tbody id="productName"></tbody>
                     <tbody>
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row" class="col-20">커피</th>-->
-<!--                        <td class="col-20">P1101 </td>-->
-<!--                        <td class="col-20">아이스 아메리카노</td>-->
-<!--                        <td class="col-20">1,000원</td>-->
-<!--                        <td class="col-20">2,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">커피</th>-->
-<!--                        <td>P1102</td>-->
-<!--                        <td>아메리카노</td>-->
-<!--                        <td>1,000원</td>-->
-<!--                        <td>2,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">커피</th>-->
-<!--                        <td>P1103</td>-->
-<!--                        <td>아이스 카페라떼</td>-->
-<!--                        <td>2,000원</td>-->
-<!--                        <td>3,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">커피</th>-->
-<!--                        <td>P1104</td>-->
-<!--                        <td>카페라떼</td>-->
-<!--                        <td>2,000원</td>-->
-<!--                        <td>3,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">커피</th>-->
-<!--                        <td>P1105</td>-->
-<!--                        <td>아이스 카라멜 마끼아또</td>-->
-<!--                        <td>3,000원</td>-->
-<!--                        <td>4,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">커피</th>-->
-<!--                        <td>P1106</td>-->
-<!--                        <td>카라멜 마끼아또</td>-->
-<!--                        <td>3,000원</td>-->
-<!--                        <td>4,000원</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">6</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">7</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">8</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">Warning</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success">-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-light">-->
-<!--                        <th scope="row">TEST</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
-<!--                    <tr class="table-success" >-->
-<!--                        <th scope="row">Info</th>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                        <td>Column content</td>-->
-<!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row" class="col-20">커피</th>-->
+                    <!--                        <td class="col-20">P1101 </td>-->
+                    <!--                        <td class="col-20">아이스 아메리카노</td>-->
+                    <!--                        <td class="col-20">1,000원</td>-->
+                    <!--                        <td class="col-20">2,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">커피</th>-->
+                    <!--                        <td>P1102</td>-->
+                    <!--                        <td>아메리카노</td>-->
+                    <!--                        <td>1,000원</td>-->
+                    <!--                        <td>2,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">커피</th>-->
+                    <!--                        <td>P1103</td>-->
+                    <!--                        <td>아이스 카페라떼</td>-->
+                    <!--                        <td>2,000원</td>-->
+                    <!--                        <td>3,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">커피</th>-->
+                    <!--                        <td>P1104</td>-->
+                    <!--                        <td>카페라떼</td>-->
+                    <!--                        <td>2,000원</td>-->
+                    <!--                        <td>3,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">커피</th>-->
+                    <!--                        <td>P1105</td>-->
+                    <!--                        <td>아이스 카라멜 마끼아또</td>-->
+                    <!--                        <td>3,000원</td>-->
+                    <!--                        <td>4,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">커피</th>-->
+                    <!--                        <td>P1106</td>-->
+                    <!--                        <td>카라멜 마끼아또</td>-->
+                    <!--                        <td>3,000원</td>-->
+                    <!--                        <td>4,000원</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">6</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">7</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">8</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">Warning</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success">-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-light">-->
+                    <!--                        <th scope="row">TEST</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
+                    <!--                    <tr class="table-success" >-->
+                    <!--                        <th scope="row">Info</th>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                        <td>Column content</td>-->
+                    <!--                    </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -454,7 +470,8 @@
             </div>
         </div>
         <div class="firstchild1">
-            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white"
+                 style="height: 60%;">
                 직급:
             </div>
             <div class="firstchild3">
@@ -484,7 +501,7 @@
         <div class="form-group position-relative" style="width: 100%; height: 15%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
                 <br><input type="text" class="form-control" placeholder="상품명 검색"
-                           aria-label="Recipient's productname" aria-describedby="button-addon2" id = 'input-addon2'>
+                           aria-label="Recipient's productname" aria-describedby="button-addon2" id='input-addon2'>
                 <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
             </div>
         </div>
@@ -494,135 +511,135 @@
                 <input value="showAll" class="form-check-input" type="radio" name="viewOption" id="showAll" checked>
                 <label for="showAll">전체 상품 </label>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input value="showAll" class="form-check-input" type="radio" name="viewOption" id="showCheckbox" >
+                <input value="showAll" class="form-check-input" type="radio" name="viewOption" id="showCheckbox">
                 <label for="showCheckbox">품목 별</label>
             </div>
             <br><br>
             <div class="checkbox-group-container" style="display:inline-block">
                 <div class="checkbox-group" id="checkbox-div">
                     <div id="checkbox-div-first">
-<!--                        <label style="border:  2px solid red;">-->
-<!--                            <input class="form-check-input" type="checkbox" id="coffeeCheckbox" value="커피">-->
-<!--                            커피-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="drinkCheckbox">-->
-<!--                            음료음료음료음료음료-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">-->
-<!--                            쉐이크-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">-->
-<!--                            디저트-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">-->
-<!--                            MD상품-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
-<!--                            콜라보상품-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
-<!--                            샌드위치-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
-<!--                            케이크-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
-<!--                            스무디-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
-<!--                            아이스크림-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
-<!--                            콜라보상품-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
-<!--                            샌드위치-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
-<!--                            케이크-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
-<!--                            스무디-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
-<!--                            아이스크림-->
-<!--                        </label>-->
+                        <!--                        <label style="border:  2px solid red;">-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="coffeeCheckbox" value="커피">-->
+                        <!--                            커피-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="drinkCheckbox">-->
+                        <!--                            음료음료음료음료음료-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="shakeCheckbox" onchange="filterTable()">-->
+                        <!--                            쉐이크-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="dessertCheckbox" onchange="filterTable()">-->
+                        <!--                            디저트-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="MDproductCheckbox" onchange="filterTable()">-->
+                        <!--                            MD상품-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
+                        <!--                            콜라보상품-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
+                        <!--                            샌드위치-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
+                        <!--                            케이크-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
+                        <!--                            스무디-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
+                        <!--                            아이스크림-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
+                        <!--                            콜라보상품-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
+                        <!--                            샌드위치-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
+                        <!--                            케이크-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
+                        <!--                            스무디-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
+                        <!--                            아이스크림-->
+                        <!--                        </label>-->
                     </div>
                     <div id="checkbox-div-second">
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="frappeCheckbox" onchange="filterTable()">-->
-<!--                            프라페-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="shavediceCheckbox" onchange="filterTable()">-->
-<!--                            빙수-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">-->
-<!--                            차-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">-->
-<!--                            빵-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">-->
-<!--                            에이드-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="limitedCheckbox" onchange="filterTable()">-->
-<!--                            한정판-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="calenderCheckbox" onchange="filterTable()">-->
-<!--                            달력-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">-->
-<!--                            다이어리-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">-->
-<!--                            우산-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">-->
-<!--                            원두-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
-<!--                            콜라보상품-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
-<!--                            샌드위치-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
-<!--                            케이크-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
-<!--                            스무디-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
-<!--                            아이스크림-->
-<!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="frappeCheckbox" onchange="filterTable()">-->
+                        <!--                            프라페-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="shavediceCheckbox" onchange="filterTable()">-->
+                        <!--                            빙수-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">-->
+                        <!--                            차-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">-->
+                        <!--                            빵-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">-->
+                        <!--                            에이드-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="limitedCheckbox" onchange="filterTable()">-->
+                        <!--                            한정판-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="calenderCheckbox" onchange="filterTable()">-->
+                        <!--                            달력-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="teaCheckbox" onchange="filterTable()">-->
+                        <!--                            다이어리-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="breadCheckbox" onchange="filterTable()">-->
+                        <!--                            우산-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="adeCheckbox" onchange="filterTable()">-->
+                        <!--                            원두-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="collaboCheckbox" onchange="filterTable()">-->
+                        <!--                            콜라보상품-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="sandwichCheckbox" onchange="filterTable()">-->
+                        <!--                            샌드위치-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="cakeCheckbox" onchange="filterTable()">-->
+                        <!--                            케이크-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="smoothieCheckbox" onchange="filterTable()">-->
+                        <!--                            스무디-->
+                        <!--                        </label>-->
+                        <!--                        <label>-->
+                        <!--                            <input class="form-check-input" type="checkbox" id="icecreamCheckbox" onchange="filterTable()">-->
+                        <!--                            아이스크림-->
+                        <!--                        </label>-->
                     </div>
                     <!-- 새로운 체크박스 추가될 때마다 자동으로 여백이 늘어남 -->
                 </div>
@@ -634,47 +651,44 @@
 <script src="../../javascripts/Project_Inquiry_Script/FetchCategory.js"></script>
 <script>
     function toggleCheckboxVisibility() {
-        var checkboxGroup = document.querySelector('.checkbox-group');
+        var checkboxDiv = document.querySelector('#checkbox-div');
         let allproductTable = document.querySelector('#productAll');
         let productName = document.querySelector('#productName');
         let showAll = document.querySelector('#showAll');
         let tbodys = document.querySelectorAll('tbody');
         // 라디오 버튼의 상태에 따라 체크박스를 표시 또는 감춤
         var showCheckboxRadio = document.getElementById('showCheckbox');
-        try{
+        try {
             //카테고리별 보기 설정
-        if (showCheckboxRadio.checked && !showAll.checked) {
-            console.log('카테고리별');
-            checkboxGroup.style.display = 'flex';
-            for(let i =0;i<tbodys.length;i++){
-                console.log(i);
-                if((tbodys[i].id.toString() === productName.id.toString()) ||(tbodys[i].id.toString() === showAll.id.toString()))
-                    tbodys[i].style.display = 'none';
-                else
+            if (showCheckboxRadio.checked && !showAll.checked) {
+                console.log('카테고리별');
+                checkboxDiv.style.display = 'flex';
+                for (let i = 0; i < tbodys.length; i++) {
                     tbodys[i].style.display = '';
-            }
-        }
-        else if(!showCheckboxRadio.checked && showAll.checked) {
-            checkboxGroup.style.display = 'none'
-            console.log('전체상품');
-            for(let i =0;i<tbodys.length;i++){
-                console.log(i);
-                    tbodys[i].style.display = 'none';
-            }
-            allproductTable.style.display = '';
-        }
-        else if(!showCheckboxRadio.checked && !showAll.checked){
-            checkboxGroup.style.display = 'none'
-            for(let i =0;i<tbodys.length;i++){
-                tbodys[i].style.display = 'none';
-            }
-            productName.style.display = '';
+                    console.log(tbodys[i]);
+                }
+                productName.style.display='none';
+                allproductTable.style.display = 'none';
 
-            console.log('다비우기');
-        }
-        console.log('함수실행 종료');
-        }
-        catch (e) {
+            } else if (!showCheckboxRadio.checked && showAll.checked) {
+                checkboxDiv.style.display = 'none'
+                console.log('전체상품');
+                for (let i = 0; i < tbodys.length; i++) {
+                    console.log(tbodys[i]);
+                    tbodys[i].style.display = 'none';
+                }
+                allproductTable.style.display = '';
+            } else if (!showCheckboxRadio.checked && !showAll.checked) {
+
+                for (let i = 0; i < tbodys.length; i++) {
+                    tbodys[i].style.display = 'none';
+                }
+                productName.style.display = '';
+
+                console.log('다비우기');
+            }
+            console.log('함수실행 종료');
+        } catch (e) {
             console.log(e);
         }
     }

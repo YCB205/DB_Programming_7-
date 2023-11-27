@@ -175,7 +175,6 @@ function dbClickEventListener(newRow){
     tdSecond.classList.add("p-0", 'col-3', "text-center");
 
     label.setAttribute("for",`${newRow.id.toString()}`);
-    label.setAttribute("style","display:none");
 
     input.setAttribute("type","number");
     input.setAttribute("value","1");
