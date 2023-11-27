@@ -63,11 +63,10 @@ public class MerchandiseService {
             filteredList = merchandiseRepository.findByMerchandiseNameContaining(productName);
         }
         // categories가 비어있지 않고, 상품의 categori와 categories 리스트의 값이 일치하는 상품만 필터링
-        if (categories != null && !categories.isEmpty()) {
-            filteredList = filteredList.stream()
-                    .filter(product -> categories.contains(product.getCategori()))
-                    .collect(Collectors.toList());
-        }
+        filteredList = filteredList.stream()
+                .filter(product -> categories.contains(product.getCategori()))
+                .collect(Collectors.toList());
+
 
         return  filteredList;
 
