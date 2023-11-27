@@ -165,7 +165,7 @@ function destroyTable(categoryId){
 function fetchAllProduct(){
     const productname = "";
     const category = [];
-    const url = `/products?product_name=${productname}&category=${category}`;
+    const url = `/products?product_name=스타벅스&category=커피`;
     fetch(url)
         .then(response=>response.json())
         .then(data=>{
