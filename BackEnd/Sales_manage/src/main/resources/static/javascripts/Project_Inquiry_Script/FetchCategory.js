@@ -163,9 +163,9 @@ function destroyTable(categoryId){
 
 //전체 상품 혹은 부분 상품 보여주기
 function fetchAllProduct(){
-    const productname = "";
-    const category = [];
-    const url = `/products?product_name=스타벅스&category=커피`;
+    const productname = "티";
+    const category = ['커피', '티'];
+    const url = `/products?product_name=${productname}&category=${category}`;
     fetch(url)
         .then(response=>response.json())
         .then(data=>{
