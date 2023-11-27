@@ -10,6 +10,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
     
 <style>
+/* 헤더 내 첫 번째 드롭다운 메뉴 */
+.dropdown-menu {
+    position: absolute;
+    z-index: 1001;
+}
+
+/* 테이블 헤더 */
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
 .checkbox-group-container {
         max-height: 200px;  /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
@@ -156,11 +168,11 @@
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-1 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                             상품
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product inquiry2.html">상품 조회</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product management.html">상품 관리</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="UpdateOrderFormAddProduct2.html">상품 등록</a></li>
@@ -169,11 +181,11 @@
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-2 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3" data-bs-toggle="dropdown" style="font-size: 30px; height: 60px;" aria-expanded="false">
+                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                             지점 및 점주
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">지점 및 점주 계정 관리</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
@@ -193,7 +205,7 @@
         style="width: 100%; padding-left: 1%; overflow: auto;">
         <div class="scrollable-div w-100 h-100 product_table_div">
             <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                    <thead class>
+                <thead>
                     <tr class="table-primary sticky-top" style="font-size: 120%;">
                         <th scope="col">품목명</th>
                         <th scope="col">상품번호</th>
@@ -201,7 +213,7 @@
                         <th scope="col">원가</th>
                         <th scope="col">판매가</th>
                     </tr>
-                    </thead>
+                </thead>
                     <tbody>
                     <tr class="table-light">
                         <th scope="row">커피</th>
