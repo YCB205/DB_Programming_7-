@@ -398,6 +398,19 @@
         }
     }
 
+    function CheckDelete(trClass) {
+        // 알람을 이용하여 사용자에게 메시지를 표시
+        var confirmation = confirm("정말 삭제하시겠습니까?");
+
+        // 확인 버튼이 클릭되었을 때의 처리
+        if (confirmation) {
+            deleteOrderSheet(trClass); // 삭제 함수 호출
+        } else {
+
+        }
+    }
+
+
     // 마우스 올릴때 테이블 색깔 변경 코드
     var rows = document.querySelectorAll('.product_table_tbody tr');
 
