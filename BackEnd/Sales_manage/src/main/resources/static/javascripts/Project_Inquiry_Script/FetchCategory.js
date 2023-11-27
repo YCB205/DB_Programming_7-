@@ -7,8 +7,8 @@ let testUrl = '/products';
 
 
 window.onload = function () {
-    fetchDataOrder();
-    fetchDataSearch();
+    // fetchDataOrder();
+    // fetchDataSearch();
     //모든 데이터 가져오기
     fetchAllProduct();
 }
@@ -163,7 +163,9 @@ function destroyTable(categoryId){
 
 //전체 상품 혹은 부분 상품 보여주기
 function fetchAllProduct(){
-    const url = 'https://dummyjson.com/products';
+    const productname = "";
+    const category = [];
+    const url = `/products?product_name=${productname}&category=${category}`;
     fetch(url)
         .then(response=>response.json())
         .then(data=>{
