@@ -77,6 +77,8 @@ public class UserController {
         return result;
     }
 
+
+
     @PutMapping("/user")
     @ResponseBody
     public ResponseEntity<String> updateUser(@RequestBody UserData userData, HttpSession session) {

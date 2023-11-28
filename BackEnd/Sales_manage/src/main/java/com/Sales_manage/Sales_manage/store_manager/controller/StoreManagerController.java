@@ -1,26 +1,68 @@
 package com.Sales_manage.Sales_manage.store_manager.controller;
 
+import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
+import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.service.StoreManagerService;
+import com.Sales_manage.Sales_manage.user.dto.UserData;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/store_manager")
 public class StoreManagerController {
     private final StoreManagerService storeManagerService;
 
 
-    @GetMapping("/store")
+    @GetMapping("/storeManagers")
     @ResponseBody
-    public List<StoreManagerDTO> getAll() {
-        System.out.println(storeManagerService.getAll());
-        return storeManagerService.getAll();
+    public Map<String, Object> getUserInfo(
+            @RequestParam(name = "idStoreManager", required = false) String idStoreManager, HttpSession session) {
+        Map<String, Object> result = new HashMap<>();
+
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        if ("manager".equals(loggedInUserRole)) {
+            StoreManagerEntity storeManagerEntity = storeManagerService.getStoreManagerInfo(idStoreManager);
+            BrandOfficeEntity brandOfficeEntity = storeManagerService.getBrandOfficeInfo(storeManagerEntity);
+
+            result.put("idStoreManager", storeManagerEntity.getIdStoremanager());
+            result.put("name", storeManagerEntity.getName());
+            result.put("email", storeManagerEntity.getEmail());
+            result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
+            result.put("officeName", brandOfficeEntity.getOfficeName());
+            result.put("position","점주");
+        } else {
+            ResponseEntity.badRequest().build();
+        }
+
+        return result;
     }
+
+
+    @PutMapping("/storeManagers")
+    @ResponseBody
+    public ResponseEntity<String> updateStoreManagers(@RequestBody UserData userData, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        if ("manager".equals(loggedInUserRole)) {
+            storeManagerService.updateStoreManager(userData);
+        } else {
+            return new ResponseEntity<>("Invalid user role", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+
+    }
+
+
 
 }

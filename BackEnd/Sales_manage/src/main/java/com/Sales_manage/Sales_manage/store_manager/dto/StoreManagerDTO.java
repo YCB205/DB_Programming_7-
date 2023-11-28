@@ -27,4 +27,13 @@ public class StoreManagerDTO {
         storeManagerDTO.setPhoneNumber(storeManagerEntity.getPhoneNumber());
         return storeManagerDTO;
     }
+
+    public static StoreManagerDTO toStoreManagerDTONotInPasswd(StoreManagerEntity storeManagerEntity) {
+        StoreManagerDTO storeManagerDTO = new StoreManagerDTO();
+        storeManagerDTO.setIdStoremanager(storeManagerEntity.getIdStoremanager());
+        storeManagerDTO.setName(storeManagerEntity.getName());
+        storeManagerDTO.setEmail(storeManagerEntity.getEmail());
+        storeManagerDTO.setPhoneNumber(storeManagerEntity.getPhoneNumber());
+        return storeManagerDTO;
+    }
 }

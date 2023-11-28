@@ -51,7 +51,7 @@ public class BrandOfficeService {
             // 각 상점 관리자 정보를 리스트에 추가
             for (StoreManagerEntity storeManagerEntity : filteredStoreManagers) {
                 if (storeManagerEntity.getIdStoremanager().equals(storeManagerId)) {
-                    brandAndStoreManagers.add(StoreManagerDTO.toStoreManagerDTO(storeManagerEntity));
+                    brandAndStoreManagers.add(StoreManagerDTO.toStoreManagerDTONotInPasswd(storeManagerEntity));
                     break;  // 한 번 추가한 후 바로 반복문 종료
                 }
             }
