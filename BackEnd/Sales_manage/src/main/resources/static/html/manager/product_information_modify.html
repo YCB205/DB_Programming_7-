@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        #main{
+            .card.border-primary.mb-3{ width: 100%;height: 100%;margin: 0 auto; display: flex;}
+            .card-header{background-color: #78C2AD; height: 30px;}
+            .card-footer {display: flex; justify-content: flex-end;}
+            .card-footer .btn{margin-left: 10px;}
+            .form-control{width: 300px; display: inline; margin: 15px;}
+            .form-group{display: flex; justify-content: flex-end; margin-right: 60px;}
+        }
+        
+
+.back_ground {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+    </style>
+</head>
+<body style="overflow: hidden;">
+
+<div id="main">
+    <div class="card border-primary mb-3">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h4 class="card-title">상품 정보 수정</h4>
+          
+          <div class="form-group">
+            <fieldset disabled="">
+              <label class="form-label" for="productnumber">담당 지점</label>
+              <input class="form-control" id="productnumber" type="text" placeholder="읽기전용" disabled="">
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label mt-3" for="productname">상품명</label>
+            <input  type="text" class="form-control" placeholder="productname" id="productname">
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label mt-3" for="cost">원가</label>
+            <input type="password" class="form-control" placeholder="cost" id="cost">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label mt-3" for="price">판매가</label>
+            <input type="text" class="form-control" placeholder="price" id="price">
+          </div>
+          
+
+        </div>
+        <div class="card-footer">
+            <button type="button" id="updateBtn" class="btn btn-info">수 정</button>
+            <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
+        </div>
+      </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
+<script src="../../javascripts/userAPI/getUser_information_check.js"></script>
+<script src="../../javascripts/userAPI/putStore_manager_User_information_check.js"></script>
+        <script>
+            document.getElementById('closeBtn').addEventListener('click', function () {
+                window.close();
+            });
+
+            document.getElementById('updateBtn').addEventListener('click', function () {
+                putStore_manager_User_information_check();
+            });
+        </script>
+</body>
+</html>

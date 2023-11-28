@@ -1,40 +1,41 @@
-const apiUrl = '/user';
+function putManager_User_information_check() {
+    const apiUrl = '/user';
 
-const email = document.getElementById('emailInput').value;
-const id = document.getElementById('idStoreManagerInput').value;
-const passwd = document.getElementById('passwd').value;
-const name = document.getElementById('nameInput').value;
-const number = document.getElementById('numberInput').value;
+    const email = document.getElementById('email').value;
+    const id = document.getElementById('idManager').value;
+    const passwd = document.getElementById('passwd').value;
+    const name = document.getElementById('name').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
 
-const userData = {
-    email,
-    id,
-    passwd,
-    name,
-    number,
-};
+    const userData = {
+        email,
+        id,
+        passwd,
+        name,
+        phoneNumber,
+    };
 
-fetch(apiUrl, {
-    method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
-        // 성공적인 응답이라면 JSON 파싱을 시도
-        return response.text();
+    fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
     })
-    .then(data => {
-        // 데이터가 JSON 형식이 아니라면 파싱을 시도하지 않음
-        console.log(data);
-        const mainPage= window.open('매니저 메인페이지 주소')
-        mainPage.location.reload();
-        window.close();
-    })
-    .catch(error => {
-        console.error(error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            // 성공적인 응답이라면 JSON 파싱을 시도
+            return response.text();
+        })
+        .then(data => {
+            // 데이터가 JSON 형식이 아니라면 파싱을 시도하지 않음
+            console.log(data);
+            window.opener.postMessage('refreshParent', '*');
+            window.close();
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}

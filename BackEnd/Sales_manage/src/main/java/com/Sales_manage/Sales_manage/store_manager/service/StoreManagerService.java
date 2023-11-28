@@ -18,7 +18,7 @@ public class StoreManagerService {
         List<StoreManagerEntity> storeManagerEntityList = storeManagerRepository.findAll();
         List<StoreManagerDTO> storeManagerDTOList = new ArrayList<>();
         for (StoreManagerEntity memberTestEntity: storeManagerEntityList){
-            StoreManagerDTO storeManagerDTO = StoreManagerDTO.toMemberTestDTO(memberTestEntity);
+            StoreManagerDTO storeManagerDTO = StoreManagerDTO.toStoreManagerDTO(memberTestEntity);
             storeManagerDTOList.add(storeManagerDTO);
         }
         return storeManagerDTOList;

@@ -25,4 +25,5 @@ public class BrandOfficeEntity {
     @JoinColumn(name = "id_storemanager")
     private StoreManagerEntity idStoremanger;
 
+
 }
