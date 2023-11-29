@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface StoreManagerRepository extends JpaRepository<StoreManagerEntity, String> {
     List<StoreManagerEntity> findByIdStoremanagerInAndNameContaining(List<String> storeManagerIds, String name);
+    List<StoreManagerEntity> findByNameContainingIgnoreCase(String name);
 }

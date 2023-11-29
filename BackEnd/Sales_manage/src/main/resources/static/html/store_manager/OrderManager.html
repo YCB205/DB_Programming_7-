@@ -386,7 +386,9 @@
 <script src="../../javascripts/OrderSheet/deleteOrderSheet.js"></script>
 <script>
     window.addEventListener('message', function (event) {
-        if (event.data === 'refreshParent' || 'orderSheetUpdated') {
+        if (event.data === 'refreshParent') {
+            getOrderSheet();
+        } else if (event.data === 'orderSheetUpdated'){
             getOrderSheet();
         }
     });

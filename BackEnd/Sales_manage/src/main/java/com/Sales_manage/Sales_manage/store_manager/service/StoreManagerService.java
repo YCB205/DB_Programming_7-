@@ -22,7 +22,7 @@ public class StoreManagerService {
         List<StoreManagerEntity> storeManagerEntityList = storeManagerRepository.findAll();
         List<StoreManagerDTO> storeManagerDTOList = new ArrayList<>();
         for (StoreManagerEntity memberTestEntity: storeManagerEntityList){
-            StoreManagerDTO storeManagerDTO = StoreManagerDTO.toStoreManagerDTO(memberTestEntity);
+            StoreManagerDTO storeManagerDTO = StoreManagerDTO.toStoreManagerDTONotInPasswd(memberTestEntity);
             storeManagerDTOList.add(storeManagerDTO);
         }
         return storeManagerDTOList;
@@ -53,6 +53,18 @@ public class StoreManagerService {
 
             storeManagerRepository.save(storeManagerEntity);
         }
+    }
+
+    public List<StoreManagerDTO> getFilterName(String name) {
+        List<StoreManagerEntity> filteredStoreManagers = storeManagerRepository.findByNameContainingIgnoreCase(name);
+        List<StoreManagerDTO> filteredStoreManagerDTOs = new ArrayList<>();
+
+        for (StoreManagerEntity storeManagerEntity : filteredStoreManagers) {
+            StoreManagerDTO storeManagerDTO = StoreManagerDTO.toStoreManagerDTONotInPasswd(storeManagerEntity);
+            filteredStoreManagerDTOs.add(storeManagerDTO);
+        }
+
+        return filteredStoreManagerDTOs;
     }
 
 

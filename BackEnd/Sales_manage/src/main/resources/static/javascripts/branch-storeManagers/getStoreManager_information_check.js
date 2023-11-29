@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (storeManagerId) {
         // storeManagerId를 필요에 따라 사용
-        fetch(`/storeManagers?idStoreManager=${storeManagerId}`, {
+        fetch(`/storeManagers?idStoreManager=${storeManagerId}&name`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

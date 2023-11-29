@@ -25,21 +25,32 @@ public class StoreManagerController {
     @GetMapping("/storeManagers")
     @ResponseBody
     public Map<String, Object> getUserInfo(
-            @RequestParam(name = "idStoreManager", required = false) String idStoreManager, HttpSession session) {
+            @RequestParam(name = "idStoreManager", required = false) String idStoreManager,
+            @RequestParam(name = "name", required = false) String name,
+            HttpSession session) {
         Map<String, Object> result = new HashMap<>();
 
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
 
         if ("manager".equals(loggedInUserRole)) {
-            StoreManagerEntity storeManagerEntity = storeManagerService.getStoreManagerInfo(idStoreManager);
-            BrandOfficeEntity brandOfficeEntity = storeManagerService.getBrandOfficeInfo(storeManagerEntity);
+            if(idStoreManager.isEmpty() && name.isEmpty()) {
+                System.out.println("35번째 줄 실행");
+                List<StoreManagerDTO> allStoreManagers = storeManagerService.getAll();
+                result.put("storeManagers", allStoreManagers);
+            } else if(!idStoreManager.isEmpty() && name.isEmpty()){
+                StoreManagerEntity storeManagerEntity = storeManagerService.getStoreManagerInfo(idStoreManager);
+                BrandOfficeEntity brandOfficeEntity = storeManagerService.getBrandOfficeInfo(storeManagerEntity);
 
-            result.put("idStoreManager", storeManagerEntity.getIdStoremanager());
-            result.put("name", storeManagerEntity.getName());
-            result.put("email", storeManagerEntity.getEmail());
-            result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
-            result.put("officeName", brandOfficeEntity.getOfficeName());
-            result.put("position","점주");
+                result.put("idStoreManager", storeManagerEntity.getIdStoremanager());
+                result.put("name", storeManagerEntity.getName());
+                result.put("email", storeManagerEntity.getEmail());
+                result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
+                result.put("officeName", brandOfficeEntity.getOfficeName());
+                result.put("position", "점주");
+            } else {
+                List<StoreManagerDTO> filterStoreManagers = storeManagerService.getFilterName(name);
+                result.put("storeManagers", filterStoreManagers);
+            }
         } else {
             ResponseEntity.badRequest().build();
         }
@@ -62,6 +73,9 @@ public class StoreManagerController {
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
 
     }
+
+
+
 
 
 

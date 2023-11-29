@@ -143,7 +143,7 @@ thead {
             <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">지점 및 점주 계정 관리</h3>
         </div>
         <div class="mainForJumjuRegisterOrderFormMain p-2"
-             style="width: 100%; height: 85%; padding-left: 1%;">
+             style="width: 100%; height: 83.7%; padding-left: 1%;">
             <div class="bg-primary m-0" style="font-size: 140%;">
                 <div class="mainTableHeader row w-100 m-0 p-0" style="font-size: 140%;">
                     <div class="col-2 text-center" style=" color: #ffffff; font-weight: 500; padding-top: 4px; padding-bottom: 4px;">지점번호</div>
@@ -324,12 +324,16 @@ thead {
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/branch-storeManagers/showPopupStoreManager.js"></script>
+<script src="../../javascripts/branch-storeManagers/showPopupUpdateBranch.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/branch-storeManagers/getBranchStoreManagers.js"></script>
 <script>
     window.addEventListener('message', function (event) {
-        if (event.data === 'refreshParent' || 'updateBranchManager') {
-            getBranchStoreManagers()
+        if (event.data === 'refreshParent') {
+            getBranchStoreManagers();
+        }
+        else if (event.data === 'updateBranchManager'){
+            getBranchStoreManagers();
         }
     });
 

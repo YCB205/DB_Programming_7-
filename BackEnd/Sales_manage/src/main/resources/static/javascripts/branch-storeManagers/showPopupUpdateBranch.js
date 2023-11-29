@@ -12,7 +12,7 @@ function showPopupUpdateBranch(destination_html, width, height, tagClass) {
         popupWindow.document.body.style.zoom = "110%";
 
         // 자식 페이지에 데이터 전달
-        var myData = { orderData: tdContentList.tdContentList, productData:tdContentList.productListContentList };
+        var myData = { branch: tdContentList.tdContentList};
         localStorage.setItem('myData', JSON.stringify(myData));
 
     }
@@ -22,20 +22,20 @@ function getParentValues(tagClass) {
     var selectedRow = document.querySelector(tagClass);
     var tdElements = selectedRow.querySelectorAll('td'); //tdElements[0]~[3]  까지만 유의미한 데이터임
     var nextSiblingRow = selectedRow.nextElementSibling;
-    var productList = nextSiblingRow.querySelectorAll('td')
+    var storeManagerList = nextSiblingRow.querySelectorAll('td')
 
     var tdContentList = [];
     tdElements.forEach(function (td) {
         tdContentList.push(td.textContent.trim());
     });
-    var productListContentList = [];
-    productList.forEach(function (td) {
-        productListContentList.push(td.textContent.trim());
+
+    storeManagerList.forEach(function (td) {
+        tdContentList.push(td.textContent.trim());
     });
+
     // 부모 페이지에 데이터 전달
     return {
-        tdContentList: tdContentList,
-        productListContentList: productListContentList
+        tdContentList: tdContentList
     };
 
 }

@@ -6,11 +6,13 @@ import com.Sales_manage.Sales_manage.brand_office.dto.BrandOfficeDTO;
 import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,5 +66,17 @@ public class BrandOfficeService {
 
         return result;
 
+    }
+
+    @Transactional
+    public void updateBranch(BrandOfficeDTO brandOfficeDTO) {
+        System.out.println(brandOfficeDTO);
+        Optional<BrandOfficeEntity> brandOfficeEntity = brandOfficeRepository.findById(brandOfficeDTO.getIdBrandOffice());
+        BrandOfficeEntity brandOffice = brandOfficeEntity.orElse(null);
+        brandOffice.setOfficeName(brandOfficeDTO.getOfficeName());
+        brandOffice.setAddress(brandOfficeDTO.getAddress());
+        Optional<StoreManagerEntity> storeManagerEntity = storeManagerRepository.findById(brandOfficeDTO.getIdStoreManager());
+        StoreManagerEntity storeManager = storeManagerEntity.orElse(null);
+        brandOffice.setIdStoremanger(storeManager);
     }
 }
