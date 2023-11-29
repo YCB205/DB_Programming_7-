@@ -29,18 +29,21 @@ public class OrderSheetService {
     private final OrderSheetRepository orderSheetRepository;
     private final MerchandiseRepository merchandiseRepository;
     private final StoreManagerRepository storeManagerRepository;
+    private final IncludeRepository includeRepository;
 
     @Autowired
     public OrderSheetService(
             BrandOfficeRepository brandOfficeRepository,
             OrderSheetRepository orderSheetRepository,
             MerchandiseRepository merchandiseRepository,
-            StoreManagerRepository storeManagerRepository
+            StoreManagerRepository storeManagerRepository,
+            IncludeRepository includeRepository
     ){
         this.brandOfficeRepository = brandOfficeRepository;
         this.orderSheetRepository = orderSheetRepository;
         this.merchandiseRepository = merchandiseRepository;
         this.storeManagerRepository= storeManagerRepository;
+        this.includeRepository = includeRepository;
     }
 
 
@@ -106,6 +109,48 @@ public class OrderSheetService {
 
         return orderSheetResponses;
     }
+
+    public void createOrderSheet(List<Integer> productIds, List<Integer> counts, LocalDateTime orderTime, String loggedInUserId) {
+        // 새로운 주문서 생성
+        // 세션에서 로그인한 사용자의 ID 가져오기
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+        OrderSheetEntity orderSheet = new OrderSheetEntity();
+        orderSheet.setOrderTime(orderTime);
+
+        // 피라미터로 받은 값(1)으로 고정. 실제로는 세션 등에서 사용자 정보를 받아올 수 있음.
+        BrandOfficeEntity brandOffice = new BrandOfficeEntity();
+        brandOffice.setIdBrandoffice(1L);
+        orderSheet.setIdBrandoffice(brandOffice);
+
+        // 마지막 id_ordersheet 값 가져오기
+        Long lastOrderId = orderSheetRepository.findLastOrderId();
+        Long newOrderId = (lastOrderId != null) ? lastOrderId + 1 : 1;
+        orderSheet.setIdOrdersheet(newOrderId);
+
+        // 주문서 저장
+        orderSheetRepository.save(orderSheet);
+
+        // IncludeEntity에 데이터 추가
+        for (int i = 0; i < productIds.size(); i++) {
+            IncludeEntity includeEntity = new IncludeEntity();
+            includeEntity.setIdOrdersheet(orderSheet);
+            includeEntity.setIdMerchandise(merchandiseRepository.findById(Long.valueOf(productIds.get(i))).orElseThrow());
+
+            includeEntity.setOrderCount(counts.get(i).shortValue());
+
+            // 상품 데이터 조회
+            MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(Long.valueOf(productIds.get(i))).orElseThrow();
+            includeEntity.setTotalCost(merchandiseEntity.getCost() * counts.get(i));
+            includeEntity.setSales(merchandiseEntity.getPrice() * counts.get(i));
+
+            // IncludeEntity 저장
+            includeRepository.saveIncludeEntity(includeEntity);
+        }
+    }
+
+
 }
 
 

@@ -1,5 +1,7 @@
 package com.Sales_manage.Sales_manage.orderSheet.controller;
 
+
+import com.Sales_manage.Sales_manage.merchandise.ropository.MerchandiseRepository;
 import com.Sales_manage.Sales_manage.orderSheet.dto.OrderSheetResponse;
 import com.Sales_manage.Sales_manage.orderSheet.service.OrderSheetService;
 import jakarta.servlet.http.HttpSession;
@@ -42,6 +44,17 @@ public class OrderSheetController {
         List<OrderSheetResponse> orderSheetList = orderSheetService.getOrderSheetList(loggedInUserId, startDateTime, endDateTime, searchMerchandiseValue);
         return ResponseEntity.ok(orderSheetList);
         }
+    }
+
+    @PostMapping("/orderSheet")
+    @ResponseBody
+    public void createOrderSheet(@RequestParam("product_id") List<Integer> productIds,
+                                 @RequestParam("count") List<Integer> counts,
+                                 @RequestParam("setDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime setDateTime,
+                                 HttpSession session) {
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        orderSheetService.createOrderSheet(productIds, counts, setDateTime, loggedInUserId);
+
     }
 }
 
