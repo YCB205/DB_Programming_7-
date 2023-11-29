@@ -121,7 +121,7 @@ public class OrderSheetService {
 
         // 피라미터로 받은 값(1)으로 고정. 실제로는 세션 등에서 사용자 정보를 받아올 수 있음.
         BrandOfficeEntity brandOffice = new BrandOfficeEntity();
-        brandOffice.setIdBrandoffice(1L);
+        brandOffice.setIdBrandoffice(brandOfficeRepository.findIdBrandOfficeByLoggedInUserId(loggedInUserId));
         orderSheet.setIdBrandoffice(brandOffice);
 
         // 마지막 id_ordersheet 값 가져오기
