@@ -25,7 +25,7 @@ public class OrderSheetController {
     public ResponseEntity<List<OrderSheetResponse>> getOrderSheet(
             @RequestParam("search_merchandise") String searchMerchandiseValue,
             @RequestParam("startDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
-            @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
+                @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
             HttpSession session) {
 
         System.out.println("신호받음");

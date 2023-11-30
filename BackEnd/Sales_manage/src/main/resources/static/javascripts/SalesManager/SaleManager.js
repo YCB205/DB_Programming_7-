@@ -9,7 +9,11 @@ function getOrderManager(){
 
 //fetch함수 부르기
 function getFetch(){
-    const url = `/sales?product=all&start_date=date&end_date=date`;
+    const search_merchandise = document.getElementById('showPopup');
+    const product = "";
+    const startDate = '';
+    const endDate = '';
+    const url = `/orderSheet?search_merchandise=${product}&startDateTime=${startDate}&endDateTime=${endDate}`;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
