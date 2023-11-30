@@ -51,17 +51,28 @@ public class MerchandiseService {
         return response;
     }
 
-    public List<MerchandiseEntity> getProducts(String productName, String loggedInUserId) {
+/*    public List<MerchandiseEntity> getProducts(String productName, List<String> categories, String loggedInUserId) {
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
+        List<MerchandiseEntity> filteredList;
 
         if (productName.isEmpty()) {
-            return merchandiseRepository.findAll();
+            filteredList = merchandiseRepository.findAll();
         } else {
-            return merchandiseRepository.findByMerchandiseNameContaining(productName);
+            filteredList = merchandiseRepository.findByMerchandiseNameContaining(productName);
         }
+        // categories가 비어있지 않고, 상품의 categori와 categories 리스트의 값이 일치하는 상품만 필터링
+        filteredList = filteredList.stream()
+                .filter(product -> categories.contains(product.getCategori()))
+                .collect(Collectors.toList());
+
+
+        return  filteredList;
+
     }
+*/
+
 
     // MerchandiseEntity를 Map<String, Object>으로 매핑하는 메서드
     private Map<String, Object> mapMerchandiseEntity(MerchandiseEntity entity) {

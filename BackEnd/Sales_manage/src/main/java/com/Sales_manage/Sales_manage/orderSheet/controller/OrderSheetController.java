@@ -76,6 +76,22 @@ public class OrderSheetController {
         }
     }
 
+    @PostMapping("/orderSheet")
+    @ResponseBody
+    public void createOrderSheet(@RequestParam("product_id") List<Integer> productIds,
+                                 @RequestParam("count") List<Integer> counts,
+                                 @RequestParam("setDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime setDateTime,
+                                 HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if ("store_manager".equals(loggedInUserRole)) {
+            String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+            orderSheetService.createOrderSheet(productIds, counts, setDateTime, loggedInUserId);
+        } else {
+            ResponseEntity.badRequest().build();
+        }
+
+    }
+
 }
 
 

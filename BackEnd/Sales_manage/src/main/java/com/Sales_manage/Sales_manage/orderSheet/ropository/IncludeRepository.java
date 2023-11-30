@@ -10,4 +10,9 @@ public interface IncludeRepository extends JpaRepository<IncludeEntity, IncludeI
 
     @Transactional
     void removeIncludeEntityByIdOrdersheet(OrderSheetEntity idOrdersheet);
+
+    default void saveIncludeEntity(IncludeEntity includeEntity) {
+        includeEntity = save(includeEntity);
+        flush();
+    }
 }
