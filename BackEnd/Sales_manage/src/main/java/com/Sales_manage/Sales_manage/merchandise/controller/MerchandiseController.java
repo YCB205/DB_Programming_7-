@@ -29,6 +29,7 @@ public class MerchandiseController {
         return merchandiseService.getProductsOrder(productName, categories, loggedInUserId);
     }
 
+    /*
     @GetMapping("/products")
     @ResponseBody
     public List<MerchandiseEntity> getProducts(@RequestParam(value = "product_name") String productName,
@@ -37,7 +38,6 @@ public class MerchandiseController {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
         return merchandiseService.getProducts(productName, categories, loggedInUserId);
     }
-
-
+     */
 
 }
