@@ -170,7 +170,7 @@ thead {
                 <div class="col-1 g-0">
                     <div class="dropdown h-100 d-flex justify-content-center align-items-center">
                         <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
-                            상품
+                           상품
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product inquiry2.html">상품 조회</a></li>
@@ -186,10 +186,10 @@ thead {
                             지점 및 점주
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">지점 및 점주 계정 관리</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
-                        </ul>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Branch-ManagersManagement.html">지점 및 점주 계정 관리</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Create a new branch.html">새 지점 생성</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Create a new Store Manager.html">점주 계정 생성</a></li>
+                        </ul> 
                     </div>
                 </div>
                 <div class="col-6 g-0"></div>
@@ -506,7 +506,7 @@ thead {
     <div class="second border">
         <div class="form-group position-relative" style="width: 100%; height: 15%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
-                <br><input type="text" class="form-control" placeholder="Recipient's productname"
+                <br><input type="text" class="form-control" placeholder="상품명을 입력하세요."
                        aria-label="Recipient's productname" aria-describedby="button-addon2">
                 <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
             </div>
@@ -655,7 +655,10 @@ thead {
 </body>
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/OrderSheet/showPopupUpdateOrderSheet.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
+<script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
+<script src="../../javascripts/OrderSheet/deleteOrderSheet.js"></script>
 
 <script>
     window.addEventListener('message', function (event) {

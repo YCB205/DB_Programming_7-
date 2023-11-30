@@ -398,7 +398,7 @@ thead {
 <section class="section">
   <div class="mainForJumjuRegisterOrder">
       <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
-          <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">상품 등록</h3>
+          <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">점주 회원 생성</h3>
       </div>
     </div>
     <div id="popupContainer">
@@ -408,23 +408,27 @@ thead {
                 <div class="card border-primary mb-3">
                     <div class="card-header"></div>
                     <div class="card-body">
-                      <h4 class="card-title">상품 정보 등록</h4>      
+                      <h4 class="card-title">점주 정보 등록</h4>      
                         <br><br>
                       <div class="form-group">
-                        <label class="col-form-label mt-3" for="branch">상품번호</label>
-                        <input class="form-control" id="idStoreManager" type="text" placeholder="" disabled="" id="branch">
+                        <label class="col-form-label mt-3" for="storemanager" id="storemanager">이름</label>
+                        <input  type="text" class="form-control" placeholder="이름을 입력하세요." id="storemanager">
                       </div>
                       <div class="form-group">
-                        <label class="col-form-label mt-3" for="storemanager">상품명</label>
-                            <input  type="text" class="form-control" placeholder="점주명을 검색하세요." id="storemanager">
+                        <label class="col-form-label mt-3" for="id">아이디</label>
+                            <input class="form-control" id="id" type="text" placeholder="" disabled="">
                       </div>
                       <div class="form-group">
-                        <label class="col-form-label mt-3" for="address">원가</label>
-                        <input type="text" class="form-control" placeholder="주소를 입력하세요." id="address1">
+                        <label class="col-form-label mt-3" for="pw">비밀번호</label>
+                        <input type="text" class="form-control" placeholder="비밀번호를 입력하세요." id="pw">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label mt-3" for="address">판매가</label>
-                        <input type="text" class="form-control" placeholder="상세주소를 입력하세요." id="address2">
+                        <label class="col-form-label mt-3" for="p-number">전화번호</label>
+                        <input type="text" class="form-control" placeholder="전화번호를 입력하세요." id="p-number">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label mt-3" for="email">이메일</label>
+                        <input type="text" class="form-control" placeholder="이메일를 입력하세요." id="email">
                     </div>
     
             </div>

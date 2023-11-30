@@ -19,5 +19,5 @@ Branch-ManagersManagement.html
 Create a new branch.html
 새 지점 생성
 
-Create a new Store Manager copy.html
+Create a new Store Manager.html
 점주 회원 생성
