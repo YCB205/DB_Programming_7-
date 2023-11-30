@@ -128,10 +128,9 @@
             max-width: 255px;
             background-color: #ffffff;
             }
-    
-    
-    
-    </style>
+
+</style>
+
 </head>
 
 <body>
@@ -266,28 +265,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="table-light">
-                        <th rowspan="3" scope="row">공주대 천안점</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
+                        <tr class="table-light">
+                            <th rowspan="3" scope="row" class="group-th">공주대 천안점</th>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                        </tr>
+                          <tr class="table-success">
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                          </tr>
+                          <tr class="table-light">
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                            <td class="group-td">Column content</td>
+                          </tr>
                     <tr class="table-success">
                         <th rowspan="3" scope="row">동대문점</th>
                         <td>Column content</td>
@@ -620,7 +619,31 @@
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
 <script src="../../javascripts/OrderSheet/deleteOrderSheet.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get all checkboxes and add event listeners
+        const checkboxes = document.querySelectorAll(".btn-check");
 
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                handleCheckboxChange(checkbox.id);
+            });
+        });
+
+        // Function to handle checkbox change
+        function handleCheckboxChange(clickedCheckboxId) {
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.id !== clickedCheckboxId) {
+                    if (clickedCheckboxId === "btncheck") {
+                        checkbox.checked = false;  // 총지점 버튼을 누르면 나머지 체크박스들을 언체크
+                    } else {
+                        document.getElementById("btncheck").checked = false;  // 나머지 체크박스를 누르면 총지점 버튼을 언체크
+                    }
+                }
+            });
+        }
+    });
+</script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
@@ -699,7 +722,17 @@
         smallTableSection.style.display = 'none';
     }
 </script>
-
+<script>
+    const groupTh = document.querySelector('.group-th');
+  
+    groupTh.addEventListener('mouseover', () => {
+      groupTh.classList.add('hovered');
+    });
+  
+    groupTh.addEventListener('mouseout', () => {
+      groupTh.classList.remove('hovered');
+    });
+  </script>
 
 </body>
 </html>
