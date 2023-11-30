@@ -16,6 +16,9 @@
     overflow-y: auto;
     max-height: 500px;
  }
+.scroll::-webkit-scrollbar {
+    display: none;
+}
  .form-check-input:checked {
     background-color: #78c2ad;
     border-color: #78c2ad;
@@ -58,40 +61,41 @@
 </style>
 </head>
 
-<body>
+<body style="overflow: hidden">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <header class="header bg-primary">
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-4 g-0"></div>
+            <div class="col-2 g-0 brand_name_div">
+                <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
+                      style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+            </div>
+
+            <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg dropdown-toggle" href="#" type="button"
-                            id="dropdownButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
-                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item text-white">매출 정보 조회</a></li>
-                        <li><a class="dropdown-item text-white">매출 정보 관리</a></li>
-                        <li><a class="dropdown-item text-white">주문서 등록</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
+                        <li><a href="Sales%20information%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
+                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
+                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-2 g-0"></div>
+            <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
-                <!-- 드롭다운 또는 원하는 요소를 넣을 수 있습니다 -->
-                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg dropdown-toggle" href="#" type="button"
-                            id="dropdownButton2"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
-                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item text-white">상품 조회</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a href="product%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-4 g-0"></div>
+            <div class="col-6 g-0"></div>
         </div>
     </div>
 </header>
@@ -102,24 +106,28 @@
         </div>
         <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
         style="width: 100%; padding-left: 1%; overflow: auto;">
-            <div class="scrollable-div w-100 h-100">
+            <div>
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <thead class>
                     <tr class="table-primary sticky-top" style="font-size: 120%;">
-                        <th scope="col">품목명</th>
-                        <th scope="col">상품번호</th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">영업이익</th>
-                        <th scope="col">총매출</th>
+                        <th scope="col" class="col-20">품목명</th>
+                        <th scope="col" class="col-20">상품번호</th>
+                        <th scope="col" class="col-20">상품명</th>
+                        <th scope="col" class="col-20">영업이익</th>
+                        <th scope="col" class="col-20">총매출</th>
                     </tr>
                     </thead>
+                </table>
+            </div>
+            <div class="scroll w-100 h-100 m-0 p-0">
+                <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <tbody>
                     <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1101</td>
-                        <td>아이스 아메리카노</td>
-                        <td>1,000원</td>
-                        <td>2,000원</td>
+                        <th scope="row" class="col-20">커피</th>
+                        <td class="col-20">P1101</td>
+                        <td class="col-20">아이스 아메리카노</td>
+                        <td class="col-20">1,000원</td>
+                        <td class="col-20">2,000원</td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">커피</th>
@@ -360,36 +368,40 @@
 </section>
 <aside class="aside">
     <div class="first bg-teal">
-        <div class="firstchild1">
-            <div class="fs-4 firstchild2 d-flex align-items-center text-white">
-                사용자
-            </div>
-            <div class="firstchild3">
-                <span class="d-flex align-items-center justify-content-center fs-4 text-white">
-                    양창배
-                </span>
+        <div class="firstchild1 m-0" style="padding-bottom: 0%; padding-top: 8%;">
+            <div class="firstchild3 bg-white" style="height: 80%; width: 77%;">
+                <span id="officeName" class="d-flex align-items-center justify-content-start fw-bold"
+                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; margin-left: 5%;">공주대 천안캠</span>
             </div>
         </div>
         <div class="firstchild1">
-            <div class="fs-4 firstchild2 d-flex align-items-center text-white">
-                직급
+            <div class="p-1 fs-5 d-flex firstchild2 fw-bold text-white justify-content-end align-items-center text-white">
+                사용자:
             </div>
-            <div class="firstchild3">
-                <span class="d-flex align-items-center justify-content-center fs-4 text-white">
-                    알파메일
-                </span>
+            <div class="firstchild3 p-1">
+                <span id="name" class="d-flex align-items-center fw-bold justify-content-start fs-5 text-white"
+                      style="width: 100%; height: 100%;">양창배</span>
             </div>
         </div>
         <div class="firstchild1">
-            <div class="container-fluid h-100">
-                <div class="row h-100">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+                직급:
+            </div>
+            <div class="firstchild3">
+                <span id="position" class=" d-flex align-items-center c fs-5 text-white fw-bold"
+                      style="width: 100%; height: 60%;">알파메일</span>
+            </div>
+        </div>
+        <div class="firstchild1" style="">
+            <div class="container-fluid h-100" style="">
+                <div class="row h-100" style="">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
-                    <div class="col align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -468,6 +480,9 @@
         </table>
     </div>
 </aside>
+<script src="../../javascripts/SalesManager/SaleManager.js">
+
+</script>
 <script>
     document.getElementById('showPopup').addEventListener('click', function() {
         var leftPosition = (screen.width - 600) / 2;
