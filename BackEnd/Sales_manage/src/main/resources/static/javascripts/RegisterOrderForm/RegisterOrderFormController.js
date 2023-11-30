@@ -166,7 +166,7 @@ function dbClickEventListener(newRow){
     const label = document.createElement('label');
     const input = document.createElement('input');
     const i = document.createElement('i');
-    const img = document.createElement('img');
+    const span = document.createElement('div');
 
     thFirst.setAttribute("scope","row");
     thFirst.classList.add("fw-normal","col-4");
@@ -193,23 +193,24 @@ function dbClickEventListener(newRow){
     tdThird.textContent = tdPrice.textContent;
 
     tdForth.className = "col-2";
+    tdForth.classList.add('p-0');
 
-    i.classList.add("p-0","btn","btn-primary","w-100");
-    img.setAttribute("alt","");
-    img.setAttribute("src","../../image/svg/x.svg");
-    i.appendChild(img);
+    span.classList.add("m-0", "btn", "btn-primary", "w-100", "h-100");
+    i.classList.add("bi", "bi-x", 'w-100', 'h-100', 'text-light',"p-0");
+    span.appendChild(i);
 
     //행삭제 메서드 실행
-    i.addEventListener('click', function (){
+    span.addEventListener('click', function (){
         deleteRow(value);
     });
-    tdForth.appendChild(i);
+    tdForth.appendChild(span);
 
     value.appendChild(thFirst);
     value.appendChild(tdSecond);
     value.appendChild(tdThird);
     value.appendChild(tdForth);
     querySearchAfterScript.appendChild(value);
+    console.log(value);
     //행 추가후 덧셈 실시
     calSum();
 
@@ -256,12 +257,20 @@ function search(){
 }
 
 function serachOptionFetch(optionInput){
-    const categoryList =[]
+    let categoryList = []
+    const categoy = document.getElementById('category');
+    const categoryInputList = categoy.querySelectorAll('input');
+    for(let i = 0; categoryInputList.length; i++){
+        if(categoryInputList[i].checked){
+            categoryList.push(categoryInputList[i].value);
+            break;
+        }
+    }
     const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
-            addTableRow(data).then();
+            addTableRow(data);
         })
 }
 

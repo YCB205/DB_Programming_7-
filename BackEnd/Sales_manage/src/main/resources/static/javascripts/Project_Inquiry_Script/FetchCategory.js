@@ -1,105 +1,80 @@
 let name;
 let category;
-//name = null category = all일때
-const productUrl = `/products?products=${name}&category=${category}`;
-
-let testUrl = '/products';
-
-
+let worldIndex = 0;
 window.onload = function () {
-    // fetchDataOrder();
-    // fetchDataSearch();
     //모든 데이터 가져오기
     fetchAllProduct();
+    fetchDataSearch();
 }
 
-function fetchDataOrder() {
-    name = null;
-    category = 'all';
-    console.log('함수가 실행 되었습니다.');
-    fetch(testUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            checkList(data);
-        })
-}
 
 function checkList(data) {
-    let div_first = document.getElementById('checkbox-div-first');
-    let div_second = document.getElementById('checkbox-div-second');
-    let tableList = document.getElementById('tableList');
-    let div = div_first;
-    data.forEach(function (value, index) {
-        if (index === Math.floor(data.length / 2)) {
-            div = div_second;
-        }
-        //tableList 자식추가
-        let table = document.createElement('tbody');
-        table.setAttribute('id',`${value.toString()}`);
-        tableList.appendChild(table);
+    let div = document.getElementById('checkbox-div-first');
 
-        const label = document.createElement('label');
-        const input = document.createElement('input');
+    const label = document.createElement('label');
+    const input = document.createElement('input');
 
-        input.setAttribute('class', 'form-check-input');
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('id', `${value.toString()}`);
-        input.setAttribute('value', `${value.toString()}`);
+    input.setAttribute('class', 'form-check-input');
+    input.setAttribute('type', 'checkbox');
+    input.setAttribute('value', `${data.toString()}`);
 
-        label.appendChild(input);
-        label.setAttribute('class', 'text-truncate');
-        label.appendChild(document.createTextNode(`${value.toString()}`));
-        div.appendChild(label);
-        //input값이 바뀔 때마 eventListener등록
-        input.addEventListener('change', function () {
-            whatChoose(input);
-        });
-    })
+    label.appendChild(input);
+    label.setAttribute('class', 'text-truncate');
+    label.appendChild(document.createTextNode(`${data.toString()}`));
+    div.appendChild(label);
 }
+
 
 //상품별 검색 옵션
 function fetchDataSearch() {
     //요소 가져오는 방법
+    console.log('페치 실행');
     const button_addon2 = document.getElementById('button-addon2');
     button_addon2.addEventListener("click", eventFetchBtn2);
 }
 
 function eventFetchBtn2() {
-    const input_addon2 = document.getElementById('input-addon2');
-    let products = input_addon2.value.toString();
-    let searchProductUrl = `https://dummyjson.com/products/search?q=${products.toString()}`;
+    const table = document.getElementById('category');
+    destroyTable(table);
+    const input_addon2 = document.getElementById('input-addon2').value;
+    let categoryCheck = document.getElementById('checkbox-div-first').querySelectorAll('input');
+    let categoryList =[];
+    categoryCheck.forEach((checkBox)=>{
+        if(checkBox.checked){
+            let value = checkBox.value;
+            categoryList.push(value);
+
+        }
+    });
+    console.log(input_addon2);
+    console.log(categoryList);
+    let searchProductUrl = `/orderproducts?product_name=${input_addon2}&category=${categoryList}`;
 
     console.log(searchProductUrl);
     fetch(searchProductUrl)
         .then(response => response.json())
         .then(data => {
-            const table = document.getElementById('productName');
-            destroyTable(table);
-            addTableRow(data,'productName');
-            unlockCheckList();
-            console.log(data);
+            for(const key in data) {
+                addTableRow(data[key],key, 'category');
+                console.log(data);
+            }
         })
 }
 
-//선택 된 값을 가져오는 방법
-function whatChoose(input) {
-    console.log(input.checked);
-    if (input.checked)
-        getProdcutByTag(input);
-    else
-        destroyTable(input);
-
-}
 
 //선택된 체크박스 테이블 fetch 불러오기
 function getProdcutByTag(categoryId) {
-    const url = `https://dummyjson.com/products/category/${categoryId.id.toString()}`;
+    let productName = '';
+    const url = `/orderproducts?product_name=${productName}&category=${categoryId.id.toString()}`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            addTableRow(data, data.products[0].category.toString());
+            for (const key in data) {
+                console.log(data[key]);
+                console.log(data);
+                addTableRow(data[key], key, 'category');
+            }
+            worldIndex = 0;
         })
         .catch(error => {
             //예외 처리 함수
@@ -107,14 +82,16 @@ function getProdcutByTag(categoryId) {
         });
 }
 
-function addTableRow(data, category) {
+
+function addTableRow(data, key/*카테고리가 들어감*/, category) {
     console.log(category.toString());
     console.log(data);
     //테이블 리스트에서
     let tableList = document.getElementById('tableList');
     //table 아이디 찾기
     let table = tableList.querySelector(`#${category.toString()}`);
-    data.products.forEach(function (value, index) {
+    console.log(table);
+    data.forEach(function (value, index) {
         let tr = document.createElement('tr');
         let th = document.createElement('th');
         th.setAttribute('scope', 'row');
@@ -125,36 +102,38 @@ function addTableRow(data, category) {
             document.createElement('td')
         ];
 
-        console.log(index);
+        console.log(worldIndex);
         //첫번째 세팅
-        if (index === 0) {
+        if (worldIndex === 0) {
             console.log(index);
             th.setAttribute('class', 'col-20');
             for (let i = 0; i < tdList.length; i++)
                 tdList[i].setAttribute('class', 'col-20');
         }
-        index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
-        th.textContent = `${value.category.toString()}`;
-        tdList[0].textContent = `${value.id.toString()}`;
-        tdList[1].textContent = `${value.title.toString()}`;
+        worldIndex % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
+        th.textContent = `${key.toString()}`;
+        tdList[0].textContent = `${value.id_merchandise.toString()}`;
+        tdList[1].textContent = `${value.merchandiseName.toString()}`;
         tdList[2].textContent = `${value.price.toString()}`;
-
+        tdList[3].textContent = `${value.cost}`;
         tr.appendChild(th);
         for (let i = 0; i < tdList.length; i++)
             tr.appendChild(tdList[i]);
         table.appendChild(tr);
         console.log(tr);
+        worldIndex++;
     })
+
 
 }
 
 //테이블을 삭제하는 메서드
-function destroyTable(categoryId){
+function destroyTable(categoryId) {
     console.log(categoryId.id.toString());
     const tableList = document.getElementById('tableList');
-    const table = tableList.querySelector(`#${categoryId.id}`);
+    const table = tableList.querySelector(`#${categoryId.id.toString()}`);
     console.log(table);
-    if(table){
+    if (table) {
         while (table.firstChild) {
             table.removeChild(table.firstChild);
         }
@@ -162,26 +141,23 @@ function destroyTable(categoryId){
 }
 
 //전체 상품 혹은 부분 상품 보여주기
-function fetchAllProduct(){
-    const productname = "티";
-    const category = ['커피', '티'];
-    const url = `/products?product_name=${productname}&category=${category}`;
+function fetchAllProduct() {
+    const productname = "";
+    const category = [];
+    const url = `/orderproducts?product_name=${productname}&category=${category}`;
     fetch(url)
-        .then(response=>response.json())
-        .then(data=>{
-            console.log(data);
-            addTableRow(data,'productAll');
+        .then(response => response.json())
+        .then(data => {
+            for (const key in data) {
+                console.log(data[key]);
+                console.log(data);
+                addTableRow(data[key], key, 'productAll');
+                checkList(key);
+            }
         })
-        .catch(error=>{
+        .catch(error => {
             console.log(error);
         })
 }
 
-function unlockCheckList(){
-    const showAll = document.querySelector('#showAll');
-    const showCheckbox = document.querySelector('#showCheckbox');
-    showAll.checked = false;
-    showCheckbox.checked = false;
-    toggleCheckboxVisibility();
-}
 
