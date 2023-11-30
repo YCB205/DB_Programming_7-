@@ -1,13 +1,13 @@
 MainManager.html 
 메인페이지
 
-Salesinformationinquiry2.html
+Sales_information_in_quiry2.html
 매출 정보 조회
 
-product inquiry2.html
+product_inquiry2.html
 상품 조회
 
-product management.html
+product_management.html
 상품관리
 
 UpdateOrderFormAddProduct2.html
@@ -16,8 +16,9 @@ UpdateOrderFormAddProduct2.html
 Branch-ManagersManagement.html
 지점 및 점주 계정 관리
 
-Create a new branch.html
+Createanewbranch.html
 새 지점 생성
 
-Create a new Store Manager.html
+CreateanewStoreManager.html
 점주 회원 생성
+
