@@ -208,13 +208,13 @@ thead {
 }
   #popupContainer {
             position: fixed;
-            top: 65%; /* 원하는 위치로 조정 */
+            top: 55%; /* 원하는 위치로 조정 */
             left: 45%; /* 원하는 위치로 조정 */
             transform: translate(-50%, -50%);
             z-index: 1000; /* 모달보다 앞에 위치하도록 설정 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 600px; /* 원하는 너비로 조정 */
-            height: 770px;
+            height: 600px;
             max-width: 100%; /* 최대 너비 설정 */
         }
     /* 드롭다운 메뉴의 z-index를 더 높게 설정하여 위로 올리기 */
@@ -408,7 +408,8 @@ thead {
                 <div class="card border-primary mb-3">
                     <div class="card-header"></div>
                     <div class="card-body">
-                      <h4 class="card-title">점주 정보 등록</h4>      
+                        <br>
+                      <h4 class="card-title" style="color: #3E7E69;">점주 정보 입력</h4>      
                         <br><br>
                       <div class="form-group">
                         <label class="col-form-label mt-3" for="storemanager" id="storemanager">이름</label>
@@ -428,7 +429,7 @@ thead {
                     </div>
                     <div class="form-group">
                         <label class="col-form-label mt-3" for="email">이메일</label>
-                        <input type="text" class="form-control" placeholder="이메일를 입력하세요." id="email">
+                        <input type="text" class="form-control" placeholder="이메일을 입력하세요." id="email">
                     </div>
     
             </div>
