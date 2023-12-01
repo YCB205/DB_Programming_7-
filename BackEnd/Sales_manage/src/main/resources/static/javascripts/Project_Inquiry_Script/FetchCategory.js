@@ -61,28 +61,6 @@ function eventFetchBtn2() {
         })
 }
 
-
-//선택된 체크박스 테이블 fetch 불러오기
-function getProdcutByTag(categoryId) {
-    let productName = '';
-    const url = `/orderproducts?product_name=${productName}&category=${categoryId.id.toString()}`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            for (const key in data) {
-                console.log(data[key]);
-                console.log(data);
-                addTableRow(data[key], key, 'category');
-            }
-            worldIndex = 0;
-        })
-        .catch(error => {
-            //예외 처리 함수
-            console.log(error);
-        });
-}
-
-
 function addTableRow(data, key/*카테고리가 들어감*/, category) {
     console.log(category.toString());
     console.log(data);

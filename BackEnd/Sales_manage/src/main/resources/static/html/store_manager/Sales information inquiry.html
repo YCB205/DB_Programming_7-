@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 <style>
 .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
@@ -109,7 +109,7 @@
             <div>
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <thead class>
-                    <tr class="table-primary sticky-top" style="font-size: 120%;">
+                    <tr class="table-primary" style="font-size: 120%;">
                         <th scope="col" class="col-20">품목명</th>
                         <th scope="col" class="col-20">상품번호</th>
                         <th scope="col" class="col-20">상품명</th>
@@ -119,249 +119,17 @@
                     </thead>
                 </table>
             </div>
-            <div class="scroll w-100 h-100 m-0 p-0">
+            <div class="scroll w-100 h-100 m-0 p-0" style="display: none">
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                    <tbody>
-                    <tr class="table-light">
-                        <th scope="row" class="col-20">커피</th>
-                        <td class="col-20">P1101</td>
-                        <td class="col-20">아이스 아메리카노</td>
-                        <td class="col-20">1,000원</td>
-                        <td class="col-20">2,000원</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1102</td>
-                        <td>아메리카노</td>
-                        <td>1,000원</td>
-                        <td>2,000원</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1103</td>
-                        <td>아이스 카페라떼</td>
-                        <td>2,000원</td>
-                        <td>3,000원</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1104</td>
-                        <td>카페라떼</td>
-                        <td>2,000원</td>
-                        <td>3,000원</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">커피</th>
-                        <td>P1105</td>
-                        <td>아이스 카라멜 마끼아또</td>
-                        <td>3,000원</td>
-                        <td>4,000원</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">커피</th>
-                        <td>P1106</td>
-                        <td>카라멜 마끼아또</td>
-                        <td>3,000원</td>
-                        <td>4,000원</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">6</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">7</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">8</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">TEST</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success" >
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
+                    <tbody id = "tbody">
+                    </tbody>
+                    <tbody id = "tbody2">
+
                     </tbody>
                 </table>
+            </div>
+            <div class="scroll w-100 h-100 m-0 p-0" style="border: 1px solid red;">
+                <canvas id="div2" style="width: 100%; height: 70vh; display: none;"></canvas>
             </div>
         </div>
     </div>
@@ -463,19 +231,19 @@
                     <th scope="col" style="background-color:rgb(0, 198, 122)">상품명</th>
                 </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td scope="row">001</td>
-                <td>아이스 아메리카노</td>
-            </tr>
-            <tr>
-                <td scope="row">002</td>
-                <td>아메리카노</td>
-            </tr>
-            <tr>
-                <td scope="row">003</td>
-                <td>아이스 카페라떼</td>
-            </tr>
+            <tbody id="chart">
+<!--            <tr>-->
+<!--                <td scope="row">001</td>-->
+<!--                <td>아이스 아메리카노</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td scope="row">002</td>-->
+<!--                <td>아메리카노</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td scope="row">003</td>-->
+<!--                <td>아이스 카페라떼</td>-->
+<!--            </tr>-->
             </tbody>
         </table>
     </div>
@@ -489,7 +257,7 @@
         var topPosition = (screen.height - 570) / 2;
         var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
-        window.open('#', 'Popup', options);
+        window.open('./OrderManager_AddProduct.html', 'Popup', options);
     });
 </script>
 </body>
