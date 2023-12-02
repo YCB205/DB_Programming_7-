@@ -1,12 +1,25 @@
-import {getTrList} from './SaleManager.js'
+import {getTr} from "./SaleManager.js";
 
 window.onload =function () {
     console.log('세컨드 창이 열렸습니다.');
     const btn = document.getElementById('registerBtn');
     btn.addEventListener('click',function (){
             const trList = registerBtn();
-            getTrList(trList);
+            localStorage.removeItem('table_info');
+            let productsList = [];
 
+            const productInfo = {
+                productsList
+        }
+            for(let i = 0;i < trList.length; i++){
+                let product = {
+                    "id" : trList[i].children[0].textContent,
+                    "name": trList[i].children[1].textContent
+                }
+                productsList.push(product);
+            }
+        localStorage.setItem("table_info", JSON.stringify(productInfo));
+            console.log(productInfo);
     })
     const input  = document.getElementById('inputProduct');
     input.addEventListener('mouseover',function (){

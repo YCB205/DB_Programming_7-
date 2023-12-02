@@ -115,8 +115,14 @@ function drawLineChart() {
 
 }
 
-export function getTrList(getTr){
-    trlList = getTr;
+export function getTr(tr){
+    append(tr);
+}
+
+
+function append(tr){
+
     const chart = document.getElementById('chart');
-    for()
+    chart.appendChild(tr);
+    console.log(chart);
 }
