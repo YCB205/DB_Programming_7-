@@ -22,19 +22,29 @@ public class MerchandiseService {
             throw new RuntimeException("로그인이 필요합니다.");
         }
         List<MerchandiseEntity> filteredList;
+
         if (productName.isEmpty()) {
             // productName이 비어 있을 경우 모든 상품 데이터 가져오기
             filteredList = merchandiseRepository.findAll();
-        } else {
+        }
+
+        else {
             // productName에 해당하는 상품 데이터만 가져오기
             filteredList = merchandiseRepository.findByMerchandiseNameContaining(productName);
         }
+
         if (categories == null || categories.isEmpty()) {
             categories = filteredList.stream()
                     .map(MerchandiseEntity::getCategori)
                     .distinct()
                     .collect(Collectors.toList());
         }
+
+        // 상품 데이터에서 salesStatus가 true(1)인 데이터만 필터링하여 재할당
+        filteredList = filteredList.stream()
+                .filter(MerchandiseEntity::isSalesStatus)
+                .collect(Collectors.toList());
+
         // 결과를 JSON으로 반환하기 위한 Map 구성
         Map<String, List<Map<String, Object>>> response = new HashMap<>();
 
