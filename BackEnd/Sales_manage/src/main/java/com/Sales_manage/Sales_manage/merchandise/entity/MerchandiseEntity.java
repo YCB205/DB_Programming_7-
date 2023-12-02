@@ -2,6 +2,7 @@ package com.Sales_manage.Sales_manage.merchandise.entity;
 
 import com.Sales_manage.Sales_manage.orderSheet.entity.IncludeEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
@@ -26,4 +27,7 @@ public class MerchandiseEntity {
 
     @OneToMany(mappedBy = "idMerchandise", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IncludeEntity> includes;
+
+    @Column(nullable = false)
+    private boolean salesStatus = true;
 }

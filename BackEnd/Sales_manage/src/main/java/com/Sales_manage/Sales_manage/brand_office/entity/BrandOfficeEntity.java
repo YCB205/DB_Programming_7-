@@ -25,5 +25,7 @@ public class BrandOfficeEntity {
     @JoinColumn(name = "id_storemanager")
     private StoreManagerEntity idStoremanger;
 
+    @Column(nullable = false)
+    private boolean operationalStatus = true;
 
 }
