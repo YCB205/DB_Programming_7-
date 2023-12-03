@@ -1,4 +1,4 @@
-import {getTr} from "./SaleManager.js";
+
 
 window.onload =function () {
     console.log('세컨드 창이 열렸습니다.');
@@ -20,7 +20,9 @@ window.onload =function () {
             }
         localStorage.setItem("table_info", JSON.stringify(productInfo));
             console.log(productInfo);
-    })
+        notifyOtherHtml();
+        window.close();
+    });
     const input  = document.getElementById('inputProduct');
     input.addEventListener('mouseover',function (){
         input.addEventListener('keydown',function (event){
@@ -28,7 +30,7 @@ window.onload =function () {
                 fetchProduct(input.value);
             }
         })
-    })
+    });
 }
 
 function fetchProduct(input){
@@ -108,4 +110,9 @@ function registerBtn(){
     const trList = tbodyfirst.querySelectorAll('tr');
     return trList;
 }
+
+//이벤트 리스너 등록
+function notifyOtherHtml(){
+    window.opener.postMessage('HTMLClosed',window.location.origin + '/html/store_manager/Sales%20information%20inquiry.html');
+}   console.log(window.location.origin);
 

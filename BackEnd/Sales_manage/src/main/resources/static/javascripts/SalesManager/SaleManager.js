@@ -35,7 +35,6 @@ function addTableRow(data){
         salesData.push(ordersheet.sales);
         profitsData.push(ordersheet.profit);
         for(const product of ordersheet.merchandise){
-            console.log(product);
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
             const th = document.createElement('th');
@@ -69,10 +68,15 @@ function addTableRow(data){
     }
     index = 0;
 }
-//테이블을 그리기
+//라인 차트 그리기
 const labels = [];
 const salesData = [];
 const profitsData = [];
+
+//원형 차트 그리기
+const doughnutLabel = [];
+const doughnutData = [];
+
 function drawLineChart() {
     const ctx = document.getElementById('div2').getContext('2d');
     const myLineChart = new Chart(ctx, {
@@ -115,10 +119,20 @@ function drawLineChart() {
 
 }
 
+function drawDoughnut(){
+    const ctx = document.getElementById('div3').getContext('2d');
+    const myDoughnut = new Chart(ctx,{
+        type: 'doughnut',
+        data:{
+            labels:
+        }
+    })
+}
+
+
 export function getTr(tr){
     append(tr);
 }
-
 
 function append(tr){
 
@@ -126,3 +140,22 @@ function append(tr){
     chart.appendChild(tr);
     console.log(chart);
 }
+
+window.addEventListener('message',function (event){
+    if(event.data === 'HTMLClosed'){
+        const data = localStorage.getItem('table_info');
+        const trList = JSON.parse(data);
+        const chart = document.getElementById('chart');
+        trList.productsList.forEach((value, index)=>{
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            td1.setAttribute('scope','row');
+            td1.textContent = value.id.toString();
+            td2.textContent = value.name.toString();
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            chart.append(tr);
+        })
+    }
+})
