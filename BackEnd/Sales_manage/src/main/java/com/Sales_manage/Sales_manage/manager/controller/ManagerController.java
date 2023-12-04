@@ -16,11 +16,11 @@ public class ManagerController {
     private final StoreManagerService storeManagerService;
 
 
-//    @GetMapping("/store")
-//    @ResponseBody
-//    public List<StoreManagerDTO> getAll() {
-//        System.out.println(storeManagerService.getAll());
-//        return storeManagerService.getAll();
-//    }
+    @GetMapping("/store")
+    @ResponseBody
+    public List<StoreManagerDTO> getAll() {
+        System.out.println(storeManagerService.getAll());
+        return storeManagerService.getAll();
+    }
 
 }

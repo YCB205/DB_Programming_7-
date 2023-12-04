@@ -4,7 +4,7 @@ function showPopup(destination_html, width, height) {
     var topPosition = (screen.height - 692) / 2;
     var options = `width=${width},height=${height},left=` + leftPosition + ',top=' + topPosition + ',location=no,resizable=no,toolbar=no,menubar=no';
 
-    var popupWindow = window.open(html, 'Popup' + Date.now(), options);
+    var popupWindow = window.open(html, 'Popup', options);
 
     // 기존 창이 정상적으로 열렸을 때
     if (popupWindow) {
