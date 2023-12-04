@@ -29,6 +29,7 @@ public class MerchandiseController {
         return merchandiseService.getProductsOrder(productName, categories, loggedInUserId);
     }
 
+
     /*
     @GetMapping("/products")
     @ResponseBody
