@@ -1,82 +1,26 @@
 let trlList;
 
 window.onload = function () {
-    //버튼에 이벤트리스너 등록하기
-    const btn = document.getElementById('fetchData');
-    btn.addEventListener('click',function () {
-        getTime();
-    })
-    const startDate = document.getElementById('fromDate');
-    const endDate = document.getElementById('toDate');
-    //디폴트 시간 설정하기
-    const currentDate = new Date();
-    currentDate.setHours(0,0,0,0);
-    const setDefault = convertTimeType(currentDate);
-    startDate.value = setDefault;
-    endDate.value = setDefault;
-
-
-    startDate.addEventListener('change',function (){
-        checkTimeValid();
-    })
-    endDate.addEventListener('change',function () {
-        checkTimeValid();
-    })
+    getOrderManager();
 }
-
-//시간을 입력받아 현재 시간이 유효한지 확인하기
-function checkTimeValid(){
-    const fromDate = document.getElementById('fromDate');
-    const toDate = document.getElementById('toDate');
-    let curruentTime = new Date();
-    let startValue = new Date(fromDate.value);
-    let endValue = new Date(toDate.value);
-    if(startValue > endValue){
-        fromDate.value = toDate.value;
-    }
-    else if(endValue > curruentTime){
-        toDate.value =  convertTimeType(curruentTime);
-    }
-}
-function convertTimeType(inputDateTime) {
-    const date = new Date(inputDateTime);
-
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-    console.log((`${formattedDate} ${formattedTime}`));
-    return ((`${formattedDate} ${formattedTime}`));
-}
-
-
-//input요소로 시간 받아오기
-function getTime(){
-    const startTime = document.getElementById('fromDate');
-    const endTime = document.getElementById('toDate');
-    getFetch(startTime.value, endTime.value);
-}
-
-
 
 //매출 정보 조히 차트 띄우기
+function getOrderManager(){
+    getFetch();
+}
 
 //fetch함수 부르기
-function getFetch(startdate, enddate){
+function getFetch(){
+    const search_merchandise = document.getElementById('showPopup');
     const product = "";
-    const startDate = convertTimeType(startdate);
-    const endDate = convertTimeType(enddate);
+    const startDate = '2011-10-11 00:00:00';
+    const endDate = '2024-12-30 00:00:00';
     const url = `/orderSheet?search_merchandise=${product}&startDateTime=${startDate}&endDateTime=${endDate}`;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
             addTableRow(data);
-            // drawLineChart();
+            drawLineChart();
         })
 }
 
@@ -175,23 +119,27 @@ function drawLineChart() {
 
 }
 
+function drawDoughnut(){
+    const ctx = document.getElementById('div3').getContext('2d');
+    const myDoughnut = new Chart(ctx,{
+        type: 'doughnut',
+        data:{
+            labels:
+        }
+    })
+}
 
-// function drawDoughnut(){
-//     const ctx = document.getElementById('div3').getContext('2d');
-//     const myDoughnut = new Chart(ctx,{
-//         type: 'doughnut',
-//         data:{
-//
-//         }
-//     })
-// }
 
-// function append(tr){
-//
-//     const chart = document.getElementById('chart');
-//     chart.appendChild(tr);
-//     console.log(chart);
-// }
+export function getTr(tr){
+    append(tr);
+}
+
+function append(tr){
+
+    const chart = document.getElementById('chart');
+    chart.appendChild(tr);
+    console.log(chart);
+}
 
 window.addEventListener('message',function (event){
     if(event.data === 'HTMLClosed'){
