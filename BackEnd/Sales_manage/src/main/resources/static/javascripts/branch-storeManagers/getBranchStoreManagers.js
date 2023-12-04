@@ -38,7 +38,7 @@ function generateBranchStoreManagerTable(data) {
             tableBody.appendChild(mainRow);
 
             // Create and append the store manager row
-            const storeManagerRow = createStoreManagerRow(brandAndStoreManagers[1], index);
+            const storeManagerRow = createStoreManagerRow(brandAndStoreManagers[0], brandAndStoreManagers[1], index);
             tableBody.appendChild(storeManagerRow);
         }
     });
@@ -58,11 +58,8 @@ function createTableRow(brandOffice, storeManager, index, rowClass) {
         <td class="col-2 text-center m-0">${storeManager.name}</td>
         <td class="col-4 text-center m-0">${brandOffice.address}</td>
         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px; background-color: #fff;">
-            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateBranch('updateBranch.html',600,468,\`tr.branchTable${index + 1}\` )">
+            <a style="width: 80%" class="btn btn-primary" target="_self" onclick="showPopupUpdateBranch('updateBranch.html',600,508,\`tr.branchTable${index + 1}\` )">
                 <i class="bi bi-pencil-square"></i>
-            </a>
-            <a class="btn btn-primary" onclick="CheckDelete(\`tr.branchTable${index + 1}\`)">
-                <i class="bi bi-trash"></i>
             </a>
         </td>`;
 
@@ -70,7 +67,7 @@ function createTableRow(brandOffice, storeManager, index, rowClass) {
 }
 
 // Modify the createStoreManagerRow function to accept the store manager data
-function createStoreManagerRow(storeManager, index) {
+function createStoreManagerRow(brandOffice, storeManager, index) {
     const row = document.createElement('tr');
     row.className = 'collapse';
     row.id = `collapseExample${index + 1}`;
@@ -87,7 +84,7 @@ function createStoreManagerRow(storeManager, index) {
                         </tr>
                     </thead>
                     <tbody class="product_table_tbody">
-                        ${generateStoreManagerRow(storeManager)}
+                        ${generateStoreManagerRow(storeManager, brandOffice.idBrandOffice)}
                     </tbody>
                 </table>
             </div>
@@ -97,7 +94,7 @@ function createStoreManagerRow(storeManager, index) {
 }
 
 // Modify the generateStoreManagerRows function to generate a single store manager row
-function generateStoreManagerRow(storeManager) {
+function generateStoreManagerRow(storeManager, brandOfficeId) {
     return `
         <tr>
             <td>${storeManager.idStoremanager}</td>
@@ -107,7 +104,7 @@ function generateStoreManagerRow(storeManager) {
             <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #e0e0e0;">
                 <a class="btn btn-info" target="_self" onclick="showPopupStoreManager('storeManager_information_check.html',600,617, ${storeManager.idStoremanager})">
                 <i class="bi bi-pencil-square"></i></a>
-                <a class="btn btn-info">
+                <a class="btn btn-info" onclick="putDeleteStoreManagerOnBranch(${brandOfficeId})">
                 <i class="bi bi-trash"></i></a>
             </td>
         </tr>`;

@@ -68,4 +68,9 @@ public class StoreManagerService {
     }
 
 
+    public void deleteStoreManager(String idStoreManager) {
+        StoreManagerEntity storeManagerEntity = storeManagerRepository.findById(idStoreManager).orElse(null);
+        assert storeManagerEntity != null;
+        storeManagerRepository.delete(storeManagerEntity);
+    }
 }

@@ -6,12 +6,19 @@ function putBranch() {
     var idStoreManager = document.getElementById('idStoreManager').value;
     var officeName = document.getElementById('officeName').value;
     var address = document.getElementById('address').value;
-
+    var operationalStatus = document.getElementById('operationalStatus').value;
+    if (operationalStatus === "Y"){
+        operationalStatus = true;
+    }else {
+        operationalStatus=false;
+        idStoreManager = null;
+    }
     const branchData = {
         idStoreManager,
         idBrandOffice,
         officeName,
-        address
+        address,
+        operationalStatus
     };
     console.log(branchData);
 

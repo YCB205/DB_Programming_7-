@@ -42,6 +42,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/userPasswd")
+    @ResponseBody
+    public ResponseEntity<String> checkPasswd(@RequestParam String passwd, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        if ("manager".equals(loggedInUserRole)) {
+            String result = userService.checkPasswd(loggedInUserId, passwd);
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body("Invalid role or condition");
+        }
+    }
+
     @GetMapping("/user")
     @ResponseBody
     public Map<String, Object> getUserInfo(HttpSession session) {

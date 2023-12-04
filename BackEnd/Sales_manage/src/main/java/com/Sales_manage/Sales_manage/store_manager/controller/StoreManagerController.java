@@ -75,6 +75,19 @@ public class StoreManagerController {
     }
 
 
+    @DeleteMapping("/storeManager/{idStoreManager}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteStoreManager(@PathVariable String idStoreManager, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if (!"store_manager".equals(loggedInUserRole)) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            // 서비스를 통해 주문서 및 관련 IncludeEntity 삭제
+            storeManagerService.deleteStoreManager(idStoreManager);
+            return ResponseEntity.ok().build();
+        }
+    }
+
 
 
 

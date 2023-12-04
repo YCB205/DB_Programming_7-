@@ -155,65 +155,20 @@ thead {
                 </div>
             </div>
             <div class="scroll-hidden w-100 h-100 m-0 p-0 scrollable-div overflow-x-hidden">
-                <table class="table table-hover m-0 p-0 w-100">
+                <table class="table table-hover m-0 p-0 w-100 col-20">
                     <tbody id="table-body">
                     <tr style="border-bottom:#78c2ad;" class="table-light-ycb" data-bs-toggle="collapse" data-bs-target="#collapseExample1"
                         aria-expanded="false">
                         <td class="col-2 text-center m-0" >11</td>
                         <td class="col-3 text-center m-0" >공주대 천안캠</td>
                         <td class="col-2 text-center m-0" >고길동</td>
-                        <td class="col-4 text-center m-0" >엑스포로 1 대전신세계백화점 Art&Science 6층 익선잡방</td>
+                        <td class="col-4 text-center m-0" >엑스포로 1 대전신세계백화점 Art&Science </td>
                         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                            <a class="btn btn-primary" style="width: 80%" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
                                 <i class="bi bi-pencil-square"></i></a>
-                            <a class="btn btn-primary">
-                                <i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                     <tr  class="collapse" id="collapseExample1">
-                        <td colspan="4" style="background-color: #e0e0e0;">
-                            <div class="product_table_div">
-                                <table class="product_table">
-                                    <thead class="product_table_thead">
-                                    <tr>
-                                        <th style="position:sticky; top:0px;">이름</th>
-                                        <th style="position:sticky; top:0px;">아이디</th>
-                                        <th style="position:sticky; top:0px;">이메일</th>
-                                        <th style="position:sticky; top:0px;">전화번호</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="product_table_tbody">
-                                    <tr>
-                                        <td>고길동</td>
-                                        <td>gd123</td>
-                                        <td>gd0987@naver.com</td>
-                                        <td>010-0723-1234</td>
-                                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #e0e0e0;">
-                                            <a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
-                                                <i class="bi bi-pencil-square"></i></a>
-                                            <a class="btn btn-info">
-                                                <i class="bi bi-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="table-success" data-bs-toggle="collapse" data-bs-target="#collapseExample2"
-                    aria-expanded="false">
-                        <td class="col-2 text-center m-0" >11</td>
-                        <td class="col-3 text-center m-0" >공주대 천안캠</td>
-                        <td class="col-2 text-center m-0" >고길동</td>
-                        <td class="col-4 text-center m-0" >엑스포로 1 대전신세계백화점 Art&Science 6층 익선잡방</td>
-                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
-                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
-                                <i class="bi bi-pencil-square"></i></a>
-                            <a class="btn btn-primary">
-                                <i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr  class="collapse" id="collapseExample2">
                         <td colspan="4" style="background-color: #e0e0e0;">
                             <div class="product_table_div">
                                 <table class="product_table">
@@ -318,6 +273,9 @@ thead {
                     </div>
                 </form>
             </div>
+            <div style=" margin-left: 5%; margin-right: 5%; position: relative; top: 48%; ">
+                <button onclick="getBranchStoreManagers()" type="button" class="btn btn-secondary" style="width: calc(100%);">폐업 지점 관리</button>
+            </div>
         </div>
     </div>
 </aside>
@@ -327,6 +285,7 @@ thead {
 <script src="../../javascripts/branch-storeManagers/showPopupUpdateBranch.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/branch-storeManagers/getBranchStoreManagers.js"></script>
+<script src="../../javascripts/branch-storeManagers/putDeleteStoreManagerOnBranch.js"></script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
