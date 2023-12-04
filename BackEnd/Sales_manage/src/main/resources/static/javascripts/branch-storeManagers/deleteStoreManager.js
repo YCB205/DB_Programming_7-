@@ -29,15 +29,3 @@ function deleteStoreManager() {
         });
 }
 
-function getIdOrdersheet(tagClass) {
-    var selectedRow = document.querySelector(tagClass);
-    var tdElements = selectedRow.querySelectorAll('td'); // tdElements[0]~[3] 까지만 유의미한 데이터임
-
-    var tdContentList = [];
-    tdElements.forEach(function (td) {
-        tdContentList.push(td.textContent.trim());
-    });
-
-    // 부모 페이지에 데이터 전달
-    return parseInt(tdContentList[0]);
-}

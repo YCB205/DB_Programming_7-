@@ -79,12 +79,11 @@ public class StoreManagerController {
     @ResponseBody
     public ResponseEntity<Void> deleteStoreManager(@PathVariable String idStoreManager, HttpSession session) {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
-        if (!"store_manager".equals(loggedInUserRole)) {
-            return ResponseEntity.badRequest().build();
-        } else {
-            // 서비스를 통해 주문서 및 관련 IncludeEntity 삭제
+        if ("manager".equals(loggedInUserRole)) {
             storeManagerService.deleteStoreManager(idStoreManager);
             return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 
