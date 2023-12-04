@@ -11,17 +11,26 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class StoreManagerDTO {
-    private String idStoreManager;
+    private String idStoremanager;
     private String passwd;
     private String name;
     private String email;
     private String phoneNumber;
 
 
-    public static StoreManagerDTO toMemberTestDTO(StoreManagerEntity storeManagerEntity) {
+    public static StoreManagerDTO toStoreManagerDTO(StoreManagerEntity storeManagerEntity) {
         StoreManagerDTO storeManagerDTO = new StoreManagerDTO();
-        storeManagerDTO.setIdStoreManager(storeManagerEntity.getIdStoremanager());
+        storeManagerDTO.setIdStoremanager(storeManagerEntity.getIdStoremanager());
         storeManagerDTO.setPasswd(storeManagerEntity.getPasswd());
+        storeManagerDTO.setName(storeManagerEntity.getName());
+        storeManagerDTO.setEmail(storeManagerEntity.getEmail());
+        storeManagerDTO.setPhoneNumber(storeManagerEntity.getPhoneNumber());
+        return storeManagerDTO;
+    }
+
+    public static StoreManagerDTO toStoreManagerDTONotInPasswd(StoreManagerEntity storeManagerEntity) {
+        StoreManagerDTO storeManagerDTO = new StoreManagerDTO();
+        storeManagerDTO.setIdStoremanager(storeManagerEntity.getIdStoremanager());
         storeManagerDTO.setName(storeManagerEntity.getName());
         storeManagerDTO.setEmail(storeManagerEntity.getEmail());
         storeManagerDTO.setPhoneNumber(storeManagerEntity.getPhoneNumber());

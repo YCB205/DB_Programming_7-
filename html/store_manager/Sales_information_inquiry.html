@@ -6,11 +6,31 @@
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 
     
 <style>
+/* 드롭다운 메뉴의 z-index를 더 높게 설정하여 위로 올리기 */
+.dropdown-menu {
+    position: relative;
+    z-index: 1001;
+}
+
+/* 테이블 헤더가 드롭다운 메뉴를 가리지 않도록 설정 */
+thead {
+    position: relative;
+    z-index: 1000; /* 드롭다운 메뉴보다 위에 위치하도록 설정 */
+}
+
+.section-content {
+            display: none; /* Hide section content by default */
+        }
+
+        .section-content.active {
+            display: block; /* Show section content when it has the 'active' class */
+        }
+
 .mainForJumjuSalesinfromationinquiryFormMain {
     margin: 30px; /* 위아래 여백 조절 */
     padding: 10px; /* 내부 여백 조절 */
@@ -82,6 +102,32 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
 }
+.brand_name_div span {
+        font-weight: 700;
+        letter-spacing: 0;
+        color: #ffffff;
+        -webkit-text-stroke: 1px #3E7E69;
+        position: relative;
+        }
+        .brand_name_div span:before {
+        content: "";
+        position: absolute;
+        left: -2%;
+        bottom: 10%;
+        height: 5px;
+        width: 55px;
+        background-color: #ffffff;
+        }
+        .brand_name_div span:after {
+        content: "";
+        position: absolute;
+        left: 5%;
+        bottom: 12%;
+        height: 1px;
+        width: 95%;
+        max-width: 255px;
+        background-color: #ffffff;
+        }
 
 
 
@@ -93,42 +139,81 @@
 <header class="header bg-primary">
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-2 g-0">
-                <span class="d-flex align-items-center justify-content-center fs-1 text-white" style="width: 100%; height: 100%;">BrandName</span>
-            </div>
+            <div class="row h-100">
+                <div class="col-2 g-0 brand_name_div">
+                    <a href="MainJumju.html">
+                        <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
+                        style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                    </a>
+                </div>
             <div class="col-1 g-0"></div>
-            <div class="col-1 g-0">
-                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
-                        매출
-                    </button>
-                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item text-white">매출 정보 조회</a></li>
-                        <li><a class="dropdown-item text-white">매출 정보 관리</a></li>
-                        <li><a class="dropdown-item text-white">주문서 등록</a></li>
+            <!-- 매출 Dropdown -->
+<div class="col-1 g-0">
+    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+            매출
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95; margin-top: -10px;">
+            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Sales_information_inquiry.html">매출 정보 조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="OrderManager.html">주문서 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="RegisterOrderForm.html">주문서 등록</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-1 g-0"></div>
+            
+            <!-- 상품 Dropdown -->
             <div class="col-1 g-0">
-                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
                     <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
-                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item text-white">상품 조회</a></li>
-                    </ul>
-                </div>
-            </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_inquiry.html">상품 조회</a></li>
+        </ul>
+    </div>
+</div>
+
+            <div class="col-1 g-0"></div>
+            <div class="col-2 g-0">
             <div class="col-6 g-0"></div>
         </div>
     </div>
 </header>
 <section class="section">
-    <div class="mainForJumjuSalesinformationinquiry">
-        <div class="mainForJumjuSalesinformationinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+    <section id="popupSection" class="section-content"></section>
+    <div class="mainForJumjuRegisterOrder">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
             <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">매출 정보 조회</h3>
         </div>
+        <div class="chart-and-table">
+            <div class="chart-section" id="chartSection"
+            style="width: 100%; padding-left: 1%; overflow: auto;">
+                <canvas id="myChart"></canvas>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('myChart');
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: [12, 19, 3, 5, 2, 3],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        <div class="table-section" id="tableSection">
         <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
         style="width: 100%; padding-left: 1%; overflow: auto;">
             <div class="scrollable-div w-100 h-100 product_table_div">
@@ -386,6 +471,7 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 <aside class="aside" style="border-left:2px solid #78c2ad;">
     <div class="first bg-teal">
@@ -418,12 +504,12 @@
             <div class="container-fluid h-100" style="">
                 <div class="row h-100" style="">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                    <div class="col d-flex align-items-center justify-content-center" onclick="showPopup('user_information_check.html',600,700)">
+                        <button type="button" class="btn btn-primary" >
                             회원정보
                         </button>
                     </div>
@@ -438,42 +524,33 @@
         <label class="form-check-label" for="optionsRadios1">Chart </label>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios2" value="option2" style="transform: scale(1.5);">
-        <label class="form-check-label" for="optionsRadios2">Table </label><br><br>
-    </div>
-
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-primary">Year -- Month -- Day</button>
-        <div class="btn-group" role="group">
-            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Year</a>
-                <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Month</a>
-                <a class="dropdown-item" style="color:rgb(0, 198, 122)" href="#">Day</a>
-            </div>
-        </div>
+        <label class="form-check-label" for="optionsRadios2">Table </label><br>
     </div>
     <div style="margin-left: 10px;">
-        <br>
-        시작일: <input id="fromDate" type="date">
-        <br>
-        종료일: <input id="toDate" type="date">
+        <form>
+            <div class="mb-3">
+                <label for="startDateTime" class="form-label">from</label>
+                <input type="datetime-local" class="form-control" id="startDateTime" aria-describedby="dateTimeHelp">
+                <label for="endDateTime" class="form-label">to</label>
+                <input type="datetime-local" class="form-control" id="endDateTime" aria-describedby="dateTimeHelp">
     </div>
 
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <div class="form-check-radio2">
-        <br>
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-        <label class="form-check-label" for="optionsRadios1">총 상품</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
-    </div>
-    <div class="searchButton">
-        <button type="button" button id="showPopup" class="btn btn-primary">Search</button>
-    </div>
-    <div class="mainForJumjuproductinquiryFormMainaside p-2" style="width: 100%;  overflow: auto; max-height: 300px;">
-        <div class="scrollable-div2 w-100 h-100 product_table_div">
-            <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+        <div class="form-check-radio2">
+            <br>
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+            <label class="form-check-label" for="optionsRadios1">총 상품</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
+        </div>
+        <div class="searchButton">
+            <button type="button" button id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager_AddProduct.html',600,700)">Search</button>
+        </div>
+        <div class="small-table-section" id="smallTableSection">
+        <div class="mainForJumjuproductinquiryFormMainaside p-2" style="width: 100%; overflow: auto; max-height: 300px;">
+            <div class="scrollable-div2 w-100 h-100 product_table_div">
+                <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;" id="productTable">
                 <thead class>
                     <tr class="table-primary sticky-top" style="font-size: 120%;">
                         <th scope="col">상품번호</th>
@@ -532,17 +609,76 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
     </div>
 </div>
 </aside>
+<script src="../../javascripts/userAPI/getUser.js"></script>
+  <script src="../../javascripts/module_popup/showPopup.js"></script>
+  <script src="../../javascripts/userAPI/logout.js"></script>
+  
+  <script>
+      window.addEventListener('message', function (event) {
+          if (event.data === 'refreshParent') {
+              location.reload(true);
+              window.close();
+          }
+      });
+  </script>
 <script>
-    document.getElementById('showPopup').addEventListener('click', function() {
-        var leftPosition = (screen.width - 600) / 2;
-        var topPosition = (screen.height - 570) / 2;
-        var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
-        //아래에 있는 user_impormation_check.html로 열림
-        window.open('OrderManager_AddProduct.html', 'Popup', options);
-    });
+   toggleDisplay();
+
+function toggleDisplay() {
+    var chartSection = document.getElementById('chartSection');
+    var tableSection = document.getElementById('tableSection');
+    var smallTableSection = document.getElementById('smallTableSection');
+
+    var chartRadio = document.getElementById('searchRadios1');
+    var tableRadio = document.getElementById('searchRadios2');
+    var totalProductRadio = document.getElementById('optionsRadios1');
+
+    if (chartRadio.checked) {
+        chartSection.style.display = 'block';
+        tableSection.style.display = 'none';
+        smallTableSection.style.display = 'none';
+    } else if (tableRadio.checked) {
+        chartSection.style.display = 'none';
+        tableSection.style.display = 'block';
+        toggleSmallTableVisibility();
+    } else if (totalProductRadio.checked) {
+        smallTableSection.style.display = 'none';
+    }
+}
+
+function toggleSmallTableVisibility() {
+    var smallTableSection = document.getElementById('smallTableSection');
+    var productRadio = document.getElementById('optionsRadios2');
+
+    if (productRadio.checked) {
+        smallTableSection.style.display = 'block';
+    } else {
+        smallTableSection.style.display = 'none';
+    }
+}
+
+function toggleSmallTable() {
+    toggleSmallTableVisibility();
+}
+
+var radios = document.getElementsByName('searchRadios');
+radios.forEach(function (radio) {
+    radio.addEventListener('change', toggleDisplay);
+});
+
+var productRadio = document.getElementById('optionsRadios2');
+productRadio.addEventListener('change', toggleSmallTable);
+
+// 추가된 부분: 총상품 라디오 버튼에 대한 이벤트 처리
+var totalProductRadio = document.getElementById('optionsRadios1');
+totalProductRadio.addEventListener('change', function () {
+    var smallTableSection = document.getElementById('smallTableSection');
+    smallTableSection.style.display = 'none';
+});
 </script>
 </body>
 </html>

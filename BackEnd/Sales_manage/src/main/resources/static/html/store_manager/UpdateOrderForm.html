@@ -21,23 +21,57 @@
             .product_table_thead th { font-size: medium; padding: 0.8em .5em; vertical-align: middle;}
             .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
             .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
-            .product_table_tbody .delete_td{background-color: transparent; border: transparent; padding-left: auto;padding-right: 0;}
+            .product_table_tbody .delete_td{background-color: transparent; border: transparent; padding-left: 0.7%; padding-right: 0;}
 
-            .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
-            .product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
+            .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+6) {background-color: #ffffff;}
+            .product_table_tbody tr:nth-child(2n) td:nth-child(-n+6) {background-color: #EBFCFF;}
             .highlighted {background-color: #9addeb !important;}
+
+            .product_table_thead th:nth-child(1),
+            .product_table_tbody td:nth-child(1) {
+                width: 13%;
+            }
+
+            .product_table_thead th:nth-child(2),
+            .product_table_tbody td:nth-child(2) {
+                width: 15%;
+            }
+
+            .product_table_thead th:nth-child(3),
+            .product_table_tbody td:nth-child(3) {
+                /*width: 30%;*/
+            }
+
+            .product_table_thead th:nth-child(4),
+            .product_table_tbody td:nth-child(4) {
+                width: 13%;
+            }
+
+            .product_table_thead th:nth-child(5),
+            .product_table_tbody td:nth-child(5) {
+                width: 13%;
+            }
+            .product_table_thead th:nth-child(6),
+            .product_table_tbody td:nth-child(6) {
+                width: 15%;
+            }
+            .product_table_thead th:nth-child(7),
+            .product_table_tbody td:nth-child(7) {
+                width: 0%;
+            }
+
         }
-        
+
 /* .back_ground {
   position: fixed;
-  z-index: 1; 
-  padding-top: 100px; 
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; 
+  width: 100%;
   height: 100%;
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.4); 
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
 } */
 
 .circle-square {width: 50px;height: 50px;background-color: #78C2AD; border-radius: 10%; position: relative; margin-right: 18px; margin-top: 38px;}
@@ -47,19 +81,19 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(180deg);; 
+            transform: translate(-50%, -50%) rotate(180deg);;
         }
 
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 <div class="back_ground">
   <div id="main">
     <div class="card border-primary mb-3">
         <div class="card-header"></div>
         <div class="card-body">
-          
-          <div class="scrollable-div w-100 align-items-center" style="height: 21%;">         
+
+          <div class="scrollable-div w-100 align-items-center" style="height: 21%;">
             <div style="display: flex; justify-content: flex-start;">
               <div class="circle-square">
                 <div class="triangle"></div>
@@ -68,26 +102,21 @@
                   <thead class>
                   <tr class="table-primary sticky-top" style="font-size: 120%;">
                       <th scope="col">주문번호</th>
-                      <th scope="col">날짜 및 시간</th>
+                      <th scope="col">날짜-시간</th>
                       <th scope="col">매출액</th>
                       <th scope="col">영업이익</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr class="table-light">
-                      <th scope="row">1</th>
-                      <td>Column content</td>
-                      <td>Column content</td>
-                      <td>Column content</td>
-                  </tr>
-          
+                  <tbody id="orderTableBody">
+
+
                   </tbody>
               </table>
             </div>
         </div>
 
         <div class="product_table_div">
-        
+
           <table class="product_table">
             <thead class="product_table_thead">
             <tr>
@@ -96,82 +125,29 @@
                 <th style="position:sticky; top:0px;">상품명</th>
                 <th style="position:sticky; top:0px;">원가</th>
                 <th style="position:sticky; top:0px;">판매가</th>
+                <th style="position:sticky; top:0px;">판매수량</th>
             </tr>
             </thead>
-            <tbody class="product_table_tbody">
-            <tr>
-                <td>James</td>
-                <td>Matman</td>
-                <td>(713) 123-8965</td>
-                <td>test</td>
-                <td>01/13/1979</td>
-                <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-                <td>Johnny</td>
-                <td>Smith</td>
-                <td>(713) 584-9614</td>
-                <td>test</td>
-                <td>06/09/1971</td>
-                <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-                <td>Susan</td>
-                <td>Johnson</td>
-                <td>(713) 847-1124</td>
-                <td>test</td>
-                <td>08/25/1965</td>
-                <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-                <td>Tracy</td>
-                <td>Richardson</td>
-                <td>(713) 245-4821</td>
-                <td>test</td>
-                <td>03/13/1980</td>
-                <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-              <td>Tracy</td>
-              <td>Richardson</td>
-              <td>(713) 245-4821</td>
-              <td>test</td>
-              <td>03/13/1980</td>
-              <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-              <td>Tracy</td>
-              <td>Richardson</td>
-              <td>(713) 245-4821</td>
-              <td>test</td>
-              <td>03/13/1980</td>
-              <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
-            <tr>
-              <td>Tracy</td>
-              <td>Richardson</td>
-              <td>(713) 245-4821</td>
-              <td>test</td>
-              <td>03/13/1test</td>
-              <td class="delete_td"><img src="../../image/Icon_delete.png" alt=""></td>
-            </tr>
+            <tbody class="product_table_tbody" id="productTableBody">
+
+
             </tbody>
         </table>
         </div>
 
         <div style="height: 8%; display: flex; justify-content: flex-end;">
-          <button type="button" class="btn btn-primary" style="margin-right: 0;" onclick="showPopup('./UpdateOrderFormAddProduct.html',620,625)">상품추가</button>
+          <button type="button" class="btn btn-primary" style="margin-right: 0;" onclick="showPopup('./UpdateOrderFormAddProduct.html',660,661)">상품추가</button>
         </div>
 
 
-        
+
         </div>
         <div class="card-footer">
-            <button type="button" class="btn btn-info">수 정</button>
+            <button type="button" onclick="putOrderSheet()" class="btn btn-info">수 정</button>
             <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
         </div>
       </div>
-</div> 
+</div>
 </div>
 
 
@@ -179,33 +155,234 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/OrderSheet/putOrderSheet.js"></script>
 <script>
+
+    window.addEventListener('message', function (event) {
+        if (event.data === 'UpdateProduct') {
+            addProduct();
+        }
+    });
+
+    function deleteProduct(){
+        // 현재 클릭된 이미지의 부모 요소인 td를 찾음
+        var td = event.target.closest('td');
+
+        // 현재 클릭된 이미지의 부모 요소인 tr을 찾음
+        var tr = td.closest('tr');
+
+        // tr을 삭제
+        tr.remove();
+        updateOrderRow();
+    }
   //취소버튼 구현
 document.getElementById('closeBtn').addEventListener('click', function () {
     window.close();
   });
 
-//테이블에 마우스 올릴때 배경색 변경 코드
-var rows = document.getElementsByClassName('product_table_tbody')[0].getElementsByTagName('tr');
+     var storedData = localStorage.getItem('myData');
 
-for (var i = 0; i < rows.length; i++) {
-  rows[i].addEventListener('mouseover', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      if (!tds[j].classList.contains('delete_td')) {
-        tds[j].classList.add('highlighted');
+     if (storedData) {
+         var myData = JSON.parse(storedData);
+         var orderData = myData.orderData;
+         var productData = myData.productData;
+         localStorage.clear();
+     }
+      // 주문 정보 동적으로 추가
+      var orderTableBody = document.getElementById('orderTableBody');
+
+      var orderRow = document.createElement('tr');
+      orderRow.classList.add("table-light");
+      for (var i = 0; i < orderData.length - 1; i++) {
+          var td = document.createElement('td');
+          if (i === 0) {
+              td.setAttribute('scope', 'row');
+          }
+          if(i >= 2){td.textContent = 0;}
+          else {td.textContent = orderData[i];}
+
+          orderRow.appendChild(td);
       }
-    }
-  });
+      orderTableBody.appendChild(orderRow);
 
-  rows[i].addEventListener('mouseout', function () {
-    var tds = this.getElementsByTagName('td');
-    for (var j = 0; j < tds.length; j++) {
-      tds[j].classList.remove('highlighted');
-    }
-  });
-}
+      // 제품 정보 동적으로 추가
+      var productTableBody = document.getElementById('productTableBody');
 
+
+        for (var i = 1; i < productData.length; i += 6) {
+            var productRow = document.createElement('tr');
+            for (var j = i; j < i + 6; j++) {
+                var td = document.createElement('td');
+                if (j%6===0){
+                    td.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()"
+                onblur="setDefaultIfEmpty(this)" onkeydown="preventNegativeInput(event)" value="${convertStringToNumber(productData[j])}" >`;
+                } else {
+                    td.textContent = productData[j];
+                }
+                productRow.appendChild(td);
+            }
+
+          // Add the 6th td with the delete button
+          var deleteTd = document.createElement('td');
+          deleteTd.classList.add('delete_td')
+          deleteTd.innerHTML=`<img onclick="deleteProduct()" src="../../image/Icon_delete.png" alt="">`
+          productRow.appendChild(deleteTd);
+
+          productTableBody.appendChild(productRow);
+      }
+
+
+
+    function addProduct() {
+        var storedData = localStorage.getItem('addProduct');
+
+        if (storedData) {
+            var productData = JSON.parse(storedData);
+            localStorage.removeItem('addProduct'); // 데이터를 가져온 후 키 삭제
+
+            var productTableBody = document.getElementById('productTableBody');
+
+            for (var i = 0; i < productData.length; i++) {
+                var rowData = productData[i];
+                var productNumber = rowData[1];
+
+                // 이미 존재하는 상품 번호와 일치하는 경우 추가하지 않음
+                if (isProductNumberExist(productTableBody, productNumber)) {
+                    console.log('Product with number ' + productNumber + ' already exists. Skipping...');
+                    alert(`상품번호 ${productNumber} ${rowData[2]}는 이미 주문서에 있습니다!`)
+                    continue;
+                }
+
+                var productRow = document.createElement('tr');
+
+                for (var j = 0; j < rowData.length; j++) {
+                    var td = document.createElement('td');
+
+                    td.textContent = rowData[j];
+                    productRow.appendChild(td);
+                }
+                var inputTd = document.createElement('td');
+                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()"
+                    onkeydown="preventNegativeInput(event)" onblur="setDefaultIfEmpty(this)" value="${1}" >`;
+                productRow.appendChild(inputTd);
+
+                // Add the 7th td with the delete button
+                var deleteTd = document.createElement('td');
+                deleteTd.classList.add('delete_td');
+                deleteTd.innerHTML = `<img onclick="deleteProduct()" src="../../image/Icon_delete.png" alt="">`;
+                productRow.appendChild(deleteTd);
+
+                productTableBody.appendChild(productRow);
+            }
+
+            updateOrderRow();
+        }
+    }
+
+    // 상품 번호가 이미 존재하는지 확인하는 함수
+    function isProductNumberExist(productTableBody, productNumber) {
+        var existingRows = productTableBody.getElementsByTagName('tr');
+
+        for (var i = 0; i < existingRows.length; i++) {
+            var existingProductNumber = existingRows[i].getElementsByTagName('td')[1].textContent;
+            if (existingProductNumber === productNumber) {
+                return true;  // 이미 존재하는 경우 true 반환
+            }
+        }
+
+        return false;  // 존재하지 않는 경우 false 반환
+    }
+
+
+
+
+    // input 값이 변경될 때 호출되는 함수
+    function updateOrderRow() {
+        var orderRow = document.getElementById('orderTableBody').getElementsByTagName('tr')[0];
+        var orderCells = orderRow.getElementsByTagName('td');
+
+        // productTableBody에 있는 tr들의 5번째, 6번째 td들의 값을 각각 int로 변환하여 배열에 저장
+        //원가 계산
+        var productRows = document.getElementById('productTableBody').getElementsByTagName('tr');
+        var productCosts = Array.from(productRows).map(function (row) {
+            var cost = convertStringToNumber(row.getElementsByTagName('td')[3].textContent);
+            var quantity = convertStringToNumber(row.getElementsByClassName('numberInput')[0].value);
+            return cost * quantity;
+        });
+
+        //판매가 계산
+        var productPrices = Array.from(productRows).map(function (row) {
+            var quantity = convertStringToNumber(row.getElementsByClassName('numberInput')[0].value);
+            var price = convertStringToNumber(row.getElementsByTagName('td')[4].textContent);
+            return price * quantity;
+
+        });
+
+
+        // 원가 합산 계산
+        var totalCost = productCosts.reduce(function (acc, val) {
+            return acc + val;
+        }, 0);
+
+        // 판매가 합산으로 매출액 계산
+        var totalSales = productPrices.reduce(function (acc, val) {
+            return acc + val;
+        }, 0);
+
+        //영업 이익 = 매출액 - 원가 합산
+        var totalProfit = totalSales - totalCost
+
+        orderCells[2].textContent = totalSales + "원";
+        orderCells[3].textContent = totalProfit + "원";
+
+    }
+
+    // 문자열에서 숫자 부분을 추출하는 함수
+    function convertStringToNumber(str) {
+        var numberStr = str.match(/\d+/);
+        return numberStr ? parseInt(numberStr[0]) : 0;
+    }
+
+    updateOrderRow();
+
+    //음수 입력방지 함수
+    function preventNegativeInput(event) {
+        var keyCode = event.which || event.keyCode;
+
+        // 눌린 키가 마이너스 기호("-")인지 확인합니다.
+        if (keyCode === 189 || keyCode === 109) {
+            event.preventDefault();
+        }
+    }
+// 입력필드의 값이 비어있는 경우 자동으로 1로 입력되는 함수
+    function setDefaultIfEmpty(inputElement) {
+        // 입력 필드의 값이 비어 있는 경우 1로 설정합니다.
+        if (!inputElement.value.trim()) {
+            inputElement.value = 1;
+        }
+    }
+
+
+//테이블에 마우스 올릴때 배경색 변경 코드
+      var rows = document.getElementsByClassName('product_table_tbody')[0].getElementsByTagName('tr');
+
+      for (var i = 0; i < rows.length; i++) {
+          rows[i].addEventListener('mouseover', function () {
+              var tds = this.getElementsByTagName('td');
+              for (var j = 0; j < tds.length; j++) {
+                  if (!tds[j].classList.contains('delete_td')) {
+                      tds[j].classList.add('highlighted');
+                  }
+              }
+          });
+
+          rows[i].addEventListener('mouseout', function () {
+              var tds = this.getElementsByTagName('td');
+              for (var j = 0; j < tds.length; j++) {
+                  tds[j].classList.remove('highlighted');
+              }
+          });
+      }
 
 </script>
 </body>

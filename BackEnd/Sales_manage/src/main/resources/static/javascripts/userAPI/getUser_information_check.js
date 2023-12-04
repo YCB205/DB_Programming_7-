@@ -10,11 +10,11 @@ fetch(apiUrl)
             document.getElementById('phoneNumber').value = data.phoneNumber;
             document.getElementById('officeName').value = data.officeName;
         } else if(data.position==="매니저"){
-            document.getElementById('brandName').textContent = data.brandName;
-            document.getElementById('name').textContent = data.name;
-            document.getElementById('email').textContent = data.email;
-            document.getElementById('idStoreManager').textContent = data.idManager;
-            document.getElementById('phoneNumber').textContent = data.phoneNumber;
+            document.getElementById('brandName').value = data.brandName;
+            document.getElementById('name').value = data.name;
+            document.getElementById('email').value = data.email;
+            document.getElementById('idManager').value = data.idManager;
+            document.getElementById('phoneNumber').value = data.phoneNumber;
         } else {return null;}
 
     })
