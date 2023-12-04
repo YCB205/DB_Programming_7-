@@ -2,8 +2,6 @@ package com.Sales_manage.Sales_manage.brand_office.controller;
 
 import com.Sales_manage.Sales_manage.brand_office.service.BrandOfficeService;
 import com.Sales_manage.Sales_manage.brand_office.dto.BrandOfficeDTO;
-import com.Sales_manage.Sales_manage.orderSheet.dto.MerchandiseRequest;
-import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +35,21 @@ public class BrandOfficeController {
         return null;
     }
 
+    @GetMapping("/closedBranch")
+    @ResponseBody
+    public List<BrandOfficeDTO> getBranchStoreManagers(
+            @RequestParam(name = "officeName", required = false) String officeName, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if ("manager".equals(loggedInUserRole)) {
+            System.out.println("46번째 줄 실행");
+            List<BrandOfficeDTO> result = brandOfficeService.getClosedBranch(officeName);
+            return result;
+        } else {
+            ResponseEntity.badRequest().build();
+        }
+        return null;
+    }
+
     @PutMapping("/branch-storeManagers")
     @ResponseBody
     public ResponseEntity<Void> updateBranch(
@@ -45,7 +58,23 @@ public class BrandOfficeController {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
         if ("manager".equals(loggedInUserRole)) {
             // 서비스를 통해 주문서 업데이트 수행
+            System.out.println(brandOfficeDTO);
             brandOfficeService.updateBranch(brandOfficeDTO);
+            return ResponseEntity.ok().build();
+        } else {
+            ResponseEntity.badRequest().build();
+        }
+        return null;
+    }
+
+    @PutMapping("/deleteStoreManagerOnBranch")
+    @ResponseBody
+    public ResponseEntity<Object> deleteStoreManagerOnBranch(
+            @RequestParam(name = "idBrandOffice", required = false) Long idBrandOffice, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if ("manager".equals(loggedInUserRole)) {
+            System.out.println("78번 실행"+ idBrandOffice);
+            brandOfficeService.deleteStoreManagerOnBranch(idBrandOffice);
             return ResponseEntity.ok().build();
         } else {
             ResponseEntity.badRequest().build();

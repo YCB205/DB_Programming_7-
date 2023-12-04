@@ -12,6 +12,9 @@ import java.util.Optional;
 public interface BrandOfficeRepository extends JpaRepository<BrandOfficeEntity, Long> {
     BrandOfficeEntity findByIdStoremanger(StoreManagerEntity idStoremanger);
     List<BrandOfficeEntity> findByOfficeNameContaining(String officeName);
+    List<BrandOfficeEntity> findByOfficeNameContainingAndOperationalStatusIsTrue(String officeName);
+    List<BrandOfficeEntity> findByOfficeNameContainingAndOperationalStatusIsFalse(String officeName);
+
 
     @Query("SELECT bo.idBrandoffice FROM BrandOfficeEntity bo JOIN bo.idStoremanger sm WHERE sm.idStoremanager = :loggedInUserId")
     Long findIdBrandOfficeByLoggedInUserId(@Param("loggedInUserId") String loggedInUserId);

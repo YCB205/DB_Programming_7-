@@ -16,7 +16,7 @@ public class BrandOfficeDTO {
     private String address;
     private Long idBrand;
     private String idStoreManager;
-
+    private boolean operationalStatus;
 
     public static BrandOfficeDTO toBrandOfficeDTO(BrandOfficeEntity brandOfficeEntity) {
         BrandOfficeDTO brandOfficeDTO = new BrandOfficeDTO();
@@ -24,7 +24,17 @@ public class BrandOfficeDTO {
         brandOfficeDTO.setOfficeName(brandOfficeEntity.getOfficeName());
         brandOfficeDTO.setAddress(brandOfficeEntity.getAddress());
         brandOfficeDTO.setIdBrand(brandOfficeEntity.getIdBrand().getIdBrand());
-        brandOfficeDTO.setIdStoreManager(brandOfficeEntity.getIdStoremanger().getIdStoremanager());
+
+        // idStoremanger에 대한 null 체크 추가
+        if (brandOfficeEntity.getIdStoremanger() != null) {
+            brandOfficeDTO.setIdStoreManager(brandOfficeEntity.getIdStoremanger().getIdStoremanager());
+        } else {
+            // idStoremanger가 null인 경우 처리
+            brandOfficeDTO.setIdStoreManager(null);
+            // 예외를 throw하거나, 메시지를 로그하거나, 기본값을 설정하는 등의 처리를 추가할 수 있습니다.
+        }
+
+        brandOfficeDTO.setOperationalStatus(brandOfficeEntity.isOperationalStatus());
         return brandOfficeDTO;
     }
 }
