@@ -98,12 +98,12 @@ public class UserService {
     }
 
 
-    public String checkPasswd(String loggedInUserId, String passwd) {
+    public boolean checkPasswd(String loggedInUserId, String passwd) {
         ManagerEntity manager = managerRepository.findById(loggedInUserId).orElse(null);
         if (manager != null && manager.getPasswd().equals(passwd)) {
-            return "success";
+            return true;
         } else {
-            return "The password does not match";
+            return false;
         }
     }
 }
