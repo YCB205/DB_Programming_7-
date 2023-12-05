@@ -88,6 +88,31 @@ public class StoreManagerController {
     }
 
 
+    @GetMapping("/checkedStoreManagerId")
+    @ResponseBody
+    public ResponseEntity<String> checkPasswd(@RequestParam String idStoremanager, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
+        if ("manager".equals(loggedInUserRole)) {
+            if (storeManagerService.checkStoreManagerId(idStoremanager)){
+                return ResponseEntity.ok("success");
+            }
+        }
+
+        // 비밀번호가 일치하지 않을 때
+        return ResponseEntity.badRequest().body("The password does not match");
+    }
+
+    @PostMapping("/storeManagers")
+    @ResponseBody
+    public ResponseEntity<String> createStoreManager(@RequestBody StoreManagerDTO storeManagerDTO) {
+        try {
+            storeManagerService.createStoreManager(storeManagerDTO);
+            return new ResponseEntity<>("Store Manager created successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error creating Store Manager", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 

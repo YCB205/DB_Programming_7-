@@ -1,18 +1,24 @@
-function postBranch() {
+function postStoreManager(){
+
+
     // 각 input 태그에서 값을 읽어옴
-    const idStoreManager = document.querySelector('#idStoreManager').value;
-    const officeName = document.querySelector('#officeName').value;
-    const address = document.querySelector('#address').value;
+    const storeManagerName = document.querySelector('#storeManagerName').value;
+    const idStoremanager = document.querySelector('#idStoremanager').value;
+    const passwd = document.querySelector('#passwd').value;
+    const phoneNumber = document.querySelector('#phoneNumber').value;
+    const email = document.querySelector('#email').value;
 
     // 서버에게 보낼 데이터 객체 생성
     const data = {
-        idStoreManager: idStoreManager,
-        officeName: officeName,
-        address: address
+        idStoremanager: idStoremanager,
+        name: storeManagerName,
+        passwd: passwd,
+        phoneNumber: phoneNumber,
+        email: email
     };
 
     // 서버에게 POST 요청 보내기
-    fetch('/branch', {
+    fetch('/storeManagers', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,7 +35,7 @@ function postBranch() {
         .then(result => {
             // 서버의 응답 데이터에 따른 동작 수행
             console.log('Server response:', result);
-            alert(`${officeName}지점을 생성했습니다.`)
+            alert(`${storeManagerName} 점주 회원을 생성했습니다.`)
             location.reload();
         })
         .catch(error => {
