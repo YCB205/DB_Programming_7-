@@ -45,7 +45,7 @@ public class StoreManagerController {
                 result.put("name", storeManagerEntity.getName());
                 result.put("email", storeManagerEntity.getEmail());
                 result.put("phoneNumber", storeManagerEntity.getPhoneNumber());
-                result.put("officeName", brandOfficeEntity.getOfficeName());
+//                result.put("officeName", brandOfficeEntity.getOfficeName());
                 result.put("position", "점주");
             } else {
                 List<StoreManagerDTO> filterStoreManagers = storeManagerService.getFilterName(name);

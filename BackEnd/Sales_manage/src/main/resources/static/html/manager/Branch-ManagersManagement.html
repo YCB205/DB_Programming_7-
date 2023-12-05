@@ -126,9 +126,9 @@ thead {
                         지점 및 점주
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Membership Management.html">지점 및 점주 계정 관리</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
+                        <li><a href="Branch-ManagersManagement.html" class="dropdown-item fw-bold" style="color: #3E7E69;">지점 및 점주 계정 관리</a></li>
+                        <li><a href="Createanewbranch.html" class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
+                        <li><a href="CreateanewStoreManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
                     </ul> 
                 </div>
             </div>
@@ -209,8 +209,8 @@ thead {
     <div class="first bg-teal">
         <div class="firstchild1 m-0" style="padding-bottom: 0%; padding-top: 8%;">
             <div class="firstchild3 bg-white" style="height: 80%; width: 77%;">
-                <span id="officeName" class="d-flex align-items-center justify-content-start fw-bold"
-                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; margin-left: 5%;">공주대 천안캠</span>
+                <span class="d-flex align-items-center justify-content-start fw-bold"
+                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; margin-left: 5%;">SalesManager</span>
             </div>
         </div>
         <div class="firstchild1">
@@ -273,7 +273,8 @@ thead {
                     </div>
                 </form>
             </div>
-            <div style=" margin-left: 5%; margin-right: 5%; position: relative; top: 48%; ">
+            <div style=" margin-left: 5%; margin-right: 5%; position: relative; top: 40%; ">
+                <button onclick="showPopup('storeManagerManagement.html',660,661)" type="button" class="btn btn-info" style="width: calc(100%); margin-bottom: 7px">점주 계정 관리</button>
                 <button onclick="showPopup('closedBranchManagement.html',660,661)" type="button" class="btn btn-secondary" style="width: calc(100%);">폐업 지점 관리</button>
             </div>
         </div>
@@ -301,6 +302,16 @@ thead {
             event.preventDefault(); // "Enter" 키의 기본 동작 방지
             getBranchStoreManagers()
         }
+    }
+
+    function CheckDelete(brandOfficeId) {
+        // 알람을 이용하여 사용자에게 메시지를 표시
+        var confirmation = confirm("해당 지점에서 점주 정보를 삭제하시겠습니끼?");
+
+        // 확인 버튼이 클릭되었을 때의 처리
+        if (confirmation) {
+            putDeleteStoreManagerOnBranch(brandOfficeId); // 삭제 함수 호출
+        } else {}
     }
 
     // 마우스 올릴때 테이블 색깔 변경 코드

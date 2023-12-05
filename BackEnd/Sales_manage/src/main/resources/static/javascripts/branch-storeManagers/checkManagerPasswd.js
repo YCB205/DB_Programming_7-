@@ -30,6 +30,6 @@ function checkManagerPasswd() {
         .catch(error => {
             // 오류 발생 시 처리
             console.error('Error getting store managers:', error);
-            alert('서버 오류가 발생했습니다.');
+            alert('비밀번호가 틀렸습니다!');
         });
 }

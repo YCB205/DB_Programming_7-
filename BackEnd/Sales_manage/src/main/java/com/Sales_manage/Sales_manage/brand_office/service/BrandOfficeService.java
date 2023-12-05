@@ -112,4 +112,10 @@ public class BrandOfficeService {
         assert brandOffice != null;
         brandOffice.setIdStoremanger(null);
     }
+
+    public void deleteBrandOffice(Long idBrandOffice) {
+        BrandOfficeEntity brandOfficeEntity = brandOfficeRepository.findById(idBrandOffice).orElse(null);
+        assert brandOfficeEntity != null;
+        brandOfficeRepository.delete(brandOfficeEntity);
+    }
 }

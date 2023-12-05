@@ -12,6 +12,8 @@
             .form-control{width: 300px; display: inline; margin: 15px;}
             .form-group{display: flex; justify-content: flex-end; margin-right: 60px;}
             #passwordMismatch{position: absolute; left: 45%; top: 43%; }
+            #deleteBtn{position: relative; left: -54%; background-color: #e81d1d; border-color: #e81d1d;
+            }
 
             .form-group select:focus {
                 border: 1px solid #78C2AD;
@@ -75,6 +77,7 @@
 
         </div>
         <div class="card-footer">
+            <button onclick="checkUserPasswd()" type="button" id="deleteBtn" class="btn btn-info">지점 삭제</button>
             <button type="button" id="updateBtn" class="btn btn-info">수 정</button>
             <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
         </div>
@@ -84,9 +87,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/branch-storeManagers/putBranch.js"></script>
+<script src="../../javascripts/branch-storeManagers/deleteBranch.js"></script>
 <script>
     document.getElementById('closeBtn').addEventListener('click', function () {
         window.close();
+    });
+
+
+    function checkUserPasswd(){
+        showPopup('manager_passwd_check.html',600,300);
+    }
+    window.addEventListener('message', function (event) {
+        if (event.data === 'deleteStoreManager'){
+            deleteBranch();
+        }
     });
 
 
@@ -100,26 +114,7 @@
         }
     });
 
-
-    var storedData = localStorage.getItem('myData');
-
-    if (storedData) {
-        var myData = JSON.parse(storedData);
-        var branch = myData.branch;
-        localStorage.clear();
-    }
-    // 주문 정보 동적으로 추가
-    document.getElementById('idBrandOffice').value = branch[0];
-    document.getElementById('officeName').value = branch[1];
-    document.getElementById('name').value = branch[2];
-    document.getElementById('address').value = branch[3];
-    document.getElementById('idStoreManager').value = branch[6];
-    document.getElementById('updateBtn').addEventListener('click', function () {
-        putBranch();
-    });
-
-
-    function disableName () {
+    function disableName() {
         // Get the selected value
         var selectedValue = document.getElementById('operationalStatus').value;
 
@@ -135,6 +130,27 @@
             console.log('Disabled attribute removed from name input');
         }
     }
+
+
+
+    var storedData = localStorage.getItem('myData');
+
+    if (storedData) {
+        var myData = JSON.parse(storedData);
+        var branch = myData.branch;
+        localStorage.clear();
+    }
+    // 주문 정보 동적으로 추가
+    document.getElementById('idBrandOffice').value = branch[0];
+    document.getElementById('officeName').value = branch[1];
+    document.getElementById('address').value = branch[2];
+    document.getElementById('operationalStatus').value = 'N';
+    disableName();
+    document.getElementById('updateBtn').addEventListener('click', function () {
+        putBranch();
+    });
+
+
 
 
 </script>
