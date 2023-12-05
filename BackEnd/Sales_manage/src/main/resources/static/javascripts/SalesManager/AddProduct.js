@@ -3,6 +3,7 @@
 window.onload =function () {
     console.log('세컨드 창이 열렸습니다.');
     const btn = document.getElementById('registerBtn');
+    console.log(btn);
     btn.addEventListener('click',function (){
         const trList = registerBtn();
         localStorage.removeItem('table_info');

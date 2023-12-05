@@ -5,38 +5,50 @@
     <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+        .table-success th, .table-success td {
+            background-color: #d9f2eb;
+            color: black;
+        }
+
         .scrollable-div {
             overflow-y: auto;
             max-height: 500px;
         }
+
         .scroll::-webkit-scrollbar {
             display: none;
         }
+
         .form-check-input:checked {
             background-color: #78c2ad;
             border-color: #78c2ad;
         }
+
         .form-check-input:checked[type=radio] {
-            --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
+            --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns= 'http://www.w3.org/2000/svg' viewBox= '-4 -4 8 8' %3e%3ccircle r= '2' fill= '%23fff' /%3e%3c/svg%3e);
         }
+
         .form-check-input:checked {
             background-color: #78c2ad;
             border-color: #78c2ad;
         }
+
         .form-check-input[type=radio] {
             border-radius: 50%;
         }
+
         .form-check .form-check-input {
             float: left;
             margin-left: -1.5em;
         }
+
         .form-check-input {
             --bs-form-check-bg: var(--bs-body-bg);
             flex-shrink: 0;
@@ -74,24 +86,30 @@
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a href="Sales%20information%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
-                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 관리</a></li>
-                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
+                        <li><a href="Sales%20information%20inquiry.html" class="dropdown-item fw-bold"
+                               style="color: #3E7E69;">매출 정보 조회</a></li>
+                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보
+                            관리</a></li>
+                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서
+                            등록</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2"
+                            data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a href="product%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
+                        <li><a href="product%20inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">상품
+                            조회</a></li>
                     </ul>
                 </div>
             </div>
@@ -101,36 +119,43 @@
 </header>
 <section class="section">
     <div class="mainForJumjuSalesinformationinquiry">
-        <div class="mainForJumjuSalesinformationinquiryFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+        <div class="mainForJumjuSalesinformationinquiryFormHeader gradient-primary-reverse d-flex align-items-center"
+             style="width: 30%;">
             <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">매출 정보 조회</h3>
         </div>
-        <div class="mainForJumjuSalesinfromationinquiryFormMain p-2"
-             style="width: 100%; padding-left: 1%; overflow: auto;">
-            <div>
+        <div class="mainForJumjuSalesinfromationinquiryFormMain p-2 overflow-y-auto"
+             style="width: 100%; padding-left: 1%;">
+            <div id="showTable">
                 <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                     <thead class>
                     <tr class="table-primary" style="font-size: 120%;">
-                        <th scope="col" class="col-20">품목명</th>
-                        <th scope="col" class="col-20">상품번호</th>
-                        <th scope="col" class="col-20">상품명</th>
-                        <th scope="col" class="col-20">영업이익</th>
-                        <th scope="col" class="col-20">총매출</th>
+                        <th scope="col" class="col-2">품목명</th>
+                        <th scope="col" class="col-2">상품번호</th>
+                        <th scope="col" class="col-2">상품명</th>
+                        <th scope="col" class="col-2">영업이익</th>
+                        <th scope="col" class="col-2">총매출</th>
+                        <th scope="col" class="col-2">판매 여부</th>
                     </tr>
                     </thead>
                 </table>
+                <!--</div>-->
+                <div class="scrollable-div scroll-hidden w-100 h-100 m-0 p-0" style="">
+                    <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="scroll w-100 h-100 m-0 p-0" style="display: none">
-                <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                    <tbody id = "tbody">
-                    </tbody>
-                    <tbody id = "tbody2">
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="scroll w-100 h-100 m-0 p-0" style="border: 1px solid red;">
+            <div class="w-100 h-100 m-0 p-0 scrollable-div scroll-hidden" id="showChart">
                 <canvas id="div2" style="width: 100%; height: 70vh;"></canvas>
-                <canvas id="div3" style="width: 100%; height: 70vh;"></canvas>
+                <div class="d-flex w-100" style=" height: 70vh;">
+                    <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
+                        <canvas id="div3"></canvas>
+                    </div>
+                    <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                        <canvas id="div4"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -153,7 +178,8 @@
             </div>
         </div>
         <div class="firstchild1">
-            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white"
+                 style="height: 60%;">
                 직급:
             </div>
             <div class="firstchild3">
@@ -170,7 +196,8 @@
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('user_information_check.html',600,691)">
+                        <button type="button" class="btn btn-primary"
+                                onclick="showPopup('user_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -195,7 +222,8 @@
     </div>
     <div class="form-check-radio2">
         &nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+               checked="">
         <label class="form-check-label" for="optionsRadios1">총 상품 </label>
         &nbsp;&nbsp;&nbsp;
         <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
@@ -206,39 +234,56 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;
         <button type="button" class="btn btn-primary" id="fetchData">
-            &nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>
     </div>
     <br>
-    <div class="border" style="width: 100%; height: 60%;" id="showPopup" >
+
+    <div class="overflow-y-auto scroll" style="width: 100%; height: 60%;" id="showPopup">
         <table class="search table">
             <thead>
-            <tr class="text-center" >
-                <th scope="col" style="background-color:rgb(0, 198, 122)">상품 번호</th>
-                <th scope="col" style="background-color:rgb(0, 198, 122)">상품명</th>
+            <tr class="text-center">
+                <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
             </tr>
             </thead>
-            <tbody id="chart">
-            <!--            <tr>-->
-            <!--                <td scope="row">001</td>-->
-            <!--                <td>아이스 아메리카노</td>-->
-            <!--            </tr>-->
-            <!--            <tr>-->
-            <!--                <td scope="row">002</td>-->
-            <!--                <td>아메리카노</td>-->
-            <!--            </tr>-->
-            <!--            <tr>-->
-            <!--                <td scope="row">003</td>-->
-            <!--                <td>아이스 카페라떼</td>-->
-            <!--            </tr>-->
-            </tbody>
         </table>
+        <div class="scrollable-div scroll-hidden w-100 h-100 m-0 p-0" style="">
+            <table class="search table">
+                <tbody id="chart">
+                <tr class="text-center">
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
+                </tr>
+                <tr class="text-center">
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
+                </tr>
+                <tr class="text-center">
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
+                </tr>
+                <tr class="text-center">
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
+                </tr>
+                <tr class="text-center">
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
+                    <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
     </div>
 </aside>
 <script src="../../javascripts/SalesManager/SaleManager.js" type="module">
-
 </script>
+<script src="../../javascripts/userAPI/getUser.js"></script>
+<script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/userAPI/logout.js"></script>
 <script>
-    document.getElementById('showPopup').addEventListener('click', function() {
+    document.getElementById('showPopup').addEventListener('click', function () {
         var leftPosition = (screen.width - 600) / 2;
         var topPosition = (screen.height - 570) / 2;
         var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'

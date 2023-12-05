@@ -22,6 +22,8 @@ window.onload = function () {
     endDate.addEventListener('change',function () {
         checkTimeValid();
     })
+    //라디오 선택 될 때 마다 값 바꿔주기
+    showChart();
 }
 
 //시간을 입력받아 현재 시간이 유효한지 확인하기
@@ -68,29 +70,24 @@ function getTime(){
 
 //fetch함수 부르기
 function getFetch(startdate, enddate){
-    const product = "";
+    const product =[];
     const startDate = convertTimeType(startdate);
     const endDate = convertTimeType(enddate);
-    const url = `/orderSheet?search_merchandise=${product}&startDateTime=${startDate}&endDateTime=${endDate}`;
+    console.log(startDate.toString());
+    const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
+            console.log(data);
             addTableRow(data);
             // drawLineChart();
         })
 }
 
 function addTableRow(data){
-    console.log(data);
     let index = 0;
     const tbody = document.getElementById('tbody');
-    data.sort((a,b) => new Date(a.orderTime) - new Date(b.orderTime));
     for(const ordersheet of data){
-
-        labels.push(ordersheet.orderTime);
-        salesData.push(ordersheet.sales);
-        profitsData.push(ordersheet.profit);
-        for(const product of ordersheet.merchandise){
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
             const th = document.createElement('th');
@@ -98,76 +95,101 @@ function addTableRow(data){
             const td2 = document.createElement('td');
             const td3 = document.createElement('td');
             const td4 = document.createElement('td');
+            const td5 = document.createElement('td');
 
             th.setAttribute('scope','row');
             if(index === 0){
-                td.setAttribute('class','col-20');
-                td2.setAttribute('class','col-20');
-                td3.setAttribute('class','col-20');
-                td4.setAttribute('class','col-20');
+                td.setAttribute('class','col-2');
+                td2.setAttribute('class','col-2');
+                td3.setAttribute('class','col-2');
+                td4.setAttribute('class','col-2');
+                td5.setAttribute('class','col-2');
             }
 
-            th.textContent = product.categori;
-            td.textContent = product.id_merchandise;
-            td2.textContent = product.merchandiseName;
-            td3.textContent = ordersheet.profit;
-            td4.textContent = ordersheet.sales;
+            th.textContent = ordersheet[0];
+            td.textContent = ordersheet[1];
+            td2.textContent = ordersheet[2];
+            td3.textContent = ordersheet[4];
+            td4.textContent = ordersheet[5];
+            td5.textContent = ordersheet[3];
             tr.appendChild(th);
             tr.appendChild(td);
             tr.appendChild(td2);
             tr.appendChild(td3);
             tr.appendChild(td4);
+            tr.appendChild(td5);
+            console.log(tr);
             tbody.appendChild(tr);
             index++;
-        }
-
+            //맵을 생성
+            if(myMap.has(ordersheet[0])){
+                let netProfit = myMap.get(ordersheet[0])[0];
+                let totalsales = myMap.get(ordersheet[0])[1];
+                let list = [];
+                list.push(netProfit + ordersheet[4]);
+                list.push(totalsales + ordersheet[5]);
+                myMap.set(ordersheet[0],list);
+            }
+            else{
+                let list = [];
+                list.push(ordersheet[4]);
+                list.push(ordersheet[5]);
+                myMap.set(ordersheet[0],list);
+            }
     }
     index = 0;
+    drawBarChart();
+    drawDoughnut();
+    drawDoughnut2();
+    const showChart = document.getElementById('showChart');
+    showChart.style.display = 'none';
 }
+//바 차트를 위한 맵
+const myMap = new Map();
+
 //라인 차트 그리기
 const labels = [];
 const salesData = [];
 const profitsData = [];
 
-//원형 차트 그리기
-const doughnutLabel = [];
-const doughnutData = [];
-
-function drawLineChart() {
+function drawBarChart() {
     const ctx = document.getElementById('div2').getContext('2d');
-    const myLineChart = new Chart(ctx, {
-        type: 'line',
+    ctx.display = 'none';
+    myMap.forEach((value,key)=>{
+        labels.push(key);
+        salesData.push(value[0]);
+        profitsData.push(value[1]);
+    })
+    const myBarChart = new Chart(ctx, {
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [
                 {
-                    label: 'Sales',
+                    label: '순이익',
                     data: salesData,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
-                    fill: false
+                    fill: true
                 },
                 {
-                    label: 'Profit',
+                    label: '매출액',
                     data: profitsData,
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 2,
-                    fill: false,
-                    type: 'line' // 이 데이터셋에 대한 차트 유형을 설정 (라인 차트)
+                    fill: true
                 }
             ]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    type: 'category',
-                    position: 'bottom'
+            plugins: {
+                legend: {
+                    position: 'top',
                 },
-                y: {
-                    type: 'linear',
-                    position: 'left'
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart'
                 }
             }
         }
@@ -176,22 +198,59 @@ function drawLineChart() {
 }
 
 
-// function drawDoughnut(){
-//     const ctx = document.getElementById('div3').getContext('2d');
-//     const myDoughnut = new Chart(ctx,{
-//         type: 'doughnut',
-//         data:{
-//
-//         }
-//     })
-// }
+function drawDoughnut(){
+    const ctx = document.getElementById('div3').getContext('2d');
+    ctx.display = 'none';
+    const myDoughnut = new Chart(ctx,{
+        type: 'doughnut',
+        data:{
+            labels: labels,
+            datasets: [{
+                label:'매출액',
+                data: salesData
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: '매출액'
+                }
+            }
+        }
+    })
+}
 
-// function append(tr){
-//
-//     const chart = document.getElementById('chart');
-//     chart.appendChild(tr);
-//     console.log(chart);
-// }
+function drawDoughnut2(){
+    const ctx = document.getElementById('div4').getContext('2d');
+    ctx.display = 'none';
+    const myDoughnut = new Chart(ctx,{
+        type: 'doughnut',
+        data:{
+            labels: labels,
+            datasets: [{
+                label:'매출액',
+                data: profitsData
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: '매출액'
+                }
+            }
+        }
+    })
+}
 
 window.addEventListener('message',function (event){
     if(event.data === 'HTMLClosed'){
@@ -205,9 +264,34 @@ window.addEventListener('message',function (event){
             td1.setAttribute('scope','row');
             td1.textContent = value.id.toString();
             td2.textContent = value.name.toString();
+            td1.setAttribute('class','col-2');
+            td2.setAttribute('class','col-4');
             tr.appendChild(td1);
             tr.appendChild(td2);
             chart.append(tr);
         })
     }
 })
+
+//showChart
+function showChart(){
+    const radioButtons = document.querySelectorAll('input[name="searchRadios"]');
+    const showTable = document.getElementById('showTable');
+    const showChart = document.getElementById('showChart');
+    radioButtons.forEach((radio) => {
+        radio.addEventListener('change', function() {
+            // 라디오 버튼의 값이 변경되었을 때 실행될 코드를 작성합니다.
+            //차트 보기를 선택했을 때
+            console.log(this.value);
+            if(this.value === "option1"){
+                showChart.style.display="";
+                showTable.style.display='none';
+            }
+            else{
+                showChart.style.display="none";
+                showTable.style.display="";
+            }
+
+        });
+    });
+}
