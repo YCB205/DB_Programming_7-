@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <style>
+        #main{
+            .card.border-primary.mb-3{ width: 600px;height: 600px;margin: 0 auto; display: flex;}
+            .card-header{background-color: #78C2AD; height: 30px;}
+            .card-body{ height: 515px;}
+            .body_first{width: 100%; height: 70%; display: flex; justify-content: center; flex-direction: column;}
+            .input_store_name{width: 60%; height: 80%; line-height: 80%; border: 3px solid #78C2AD;  border-radius: 10px; padding-left: 15px;  margin-top: 5px;}
+
+            .body_second{width: 100%; height: 30%; border-bottom: 3px solid #89cfdd; color: #000000; font-weight: bold;}
+
+            .card-footer {display: flex; justify-content: flex-end;}
+            .card-footer .btn{margin-left: 10px;}
+            .form-control{width: 300px; display: inline; margin: 15px;}
+            .form-group{display: flex; justify-content: flex-end; margin-right: 60px;}
+
+            .product_table_div{height: 74%; overflow-y: scroll;}
+            .product_table_div::-webkit-scrollbar {display: none;}
+
+            .product_table {font-size: .9em;width: 100%; height: 100%; border-collapse: collapse;
+              text-align: center;vertical-align: middle; margin: 0; padding: 0;}
+            .product_table_thead th { font-size: medium; padding: 0.8em .5em; vertical-align: middle;}
+            .product_table_thead {position: sticky; top: 0px; font-weight: bold;color: #fff;background: #89cfdd; }
+            .product_table_tbody td {border-bottom: 1px solid #89cfdd; padding: 0em .5em; vertical-align: middle; color: rgb(36, 36, 36);}
+
+            .product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
+            .product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
+            .highlighted {background-color: #9addeb !important;}
+
+            .product_table_thead th:nth-child(1),
+            .product_table_tbody td:nth-child(1) {
+                width: 15%;
+            }
+
+            .product_table_thead th:nth-child(2),
+            .product_table_tbody td:nth-child(2) {
+                width: 15%;
+            }
+
+            .product_table_thead th:nth-child(3),
+            .product_table_tbody td:nth-child(3) {
+                /*width: 30%;*/
+            }
+
+            .product_table_thead th:nth-child(4),
+            .product_table_tbody td:nth-child(4) {
+                width: 13%;
+            }
+
+            .product_table_thead th:nth-child(5),
+            .product_table_tbody td:nth-child(5) {
+                width: 13%;
+            }
+        }
+        
+/* .back_ground {
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4);
+} */
+
+.circle-square {width: 50px;height: 50px;background-color: #78C2AD; border-radius: 10%; position: relative; margin-right: 18px; margin-top: 38px;}
+
+.triangle {width: 0;height: 0;border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-bottom: 20px solid #fff; /* Set border color to white */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);; 
+        }
+
+    </style>
+</head>
+<body style="overflow: hidden">
+<div class="back_ground">
+  <div id="main">
+    <div class="card border-primary mb-3">
+        <div class="card-header"></div>
+        <div class="card-body">
+          
+          <div class="scrollable-div w-100 align-items-center" style="height: 21%; margin-bottom: 3px;">         
+            <div class="body_first">
+              <div style="display: flex; justify-content: center; ">
+                <img onclick="getClosedBranch()" src="../../image/Icon_serch.png" alt="" style="width: 10%;">
+                <input onkeydown="if (event.key === 'Enter') getClosedBranch()" class="input_store_name" type="text" value="" placeholder="지점 명을 입력하세요.">
+              </div>
+            </div>
+            <div class="body_second">검색결과</div>
+          </div>
+
+        <div class="product_table_div">
+        
+          <table class="product_table">
+            <thead class="product_table_thead">
+            <tr>
+                <th style="position:sticky; top:0px;">지점번호</th>
+                <th style="position:sticky; top:0px;">지점명</th>
+                <th style="position:sticky; top:0px;">주소</th>
+            </tr>
+            </thead>
+            <tbody class="product_table_tbody">
+            <tr>
+                <td>커피</td>
+                <td>7</td>
+                <td>브라운 슈가 오트 쉐이큰 에스프레소</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                    <i class="bi bi-pencil-square"></i></a></td>
+            </tr>
+            <tr>
+                <td>커피</td>
+                <td>7</td>
+                <td>merchandiseName</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                    <i class="bi bi-pencil-square"></i></a></td>
+                
+            </tr>
+            <tr>
+                <td>커피</td>
+                <td>7</td>
+                <td>merchandiseName</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                    <i class="bi bi-pencil-square"></i></a></td>
+                
+            </tr>
+            <tr>
+                <td>초콜릿</td>
+                <td>12</td>
+                <td>merchandiseName</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                    <i class="bi bi-pencil-square"></i></a></td>
+            </tr>
+
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+        <div class="card-footer">
+            <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫 기</button>
+        </div>
+      </div>
+</div> 
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
+<script src="../../javascripts/branch-storeManagers/getClosedBranch.js"></script>
+<script>
+  //취소버튼 구현
+document.getElementById('closeBtn').addEventListener('click', function () {
+    window.close();
+  });
+
+
+  function getChoiceData() {
+      var choiceData = [];
+      var choiceRows = document.getElementsByClassName('choiceValue');
+
+      for (var i = 0; i < choiceRows.length; i++) {
+          var tds = choiceRows[i].getElementsByTagName('td');
+          var rowData = [];
+
+          for (var j = 0; j < tds.length; j++) {
+              rowData.push(tds[j].textContent);
+          }
+
+          choiceData.push(rowData);
+      }
+
+      localStorage.setItem('addProduct', JSON.stringify(choiceData));
+      window.opener.postMessage('UpdateProduct', '*');
+      window.close();
+  }
+
+
+
+
+</script>
+</body>
+</html>
