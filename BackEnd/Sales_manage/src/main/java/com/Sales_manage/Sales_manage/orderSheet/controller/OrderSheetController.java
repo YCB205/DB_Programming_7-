@@ -6,7 +6,6 @@ import com.Sales_manage.Sales_manage.orderSheet.service.OrderSheetService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +58,29 @@ public class OrderSheetController {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
         List<Object[]> salesData = orderSheetService.getAllSalesData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
+        // 역할이 store_manager인지 확인
+        if (salesData.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(salesData);
+
+    }
+
+    @GetMapping("/chartOrderproducts")
+    @ResponseBody
+    public ResponseEntity<List<Object[]>> getchartorderproducts(
+            @RequestParam("search_merchandise") List<String> searchMerchandiseValue,
+            @RequestParam("startDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
+            @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
+            HttpSession session) {
+
+
+        // 로그인한 사용자의 역할과 아이디 확인
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
+        List<Object[]> salesData = orderSheetService.getAllChartData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
         // 역할이 store_manager인지 확인
         if (salesData.isEmpty()) {
             return ResponseEntity.badRequest().build();
