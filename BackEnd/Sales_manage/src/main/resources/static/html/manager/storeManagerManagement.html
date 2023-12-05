@@ -34,21 +34,25 @@
 
             .product_table_thead th:nth-child(1),
             .product_table_tbody td:nth-child(1) {
-                width: 15%;
+                width: 16%;
             }
 
             .product_table_thead th:nth-child(2),
             .product_table_tbody td:nth-child(2) {
-                width: 40%;
+                width: 20%;
             }
 
             .product_table_thead th:nth-child(3),
             .product_table_tbody td:nth-child(3) {
-                width: 40%;
+                width: 27%;
             }
 
             .product_table_thead th:nth-child(4),
             .product_table_tbody td:nth-child(4) {
+                width: 27%;
+            }
+            .product_table_thead th:nth-child(5),
+            .product_table_tbody td:nth-child(5) {
                 padding-right: 0px;
             }
         }
@@ -87,8 +91,8 @@
           <div class="scrollable-div w-100 align-items-center" style="height: 21%; margin-bottom: 3px;">         
             <div class="body_first">
               <div style="display: flex; justify-content: center; ">
-                <img onclick="getClosedBranch()" src="../../image/Icon_serch.png" alt="" style="width: 10%;">
-                <input onkeydown="if (event.key === 'Enter') getClosedBranch()" class="input_store_name" type="text" value="" placeholder="지점 명을 입력하세요.">
+                <img onclick="getStoreManagersIntoManagement()" src="../../image/Icon_serch.png" alt="" style="width: 10%;">
+                <input onkeydown="if (event.key === 'Enter') getStoreManagersIntoManagement()" class="input_store_name" type="text" value="" placeholder="이름을 입력하세요.">
               </div>
             </div>
             <div class="body_second">검색결과</div>
@@ -99,32 +103,28 @@
           <table class="product_table">
             <thead class="product_table_thead">
             <tr>
-                <th style="position:sticky; top:0px;">지점번호</th>
-                <th style="position:sticky; top:0px;">지점명</th>
-                <th style="position:sticky; top:0px;">주소</th>
+                <th style="position:sticky; top:0px;">이름</th>
+                <th style="position:sticky; top:0px;">아이디</th>
+                <th style="position:sticky; top:0px;">이메일</th>
+                <th style="position:sticky; top:0px;">전화번호</th>
+                <th style="position:sticky; top:0px; background-color: #ffffff"></th>
             </tr>
             </thead>
             <tbody class="product_table_tbody">
             <tr>
-                <td>idBrandOffice</td>
-                <td>officeName</td>
-                <td>address</td>
-                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                <td>name</td>
+                <td>idStoreManager</td>
+                <td>email</td>
+                <td>phoneNumber</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupStoreManager('UpdateMembershipManagement.html',660,661)">
                     <i class="bi bi-pencil-square"></i></a></td>
             </tr>
             <tr>
                 <td>idBrandOffice</td>
                 <td>officeName</td>
                 <td>address</td>
-                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
-                    <i class="bi bi-pencil-square"></i></a></td>
-                
-            </tr>
-            <tr>
-                <td>idBrandOffice</td>
-                <td>officeName</td>
-                <td>address</td>
-                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                <td>phoneNumber</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupStoreManager('UpdateMembershipManagement.html',660,661)">
                     <i class="bi bi-pencil-square"></i></a></td>
                 
             </tr>
@@ -132,7 +132,17 @@
                 <td>idBrandOffice</td>
                 <td>officeName</td>
                 <td>address</td>
-                <td><a class="btn btn-info" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                <td>phoneNumber</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupStoreManager('UpdateMembershipManagement.html',660,661)">
+                    <i class="bi bi-pencil-square"></i></a></td>
+                
+            </tr>
+            <tr>
+                <td>idBrandOffice</td>
+                <td>officeName</td>
+                <td>address</td>
+                <td>phoneNumber</td>
+                <td><a class="btn btn-info" target="_self" onclick="showPopupStoreManager('UpdateMembershipManagement.html',660,661)">
                     <i class="bi bi-pencil-square"></i></a></td>
             </tr>
 
@@ -152,8 +162,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
-<script src="../../javascripts/branch-storeManagers/getClosedBranch.js"></script>
-<script src="../../javascripts/branch-storeManagers/showPopupUpdateClosedBranch.js"></script>
+<script src="../../javascripts/branch-storeManagers/getStoreManagersIntoManagement.js"></script>
+<script src="../../javascripts/branch-storeManagers/showPopupStoreManager.js"></script>
 <script>
   //취소버튼 구현
 document.getElementById('closeBtn').addEventListener('click', function () {

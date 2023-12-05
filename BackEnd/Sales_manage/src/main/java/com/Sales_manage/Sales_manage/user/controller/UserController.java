@@ -47,12 +47,17 @@ public class UserController {
     public ResponseEntity<String> checkPasswd(@RequestParam String passwd, HttpSession session) {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
         if ("manager".equals(loggedInUserRole)) {
             if (userService.checkPasswd(loggedInUserId, passwd)){
                 return ResponseEntity.ok("success");
-            } 
-        }  return ResponseEntity.badRequest().body("The password does not match");
+            }
+        }
+
+        // 비밀번호가 일치하지 않을 때
+        return ResponseEntity.badRequest().body("The password does not match");
     }
+
 
     @GetMapping("/user")
     @ResponseBody

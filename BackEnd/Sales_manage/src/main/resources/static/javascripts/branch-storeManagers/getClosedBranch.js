@@ -1,4 +1,4 @@
-getClosedBranch()
+getClosedBranch();
 function getClosedBranch() {
     const officeName = document.querySelector('.input_store_name').value;
 
@@ -11,100 +11,42 @@ function getClosedBranch() {
     })
         .then(response => response.json())
         .then(data => {
-            // 성공적으로 처리된 경우의 동작
-            console.log('Data successfully received:', data);
-            // generateBranchStoreManagerTable(data);
-
+            // 데이터가 성공적으로 받아진 경우의 동작
+            console.log('데이터 성공적으로 수신:', data);
+            generateBranchStoreManagerTable(data);
         })
         .catch(error => {
             // 오류 발생 시 처리
-            console.error('Error getting products:', error);
+            console.error('폐점 정보를 가져오는 중 오류 발생:', error);
         });
 }
 
 function generateBranchStoreManagerTable(data) {
-    // Clear existing table rows
-    const tableBody = document.getElementById('table-body');
+    // 기존의 테이블 행을 지웁니다.
+    const tableBody = document.querySelector('.product_table_tbody');
     tableBody.innerHTML = '';
 
-    // Iterate over each brand office and related store manager in the data
-    data.forEach((brandAndStoreManagers, index) => {
-        // Check if there is at least one store manager for the brand office
-        if (brandAndStoreManagers.length > 1) {
-            // Create and append the main brand office row
-            const mainRow = createTableRow(brandAndStoreManagers[0], brandAndStoreManagers[1], index, index % 2 === 0 ? 'table-light-ycb' : 'table-success');
-            tableBody.appendChild(mainRow);
-
-            // Create and append the store manager row
-            const storeManagerRow = createStoreManagerRow(brandAndStoreManagers[0], brandAndStoreManagers[1], index);
-            tableBody.appendChild(storeManagerRow);
-        }
+    // 각 브랜드 오피스에 대해 반복합니다.
+    data.forEach((brandOffice, index) => {
+        // 브랜드 오피스 행을 생성하고 추가합니다.
+        const row = createTableRow(brandOffice, index);
+        tableBody.appendChild(row);
     });
 }
 
-// Modify the createTableRow function to accept the brand office data
-function createTableRow(brandOffice, storeManager, index, rowClass) {
+function createTableRow(brandOffice, index) {
     const row = document.createElement('tr');
-    row.classList.add(rowClass, `branchTable${index + 1}`);
-    row.setAttribute('data-bs-toggle', 'collapse');
-    row.setAttribute('data-bs-target', `#collapseExample${index + 1}`);
-    row.setAttribute('aria-expanded', 'false');
-    row.style.borderBottom = '#78c2ad';
+    row.classList.add(`branchTable${index}`);
     row.innerHTML = `
-        <td class="col-2 text-center m-0">${brandOffice.idBrandOffice}</td>
-        <td class="col-3 text-center m-0">${brandOffice.officeName}</td>
-        <td class="col-2 text-center m-0">${storeManager.name}</td>
-        <td class="col-4 text-center m-0">${brandOffice.address}</td>
-        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px; background-color: #fff;">
-            <a style="width: 80%" class="btn btn-primary" target="_self" onclick="showPopupUpdateBranch('updateBranch.html',600,508,\`tr.branchTable${index + 1}\` )">
+   
+        <td>${brandOffice.idBrandOffice}</td>
+        <td>${brandOffice.officeName}</td>
+        <td>${brandOffice.address}</td>
+        <td>
+            <a class="btn btn-info" target="_self" 
+            onclick="showPopupUpdateClosedBranch('updateClosedBranch.html',600,508,\`tr.branchTable${index}\` )">
                 <i class="bi bi-pencil-square"></i>
             </a>
         </td>`;
-
     return row;
 }
-
-// Modify the createStoreManagerRow function to accept the store manager data
-function createStoreManagerRow(brandOffice, storeManager, index) {
-    const row = document.createElement('tr');
-    row.className = 'collapse';
-    row.id = `collapseExample${index + 1}`;
-    row.innerHTML = `
-        <td colspan="4" style="background-color: #e0e0e0;">
-            <div class="product_table_div">
-                <table class="product_table">
-                    <thead class="product_table_thead">
-                        <tr>
-                            <th style="position:sticky; top:0px;">아이디</th>
-                            <th style="position:sticky; top:0px;">이름</th>
-                            <th style="position:sticky; top:0px;">이메일</th>
-                            <th style="position:sticky; top:0px;">전화번호</th>
-                        </tr>
-                    </thead>
-                    <tbody class="product_table_tbody">
-                        ${generateStoreManagerRow(storeManager, brandOffice.idBrandOffice)}
-                    </tbody>
-                </table>
-            </div>
-        </td>`;
-
-    return row;
-}
-
-// Modify the generateStoreManagerRows function to generate a single store manager row
-function generateStoreManagerRow(storeManager, brandOfficeId) {
-    return `
-        <tr>
-            <td>${storeManager.idStoremanager}</td>
-            <td>${storeManager.name}</td>
-            <td>${storeManager.email}</td>
-            <td>${storeManager.phoneNumber}</td>
-            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #e0e0e0;">
-                <a class="btn btn-info" target="_self" onclick="showPopupStoreManager('storeManager_information_check.html',600,617, ${storeManager.idStoremanager})">
-                <i class="bi bi-pencil-square"></i></a>
-                <a class="btn btn-info" onclick="putDeleteStoreManagerOnBranch(${brandOfficeId})">
-                <i class="bi bi-trash"></i></a>
-            </td>
-        </tr>`;
-}
-
