@@ -1,0 +1,14 @@
+Mainadmin.html
+메인 페이지
+
+brand_management.html
+브랜드 관리
+
+Createanewbrand.html
+브랜드 생성
+
+manager_information_inquiry.html
+매니저 계정 관리
+
+CreateanewManager.html
+매니저 계정 생성

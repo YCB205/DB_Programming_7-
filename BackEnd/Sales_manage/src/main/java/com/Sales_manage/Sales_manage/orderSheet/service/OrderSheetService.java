@@ -150,6 +150,44 @@ public class OrderSheetService {
         return salesData;
     }
 
+    public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
+        List<Object[]> chartData;
+
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+        if ("store_manager".equals(loggedInUserRole)) {
+            // 'store_manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
+            if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
+                chartData = merchandiseRepository.findAllChartDataBetweenDates();
+            }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
+                chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+            }else if(startDate == null && endDate == null){
+                chartData = merchandiseRepository.findAllChartDataBetweenDates(productNames);
+            }else if(startDate != null && endDate != null){
+                chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate, productNames);
+            }else{
+                throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
+            }
+
+        } else {
+            // 'store_manager' 권한이 아니라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
+            Long idBrandOffice = brandOfficeRepository.findIdBrandOfficeByLoggedInUserId(loggedInUserId);
+            if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(idBrandOffice);
+            }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice);
+            }else if(startDate == null && endDate == null){
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(idBrandOffice, productNames);
+            }else if(startDate != null && endDate != null){
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice, productNames);
+            }else{
+                throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
+            }
+        }
+        return chartData;
+    }
+
     @Transactional
     public void updateOrderSheet(MerchandiseRequest merchandiseRequest) {
         Optional<OrderSheetEntity> orderSheetOptional = orderSheetRepository.findById(merchandiseRequest.getIdOrdersheet());
