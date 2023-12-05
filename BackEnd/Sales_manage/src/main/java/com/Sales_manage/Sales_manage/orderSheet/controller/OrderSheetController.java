@@ -67,6 +67,29 @@ public class OrderSheetController {
 
     }
 
+    @GetMapping("/chartOrderproducts")
+    @ResponseBody
+    public ResponseEntity<List<Object[]>> getchartorderproducts(
+            @RequestParam("search_merchandise") List<String> searchMerchandiseValue,
+            @RequestParam("startDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
+            @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
+            HttpSession session) {
+
+
+        // 로그인한 사용자의 역할과 아이디 확인
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
+        List<Object[]> salesData = orderSheetService.getAllChartData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
+        // 역할이 store_manager인지 확인
+        if (salesData.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(salesData);
+
+    }
+
 
 
     @PutMapping("/orderSheet")
