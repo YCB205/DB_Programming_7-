@@ -61,6 +61,48 @@ public class MerchandiseService {
         return response;
     }
 
+
+    public Map<String, List<Map<String, Object>>> getAllProducts(String productName, List<String> categories, String loggedInUserId) {
+        // 세션에서 로그인한 사용자의 ID 가져오기
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+        List<MerchandiseEntity> filteredList;
+
+        if (productName.isEmpty()) {
+            // productName이 비어 있을 경우 모든 상품 데이터 가져오기
+            filteredList = merchandiseRepository.findAll();
+        }
+
+        else {
+            // productName에 해당하는 상품 데이터만 가져오기
+            filteredList = merchandiseRepository.findByMerchandiseNameContaining(productName);
+        }
+
+        if (categories == null || categories.isEmpty()) {
+            categories = filteredList.stream()
+                    .map(MerchandiseEntity::getCategori)
+                    .distinct()
+                    .collect(Collectors.toList());
+        }
+
+        // 결과를 JSON으로 반환하기 위한 Map 구성
+        Map<String, List<Map<String, Object>>> response = new HashMap<>();
+
+        // 카테고리 별로 상품 리스트를 구성하여 Map에 추가
+        for (String category : categories) {
+            List<Map<String, Object>> categoryList = filteredList.stream()
+                    .filter(item -> item.getCategori().equals(category))
+                    .map(this::mapMerchandiseEntityAddSalesStatus)
+                    .collect(Collectors.toList());
+            System.out.println(categoryList);
+
+            response.put(category, categoryList);
+        }
+
+        return response;
+    }
+
 /*    public List<MerchandiseEntity> getProducts(String productName, List<String> categories, String loggedInUserId) {
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
@@ -91,6 +133,17 @@ public class MerchandiseService {
         mapped.put("merchandiseName", entity.getMerchandiseName());
         mapped.put("cost", entity.getCost());
         mapped.put("price", entity.getPrice());
+        return mapped;
+    }
+
+    // MerchandiseEntity를 Map<String, Object>으로 매핑하는 메서드
+    private Map<String, Object> mapMerchandiseEntityAddSalesStatus(MerchandiseEntity entity) {
+        Map<String, Object> mapped = new HashMap<>();
+        mapped.put("id_merchandise", entity.getId_merchandise());
+        mapped.put("merchandiseName", entity.getMerchandiseName());
+        mapped.put("cost", entity.getCost());
+        mapped.put("price", entity.getPrice());
+        mapped.put("sales_status", entity.isSalesStatus());
         return mapped;
     }
 }

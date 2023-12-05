@@ -29,6 +29,16 @@ public class MerchandiseController {
         return merchandiseService.getProductsOrder(productName, categories, loggedInUserId);
     }
 
+    @GetMapping("/allProducts")
+    @ResponseBody
+    public Map<String, List<Map<String, Object>>> getAllProducts(@RequestParam(value = "product_name") String productName,
+                                                                   @RequestParam(value = "category") List<String> categories,
+                                                                   HttpSession session)
+    {
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        return merchandiseService.getAllProducts(productName, categories, loggedInUserId);
+    }
+
 
     /*
     @GetMapping("/products")
