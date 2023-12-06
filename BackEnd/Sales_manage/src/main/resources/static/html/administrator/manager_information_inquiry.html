@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+<style>
+    /* 헤더 내 첫 번째 드롭다운 메뉴 */
+    .dropdown-menu {
+        position: absolute;
+        z-index: 1010;
+    }
+    
+    /* 테이블 헤더 */
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .checkbox-group-container {
+            max-height: 200px;  /* 최대 높이를 설정합니다. 필요에 따라 조절하세요. */
+            overflow-y: scroll;  /* 세로 스크롤을 표시하도록 설정합니다. */
+            -ms-overflow-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        .checkbox-group-container::-webkit-scrollbar{
+            display: none;
+        }
+    
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;  /* 체크박스들 사이의 간격을 조절합니다. */
+        }
+    
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+    
+    .mainForJumjuproductinquiryFormMain {
+        margin: 30px; /* 위아래 여백 조절 */
+        padding: 10px; /* 내부 여백 조절 */
+        max-width: calc(100% - 70px); /* 최대 너비 설정 (전체 너비에서 오른쪽 aside 너비를 뺀 값) */
+        overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    }
+    
+    .scrollable-div {
+        max-height: 700px;
+        overflow: hidden; /* 스크롤바를 숨김 */
+    }
+    
+    .product_table_div {
+        height: 74%;
+        overflow-y: scroll;
+    }
+    
+    .product_table_div::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
+    
+     .form-check-input:checked {
+        background-color: #78c2ad;
+        border-color: #78c2ad;
+    }
+    .form-check-input:checked[type=radio] {
+        --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
+    }
+    .form-check-input:checked {
+        background-color: #78c2ad;
+        border-color: #78c2ad;
+    }
+    .form-check-input[type=radio] {
+        border-radius: 50%;
+    }
+    .form-check .form-check-input {
+        float: left;
+        margin-left: -1.5em;
+    }
+    .form-check-input {
+        --bs-form-check-bg: var(--bs-body-bg);
+        flex-shrink: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.25em;
+        vertical-align: top;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: var(--bs-form-check-bg);
+        background-image: var(--bs-form-check-bg-image);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .brand_name_div span {
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #ffffff;
+            -webkit-text-stroke: 1px #3E7E69;
+            position: relative;
+            }
+            .brand_name_div span:before {
+            content: "";
+            position: absolute;
+            left: -2%;
+            bottom: 10%;
+            height: 5px;
+            width: 55px;
+            background-color: #ffffff;
+            }
+            .brand_name_div span:after {
+            content: "";
+            position: absolute;
+            left: 5%;
+            bottom: 12%;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #ffffff;
+            }
+    
+            .brand_name_div span {
+                font-weight: 700;
+                letter-spacing: 0;
+                color: #ffffff;
+                -webkit-text-stroke: 1px #3E7E69;
+                position: relative;
+            }
+            .brand_name_div span:before {
+                content: "";
+                position: absolute;
+                left: -2%;
+                bottom: 10%;
+                height: 5px;
+                width: 55px;
+                background-color: #ffffff;
+            }
+            .brand_name_div span:after {
+                content: "";
+                position: absolute;
+                left: 5%;
+                bottom: 12%;
+                height: 1px;
+                width: 95%;
+                max-width: 255px;
+                background-color: #ffffff;
+            }
+    
+    </style>
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
+<header class="header bg-primary">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-2 g-0 brand_name_div">
+                <a href="Mainadmin.html">
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
+                    style="width: 100%; height: 100%; margin-left: 15%;">AdminPage</span>
+                </a>
+            </div>
+
+            <div class="col-1 g-0"></div>
+            <div class="col-1 g-0">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                        브랜드
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95; margin-top: -10px;">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="brand_management.html">브랜드 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Createanewbrand.html">브랜드 생성</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-1 g-0">
+                <div class="dropdown h-100 d-flex justify-content-center align-items-center">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                        매니저
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="manager_information_inquiry.html">매니저 계정 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateanewManager.html">매니저 계정 생성</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 g-0"></div>
+        </div>
+    </div>
+</header>
+<section class="section">
+    <div class="mainForJumjuRegisterOrder">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center"
+             style="width: 30%;">
+            <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">매니저 계정 관리</h3>
+        </div>
+        <div class="mainForJumjuRegisterOrderFormAside">
+            <div style="height: 10%"></div>
+            <div class="rounded" style="background: #22523f; margin: 3px 3px 2px;">
+                <div class="text-center text-white fs-5"><strong>브랜드</strong></div>
+                <div class="bg-white" role="group"
+                     aria-label="Basic radio toggle button group">
+                    <form id="category" class="btn-group-vertical d-flex">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1">
+                        <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio1">BHC</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+                        <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio2">빽다방</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3">
+                        <label class="btn btn-outline-primary rounded-0 m-0" for="btnradio3">홍콩반점</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4">
+                        <label class="btn btn-outline-primary rounded-bottom-0 m-0" for="btnradio4">처갓집</label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mainForJumjuproductinquiryFormMain p-2">
+            <div class="scrollable-div w-100 h-100 product_table_div">
+                <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                    <thead class>
+                    <tr class="table-primary sticky-top" style="font-size: 120%;">
+                        <th scope="col">아이디</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">전화번호</th>
+                        <th scope="col">이메일</th>
+                        <th scope="col" style="background-color: #ffffff;"></th>
+                        <th scope="col" style="background-color: #ffffff;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">gd123</th>
+                        <td>고길동</td>
+                        <td>010-1234-5678</td>
+                        <td>gd123@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">dl321</th>
+                        <td>둘리</td>
+                        <td>010-9876-5432</td>
+                        <td>dl321@naver.com</td>
+                        <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary" target="_self" onclick="showPopupUpdateOrderSheet('UpdateMembershipManagement.html',660,661)">
+                                <i class="bi bi-pencil-square"></i></a>
+                            </td>
+                            <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #fff;">
+                            <a class="btn btn-primary">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+</section>
+<aside class="aside" style="border-left:2px solid #78c2ad;">
+    <div class="first bg-teal">
+        <div class="firstchild1 m-0" style="padding-bottom: 0%; padding-top: 8%;">
+            <div class="firstchild3 bg-white" style="height: 80%; width: 77%;">
+                <span class="d-flex align-items-center justify-content-start"
+                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; font-weight: 900; margin-left: 5%;">공주대 천안캠</span>
+            </div>
+        </div>
+        <div class="firstchild1">
+            <div class="p-1 fs-5 d-flex firstchild2 fw-bold text-white justify-content-end align-items-center text-white">
+                사용자:
+            </div>
+            <div class="firstchild3 p-1">
+                <span class="d-flex align-items-center fw-bold justify-content-start fs-5 text-white"
+                      style="width: 100%; height: 100%;">양창배</span>
+            </div>
+        </div>
+        <div class="firstchild1">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+                직급:
+            </div>
+            <div class="firstchild3">
+                <span class=" d-flex align-items-center c fs-5 text-white fw-bold"
+                      style="width: 100%; height: 60%;">알파메일</span>
+            </div>
+
+        </div>
+        <div class="firstchild1" style="">
+            <div class="container-fluid h-100" style="">
+                <div class="row h-100" style="">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-primary">
+                            로그아웃
+                        </button>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-primary" onclick="showPopup('manager_information_check.html',600,700)">
+                            회원정보
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+        <div class="second border">
+        <div class="form-group position-relative" style="width: 100%; height: 15%;">
+            <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
+                <br><input type="text" class="form-control" placeholder="브랜드 명을 입력하세요."
+                       aria-label="Recipient's productname" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+            </div>
+        </div>
+        </div>
+    </aside>
+<script src="../../javascripts/userAPI/getUser.js"></script>
+<script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/OrderSheet/showPopupUpdateOrderSheet.js"></script>
+<script src="../../javascripts/userAPI/logout.js"></script>
+<script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
+<script src="../../javascripts/OrderSheet/deleteOrderSheet.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get all checkboxes and add event listeners
+        const checkboxes = document.querySelectorAll(".btn-check");
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                handleCheckboxChange(checkbox.id);
+            });
+        });
+
+        // Function to handle checkbox change
+        function handleCheckboxChange(clickedCheckboxId) {
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.id !== clickedCheckboxId) {
+                    if (clickedCheckboxId === "btncheck") {
+                        checkbox.checked = false;  // 총지점 버튼을 누르면 나머지 체크박스들을 언체크
+                    } else {
+                        document.getElementById("btncheck").checked = false;  // 나머지 체크박스를 누르면 총지점 버튼을 언체크
+                    }
+                }
+            });
+        }
+    });
+</script>
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.data === 'refreshParent') {
+            location.reload(true);
+            window.close();
+        }
+    });
+</script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+        initializePage();
+    });
+
+    function initializePage() {
+        addRadioEventListeners();
+        toggleDisplay();
+    }
+
+    function addRadioEventListeners() {
+        var radios = document.getElementsByName('searchRadios');
+        radios.forEach(function (radio) {
+            radio.addEventListener('change', toggleDisplay);
+        });
+
+        var productRadio = document.getElementById('optionsRadios2');
+        productRadio.addEventListener('change', toggleSmallTable);
+
+        var totalProductRadio = document.getElementById('optionsRadios1');
+        totalProductRadio.addEventListener('change', toggleSmallTableVisibility);
+    }
+
+    function toggleDisplay() {
+        var chartSection = document.getElementById('chartSection');
+        var tableSection = document.getElementById('tableSection');
+        var smallTableSection = document.getElementById('smallTableSection');
+        var checkBoxContainer = document.querySelector('.btn-group-vertical');
+
+        var chartRadio = document.getElementById('searchRadios1');
+        var tableRadio = document.getElementById('searchRadios2');
+
+        if (chartRadio.checked) {
+            chartSection.style.display = 'block';
+            tableSection.style.display = 'none';
+            hideSmallTable();
+            checkBoxContainer.style.display = 'none';
+        } else if (tableRadio.checked) {
+            chartSection.style.display = 'none';
+            tableSection.style.display = 'block';
+            toggleSmallTableVisibility();
+            if (document.getElementById('optionsRadios2').checked) {
+                checkBoxContainer.style.display = 'block';
+            } else {
+                checkBoxContainer.style.display = 'none';
+            }
+        }
+    }
+
+    function toggleSmallTableVisibility() {
+        var smallTableSection = document.getElementById('smallTableSection');
+        var productRadio = document.getElementById('optionsRadios2');
+
+        if (productRadio.checked) {
+            smallTableSection.style.display = 'block';
+        } else {
+            smallTableSection.style.display = 'none';
+        }
+    }
+
+    function toggleSmallTable() {
+        toggleSmallTableVisibility();
+    }
+
+    function hideSmallTable() {
+        var smallTableSection = document.getElementById('smallTableSection');
+        smallTableSection.style.display = 'none';
+    }
+</script>
+<script>
+    const groupTh = document.querySelector('.group-th');
+  
+    groupTh.addEventListener('mouseover', () => {
+      groupTh.classList.add('hovered');
+    });
+  
+    groupTh.addEventListener('mouseout', () => {
+      groupTh.classList.remove('hovered');
+    });
+  </script>
+
+</body>
+</html>

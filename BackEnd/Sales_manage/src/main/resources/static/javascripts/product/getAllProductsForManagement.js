@@ -54,16 +54,18 @@ function getAllProducts() {
                         checkbox_group_right.appendChild(label);
                     }
                 }
+                    var index = 0;
 
                 for (let i = 0; i < products.length; i++) {
                     const product = products[i];
                     const row = document.createElement('tr');
 
+
                     // 카테고리명이 추가되는 경우
                     if (i % 2 === 0) {
-                        row.classList.add('table-light');
+                        row.classList.add('table-light', `productTable${index + 1}`);
                     } else {
-                        row.classList.add('table-success');
+                        row.classList.add('table-success', `productTable${index + 1}`);
                     }
 
                     // 첫 번째 td에는 카테고리명 추가
@@ -83,6 +85,17 @@ function getAllProducts() {
                         }
                         row.appendChild(cell);
                     }
+                    //수정버튼
+                    const updateButtonCell = document.createElement('td');
+                    updateButtonCell.style.backgroundColor = '#ffffff';
+                    updateButtonCell.style.borderBottomColor = '#ffffff';
+                    const updateButton = document.createElement('a');
+                    updateButton.setAttribute('class', 'btn btn-primary');
+                    updateButton.setAttribute('target', '_self');
+                    updateButton.setAttribute('onclick', `showPopupUpdateProduct('updateProduct.html',600,582,\`tr.productTable${index + 1}\`)`);
+                    updateButton.innerHTML = '<i class="bi bi-pencil-square"></i>';
+                    updateButtonCell.appendChild(updateButton);
+                    row.appendChild(updateButtonCell);
 
                     // 행을 tbody에 추가
                     tbody.appendChild(row);
