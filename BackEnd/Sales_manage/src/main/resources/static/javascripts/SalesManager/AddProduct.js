@@ -13,8 +13,8 @@ window.onload =function () {
         }
         for(let i = 0;i < trList.length; i++){
             let product = {
-                "id" : trList[i].children[0].textContent,
-                "name": trList[i].children[1].textContent
+                "id_merchandise" : trList[i].children[0].textContent,
+                "merchandiseName": trList[i].children[1].textContent
             }
             productsList.push(product);
         }
@@ -48,7 +48,9 @@ function fetchProduct(input){
 function addTableRow(data){
     const second_tbody = document.getElementById('second_tbody');
     destroyTable(second_tbody);
+    console.log(data);
     for(const category in data){
+        console.log(category);
         data[category].forEach(function (item, index){
 
             const tr = document.createElement('tr');
@@ -57,14 +59,9 @@ function addTableRow(data){
             td.textContent = item.id_merchandise;
             td1.textContent = item.merchandiseName;
 
-            if(index === 0)
-                td1.setAttribute('id',category);
-
             tr.appendChild(td);
             tr.appendChild(td1);
-
             tr.setAttribute('id',item.id_merchandise);
-            tr.setAttribute('class',category.toString());
 
             tr.addEventListener('dblclick', function () {
                 const tbodyfirst = document.getElementById('tbodyfirst');
@@ -122,18 +119,12 @@ function initTable(){
     const trList = JSON.parse(data);
     if(trList===null)
         return;
-    const chart = document.getElementById('tbodyfirst');
-    trList.productsList.forEach((value, index)=>{
-        const tr = document.createElement('tr');
-        const td1 = document.createElement('td');
-        const td2 = document.createElement('td');
-        td1.setAttribute('scope','row');
-        td1.textContent = value.id.toString();
-        td2.textContent = value.name.toString();
-        td1.setAttribute('class','col-2');
-        td2.setAttribute('class','col-4');
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        chart.append(tr);
-    })
+    addTableRow(trList);
+    const second_tbody = document.getElementById('second_tbody');
+    let doubleClickEvent = new MouseEvent("dblclick");
+    const trNodelist = second_tbody.querySelectorAll('tr');
+    for(let i =0; i < trNodelist.length;i++){
+        trNodelist[i].dispatchEvent(doubleClickEvent);
+    }
+    destroyTable(second_tbody);
 }
