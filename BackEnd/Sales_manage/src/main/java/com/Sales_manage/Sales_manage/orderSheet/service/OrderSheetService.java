@@ -152,7 +152,8 @@ public class OrderSheetService {
 
     public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> chartData;
-
+        int totalProfit = 0;
+        int totalSales = 0;
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
@@ -185,7 +186,22 @@ public class OrderSheetService {
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
         }
-        return chartData;
+        if(chartData.isEmpty()){
+            return chartData;
+        }else{
+            for (Object[] data : chartData) {
+                int profit = ((Number) data[1]).intValue();
+                int sales = ((Number) data[2]).intValue();
+
+                totalProfit += profit;
+                totalSales += sales;
+            }
+
+            Object[] totalData = new Object[]{"총매출", totalProfit, totalSales};
+            chartData.add(totalData);
+            return chartData;
+        }
+
     }
 
     @Transactional
