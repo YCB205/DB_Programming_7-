@@ -1,15 +1,16 @@
 package com.Sales_manage.Sales_manage.merchandise.controller;
 
 
+import com.Sales_manage.Sales_manage.merchandise.dto.MerchandiseRequestDTO;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.service.MerchandiseService;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,16 +40,14 @@ public class MerchandiseController {
         return merchandiseService.getAllProducts(productName, categories, loggedInUserId);
     }
 
-
-    /*
-    @GetMapping("/products")
+    @PutMapping("/products")
     @ResponseBody
-    public List<MerchandiseEntity> getProducts(@RequestParam(value = "product_name") String productName,
-                                               @RequestParam(value = "category") List<String> categories,
-                                               HttpSession session) {
-        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-        return merchandiseService.getProducts(productName, categories, loggedInUserId);
+    public ResponseEntity<String> updateMerchandise(
+            @PathVariable("id") Long id,
+            @RequestBody MerchandiseRequestDTO merchandiseRequestDTO) {
+        String result = merchandiseService.updateMerchandise(id, merchandiseRequestDTO);
+        return ResponseEntity.ok(result);
     }
-     */
+
 
 }

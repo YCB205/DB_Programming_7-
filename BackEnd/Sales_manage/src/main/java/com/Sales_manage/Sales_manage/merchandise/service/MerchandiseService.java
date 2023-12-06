@@ -1,5 +1,5 @@
 package com.Sales_manage.Sales_manage.merchandise.service;
-
+import com.Sales_manage.Sales_manage.merchandise.dto.MerchandiseRequestDTO;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.ropository.MerchandiseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +8,38 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class MerchandiseService {
 
+    private final MerchandiseRepository merchandiseRepository;
+
     @Autowired
-    private MerchandiseRepository merchandiseRepository; // MerchandiseEntity를 다루는 Repository
+    public MerchandiseService(MerchandiseRepository merchandiseRepository) {
+        this.merchandiseRepository = merchandiseRepository;
+
+    }
+
+    public String updateMerchandise(Long id, MerchandiseRequestDTO merchandiseRequestDTO) {
+        Optional<MerchandiseEntity> merchandiseEntityOptional = merchandiseRepository.findById(id);
+        if (merchandiseEntityOptional.isPresent()) {
+            MerchandiseEntity merchandiseEntity = merchandiseEntityOptional.get();
+
+            // Update properties based on DTO values
+            merchandiseEntity.setCategori(merchandiseRequestDTO.getCategori());
+            merchandiseEntity.setMerchandiseName(merchandiseRequestDTO.getMerchandiseName());
+            merchandiseEntity.setCost(merchandiseRequestDTO.getCost());
+            merchandiseEntity.setPrice(merchandiseRequestDTO.getPrice());
+            merchandiseEntity.setSalesStatus(merchandiseRequestDTO.isSalesStatus());
+
+            merchandiseRepository.save(merchandiseEntity);
+            return "Merchandise with ID " + id + " updated successfully.";
+        } else {
+            return "Merchandise with ID " + id + " not found.";
+        }
+    }
 
     public Map<String, List<Map<String, Object>>> getProductsOrder(String productName, List<String> categories, String loggedInUserId) {
         // 세션에서 로그인한 사용자의 ID 가져오기
