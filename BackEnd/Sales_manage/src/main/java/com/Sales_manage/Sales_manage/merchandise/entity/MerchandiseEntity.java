@@ -25,9 +25,10 @@ public class MerchandiseEntity {
     @JoinColumn(name = "id_brand", nullable = false)
     private com.Sales_manage.Sales_manage.brand.entity.BrandEntity idBrand;
 
+    @Column(nullable = false)
+    private boolean salesStatus = true;
+
     @OneToMany(mappedBy = "idMerchandise", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IncludeEntity> includes;
 
-    @Column(nullable = false)
-    private boolean salesStatus = true;
 }

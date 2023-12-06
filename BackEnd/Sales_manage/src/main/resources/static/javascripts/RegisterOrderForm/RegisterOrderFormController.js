@@ -103,7 +103,7 @@ async function addTableRow(data){
             tdSecond.textContent = item.merchandiseName.toString();
 
             tdThird.className = 'col-3';
-            tdThird.textContent = item.price;
+            tdThird.textContent = item.price+'원';
 
             tdFourth.className = 'col-3';
             tdFourth.textContent = item.cost;
