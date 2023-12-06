@@ -95,7 +95,6 @@ public class MerchandiseService {
                     .filter(item -> item.getCategori().equals(category))
                     .map(this::mapMerchandiseEntityAddSalesStatus)
                     .collect(Collectors.toList());
-            System.out.println(categoryList);
 
             response.put(category, categoryList);
         }
