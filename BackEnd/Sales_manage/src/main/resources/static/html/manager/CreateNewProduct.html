@@ -410,23 +410,26 @@ thead {
                         <br>
                       <h4 class="card-title" style="color: #3E7E69;">상품 정보 입력</h4>      
                         <br><br>
+                        <div class="form-group">
+                            <label class="col-form-label mt-3" for="categori">품목명</label>
+                            <input  id="categori" type="text" class="form-control" placeholder="품목명을 입력하세요.">
+                        </div>
                       <div class="form-group">
                         <label class="col-form-label mt-3" for="idMerchandise">상품번호</label>
                         <input class="form-control" id="idMerchandise" type="text" placeholder="" disabled="" id="branch">
                       </div>
                       <div class="form-group">
                         <label class="col-form-label mt-3" for="merchandiseName">상품명</label>
-                            <input  type="text" class="form-control" placeholder="점주명을 검색하세요." id="merchandiseName">
+                            <input  type="text" class="form-control" placeholder="상품명을 검색하세요." id="merchandiseName">
                       </div>
                       <div class="form-group">
                         <label class="col-form-label mt-3" for="cost">원가</label>
-                        <input type="text" class="form-control" placeholder="주소를 입력하세요." id="cost">
+                        <input type="text" class="form-control" placeholder="원가를 입력하세요." id="cost">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label mt-3" for="price">판매가</label>
-                        <input type="text" class="form-control" placeholder="상세주소를 입력하세요." id="price">
+                        <input type="text" class="form-control" placeholder="판매가를 입력하세요." id="price">
                     </div>
-    
             </div>
             <div class="card-footer">
                 <button onclick="postProduct()" type="button" class="btn btn-info">등 록</button>
