@@ -1,9 +1,5 @@
 let trlList;
 window.onload = function () {
-    //localstorage삭제
-    const getLocal = localStorage.getItem('table_info');
-    if(getLocal!=null)
-        localStorage.removeItem('table_info');
     //버튼에 이벤트리스너 등록하기
     const btn = document.getElementById('fetchData');
     btn.addEventListener('click',function () {
@@ -82,7 +78,7 @@ function getFetch(startdate, enddate){
         const getLocal = localStorage.getItem('table_info');
         const data = JSON.parse(getLocal);
         data.productsList.forEach((value, index)=>{
-            product.push(value.name.toString());
+            product.push(value.merchandiseName.toString());
         })
     }
     const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
@@ -92,11 +88,26 @@ function getFetch(startdate, enddate){
             addTableRow(data);
         })
 }
+//바 차트를 위한 맵
+let myMap = new Map();
 
+//라인 차트 그리기
+let labels = [];
+let salesData = [];
+let profitsData = [];
 function addTableRow(data){
     let index = 0;
     const tbody = document.getElementById('tbody');
     myMap.clear();
+    labels.length = 0;
+    salesData.length = 0;
+    profitsData.length = 0;
+    console.log(data);
+    //자식요소 삭제하기
+    while (tbody.firstChild) {
+        console.log("삭제합니다..");
+        tbody.removeChild(tbody.firstChild);
+    }
     for(const ordersheet of data){
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
@@ -150,18 +161,18 @@ function addTableRow(data){
                 }
             }
             else{
-                if (myMap.has(ordersheet[1])) {
+                if (myMap.has(ordersheet[2])) {
                     let netProfit = myMap.get(ordersheet[1])[0];
                     let totalsales = myMap.get(ordersheet[1])[1];
                     let list = [];
                     list.push(netProfit + ordersheet[4]);
                     list.push(totalsales + ordersheet[5]);
-                    myMap.set(ordersheet[1], list);
+                    myMap.set(ordersheet[2], list);
                 } else {
                     let list = [];
                     list.push(ordersheet[4]);
                     list.push(ordersheet[5]);
-                    myMap.set(ordersheet[1], list);
+                    myMap.set(ordersheet[2], list);
                 }
             }
     }
@@ -172,23 +183,25 @@ function addTableRow(data){
     showChart.style.display = 'none';
     index = 0;
 }
-//바 차트를 위한 맵
-const myMap = new Map();
 
-//라인 차트 그리기
-const labels = [];
-const salesData = [];
-const profitsData = [];
 
+//차트 변수들
+let myBarChart;
+let myDoughnut;
+let myDoughnut2;
 function drawBarChart() {
-    const ctx = document.getElementById('div2').getContext('2d');
-    ctx.display = 'none';
+    const canvas = document.getElementById('div2');
+    if (myBarChart !== undefined) {
+        myBarChart.destroy();
+    }
+    canvas.style.width = '100%';
     myMap.forEach((value,key)=>{
         labels.push(key);
         salesData.push(value[0]);
         profitsData.push(value[1]);
     })
-    const myBarChart = new Chart(ctx, {
+
+     myBarChart = new Chart(canvas, {
         type: 'bar',
         data: {
             labels: labels,
@@ -227,9 +240,11 @@ function drawBarChart() {
 
 
 function drawDoughnut(){
-    const ctx = document.getElementById('div3').getContext('2d');
-    ctx.display = 'none';
-    const myDoughnut = new Chart(ctx,{
+    const canvas = document.getElementById('div3');
+    if (myDoughnut !== undefined) {
+        myDoughnut.destroy();
+    }
+    myDoughnut = new Chart(canvas,{
         type: 'doughnut',
         data:{
             labels: labels,
@@ -254,9 +269,11 @@ function drawDoughnut(){
 }
 
 function drawDoughnut2(){
-    const ctx = document.getElementById('div4').getContext('2d');
-    ctx.display = 'none';
-    const myDoughnut = new Chart(ctx,{
+    const canvas = document.getElementById('div4');
+    if (myDoughnut2 !== undefined) {
+        myDoughnut2.destroy();
+    }
+    myDoughnut2 = new Chart(canvas,{
         type: 'doughnut',
         data:{
             labels: labels,
@@ -285,13 +302,19 @@ window.addEventListener('message',function (event){
         const data = localStorage.getItem('table_info');
         const trList = JSON.parse(data);
         const chart = document.getElementById('chart');
+        let rowCount = chart.rows.length;
+
+        for (let i = rowCount - 1; i >= 0; i--) {
+            chart.deleteRow(i);
+        }
+
         trList.productsList.forEach((value, index)=>{
             const tr = document.createElement('tr');
             const td1 = document.createElement('td');
             const td2 = document.createElement('td');
             td1.setAttribute('scope','row');
-            td1.textContent = value.id.toString();
-            td2.textContent = value.name.toString();
+            td1.textContent = value.id_merchandise.toString();
+            td2.textContent = value.merchandiseName.toString();
             td1.setAttribute('class','col-2');
             td2.setAttribute('class','col-4');
             tr.appendChild(td1);
@@ -323,3 +346,8 @@ function showChart(){
         });
     });
 }
+
+//창이 닫히기전에 가지고 있던 값 삭제
+window.addEventListener('beforeunload', function (event) {
+    localStorage.removeItem('table_info');
+});
