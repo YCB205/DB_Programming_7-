@@ -1,14 +1,13 @@
-
-
 window.onload =function () {
     console.log('세컨드 창이 열렸습니다.');
+    //테이블 초기화하기
+    initTable();
     const btn = document.getElementById('registerBtn');
     console.log(btn);
     btn.addEventListener('click',function (){
         const trList = registerBtn();
         localStorage.removeItem('table_info');
         let productsList = [];
-
         const productInfo = {
             productsList
         }
@@ -117,3 +116,24 @@ function notifyOtherHtml(){
     window.opener.postMessage('HTMLClosed',window.location.origin + '/html/store_manager/Sales%20information%20inquiry.html');
 }   console.log(window.location.origin);
 
+//테이블 초기화히기
+function initTable(){
+    const data = localStorage.getItem('table_info');
+    const trList = JSON.parse(data);
+    if(trList===null)
+        return;
+    const chart = document.getElementById('tbodyfirst');
+    trList.productsList.forEach((value, index)=>{
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        td1.setAttribute('scope','row');
+        td1.textContent = value.id.toString();
+        td2.textContent = value.name.toString();
+        td1.setAttribute('class','col-2');
+        td2.setAttribute('class','col-4');
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        chart.append(tr);
+    })
+}

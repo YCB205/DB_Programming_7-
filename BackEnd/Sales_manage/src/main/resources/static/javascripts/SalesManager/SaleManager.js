@@ -1,6 +1,9 @@
 let trlList;
-
 window.onload = function () {
+    //localstorage삭제
+    const getLocal = localStorage.getItem('table_info');
+    if(getLocal!=null)
+        localStorage.removeItem('table_info');
     //버튼에 이벤트리스너 등록하기
     const btn = document.getElementById('fetchData');
     btn.addEventListener('click',function () {
@@ -73,20 +76,27 @@ function getFetch(startdate, enddate){
     const product =[];
     const startDate = convertTimeType(startdate);
     const endDate = convertTimeType(enddate);
-    console.log(startDate.toString());
+    const getRadio = document.getElementById('optionsRadios2');
+    const getRadio2 = document.getElementById('optionsRadios1');
+    if(getRadio.checked){
+        const getLocal = localStorage.getItem('table_info');
+        const data = JSON.parse(getLocal);
+        data.productsList.forEach((value, index)=>{
+            product.push(value.name.toString());
+        })
+    }
     const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
-            console.log(data);
             addTableRow(data);
-            // drawLineChart();
         })
 }
 
 function addTableRow(data){
     let index = 0;
     const tbody = document.getElementById('tbody');
+    myMap.clear();
     for(const ordersheet of data){
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
@@ -122,27 +132,45 @@ function addTableRow(data){
             tbody.appendChild(tr);
             index++;
             //맵을 생성
-            if(myMap.has(ordersheet[0])){
-                let netProfit = myMap.get(ordersheet[0])[0];
-                let totalsales = myMap.get(ordersheet[0])[1];
-                let list = [];
-                list.push(netProfit + ordersheet[4]);
-                list.push(totalsales + ordersheet[5]);
-                myMap.set(ordersheet[0],list);
+            const getRadio = document.getElementById('optionsRadios2');
+            const getRadio2 = document.getElementById('optionsRadios1');
+            if(getRadio2.checked) {
+                if (myMap.has(ordersheet[0])) {
+                    let netProfit = myMap.get(ordersheet[0])[0];
+                    let totalsales = myMap.get(ordersheet[0])[1];
+                    let list = [];
+                    list.push(netProfit + ordersheet[4]);
+                    list.push(totalsales + ordersheet[5]);
+                    myMap.set(ordersheet[0], list);
+                } else {
+                    let list = [];
+                    list.push(ordersheet[4]);
+                    list.push(ordersheet[5]);
+                    myMap.set(ordersheet[0], list);
+                }
             }
             else{
-                let list = [];
-                list.push(ordersheet[4]);
-                list.push(ordersheet[5]);
-                myMap.set(ordersheet[0],list);
+                if (myMap.has(ordersheet[1])) {
+                    let netProfit = myMap.get(ordersheet[1])[0];
+                    let totalsales = myMap.get(ordersheet[1])[1];
+                    let list = [];
+                    list.push(netProfit + ordersheet[4]);
+                    list.push(totalsales + ordersheet[5]);
+                    myMap.set(ordersheet[1], list);
+                } else {
+                    let list = [];
+                    list.push(ordersheet[4]);
+                    list.push(ordersheet[5]);
+                    myMap.set(ordersheet[1], list);
+                }
             }
     }
-    index = 0;
     drawBarChart();
     drawDoughnut();
     drawDoughnut2();
     const showChart = document.getElementById('showChart');
     showChart.style.display = 'none';
+    index = 0;
 }
 //바 차트를 위한 맵
 const myMap = new Map();
@@ -206,7 +234,7 @@ function drawDoughnut(){
         data:{
             labels: labels,
             datasets: [{
-                label:'매출액',
+                label:'순이익',
                 data: salesData
             }]
         },
@@ -218,7 +246,7 @@ function drawDoughnut(){
                 },
                 title: {
                     display: true,
-                    text: '매출액'
+                    text: '순이익'
                 }
             }
         }
