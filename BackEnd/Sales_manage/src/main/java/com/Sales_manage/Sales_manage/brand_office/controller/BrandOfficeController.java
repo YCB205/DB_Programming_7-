@@ -82,4 +82,34 @@ public class BrandOfficeController {
         return null;
     }
 
+    @DeleteMapping("/branch/{idBrandOffice}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteBrandOffice(@PathVariable Long idBrandOffice, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if ("manager".equals(loggedInUserRole)) {
+            brandOfficeService.deleteBrandOffice(idBrandOffice);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/branch")
+    @ResponseBody
+    public ResponseEntity<Void> addBrandOffice(
+            @RequestBody BrandOfficeDTO brandOfficeDTO,
+            HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        if ("manager".equals(loggedInUserRole)) {
+            // 서비스를 통해 브랜드 사무실 추가 수행
+            brandOfficeService.addBrandOffice(brandOfficeDTO, loggedInUserId);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+
 }

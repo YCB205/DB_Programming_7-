@@ -1,4 +1,4 @@
-function showPopupUpdateBranch(destination_html, width, height, tagClass) {
+function showPopupUpdateClosedBranch(destination_html, width, height, tagClass) {
     var html = destination_html;
     var leftPosition = (screen.width - 660) / 2;
     var topPosition = (screen.height - 661) / 2;
@@ -21,16 +21,10 @@ function showPopupUpdateBranch(destination_html, width, height, tagClass) {
 function getParentValues(tagClass) {
     var selectedRow = document.querySelector(tagClass);
     var tdElements = selectedRow.querySelectorAll('td'); //tdElements[0]~[3]  까지만 유의미한 데이터임
-    var nextSiblingRow = selectedRow.nextElementSibling;
 
-    var storeManagerList = nextSiblingRow.querySelectorAll('td')
 
     var tdContentList = [];
     tdElements.forEach(function (td) {
-        tdContentList.push(td.textContent.trim());
-    });
-
-    storeManagerList.forEach(function (td) {
         tdContentList.push(td.textContent.trim());
     });
 

@@ -3,6 +3,8 @@ package com.Sales_manage.Sales_manage.brand_office.service;
 import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
 import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
 import com.Sales_manage.Sales_manage.brand_office.dto.BrandOfficeDTO;
+import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
+import com.Sales_manage.Sales_manage.manager.repository.ManagerRepository;
 import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class BrandOfficeService {
     private final BrandOfficeRepository brandOfficeRepository;
     private final StoreManagerRepository storeManagerRepository;
+    private final ManagerRepository managerRepository;
 
     public List<BrandOfficeDTO> getAll() {
         List<BrandOfficeEntity> brandOfficeEntityList = brandOfficeRepository.findAll();
@@ -112,4 +115,35 @@ public class BrandOfficeService {
         assert brandOffice != null;
         brandOffice.setIdStoremanger(null);
     }
+
+    public void deleteBrandOffice(Long idBrandOffice) {
+        BrandOfficeEntity brandOfficeEntity = brandOfficeRepository.findById(idBrandOffice).orElse(null);
+        assert brandOfficeEntity != null;
+        brandOfficeRepository.delete(brandOfficeEntity);
+    }
+
+    @Transactional
+    public void addBrandOffice(BrandOfficeDTO brandOfficeDTO, String loggedInUserId) {
+        BrandOfficeEntity brandOfficeEntity = new BrandOfficeEntity();
+        brandOfficeEntity.setOfficeName(brandOfficeDTO.getOfficeName());
+        brandOfficeEntity.setAddress(brandOfficeDTO.getAddress());
+
+        ManagerEntity managerEntity = managerRepository.findById(loggedInUserId).orElse(null);
+        assert managerEntity != null;
+        brandOfficeEntity.setIdBrand(managerEntity.getIdBrand());
+
+        // Check if idStoreManager is null
+        if (brandOfficeDTO.getIdStoreManager() == null) {
+            brandOfficeEntity.setIdStoremanger(null);
+        } else {
+            Optional<StoreManagerEntity> storeManagerEntity = storeManagerRepository.findById(brandOfficeDTO.getIdStoreManager());
+            StoreManagerEntity storeManager = storeManagerEntity.orElse(null);
+            brandOfficeEntity.setIdStoremanger(storeManager);
+        }
+
+        brandOfficeEntity.setOperationalStatus(true); // Assuming the default status is true
+
+        brandOfficeRepository.save(brandOfficeEntity);
+    }
+
 }

@@ -73,4 +73,22 @@ public class StoreManagerService {
         assert storeManagerEntity != null;
         storeManagerRepository.delete(storeManagerEntity);
     }
+
+    public boolean checkStoreManagerId(String idStoremanager) {
+        StoreManagerEntity storeManagerEntity = storeManagerRepository.findById(idStoremanager).orElse(null);;
+        if (storeManagerEntity != null) {
+            return false; // 아이디가 DB에 있음
+        } else {return true;} // 아이디가 DB에 없음
+    }
+
+    public void createStoreManager(StoreManagerDTO storeManagerDTO) {
+        StoreManagerEntity storeManagerEntity = new StoreManagerEntity();
+
+        storeManagerEntity.setIdStoremanager(storeManagerDTO.getIdStoremanager());
+        storeManagerEntity.setName(storeManagerDTO.getName());
+        storeManagerEntity.setPasswd(storeManagerDTO.getPasswd());
+        storeManagerEntity.setEmail(storeManagerDTO.getEmail());
+        storeManagerEntity.setPhoneNumber(storeManagerDTO.getPhoneNumber());
+        storeManagerRepository.save(storeManagerEntity);
+    }
 }

@@ -1,7 +1,7 @@
-function checkManagerPasswd() {
+function checkOverlapId() {
     // 서버로 데이터 요청
-    const passwd = document.querySelector('#passwd').value;
-    fetch(`/userPasswd?passwd=${passwd}`, {
+    const idStoremanager = document.querySelector('#idStoremanager').value;
+    fetch(`/checkedStoreManagerId?idStoremanager=${idStoremanager}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -21,15 +21,15 @@ function checkManagerPasswd() {
 
             // 서버에서 반환한 내용에 따라 경고 메시지를 조절
             if (data === 'success') {
-                window.opener.postMessage('deleteStoreManager', '*');
-                window.close();
-            } else {
-                alert('비밀번호가 틀렸습니다!');
+                document.getElementById('check').value = 'Y';
             }
         })
         .catch(error => {
             // 오류 발생 시 처리
             console.error('Error getting store managers:', error);
-            alert('비밀번호가 틀렸습니다!');
+            alert('중복된 아이디입니다.');
+            document.getElementById('idStoremanager').value = '';
+            document.getElementById('check').value = 'N';
+
         });
 }

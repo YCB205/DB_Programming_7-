@@ -104,9 +104,11 @@ function generateStoreManagerRow(storeManager, brandOfficeId) {
             <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px;  background-color: #e0e0e0;">
                 <a class="btn btn-info" target="_self" onclick="showPopupStoreManager('storeManager_information_check.html',600,617, ${storeManager.idStoremanager})">
                 <i class="bi bi-pencil-square"></i></a>
-                <a class="btn btn-info" onclick="putDeleteStoreManagerOnBranch(${brandOfficeId})">
+                <a class="btn btn-info" onclick="CheckDelete(${brandOfficeId})">
                 <i class="bi bi-trash"></i></a>
             </td>
         </tr>`;
 }
+
+
 
