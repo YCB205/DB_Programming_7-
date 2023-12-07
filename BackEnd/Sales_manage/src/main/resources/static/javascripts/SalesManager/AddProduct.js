@@ -1,20 +1,20 @@
-
-
 window.onload =function () {
     console.log('세컨드 창이 열렸습니다.');
+    //테이블 초기화하기
+    initTable();
     const btn = document.getElementById('registerBtn');
+    console.log(btn);
     btn.addEventListener('click',function (){
         const trList = registerBtn();
         localStorage.removeItem('table_info');
         let productsList = [];
-
         const productInfo = {
             productsList
         }
         for(let i = 0;i < trList.length; i++){
             let product = {
-                "id" : trList[i].children[0].textContent,
-                "name": trList[i].children[1].textContent
+                "id_merchandise" : trList[i].children[0].textContent,
+                "merchandiseName": trList[i].children[1].textContent
             }
             productsList.push(product);
         }
@@ -48,7 +48,9 @@ function fetchProduct(input){
 function addTableRow(data){
     const second_tbody = document.getElementById('second_tbody');
     destroyTable(second_tbody);
+    console.log(data);
     for(const category in data){
+        console.log(category);
         data[category].forEach(function (item, index){
 
             const tr = document.createElement('tr');
@@ -57,14 +59,9 @@ function addTableRow(data){
             td.textContent = item.id_merchandise;
             td1.textContent = item.merchandiseName;
 
-            if(index === 0)
-                td1.setAttribute('id',category);
-
             tr.appendChild(td);
             tr.appendChild(td1);
-
             tr.setAttribute('id',item.id_merchandise);
-            tr.setAttribute('class',category.toString());
 
             tr.addEventListener('dblclick', function () {
                 const tbodyfirst = document.getElementById('tbodyfirst');
@@ -116,3 +113,18 @@ function notifyOtherHtml(){
     window.opener.postMessage('HTMLClosed',window.location.origin + '/html/store_manager/Sales%20information%20inquiry.html');
 }   console.log(window.location.origin);
 
+//테이블 초기화히기
+function initTable(){
+    const data = localStorage.getItem('table_info');
+    const trList = JSON.parse(data);
+    if(trList===null)
+        return;
+    addTableRow(trList);
+    const second_tbody = document.getElementById('second_tbody');
+    let doubleClickEvent = new MouseEvent("dblclick");
+    const trNodelist = second_tbody.querySelectorAll('tr');
+    for(let i =0; i < trNodelist.length;i++){
+        trNodelist[i].dispatchEvent(doubleClickEvent);
+    }
+    destroyTable(second_tbody);
+}
