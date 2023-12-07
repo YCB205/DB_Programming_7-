@@ -1,4 +1,9 @@
 package com.Sales_manage.Sales_manage.merchandise.service;
+import com.Sales_manage.Sales_manage.brand.entity.BrandEntity;
+import com.Sales_manage.Sales_manage.brand_office.entity.BrandOfficeEntity;
+import com.Sales_manage.Sales_manage.brand_office.ropository.BrandOfficeRepository;
+import com.Sales_manage.Sales_manage.manager.entity.ManagerEntity;
+import com.Sales_manage.Sales_manage.manager.repository.ManagerRepository;
 import com.Sales_manage.Sales_manage.merchandise.dto.MerchandiseRequestDTO;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.ropository.MerchandiseRepository;
@@ -15,11 +20,15 @@ import java.util.stream.Collectors;
 public class MerchandiseService {
 
     private final MerchandiseRepository merchandiseRepository;
-
+    private final ManagerRepository managerRepository;
+    private final BrandOfficeRepository brandOfficeRepository;
     @Autowired
-    public MerchandiseService(MerchandiseRepository merchandiseRepository) {
+    public MerchandiseService(MerchandiseRepository merchandiseRepository,
+                              ManagerRepository managerRepository,
+                              BrandOfficeRepository brandOfficeRepository) {
         this.merchandiseRepository = merchandiseRepository;
-
+        this.managerRepository = managerRepository;
+        this.brandOfficeRepository = brandOfficeRepository;
     }
 
     public String updateMerchandise(Long id, MerchandiseRequestDTO merchandiseRequestDTO) {
@@ -39,6 +48,38 @@ public class MerchandiseService {
         } else {
             return "Merchandise with ID " + id + " not found.";
         }
+    }
+
+    public void createMerchandise(MerchandiseRequestDTO merchandiseRequest, String loggedInUserId, String loggedInUserRole) {
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+
+        MerchandiseEntity newMerchandise = new MerchandiseEntity();
+        newMerchandise.setCategori(merchandiseRequest.getCategori());
+        newMerchandise.setMerchandiseName(merchandiseRequest.getMerchandiseName());
+        newMerchandise.setCost(merchandiseRequest.getCost());
+        newMerchandise.setPrice(merchandiseRequest.getPrice());
+        newMerchandise.setSalesStatus(merchandiseRequest.isSalesStatus());
+
+        if ("store_manager".equals(loggedInUserRole)) {
+            ManagerEntity manager = managerRepository.findByIdManager(loggedInUserId);
+            if (manager != null) {
+                newMerchandise.setIdBrand(manager.getIdBrand());
+            } else {
+                throw new RuntimeException("해당 매니저를 찾을 수 없습니다.");
+            }
+        } else {
+            // "store_manager"가 아닐 경우
+            BrandOfficeEntity brandOffice = brandOfficeRepository.findByStoreManagerId(loggedInUserId);
+            if (brandOffice != null) {
+                newMerchandise.setIdBrand(brandOffice.getIdBrand());
+            } else {
+                throw new RuntimeException("해당 스토어 매니저를 찾을 수 없습니다.");
+            }
+        }
+        // 저장
+        merchandiseRepository.save(newMerchandise);
     }
 
     public Map<String, List<Map<String, Object>>> getProductsOrder(String productName, List<String> categories, String loggedInUserId) {

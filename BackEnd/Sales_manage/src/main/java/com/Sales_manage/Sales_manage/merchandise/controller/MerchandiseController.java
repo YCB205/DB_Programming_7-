@@ -5,8 +5,10 @@ import com.Sales_manage.Sales_manage.merchandise.dto.MerchandiseRequestDTO;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.service.MerchandiseService;
 
+import com.Sales_manage.Sales_manage.orderSheet.dto.MerchandiseRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +46,27 @@ public class MerchandiseController {
     @ResponseBody
     public ResponseEntity<String> updateMerchandise(
             @PathVariable("id") Long id,
-            @RequestBody MerchandiseRequestDTO merchandiseRequestDTO) {
+            @RequestBody MerchandiseRequestDTO merchandiseRequestDTO,
+            HttpSession session) {
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        if (loggedInUserId == null || loggedInUserId.isEmpty()) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
         String result = merchandiseService.updateMerchandise(id, merchandiseRequestDTO);
         return ResponseEntity.ok(result);
     }
 
-
+    @PostMapping
+    @ResponseBody
+    public ResponseEntity<String> createMerchandise(@RequestBody MerchandiseRequestDTO merchandiseRequest,
+                                                    HttpSession session) {
+        try {
+            String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+            String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+            merchandiseService.createMerchandise(merchandiseRequest, loggedInUserId, loggedInUserRole);
+            return ResponseEntity.ok("Merchandise created successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create merchandise.");
+        }
+    }
 }
