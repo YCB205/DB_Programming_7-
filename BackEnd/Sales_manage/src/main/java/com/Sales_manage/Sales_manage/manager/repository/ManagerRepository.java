@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ManagerRepository extends JpaRepository<ManagerEntity, String> {
-    @Query("SELECT m.idBrand FROM Manager m WHERE m.idManager = :loggedInUserId")
+    @Query("SELECT m.idBrand FROM ManagerEntity m WHERE m.idManager = :loggedInUserId")
     Long findBrandIdByManagerId(@Param("loggedInUserId") String loggedInUserId);
 
     ManagerEntity findByIdManager(String loggedInUserId);

@@ -5,6 +5,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MerchandiseRequestDTO {
+    private Long idMerchandise;
     private String categori;
     private String merchandiseName;
     private Long cost;

@@ -1,5 +1,6 @@
 function postProduct() {
     // 각 input 태그에서 값을 읽어옴
+    const categori = document.querySelector('#categori').value;
     const idMerchandise = document.querySelector('#idMerchandise').value;
     const merchandiseName = document.querySelector('#merchandiseName').value;
     const cost = document.querySelector('#cost').value;
@@ -7,6 +8,7 @@ function postProduct() {
 
     // 서버에게 보낼 데이터 객체 생성
     const data = {
+        categori: categori,
         idMerchandise: idMerchandise,
         merchandiseName: merchandiseName,
         cost: cost,

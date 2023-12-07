@@ -81,6 +81,9 @@ public class OrderSheetController {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
         List<Object[]> salesData = orderSheetService.getAllChartData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
+        System.out.println("searchMerchandiseValue = " + searchMerchandiseValue);
+        System.out.println("startDateTime = " + startDateTime);
+        System.out.println("endDateTime = " + endDateTime);
         // 역할이 store_manager인지 확인
         if (salesData.isEmpty()) {
             return ResponseEntity.badRequest().build();

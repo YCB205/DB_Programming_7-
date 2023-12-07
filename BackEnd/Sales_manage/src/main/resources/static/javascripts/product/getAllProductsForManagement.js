@@ -38,6 +38,7 @@ function getAllProducts() {
                 checkbox_group_right.innerHTML = '';
             }
 
+            var index = 0;
             // 받은 데이터로 새로운 행과 체크박스 추가
             for (const category in data) {
                 const products = data[category];
@@ -54,7 +55,7 @@ function getAllProducts() {
                         checkbox_group_right.appendChild(label);
                     }
                 }
-                    var index = 0;
+
 
                 for (let i = 0; i < products.length; i++) {
                     const product = products[i];
@@ -63,9 +64,9 @@ function getAllProducts() {
 
                     // 카테고리명이 추가되는 경우
                     if (i % 2 === 0) {
-                        row.classList.add('table-light', `productTable${index + 1}`);
+                        row.classList.add('table-light', `productTable${index}`);
                     } else {
-                        row.classList.add('table-success', `productTable${index + 1}`);
+                        row.classList.add('table-success', `productTable${index}`);
                     }
 
                     // 첫 번째 td에는 카테고리명 추가
@@ -92,13 +93,14 @@ function getAllProducts() {
                     const updateButton = document.createElement('a');
                     updateButton.setAttribute('class', 'btn btn-primary');
                     updateButton.setAttribute('target', '_self');
-                    updateButton.setAttribute('onclick', `showPopupUpdateProduct('updateProduct.html',600,582,\`tr.productTable${index + 1}\`)`);
+                    updateButton.setAttribute('onclick', `showPopupUpdateProduct('updateProduct.html',600,582,\`tr.productTable${index}\`)`);
                     updateButton.innerHTML = '<i class="bi bi-pencil-square"></i>';
                     updateButtonCell.appendChild(updateButton);
                     row.appendChild(updateButtonCell);
 
                     // 행을 tbody에 추가
                     tbody.appendChild(row);
+                    index += 1;
                 }
             }
             isCheckboxGroupExecuted = true;

@@ -44,10 +44,8 @@ public class BrandOfficeController {
             System.out.println("46번째 줄 실행");
             List<BrandOfficeDTO> result = brandOfficeService.getClosedBranch(officeName);
             return result;
-        } else {
-            ResponseEntity.badRequest().build();
         }
-        return null;
+        return  null;
     }
 
     @PutMapping("/branch-storeManagers")
@@ -76,10 +74,8 @@ public class BrandOfficeController {
             System.out.println("78번 실행"+ idBrandOffice);
             brandOfficeService.deleteStoreManagerOnBranch(idBrandOffice);
             return ResponseEntity.ok().build();
-        } else {
-            ResponseEntity.badRequest().build();
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/branch/{idBrandOffice}")
@@ -89,9 +85,9 @@ public class BrandOfficeController {
         if ("manager".equals(loggedInUserRole)) {
             brandOfficeService.deleteBrandOffice(idBrandOffice);
             return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
         }
+        return ResponseEntity.badRequest().build();
+
     }
 
     @PostMapping("/branch")

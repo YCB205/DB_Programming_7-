@@ -19,8 +19,5 @@ public interface BrandOfficeRepository extends JpaRepository<BrandOfficeEntity, 
     @Query("SELECT bo.idBrandoffice FROM BrandOfficeEntity bo JOIN bo.idStoremanger sm WHERE sm.idStoremanager = :loggedInUserId")
     Long findIdBrandOfficeByLoggedInUserId(@Param("loggedInUserId") String loggedInUserId);
 
-    @Query("SELECT b.idBrand FROM BrandOffice b WHERE b.idStoreManager = :loggedInUserId")
-    Long findBrandIdByStoreManagerId(@Param("loggedInUserId") String loggedInUserId);
 
-    BrandOfficeEntity findByStoreManagerId(String loggedInUserId);
 }

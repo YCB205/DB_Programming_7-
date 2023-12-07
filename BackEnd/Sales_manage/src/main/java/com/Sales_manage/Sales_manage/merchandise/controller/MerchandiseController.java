@@ -45,14 +45,13 @@ public class MerchandiseController {
     @PutMapping("/products")
     @ResponseBody
     public ResponseEntity<String> updateMerchandise(
-            @PathVariable("id") Long id,
             @RequestBody MerchandiseRequestDTO merchandiseRequestDTO,
             HttpSession session) {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
-        String result = merchandiseService.updateMerchandise(id, merchandiseRequestDTO);
+        String result = merchandiseService.updateMerchandise(merchandiseRequestDTO);
         return ResponseEntity.ok(result);
     }
 
@@ -68,5 +67,17 @@ public class MerchandiseController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create merchandise.");
         }
+    }
+
+    @DeleteMapping("/products{idMerchandise}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long idMerchandise, HttpSession session) {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+        if ("manager".equals(loggedInUserRole)) {
+            merchandiseService.deleteProduct(idMerchandise);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+
     }
 }

@@ -118,8 +118,8 @@ public class OrderSheetService {
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
-        if ("store_manager".equals(loggedInUserRole)) {
-            // 'store_manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
+        if ("manager".equals(loggedInUserRole)) {
+            // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataBetweenDates();
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
@@ -133,8 +133,10 @@ public class OrderSheetService {
             }
 
         } else {
-            // 'store_manager' 권한이 아니라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
-            Long idBrandOffice = brandOfficeRepository.findIdBrandOfficeByLoggedInUserId(loggedInUserId);
+            // 'store_manager' 권한이라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
+            StoreManagerEntity storeManager = storeManagerRepository.findById(loggedInUserId).orElse(null);
+            BrandOfficeEntity BrandOffice = brandOfficeRepository.findByIdStoremanger(storeManager);
+            Long idBrandOffice = BrandOffice.getIdBrandoffice();
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(idBrandOffice);
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
@@ -149,47 +151,59 @@ public class OrderSheetService {
         }
         return salesData;
     }
-
+    @Transactional
     public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> chartData;
+        List<Object[]> allSalesData;
         int totalProfit = 0;
         int totalSales = 0;
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
-        if ("store_manager".equals(loggedInUserRole)) {
-            // 'store_manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
+        if ("manager".equals(loggedInUserRole)) {
+            // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
                 chartData = merchandiseRepository.findAllChartDataBetweenDates();
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
                 chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
             }else if(startDate == null && endDate == null){
                 chartData = merchandiseRepository.findAllChartDataBetweenDates(productNames);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
             }else if(startDate != null && endDate != null){
                 chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
 
         } else {
-            // 'store_manager' 권한이 아니라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
-            Long idBrandOffice = brandOfficeRepository.findIdBrandOfficeByLoggedInUserId(loggedInUserId);
+            // 'store_manager' 권한이라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
+            StoreManagerEntity storeManager = storeManagerRepository.findById(loggedInUserId).orElse(null);
+            BrandOfficeEntity BrandOffice = brandOfficeRepository.findByIdStoremanger(storeManager);
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
-                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(idBrandOffice);
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice);
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
-                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice);
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
             }else if(startDate == null && endDate == null){
-                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(idBrandOffice, productNames);
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice);
             }else if(startDate != null && endDate != null){
-                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice, productNames);
+                chartData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
         }
+
         if(chartData.isEmpty()){
             return chartData;
         }else{
-            for (Object[] data : chartData) {
+
+            for (Object[] data : allSalesData) {
                 int profit = ((Number) data[1]).intValue();
                 int sales = ((Number) data[2]).intValue();
 

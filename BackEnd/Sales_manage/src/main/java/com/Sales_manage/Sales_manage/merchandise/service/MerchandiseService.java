@@ -7,6 +7,9 @@ import com.Sales_manage.Sales_manage.manager.repository.ManagerRepository;
 import com.Sales_manage.Sales_manage.merchandise.dto.MerchandiseRequestDTO;
 import com.Sales_manage.Sales_manage.merchandise.entity.MerchandiseEntity;
 import com.Sales_manage.Sales_manage.merchandise.ropository.MerchandiseRepository;
+import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
+import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +23,23 @@ import java.util.stream.Collectors;
 public class MerchandiseService {
 
     private final MerchandiseRepository merchandiseRepository;
+    private final StoreManagerRepository storeManagerRepository;
     private final ManagerRepository managerRepository;
     private final BrandOfficeRepository brandOfficeRepository;
     @Autowired
     public MerchandiseService(MerchandiseRepository merchandiseRepository,
                               ManagerRepository managerRepository,
-                              BrandOfficeRepository brandOfficeRepository) {
+                              BrandOfficeRepository brandOfficeRepository,
+                              StoreManagerRepository storeManagerRepository) {
         this.merchandiseRepository = merchandiseRepository;
         this.managerRepository = managerRepository;
         this.brandOfficeRepository = brandOfficeRepository;
+        this.storeManagerRepository = storeManagerRepository;
     }
 
-    public String updateMerchandise(Long id, MerchandiseRequestDTO merchandiseRequestDTO) {
+    @Transactional
+    public String updateMerchandise(MerchandiseRequestDTO merchandiseRequestDTO) {
+        Long id =  merchandiseRequestDTO.getIdMerchandise();
         Optional<MerchandiseEntity> merchandiseEntityOptional = merchandiseRepository.findById(id);
         if (merchandiseEntityOptional.isPresent()) {
             MerchandiseEntity merchandiseEntity = merchandiseEntityOptional.get();
@@ -50,6 +58,7 @@ public class MerchandiseService {
         }
     }
 
+    @Transactional
     public void createMerchandise(MerchandiseRequestDTO merchandiseRequest, String loggedInUserId, String loggedInUserRole) {
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
@@ -60,22 +69,14 @@ public class MerchandiseService {
         newMerchandise.setMerchandiseName(merchandiseRequest.getMerchandiseName());
         newMerchandise.setCost(merchandiseRequest.getCost());
         newMerchandise.setPrice(merchandiseRequest.getPrice());
-        newMerchandise.setSalesStatus(merchandiseRequest.isSalesStatus());
+        newMerchandise.setSalesStatus(true);
 
-        if ("store_manager".equals(loggedInUserRole)) {
+        if ("manager".equals(loggedInUserRole)) {
             ManagerEntity manager = managerRepository.findByIdManager(loggedInUserId);
             if (manager != null) {
                 newMerchandise.setIdBrand(manager.getIdBrand());
             } else {
                 throw new RuntimeException("해당 매니저를 찾을 수 없습니다.");
-            }
-        } else {
-            // "store_manager"가 아닐 경우
-            BrandOfficeEntity brandOffice = brandOfficeRepository.findByStoreManagerId(loggedInUserId);
-            if (brandOffice != null) {
-                newMerchandise.setIdBrand(brandOffice.getIdBrand());
-            } else {
-                throw new RuntimeException("해당 스토어 매니저를 찾을 수 없습니다.");
             }
         }
         // 저장
@@ -210,5 +211,12 @@ public class MerchandiseService {
         mapped.put("price", entity.getPrice());
         mapped.put("sales_status", entity.isSalesStatus());
         return mapped;
+    }
+
+    @Transactional
+    public void deleteProduct(Long idMerchandise) {
+        MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(idMerchandise).orElse(null);
+            assert merchandiseEntity != null;
+        merchandiseRepository.delete(merchandiseEntity);
     }
 }

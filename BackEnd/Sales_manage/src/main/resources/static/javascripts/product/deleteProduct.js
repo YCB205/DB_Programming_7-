@@ -1,6 +1,6 @@
 function deleteProduct() {
     const idMerchandise = document.getElementById('idMerchandise').value;
-    const url = `/products/${idMerchandise}`;
+    const url = `/products${idMerchandise}`;
 
     // 서버로 데이터 전송
     fetch(url, {
@@ -19,8 +19,8 @@ function deleteProduct() {
         })
         .then(data => {
             // 성공적으로 처리된 경우의 동작
-            console.log('StoreManager successfully sent:', data);
-            window.opener.postMessage('updateClosedBranch', '*');
+            console.log('productId successfully sent:', data);
+            window.opener.postMessage('refreshParent', '*');
             window.close();
         })
         .catch(error => {
