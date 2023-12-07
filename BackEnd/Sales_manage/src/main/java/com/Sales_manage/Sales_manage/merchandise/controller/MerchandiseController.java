@@ -56,7 +56,7 @@ public class MerchandiseController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping
+    @PostMapping("/products")
     @ResponseBody
     public ResponseEntity<String> createMerchandise(@RequestBody MerchandiseRequestDTO merchandiseRequest,
                                                     HttpSession session) {
