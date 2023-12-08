@@ -112,7 +112,7 @@ public class OrderSheetService {
         return orderSheetResponses;
     }
 
-    public List<Object[]> getAllSalesData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
+    public List<Object[]> getAllSalesData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, List<Long> brandofficeId, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> salesData;
         List<Object[]> allSalesData;
         int totalProfit = 0;
@@ -121,19 +121,43 @@ public class OrderSheetService {
             throw new RuntimeException("로그인이 필요합니다.");
         }
         if ("manager".equals(loggedInUserRole)) {
+            List<BrandOfficeEntity> BrandOffice = brandOfficeRepository.findAllById(brandofficeId);
             // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
-                salesData = merchandiseRepository.findAllSalesDataBetweenDates();
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    salesData = merchandiseRepository.findAllSalesDataBetweenDates();
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                }else{
+                    salesData = merchandiseRepository.findAllSalesDataManagerBetweenDates(BrandOffice);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice);
+                }
+
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
-                salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                }else{
+                    salesData = merchandiseRepository.findAllSalesDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                }
+
             }else if(startDate == null && endDate == null){
-                salesData = merchandiseRepository.findAllSalesDataBetweenDates(productNames);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    salesData = merchandiseRepository.findAllSalesDataBetweenDates(productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                }else{
+                    salesData = merchandiseRepository.findAllSalesDataManagerBetweenDates(BrandOffice, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice);
+                }
+
             }else if(startDate != null && endDate != null){
-                salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate, productNames);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                }else{
+                    salesData = merchandiseRepository.findAllSalesDataManagerBetweenDates(BrandOffice, startDate, endDate, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                }
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
@@ -178,7 +202,7 @@ public class OrderSheetService {
 
     }
     @Transactional
-    public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
+    public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, List<Long> brandofficeId, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> chartData;
         List<Object[]> allSalesData;
         int totalProfit = 0;
@@ -188,18 +212,42 @@ public class OrderSheetService {
         }
         if ("manager".equals(loggedInUserRole)) {
             // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
+            List<BrandOfficeEntity> BrandOffice = brandOfficeRepository.findAllById(brandofficeId);
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
-                chartData = merchandiseRepository.findAllChartDataBetweenDates();
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    chartData = merchandiseRepository.findAllChartDataBetweenDates();
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                }else{
+                    chartData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice);
+                }
+
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
-                chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                }else{
+                    chartData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                }
+
             }else if(startDate == null && endDate == null){
-                chartData = merchandiseRepository.findAllChartDataBetweenDates(productNames);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    chartData = merchandiseRepository.findAllChartDataBetweenDates(productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
+                }else{
+                    chartData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice);
+                }
+
             }else if(startDate != null && endDate != null){
-                chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate, productNames);
-                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                if(brandofficeId == null || brandofficeId.isEmpty()){
+                    chartData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
+                }else{
+                    chartData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate, productNames);
+                    allSalesData = merchandiseRepository.findAllChartDataManagerBetweenDates(BrandOffice, startDate, endDate);
+                }
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }

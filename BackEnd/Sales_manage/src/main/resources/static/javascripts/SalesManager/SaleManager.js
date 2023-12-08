@@ -114,7 +114,9 @@ function addTableRow(data){
         console.log("삭제합니다..");
         tbody.removeChild(tbody.firstChild);
     }
-    for(const ordersheet of data){
+    for(let index = 0; index < data.length - 1; index++){
+            console.log(index);
+            const ordersheet = data[index];
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
             const th = document.createElement('th');
@@ -147,7 +149,6 @@ function addTableRow(data){
             tr.appendChild(td5);
             console.log(tr);
             tbody.appendChild(tr);
-            index++;
             //맵을 생성
             const getRadio = document.getElementById('optionsRadios2');
             const getRadio2 = document.getElementById('optionsRadios1');
@@ -182,6 +183,9 @@ function addTableRow(data){
                 }
             }
     }
+    let total = data[data.length-1];
+
+    myMap.set(total[0],[total[1],total[2]]);
     drawBarChart();
     drawDoughnut();
     drawDoughnut2();

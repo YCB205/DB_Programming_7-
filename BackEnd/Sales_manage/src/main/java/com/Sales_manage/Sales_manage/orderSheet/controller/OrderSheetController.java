@@ -50,6 +50,7 @@ public class OrderSheetController {
             @RequestParam("search_merchandise") List<String> searchMerchandiseValue,
             @RequestParam("startDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
             @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
+            @RequestParam("brandoffice_id") List<Long> brandofficeId,
             HttpSession session) {
 
 
@@ -57,7 +58,7 @@ public class OrderSheetController {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
-        List<Object[]> salesData = orderSheetService.getAllSalesData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
+        List<Object[]> salesData = orderSheetService.getAllSalesData(searchMerchandiseValue, startDateTime, endDateTime, brandofficeId, loggedInUserRole, loggedInUserId);
         // 역할이 store_manager인지 확인
         if (salesData.isEmpty()) {
             return ResponseEntity.badRequest().build();
@@ -73,6 +74,7 @@ public class OrderSheetController {
             @RequestParam("search_merchandise") List<String> searchMerchandiseValue,
             @RequestParam("startDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
             @RequestParam("endDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime,
+            @RequestParam("brandoffice_id") List<Long> brandofficeId,
             HttpSession session) {
 
 
@@ -80,7 +82,7 @@ public class OrderSheetController {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
-        List<Object[]> salesData = orderSheetService.getAllChartData(searchMerchandiseValue, startDateTime, endDateTime, loggedInUserRole, loggedInUserId);
+        List<Object[]> salesData = orderSheetService.getAllChartData(searchMerchandiseValue, startDateTime, endDateTime, brandofficeId, loggedInUserRole, loggedInUserId);
         System.out.println("searchMerchandiseValue = " + searchMerchandiseValue);
         System.out.println("startDateTime = " + startDateTime);
         System.out.println("endDateTime = " + endDateTime);
