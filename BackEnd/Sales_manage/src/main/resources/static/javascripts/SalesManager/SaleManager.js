@@ -82,10 +82,16 @@ function getFetch(startdate, enddate){
         })
     }
     const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
+    const url2 = `/chartOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
     fetch(url)
         .then(response => response.json())
         .then(data=>{
             addTableRow(data);
+        })
+    fetch(url2)
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
         })
 }
 //바 차트를 위한 맵
