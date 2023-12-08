@@ -69,7 +69,6 @@ public class UserController {
 
         if ("manager".equals(loggedInUserRole)) {
             if ("manager".equals(userService.getPostion(loggedInUserId))) {
-                System.out.println(userService.getPostion(loggedInUserId));
                 ManagerEntity managerEntity = userService.getManagerInfo(loggedInUserId);
                 BrandEntity brandEntity = managerEntity.getIdBrand();
 

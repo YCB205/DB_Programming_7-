@@ -30,4 +30,13 @@ public class ManagerDTO {
         managerDTO.setIdBrand(managerEntity.getIdBrand().getIdBrand());
         return managerDTO;
     }
+    public static ManagerDTO toManagerDTONotInPasswdDTO(ManagerEntity managerEntity) {
+        ManagerDTO managerDTO = new ManagerDTO();
+        managerDTO.setIdManager(managerEntity.getIdManager());
+        managerDTO.setName(managerEntity.getName());
+        managerDTO.setEmail(managerEntity.getEmail());
+        managerDTO.setPhoneNumber(managerEntity.getPhoneNumber());
+        managerDTO.setIdBrand(managerEntity.getIdBrand().getIdBrand());
+        return managerDTO;
+    }
 }

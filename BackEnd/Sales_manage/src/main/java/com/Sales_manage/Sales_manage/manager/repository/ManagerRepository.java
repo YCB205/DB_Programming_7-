@@ -5,9 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ManagerRepository extends JpaRepository<ManagerEntity, String> {
     @Query("SELECT m.idBrand FROM ManagerEntity m WHERE m.idManager = :loggedInUserId")
     Long findBrandIdByManagerId(@Param("loggedInUserId") String loggedInUserId);
 
     ManagerEntity findByIdManager(String loggedInUserId);
+
+    List<ManagerEntity> findByNameContainingAndPosition(String name, String position);
+    List<ManagerEntity> findByPosition(String position);
+
 }
