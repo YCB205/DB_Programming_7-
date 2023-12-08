@@ -35,7 +35,7 @@
     <div class="card border-primary mb-3">
         <div class="card-header"></div>
         <div class="card-body">
-          <h4 class="card-title">매니저 비밀번호를 입력하세요.</h4>
+          <h4 class="card-title"><span id="position"></span> 비밀번호를 입력하세요.</h4>
             <div class="form-group">
                 <label class="col-form-label mt-3" for="passwd">비밀번호</label>
                 <input onkeydown="handleKeyDown(event)" type="password" class="form-control" placeholder="password" id="passwd">
@@ -51,6 +51,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <script src="../../javascripts/userAPI/putManager_User_information_check.js"></script>
 <script src="../../javascripts/branch-storeManagers/checkManagerPasswd.js"></script>
+<script src="../../javascripts/userAPI/getUserPosition.js"></script>
         <script>
 
             document.getElementById('closeBtn').addEventListener('click', function () {

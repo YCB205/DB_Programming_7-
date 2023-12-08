@@ -32,13 +32,14 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(HttpSession session, String id, String password, Model model) {
-        if (userService.login(id, password, session).equals("store_manager")) {
-            return "redirect:/html/store_manager/MainJumju.html"; //아이디가 점주 일때 점주 메인페이지로 이동
-        } else if (userService.login(id, password, session).equals("manager")) {
-            return "redirect:/html/manager/MainManager.html"; //아이디가 매니저 일때 매니저 메인페이지로 이동
+        String userRole = userService.login(id, password, session);
+        if ("store_manager".equals(userRole)) {
+            return "redirect:/html/store_manager/MainJumju.html";
+        } else if ("manager".equals(userRole)) {
+            return "redirect:/html/manager/MainManager.html";
         } else {
             model.addAttribute("loginError", "Fail to Login");
-            return "index"; // 로그인 실패 시 로그인페이지로 이동
+            return "index";
         }
     }
 
@@ -56,6 +57,18 @@ public class UserController {
 
         // 비밀번호가 일치하지 않을 때
         return ResponseEntity.badRequest().body("The password does not match");
+    }
+
+
+    @GetMapping("/userPosition")
+    @ResponseBody
+    public String userPosition(HttpSession session) {
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        if ("manager".equals(userService.getPostion(loggedInUserId))){
+            return "매니저";
+        } else {
+            return "관리자";
+        }
     }
 
 
