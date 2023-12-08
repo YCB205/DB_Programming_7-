@@ -138,13 +138,13 @@ public class OrderSheetService {
             BrandOfficeEntity BrandOffice = brandOfficeRepository.findByIdStoremanger(storeManager);
             Long idBrandOffice = BrandOffice.getIdBrandoffice();
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
-                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(idBrandOffice);
+                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(BrandOffice);
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
-                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice);
+                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
             }else if(startDate == null && endDate == null){
-                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(idBrandOffice, productNames);
+                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(BrandOffice, productNames);
             }else if(startDate != null && endDate != null){
-                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, idBrandOffice, productNames);
+                salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice, productNames);
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }

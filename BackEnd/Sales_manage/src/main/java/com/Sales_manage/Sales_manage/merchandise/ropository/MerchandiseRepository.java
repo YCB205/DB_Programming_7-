@@ -64,7 +64,7 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
             "WHERE o.idBrandoffice = :idBrandOffice AND m.merchandiseName IN (:productNames) AND o.orderTime BETWEEN :startDate AND :endDate " +
             "GROUP BY m.categori, m.id_merchandise, m.merchandiseName, m.salesStatus")
-    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("idBrandOffice") Long idBrandOffice, @Param("productNames") List<String> productNames);
+    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("idBrandOffice") BrandOfficeEntity brandOfficeEntity, @Param("productNames") List<String> productNames);
 
     //지점 상품명 이용한 검색
     @Query("SELECT m.categori, m.id_merchandise, m.merchandiseName, " +
@@ -75,7 +75,7 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
             "WHERE o.idBrandoffice = :idBrandOffice AND m.merchandiseName IN (:productNames)" +
             "GROUP BY m.categori, m.id_merchandise, m.merchandiseName, m.salesStatus")
-    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("idBrandOffice") Long idBrandOffice, @Param("productNames") List<String> productNames);
+    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("idBrandOffice") BrandOfficeEntity brandOfficeEntity, @Param("productNames") List<String> productNames);
 
     //상품명 없을 때 날짜 이용한 검색
     @Query("SELECT m.categori, m.id_merchandise, m.merchandiseName, " +
@@ -86,7 +86,7 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
             "WHERE o.idBrandoffice = :idBrandOffice AND o.orderTime BETWEEN :startDate AND :endDate " +
             "GROUP BY m.categori, m.id_merchandise, m.merchandiseName, m.salesStatus")
-    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("idBrandOffice") Long idBrandOffice);
+    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("idBrandOffice") BrandOfficeEntity brandOfficeEntity);
     //지점 페이지 불러올 때 검색
     @Query("SELECT m.categori, m.id_merchandise, m.merchandiseName, " +
             "CASE WHEN m.salesStatus = false THEN 'N' ELSE 'Y' END, " +
@@ -96,7 +96,7 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
             "WHERE o.idBrandoffice = :idBrandOffice " +
             "GROUP BY m.categori, m.id_merchandise, m.merchandiseName, m.salesStatus")
-    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("idBrandOffice") Long idBrandOffice);
+    List<Object[]> findAllSalesDataByBrandOfficeBetweenDates(@Param("idBrandOffice") BrandOfficeEntity brandOfficeEntity);
 
     //매니저 productName 없을 때 날짜 이용한 전체 데이터 조회
     @Query("SELECT m.categori," +

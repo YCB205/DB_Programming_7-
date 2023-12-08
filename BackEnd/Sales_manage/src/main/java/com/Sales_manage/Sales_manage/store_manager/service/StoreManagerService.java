@@ -6,6 +6,7 @@ import com.Sales_manage.Sales_manage.store_manager.dto.StoreManagerDTO;
 import com.Sales_manage.Sales_manage.store_manager.entity.StoreManagerEntity;
 import com.Sales_manage.Sales_manage.store_manager.repository.StoreManagerRepository;
 import com.Sales_manage.Sales_manage.user.dto.UserData;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class StoreManagerService {
         return brandOfficeRepository.findByIdStoremanger(storeManagerEntity);
     }
 
+    @Transactional
     public void updateStoreManager(UserData userData) {
         StoreManagerEntity storeManagerEntity = storeManagerRepository.findById(userData.getId()).orElse(null);
 
