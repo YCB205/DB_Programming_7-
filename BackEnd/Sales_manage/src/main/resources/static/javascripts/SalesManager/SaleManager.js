@@ -115,6 +115,7 @@ function addTableRow(data){
         tbody.removeChild(tbody.firstChild);
     }
     for(let index = 0; index < data.length - 1; index++){
+            console.log(index);
             const ordersheet = data[index];
             const tr = document.createElement('tr');
             index % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
@@ -148,7 +149,6 @@ function addTableRow(data){
             tr.appendChild(td5);
             console.log(tr);
             tbody.appendChild(tr);
-            index++;
             //맵을 생성
             const getRadio = document.getElementById('optionsRadios2');
             const getRadio2 = document.getElementById('optionsRadios1');
