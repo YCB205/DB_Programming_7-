@@ -14,73 +14,87 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ManagerService {
-    private final ManagerRepository ManagerRepository;
+    private final ManagerRepository managerRepository;
 
-//    public List<ManagerDTO> getAll() {
-//        List<ManagerEntity> ManagerEntityList = ManagerRepository.findAll();
-//        List<ManagerDTO> ManagerDTOList = new ArrayList<>();
-//        for (ManagerEntity memberTestEntity: ManagerEntityList){
-//            ManagerDTO ManagerDTO = ManagerDTO.toStoreManagerDTO(memberTestEntity);
-//            ManagerDTOList.add(ManagerDTO);
-//        }
-//        return ManagerDTOList;
-//    }
+
+    public String getPostion(String loggedInUserId) {
+        ManagerEntity manager = managerRepository.findById(loggedInUserId).orElse(null);
+        return manager.getPosition();
+    }
+
+    public List<ManagerDTO> getAll() {
+        List<ManagerEntity> ManagerEntityList = managerRepository.findByPosition("manager");
+        List<ManagerDTO> ManagerDTOList = new ArrayList<>();
+        for (ManagerEntity memberTestEntity: ManagerEntityList){
+            ManagerDTO managerDTO = ManagerDTO.toManagerDTONotInPasswdDTO(memberTestEntity);
+            ManagerDTOList.add(managerDTO);
+        }
+        return ManagerDTOList;
+    }
+
+    public ManagerEntity getManagerInfo(String id) {
+        return managerRepository.findById(id).orElse(null);
+    }
 
 
     @Transactional
     public void updateManager(UserData userData) {
-        ManagerEntity ManagerEntity = ManagerRepository.findById(userData.getId()).orElse(null);
+        ManagerEntity managerEntity = managerRepository.findById(userData.getId()).orElse(null);
 
-        if (ManagerEntity != null) {
+        if (managerEntity != null) {
 
-            ManagerEntity.setEmail(userData.getEmail());
+            managerEntity.setEmail(userData.getEmail());
             if (userData.getPasswd().equals("")){
-                ManagerEntity.setPasswd(ManagerEntity.getPasswd());
+                managerEntity.setPasswd(managerEntity.getPasswd());
             } else {
-                ManagerEntity.setPasswd(userData.getPasswd());
+                managerEntity.setPasswd(userData.getPasswd());
             }
-            ManagerEntity.setName(userData.getName());
-            ManagerEntity.setPhoneNumber(userData.getPhoneNumber());
+            managerEntity.setName(userData.getName());
+            managerEntity.setPhoneNumber(userData.getPhoneNumber());
 
-            ManagerRepository.save(ManagerEntity);
+            managerRepository.save(managerEntity);
         }
     }
 
-//    public List<ManagerDTO> getFilterName(String name) {
-//        List<ManagerEntity> filteredManagers = ManagerRepository.findByNameContainingIgnoreCase(name);
-//        List<ManagerDTO> filteredManagerDTOs = new ArrayList<>();
-//
-//        for (ManagerEntity ManagerEntity : filteredManagers) {
-//            ManagerDTO ManagerDTO = ManagerDTO.toStoreManagerDTONotInPasswd(ManagerEntity);
-//            filteredManagerDTOs.add(ManagerDTO);
-//        }
-//
-//        return filteredManagerDTOs;
-//    }
+    public List<ManagerDTO> getFilterName(String name) {
+        List<ManagerEntity> filteredManagers = managerRepository.findByNameContainingAndPosition(name, "manager");
+        List<ManagerDTO> filteredManagerDTOs = new ArrayList<>();
+
+        for (ManagerEntity ManagerEntity : filteredManagers) {
+            ManagerDTO managerDTO = ManagerDTO.toManagerDTONotInPasswdDTO(ManagerEntity);
+            filteredManagerDTOs.add(managerDTO);
+        }
+
+        return filteredManagerDTOs;
+    }
 
 
     public void deleteManager(String idManager) {
-        ManagerEntity ManagerEntity = ManagerRepository.findById(idManager).orElse(null);
+        ManagerEntity ManagerEntity = managerRepository.findById(idManager).orElse(null);
         assert ManagerEntity != null;
-        ManagerRepository.delete(ManagerEntity);
+        managerRepository.delete(ManagerEntity);
     }
 
     public boolean checkManagerId(String idManager) {
-        ManagerEntity ManagerEntity = ManagerRepository.findById(idManager).orElse(null);;
+        ManagerEntity ManagerEntity = managerRepository.findById(idManager).orElse(null);;
         if (ManagerEntity != null) {
             return false; // 아이디가 DB에 있음
         } else {return true;} // 아이디가 DB에 없음
     }
 
-    public void createManager(ManagerDTO ManagerDTO) {
+    public void createManager(ManagerDTO managerDTO, String adminId) {
         ManagerEntity ManagerEntity = new ManagerEntity();
 
-        ManagerEntity.setIdManager(ManagerDTO.getIdManager());
-        ManagerEntity.setName(ManagerDTO.getName());
-        ManagerEntity.setPasswd(ManagerDTO.getPasswd());
-        ManagerEntity.setEmail(ManagerDTO.getEmail());
-        ManagerEntity.setPhoneNumber(ManagerDTO.getPhoneNumber());
-        ManagerRepository.save(ManagerEntity);
+        ManagerEntity.setIdManager(managerDTO.getIdManager());
+        ManagerEntity.setName(managerDTO.getName());
+        ManagerEntity.setPasswd(managerDTO.getPasswd());
+        ManagerEntity.setEmail(managerDTO.getEmail());
+        ManagerEntity.setPhoneNumber(managerDTO.getPhoneNumber());
+
+        ManagerEntity ForBrandId= managerRepository.findById(adminId).orElse(null);
+        ManagerEntity.setIdBrand(ForBrandId.getIdBrand());
+        ManagerEntity.setPosition("manager");
+        managerRepository.save(ManagerEntity);
     }
 
 }

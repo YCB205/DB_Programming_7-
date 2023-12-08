@@ -72,12 +72,10 @@ function getAllProducts() {
                     row.appendChild(categoryCell);
 
                     // 카테고리, 상품명, 판매 상태, 가격, 비용 순으로 데이터를 추가
-                    for (const key of ['id_merchandise', 'merchandiseName', 'sales_status', 'cost', 'price']) {
+                    for (const key of ['id_merchandise', 'merchandiseName', 'cost', 'price']) {
                         const cell = document.createElement('td');
                         if (key === 'cost' || key === 'price') {
                             cell.textContent = `${product[key]}원`;
-                        } else if (key === 'sales_status') {
-                            cell.textContent = product[key] ? 'Y' : 'N';
                         } else {
                             cell.textContent = product[key];
                         }
