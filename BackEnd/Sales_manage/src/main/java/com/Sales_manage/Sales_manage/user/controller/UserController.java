@@ -59,6 +59,18 @@ public class UserController {
     }
 
 
+    @GetMapping("/userPosition")
+    @ResponseBody
+    public String userPosition(HttpSession session) {
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        if ("manager".equals(userService.getPostion(loggedInUserId))){
+            return "매니저";
+        } else {
+            return "관리자";
+        }
+    }
+
+
     @GetMapping("/user")
     @ResponseBody
     public Map<String, Object> getUserInfo(HttpSession session) {
