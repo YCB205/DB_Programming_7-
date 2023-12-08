@@ -186,6 +186,15 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "GROUP BY m.merchandiseName")
     List<Object[]> findAllChartDataBetweenDates(@Param("productNames") List<String> productNames);
 
+    @Query("SELECT m.merchandiseName, " +
+            "SUM(i.sales)-SUM(i.totalCost), SUM(i.sales) " +
+            "FROM MerchandiseEntity m " +
+            "JOIN IncludeEntity i ON m.id_merchandise = CAST(i.idMerchandise AS Long)" +
+            "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
+            "WHERE m.merchandiseName IN (:productNames) AND o.idBrandoffice in (:idBrandOffice) " +
+            "GROUP BY m.merchandiseName")
+    List<Object[]> findAllChartDataManagerBetweenDates(@Param("idBrandOffice") List<BrandOfficeEntity> idBrandOffice, @Param("productNames") List<String> productNames);
+
 
     //매니저 productName 있을 때 날짜 이용한 데이터 조회
     @Query("SELECT m.merchandiseName, " +
@@ -197,6 +206,14 @@ public interface MerchandiseRepository extends JpaRepository<MerchandiseEntity, 
             "GROUP BY m.merchandiseName")
     List<Object[]> findAllChartDataBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("productNames") List<String> productNames);
 
+    @Query("SELECT m.merchandiseName, " +
+            "SUM(i.sales)-SUM(i.totalCost), SUM(i.sales) " +
+            "FROM MerchandiseEntity m " +
+            "JOIN IncludeEntity i ON m.id_merchandise = CAST(i.idMerchandise AS Long)" +
+            "JOIN OrderSheetEntity o ON o.idOrdersheet = CAST(i.idOrdersheet AS Long)" +
+            "WHERE m.merchandiseName IN (:productNames) AND o.orderTime BETWEEN :startDate AND :endDate AND o.idBrandoffice in (:idBrandOffice) " +
+            "GROUP BY m.merchandiseName")
+    List<Object[]> findAllChartDataManagerBetweenDates(@Param("idBrandOffice") List<BrandOfficeEntity> idBrandOffice, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("productNames") List<String> productNames);
     //지점 상품명, 날짜 이용한 검색
     @Query("SELECT m.merchandiseName, " +
             "SUM(i.sales)-SUM(i.totalCost), SUM(i.sales) " +
