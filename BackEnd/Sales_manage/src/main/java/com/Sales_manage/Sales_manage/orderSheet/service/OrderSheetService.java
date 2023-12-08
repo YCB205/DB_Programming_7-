@@ -114,7 +114,9 @@ public class OrderSheetService {
 
     public List<Object[]> getAllSalesData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> salesData;
-
+        List<Object[]> allSalesData;
+        int totalProfit = 0;
+        int totalSales = 0;
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
@@ -122,12 +124,16 @@ public class OrderSheetService {
             // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataBetweenDates();
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
                 salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
             }else if(startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataBetweenDates(productNames);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates();
             }else if(startDate != null && endDate != null){
                 salesData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataBetweenDates(startDate, endDate);
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
@@ -136,20 +142,40 @@ public class OrderSheetService {
             // 'store_manager' 권한이라면 해당 유저의 id_brandoffice 값을 이용하여 매출 정보 가져오기
             StoreManagerEntity storeManager = storeManagerRepository.findById(loggedInUserId).orElse(null);
             BrandOfficeEntity BrandOffice = brandOfficeRepository.findByIdStoremanger(storeManager);
-            Long idBrandOffice = BrandOffice.getIdBrandoffice();
             if(productNames == null || productNames.isEmpty() && startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(BrandOffice);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice);
             }else if(productNames == null || productNames.isEmpty() && startDate != null && endDate != null){
                 salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
             }else if(startDate == null && endDate == null){
                 salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(BrandOffice, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(BrandOffice);
             }else if(startDate != null && endDate != null){
                 salesData = merchandiseRepository.findAllSalesDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice, productNames);
+                allSalesData = merchandiseRepository.findAllChartDataByBrandOfficeBetweenDates(startDate, endDate, BrandOffice);
             }else{
                 throw new RuntimeException("날짜 설정을 잘못 하였습니다.");
             }
         }
-        return salesData;
+        if(salesData.isEmpty()){
+            return salesData;
+        }else{
+
+            for (Object[] data : allSalesData) {
+                int profit = ((Number) data[1]).intValue();
+                int sales = ((Number) data[2]).intValue();
+
+                totalProfit += profit;
+                totalSales += sales;
+            }
+
+            Object[] totalData = new Object[]{"총매출", totalProfit, totalSales};
+            salesData.add(totalData);
+            return salesData;
+        }
+
+
     }
     @Transactional
     public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, String loggedInUserRole, String loggedInUserId) {
