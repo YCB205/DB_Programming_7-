@@ -106,4 +106,9 @@ public class UserService {
             return false;
         }
     }
+
+    public String getPostion(String loggedInUserId) {
+        ManagerEntity manager = managerRepository.findById(loggedInUserId).orElse(null);
+        return manager.getPosition();
+    }
 }

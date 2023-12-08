@@ -9,7 +9,7 @@ fetch(apiUrl)
             document.getElementById('name').value = data.name;
             document.getElementById('phoneNumber').value = data.phoneNumber;
             document.getElementById('officeName').value = data.officeName;
-        } else if(data.position==="매니저"){
+        } else if(data.position==="매니저" || data.position==="관리자"){
             document.getElementById('brandName').value = data.brandName;
             document.getElementById('name').value = data.name;
             document.getElementById('email').value = data.email;

@@ -129,6 +129,7 @@ thead {
                         <li><a href="Branch-ManagersManagement.html" class="dropdown-item fw-bold" style="color: #3E7E69;">지점 및 점주 계정 관리</a></li>
                         <li><a href="Createanewbranch.html" class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
                         <li><a href="CreateanewStoreManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
+                        <li><a href="CreateanewStoreManager.html" class="dropdown-item fw-bold adminView" style="color: #3E7E69;">매니저 계정 생성</a></li>
                     </ul> 
                 </div>
             </div>
@@ -273,7 +274,8 @@ thead {
                     </div>
                 </form>
             </div>
-            <div style=" margin-left: 5%; margin-right: 5%; position: relative; top: 40%; ">
+            <div style=" margin-left: 5%; margin-right: 5%; position: relative; bottom: -31%; ">
+                <div style="height: 46px"><button onclick="showPopup('storeManagerManagement.html',660,661)" type="button" class="btn btn-danger adminView" style="width: calc(100%); margin-bottom: 7px">매니저 계정 관리</button></div>
                 <button onclick="showPopup('storeManagerManagement.html',660,661)" type="button" class="btn btn-info" style="width: calc(100%); margin-bottom: 7px">점주 계정 관리</button>
                 <button onclick="showPopup('closedBranchManagement.html',660,661)" type="button" class="btn btn-secondary" style="width: calc(100%);">폐업 지점 관리</button>
             </div>
@@ -282,12 +284,14 @@ thead {
 </aside>
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
+<script src="../../javascripts/userAPI/setAdminView.js"></script>
 <script src="../../javascripts/branch-storeManagers/showPopupStoreManager.js"></script>
 <script src="../../javascripts/branch-storeManagers/showPopupUpdateBranch.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/branch-storeManagers/getBranchStoreManagers.js"></script>
 <script src="../../javascripts/branch-storeManagers/putDeleteStoreManagerOnBranch.js"></script>
 <script>
+
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
             getBranchStoreManagers();
@@ -334,6 +338,7 @@ thead {
             }
         });
     }
+    setAdmin();
 </script>
 </body>
 </html>

@@ -16,6 +16,7 @@ public class ManagerEntity {
     private String name;
     private String email;
     private String phoneNumber;
+    private String position;
     @ManyToOne
     @JoinColumn(name = "id_brand", nullable = false)
     private com.Sales_manage.Sales_manage.brand.entity.BrandEntity idBrand;

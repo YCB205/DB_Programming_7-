@@ -68,15 +68,31 @@ public class UserController {
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
         if ("manager".equals(loggedInUserRole)) {
-            ManagerEntity managerEntity = userService.getManagerInfo(loggedInUserId);
-            BrandEntity brandEntity = managerEntity.getIdBrand();
+            if ("manager".equals(userService.getPostion(loggedInUserId))) {
+                System.out.println(userService.getPostion(loggedInUserId));
+                ManagerEntity managerEntity = userService.getManagerInfo(loggedInUserId);
+                BrandEntity brandEntity = managerEntity.getIdBrand();
 
-            result.put("brandName", brandEntity.getBrandName());
-            result.put("idManager", managerEntity.getIdManager());
-            result.put("name", managerEntity.getName());
-            result.put("email", managerEntity.getEmail());
-            result.put("phoneNumber", managerEntity.getPhoneNumber());
-            result.put("position","매니저");
+                result.put("brandName", brandEntity.getBrandName());
+                result.put("idManager", managerEntity.getIdManager());
+                result.put("name", managerEntity.getName());
+                result.put("email", managerEntity.getEmail());
+                result.put("phoneNumber", managerEntity.getPhoneNumber());
+                result.put("position", "매니저");
+            } else {
+                System.out.println("82번줄 실행");
+                ManagerEntity managerEntity = userService.getManagerInfo(loggedInUserId);
+                BrandEntity brandEntity = managerEntity.getIdBrand();
+
+                result.put("brandName", brandEntity.getBrandName());
+                result.put("idManager", managerEntity.getIdManager());
+                result.put("name", managerEntity.getName());
+                result.put("email", managerEntity.getEmail());
+                result.put("phoneNumber", managerEntity.getPhoneNumber());
+                result.put("position", "관리자");
+            }
+
+
         } else if ("store_manager".equals(loggedInUserRole)) {
             StoreManagerEntity storeManagerEntity = userService.getStoreManagerInfo(loggedInUserId);
             BrandOfficeEntity brandOfficeEntity = userService.getBrandOfficeInfo(storeManagerEntity);
