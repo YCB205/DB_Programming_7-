@@ -68,7 +68,34 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+        .brand_name_div span {
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #ffffff;
+            -webkit-text-stroke: 1px #3E7E69;
+            position: relative;
+        }
 
+        .brand_name_div span:before {
+            content: "";
+            position: absolute;
+            left: -2%;
+            bottom: 10%;
+            height: 5px;
+            width: 55px;
+            background-color: #ffffff;
+        }
+
+        .brand_name_div span:after {
+            content: "";
+            position: absolute;
+            left: 5%;
+            bottom: 12%;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #ffffff;
+        }
 
     </style>
 </head>
@@ -79,37 +106,33 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-2 g-0 brand_name_div">
+                <a href="MainJumju.html">
                 <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
                       style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                </a>
             </div>
 
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1"
-                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a href="Sales_information_inquiry.html" class="dropdown-item fw-bold"
-                               style="color: #3E7E69;">매출 정보 조회</a></li>
-                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">헤더
-                            관리</a></li>
-                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서
-                            등록</a></li>
+                        <li><a href="Sales_information_inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">매출 정보 조회</a></li>
+                        <li><a href="OrderManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 관리</a></li>
+                        <li><a href="RegisterOrderForm.html" class="dropdown-item fw-bold" style="color: #3E7E69;">주문서 등록</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2"
-                            data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a href="product_inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">상품
-                            조회</a></li>
+                        <li><a href="product_inquiry.html" class="dropdown-item fw-bold" style="color: #3E7E69;">상품 조회</a></li>
                     </ul>
                 </div>
             </div>
