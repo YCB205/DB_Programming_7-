@@ -236,7 +236,7 @@
             style="width: 100%; padding-left: 1%; overflow: auto;">
                 <div class="scrollable-div w-100 h-100 product_table_div">
                     <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                        <thead class>
+                        <thead>
                         <tr class="table-primary sticky-top" style="font-size: 120%;">
                             <th scope="col">지점</th>
                             <th scope="col">품목명</th>
@@ -246,7 +246,7 @@
                             <th scope="col">총매출</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
                         <tr class="table-light">
                             <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
                         </tr>
@@ -554,10 +554,10 @@
     <div style="margin-left: 10px;">
         <form>
             <div class="mb-3">
-                <label for="startDateTime" class="form-label">from</label>
-                <input type="datetime-local" class="form-control" id="startDateTime" aria-describedby="dateTimeHelp">
-                <label for="endDateTime" class="form-label">to</label>
-                <input type="datetime-local" class="form-control" id="endDateTime" aria-describedby="dateTimeHelp">
+                <label for="fromDate" class="form-label">from</label>
+                <input type="datetime-local" class="form-control" id="fromDate" aria-describedby="dateTimeHelp">
+                <label for="toDate" class="form-label">to</label>
+                <input type="datetime-local" class="form-control" id="toDate" aria-describedby="dateTimeHelp">
             </div>
         </form>
     </div>
@@ -572,7 +572,8 @@
             <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
         </div>
         <div class="searchButton">
-            <button type="button" button id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>
+<!--            <button type="button" id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>-->
+            <button type="button" id="fetchData" class="btn btn-primary">Search</button>
         </div>
         <div class="small-table-section" id="smallTableSection">
             <div class="mainForJumjuproductinquiryFormMainaside p-2" style="width: 100%; overflow: auto; max-height: 300px;">
