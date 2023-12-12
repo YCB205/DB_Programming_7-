@@ -206,30 +206,10 @@
         <div class="scrollable-div w-100 h-100 product_table_div">
             <div class="chart-and-table">
                 <div class="chart-section" id="chartSection">
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myAllChart"></canvas>
+                    <canvas id="partChartTable"></canvas>
+                    <canvas id="partChartTable2"></canvas>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <script>
-                        const ctx = document.getElementById('myChart');
-    
-                        new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                datasets: [{
-                                    label: '# of Votes',
-                                    data: [12, 19, 3, 5, 2, 3],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    </script>
                 </div>
             <div class="table-section" id="tableSection">
             <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
@@ -255,55 +235,7 @@
                             <td>Column content</td>
                             <td>Column content</td>
                             <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
                             <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
                         </tr>
                         <tr class="table-success">
                             <td>Column content</td>
@@ -351,55 +283,7 @@
                             <td>Column content</td>
                             <td>Column content</td>
                             <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
                             <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
                         </tr>
                         <tr class="table-success">
                             <td>Column content</td>
@@ -447,7 +331,103 @@
                             <td>Column content</td>
                             <td>Column content</td>
                             <td>Column content</td>
-                            <td>Column content</td> 
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="table-light">
+                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
+                        </tr>
+                        <tr class="table-light">
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
                         </tr>
                         <tr class="table-success">
                             <td>Column content</td>
