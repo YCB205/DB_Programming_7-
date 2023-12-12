@@ -101,7 +101,6 @@ function getFetch(startdate, enddate) {
     const startDate = convertTimeType(startdate);
     const endDate = convertTimeType(enddate);
     const getRadio = document.getElementById('optionsRadios2');
-    const getRadio2 = document.getElementById('optionsRadios1');
     if (getRadio.checked) {
         const getLocal = localStorage.getItem('table_info');
         const data = JSON.parse(getLocal);
@@ -199,8 +198,6 @@ function addTableRow(data) {
         jumjuMap.set(jumju, 0);
         let list = [0, 0];
         let categoryMap = new Map();
-        const getRadio = document.getElementById('optionsRadios2');
-        const getRadio2 = document.getElementById('optionsRadios1');
         for (let jdex = 0; jdex < ordersheet.length; jdex++) {
             let data = ordersheet[jdex];
             let tr = document.createElement('tr');
@@ -218,16 +215,32 @@ function addTableRow(data) {
             list[0] += data.profit;
             list[1] += data.sales;
 
-            //만약 카테고리가 없다면?
-            if (categoryMap.get(data.category) == null) {
-                let list2 = [0, 0];
-                list2[0] += data.profit;
-                list2[1] += data.sales;
-                categoryMap.set(data.category, list2);
-            } else {
-                let existingValue = categoryMap.get(data.category);
-                existingValue[0] += data.profit;
-                existingValue[1] += data.sales;
+            let getRadio = document.getElementById('optionsRadios1');
+            if(getRadio.checked) {
+                //만약 카테고리가 없다면?
+                if (categoryMap.get(data.category) == null) {
+                    let list2 = [0, 0];
+                    list2[0] += data.profit;
+                    list2[1] += data.sales;
+                    categoryMap.set(data.category, list2);
+                } else {
+                    let existingValue = categoryMap.get(data.category);
+                    existingValue[0] += data.profit;
+                    existingValue[1] += data.sales;
+                }
+            }
+            else{
+                if (categoryMap.get(data.name) == null) {
+                    let list2 = [0, 0];
+                    list2[0] += data.profit;
+                    list2[1] += data.sales;
+                    categoryMap.set(data.name, list2);
+                } else {
+                    let existingValue = categoryMap.get(data.name);
+                    existingValue[0] += data.profit;
+                    existingValue[1] += data.sales;
+                }
+
             }
 
             tr.appendChild(td1);
