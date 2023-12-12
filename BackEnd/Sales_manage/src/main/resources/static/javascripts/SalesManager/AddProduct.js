@@ -111,6 +111,7 @@ function registerBtn(){
 //이벤트 리스너 등록
 function notifyOtherHtml(){
     window.opener.postMessage('HTMLClosed',window.location.origin + '/html/store_manager/Sales%20information%20inquiry.html');
+    window.opener.postMessage('HTMLClosed',window.location.origin + '/html/store_manager/Sales%20information%20inquiry2.html');
 }   console.log(window.location.origin);
 
 //테이블 초기화히기
