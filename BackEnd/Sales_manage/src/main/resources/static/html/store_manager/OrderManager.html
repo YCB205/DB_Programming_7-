@@ -372,9 +372,10 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <input onkeydown="handleKeyDown(event)" getOrderSheet()" id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
+                        <input onkeydown="handleKeyDown(event)" oninput="checkSpecialCharacters(this)" id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button">
                         <button onclick="getOrderSheet()" type="button" class="btn btn-primary">검색</button>
                     </div>
+                    <div id="warning_message" style="color: red;"></div>
                 </form>
             </div>
         </div>
@@ -386,6 +387,35 @@
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/OrderSheet/getOrderSheet.js"></script>
 <script src="../../javascripts/OrderSheet/deleteOrderSheet.js"></script>
+<script>
+    function checkSpecialCharacters(inputElement) {
+        var inputValue = inputElement.value;
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            // 특수문자가 포함된 경우 입력을 취소하고 경고 메시지 표시
+            inputElement.value = inputValue.replace(/[^\w\s가-힣]/g, ''); // 특수문자 제거
+            document.getElementById('warning_message').innerText = '특수문자는 입력할 수 없습니다.';
+        } else {
+            document.getElementById('warning_message').innerText = '';
+        }
+    }
+
+    function handleKeyDown(event) {
+        var inputValue = event.key;
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            event.preventDefault(); // 특수문자 입력을 막음
+            document.getElementById('warning_message').innerText = '특수문자는 입력할 수 없습니다.';
+        } else {
+            document.getElementById('warning_message').innerText = '';
+        }
+    }
+
+</script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
