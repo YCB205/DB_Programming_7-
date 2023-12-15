@@ -230,7 +230,7 @@ public class OrderSheetService {
                     .sum();
 
             // 새로운 배열을 생성하여 결과 리스트에 추가
-            Object[] resultArray = {idBrandoffice, "", "", "", totalProfit, totalSales};
+            Object[] resultArray = {idBrandoffice, "", "", "", "" , totalProfit, totalSales};
             resultData.add(resultArray);
         }
 
