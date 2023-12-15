@@ -186,6 +186,7 @@ function addTableRow(data) {
         console.log("삭제합니다..");
         tbody.removeChild(tbody.firstChild);
     }
+    let getRadio = document.getElementById('optionsRadios1');
     for (let index = 0; index < groupedAndConvertedData.length - 1; index++) {
         const ordersheet = groupedAndConvertedData[index];
         let trClass = document.createElement('tr');
@@ -222,13 +223,12 @@ function addTableRow(data) {
             list[0] += data.profit;
             list[1] += data.sales;
 
-            let getRadio = document.getElementById('optionsRadios1');
             if(getRadio.checked) {
                 //만약 카테고리가 없다면?
                 if (categoryMap.get(data.category) == null) {
-                    let list2 = [0, 0];
-                    list2[0] += data.profit;
-                    list2[1] += data.sales;
+                        let list2 = [0, 0];
+                        list2[0] += data.profit;
+                        list2[1] += data.sales;
                     categoryMap.set(data.category, list2);
                 } else {
                     let existingValue = categoryMap.get(data.category);
@@ -237,19 +237,24 @@ function addTableRow(data) {
                 }
             }
             else{
-                if (categoryMap.get(data.name) == null) {
+
                     let list2 = [0, 0];
                     list2[0] += data.profit;
                     list2[1] += data.sales;
-                    categoryMap.set(data.name, list2);
-                } else {
-                    let existingValue = categoryMap.get(data.name);
-                    existingValue[0] += data.profit;
-                    existingValue[1] += data.sales;
-                }
-
+                    if(data.name!=='') {
+                        categoryMap.set(data.name, list2);
+                    }
+                    else {
+                        let profit = 0, sales = 0;
+                        categoryMap.forEach((value,key)=>{
+                            profit += value[0];
+                            sales += value[1];
+                        })
+                        td4.textContent = profit;
+                        td5.textContent = sales;
+                        categoryMap.set(data.category, list2);
+                    }
             }
-
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -277,12 +282,30 @@ function drawBarChart() {
         myBarChart.destroy();
     }
     canvas.style.width = '100%';
-    myMap.forEach((value, key) => {
-        labels.push(key);
-        salesData.push(value[0]);
-        profitsData.push(value[1]);
-    })
-
+    let getRadio = document.getElementById('optionsRadios1');
+    if(getRadio.checked) {
+        jumjuMap.forEach((value, key) => {
+            labels.push(key);
+            console.log(value);
+            let sale = value.get("총매출");
+            salesData.push(sale[0]);
+            profitsData.push(sale[1]);
+        })
+    }
+    else{
+        jumjuMap.forEach((value, key) => {
+            labels.push(key);
+            let sum1 = 0, sum2 = 0;
+            value.forEach((value,key)=>{
+                if(key!=="총매출") {
+                    sum1 += value[0];
+                    sum2 += value[1];
+                }
+            })
+            salesData.push(sum1);
+            profitsData.push(sum2);
+        })
+    }
     myBarChart = new Chart(canvas, {
         type: 'bar',
         data: {
