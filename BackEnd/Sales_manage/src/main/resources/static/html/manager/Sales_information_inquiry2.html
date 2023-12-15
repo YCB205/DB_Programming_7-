@@ -5,111 +5,132 @@
     <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 
-    
-<style>
-    /* 드롭다운 메뉴의 z-index를 더 높게 설정하여 위로 올리기 */
-    .dropdown-menu {
-        position: relative;
-        z-index: 1002;
-    }
-    
-    /* 테이블 헤더가 드롭다운 메뉴를 가리지 않도록 설정 */
-    thead {
-        position: relative;
-        z-index: 1000; 
-    }
-    
-    .section-content {
-                display: none; /* Hide section content by default */
-            }
-    
-            .section-content.active {
-                display: block; /* Show section content when it has the 'active' class */
-            }
-    
-    .mainForJumjuSalesinfromationinquiryFormMain {
-        margin: 30px; /* 위아래 여백 조절 */
-        padding: 10px; /* 내부 여백 조절 */
-        max-width: calc(100% - 70px); /* 최대 너비 설정 (전체 너비에서 오른쪽 aside 너비를 뺀 값) */
-        overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
-    }
-    
-    .mainForJumjuSalesinfromationinquiryFormMainaside {
-        margin: 30px; /* 위아래 여백 조절 */
-        padding: 10px; /* 내부 여백 조절 */
-        overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
-    }
-    
-    .scrollable-div {/* section의 큰테이블 크기 조절 */
-        max-height: 700px;
-        overflow: hidden; /* 스크롤바를 숨김 */
-    }
-    
-    .scrollable-div2 {/* aside의 작은테이블 크기 조절 */
-        max-height: 250px;
-        overflow: hidden; /* 스크롤바를 숨김 */
-    }
-    
-    .product_table_div {
-        height: 74%;
-        overflow-y: scroll;
-    }
-    
-    .product_table_div::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .table-success th, .table-success td { background-color: #d9f2eb; color: black;}
-    
-     .form-check-input:checked {
-        background-color: #78c2ad;
-        border-color: #78c2ad;
-    }
-    .form-check-input:checked[type=radio] {
-        --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e);
-    }
-    .form-check-input:checked {
-        background-color: #78c2ad;
-        border-color: #78c2ad;
-    }
-    .form-check-input[type=radio] {
-        border-radius: 50%;
-    }
-    .form-check .form-check-input {
-        float: left;
-        margin-left: -1.5em;
-    }
-    .form-check-input {
-        --bs-form-check-bg: var(--bs-body-bg);
-        flex-shrink: 0;
-        width: 1em;
-        height: 1em;
-        margin-top: 0.25em;
-        vertical-align: top;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: var(--bs-form-check-bg);
-        background-image: var(--bs-form-check-bg-image);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        border: var(--bs-border-width) solid var(--bs-border-color);
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-    .brand_name_div span {
+
+    <style>
+        /* 드롭다운 메뉴의 z-index를 더 높게 설정하여 위로 올리기 */
+        .dropdown-menu {
+            position: relative;
+            z-index: 1002;
+        }
+
+        /* 테이블 헤더가 드롭다운 메뉴를 가리지 않도록 설정 */
+        thead {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .section-content {
+            display: none; /* Hide section content by default */
+        }
+
+        .section-content.active {
+            display: block; /* Show section content when it has the 'active' class */
+        }
+
+        .mainForJumjuSalesinfromationinquiryFormMain {
+            margin: 30px; /* 위아래 여백 조절 */
+            padding: 10px; /* 내부 여백 조절 */
+            max-width: calc(100% - 70px); /* 최대 너비 설정 (전체 너비에서 오른쪽 aside 너비를 뺀 값) */
+            overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+        }
+
+        .mainForJumjuSalesinfromationinquiryFormMainaside {
+            margin: 30px; /* 위아래 여백 조절 */
+            padding: 10px; /* 내부 여백 조절 */
+            overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+        }
+
+        .scrollable-div { /* section의 큰테이블 크기 조절 */
+            max-height: 70vh;
+            overflow: hidden; /* 스크롤바를 숨김 */
+        }
+
+        .scrollable-div2 { /* aside의 작은테이블 크기 조절 */
+            max-height: 250px;
+            overflow: hidden; /* 스크롤바를 숨김 */
+        }
+
+        .product_table_div {
+            height: 74%;
+            overflow-y: scroll;
+        }
+
+        .scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll{
+            overflow-y: auto;
+            height: auto; /* 또는 적절한 높이 값으로 설정 */
+            max-height: 60vh;
+        }
+
+        .product_table_div::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table-success th, .table-success td {
+            background-color: #d9f2eb;
+            color: black;
+        }
+
+        .form-check-input:checked {
+            background-color: #78c2ad;
+            border-color: #78c2ad;
+        }
+
+        .form-check-input:checked[type=radio] {
+            --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns= 'http://www.w3.org/2000/svg' viewBox= '-4 -4 8 8' %3e%3ccircle r= '2' fill= '%23fff' /%3e%3c/svg%3e);
+        }
+
+        .form-check-input:checked {
+            background-color: #78c2ad;
+            border-color: #78c2ad;
+        }
+
+        .form-check-input[type=radio] {
+            border-radius: 50%;
+        }
+
+        .form-check .form-check-input {
+            float: left;
+            margin-left: -1.5em;
+        }
+
+        .form-check-input {
+            --bs-form-check-bg: var(--bs-body-bg);
+            flex-shrink: 0;
+            width: 1em;
+            height: 1em;
+            margin-top: 0.25em;
+            vertical-align: top;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: var(--bs-form-check-bg);
+            background-image: var(--bs-form-check-bg-image);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            border: var(--bs-border-width) solid var(--bs-border-color);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .brand_name_div span {
             font-weight: 700;
             letter-spacing: 0;
             color: #ffffff;
             -webkit-text-stroke: 1px #3E7E69;
             position: relative;
-            }
-            .brand_name_div span:before {
+        }
+
+        .brand_name_div span:before {
             content: "";
             position: absolute;
             left: -2%;
@@ -117,8 +138,9 @@
             height: 5px;
             width: 55px;
             background-color: #ffffff;
-            }
-            .brand_name_div span:after {
+        }
+
+        .brand_name_div span:after {
             content: "";
             position: absolute;
             left: 5%;
@@ -127,125 +149,140 @@
             width: 95%;
             max-width: 255px;
             background-color: #ffffff;
-            }
+        }
 
-</style>
+    </style>
 
 </head>
 
-<body>
+<body style="overflow: hidden;">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
 <header class="header bg-primary">
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-2 g-0 brand_name_div">
                 <a href="MainManager.html">
-                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
-                    style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
+                          style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
                 </a>
             </div>
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton1"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         매출
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Sales_information_inquiry2.html">매출 정보 조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;"
+                               href="Sales_information_inquiry2.html">매출 정보 조회</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-1 g-0"></div>
             <div class="col-1 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         상품
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_inquiry2.html">상품 조회</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_management.html">상품 관리</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="UpdateOrderFormAddProduct2.html">상품 등록</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_inquiry2.html">상품
+                            조회</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_management.html">상품
+                            관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;"
+                               href="UpdateOrderFormAddProduct2.html">상품 등록</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-1 g-0"></div>
             <div class="col-2 g-0">
                 <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3"
+                            style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
                         지점 및 점주
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Branch-ManagersManagement.html">지점 및 점주 계정 관리</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Createanewbranch.html">새 지점 생성</a></li>
-                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateanewStoreManager.html">점주 계정 생성</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;"
+                               href="Branch-ManagersManagement.html">지점 및 점주 계정 관리</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Createanewbranch.html">새 지점
+                            생성</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateanewStoreManager.html">점주
+                            계정 생성</a></li>
                     </ul>
-                  </div>
-              </div>
-              <div class="col-6 g-0"></div>
-          </div>
-      </div>
-  </header>
+                </div>
+            </div>
+            <div class="col-6 g-0"></div>
+        </div>
+    </div>
+</header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder">
-        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
+        <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center"
+             style="width: 30%;">
             <h3 class="text-white" style="padding-left: 5%; font-size: 35px; font-weight: 700;">매출 정보 조회</h3>
         </div>
-         <div class="mainForJumjuRegisterOrderFormAside">
+        <div class="mainForJumjuRegisterOrderFormAside">
             <div style="height: 10%"></div>
-            <div class="rounded" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px;">
+            <div class="rounded scroll-hidden overflow-y-scroll" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px; height: 60vh;">
                 <div class="text-center text-white fs-5"><strong>지 점</strong></div>
-                <div class="btn-group-vertical bg-white d-flex" role="group"
-                     aria-label="Basic radio toggle button group" id="btngroup">
-                     <input type="radio" class="btn-check" name="btncheck" id="btncheck" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary rounded-0 m-0" for="btncheck">총 지점</label>
+                <div class="" style="">
+                    <div class="btn-group-vertical bg-white d-flex w-100 h-100" role="group"
+                         aria-label="Basic radio toggle button group" id="btngroup">
+                        <input type="radio" class="btn-check" name="btncheck" id="btncheck" autocomplete="off"
+                               checked="">
+                        <label class="btn btn-outline-primary rounded-0 m-0" for="btncheck">총 지점</label>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mainForManagerSalesInformationInquiryFormMain d-flex justify-content-center align-items-center " 
-        style="padding-left: 1%; overflow: auto;">
-        <div class="scrollable-div w-100 h-100 product_table_div">
-            <div class="chart-and-table">
-                <div class="chart-section" id="chartSection">
-                    <div class="d-flex w-100" style="height: 70vh;">
-                        <div style="height: 100%; width: 100%; display: flex;" >
-                            <div style="width: 100%; height: 100%;">
-                                <canvas id="myAllChart"></canvas>
+        <div class="mainForManagerSalesInformationInquiryFormMain d-flex justify-content-center align-items-center "
+             style="padding-left: 1%; overflow: auto;">
+            <div class="scrollable-div w-100 h-100 product_table_div">
+                <div class="chart-and-table">
+                    <div class="chart-section" id="chartSection">
+                        <div class="d-flex w-100" style="height: 70vh;">
+                            <div style="height: 100%; width: 100%; display: flex;">
+                                <div style="width: 100%; height: 100%;">
+                                    <canvas id="myAllChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex w-100" style=" height: 70vh;">
+                            <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                <canvas id="partChartTable"></canvas>
+                            </div>
+                            <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                                <canvas id="partChartTable2"></canvas>
+                            </div>
+                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    </div>
+                    <div class="table-section" id="tableSection">
+                        <div class="mainForJumjuSalesinfromationinquiryFormMain p-2"
+                             style="width: 100%; padding-left: 1%; overflow: auto;">
+                            <div class="scrollable-div w-100 h-100 product_table_div">
+                                <table class="table table-hover"
+                                       style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                                    <thead>
+                                    <tr class="table-primary sticky-top" style="font-size: 120%;">
+                                        <th scope="col">지점</th>
+                                        <th scope="col">품목명</th>
+                                        <th scope="col">상품번호</th>
+                                        <th scope="col">상품명</th>
+                                        <th scope="col">영업이익</th>
+                                        <th scope="col">총매출</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex w-100" style=" height: 70vh;">
-                        <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
-                            <canvas id="partChartTable"></canvas>
-                        </div>
-                        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                            <canvas id="partChartTable2"></canvas>
-                        </div>
-                    </div>
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 </div>
-            <div class="table-section" id="tableSection">
-            <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
-            style="width: 100%; padding-left: 1%; overflow: auto;">
-                <div class="scrollable-div w-100 h-100 product_table_div">
-                    <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                        <thead>
-                        <tr class="table-primary sticky-top" style="font-size: 120%;">
-                            <th scope="col">지점</th>
-                            <th scope="col">품목명</th>
-                            <th scope="col">상품번호</th>
-                            <th scope="col">상품명</th>
-                            <th scope="col">영업이익</th>
-                            <th scope="col">총매출</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                    </table>
             </div>
-        </div>
-    </div>
-            </div>
-        </div>
 </section>
 <aside class="aside" style="border-left:2px solid #78c2ad;">
     <div class="first bg-teal">
@@ -265,7 +302,8 @@
             </div>
         </div>
         <div class="firstchild1">
-            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white" style="height: 60%;">
+            <div class="p-1 fs-5 d-flex firstchild2 text-end fw-bold text-white justify-content-end align-items-center text-white"
+                 style="height: 60%;">
                 직급:
             </div>
             <div class="firstchild3">
@@ -283,7 +321,8 @@
                         </button>
                     </div>
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="showPopup('manager_information_check.html',600,691)">
+                        <button type="button" class="btn btn-primary"
+                                onclick="showPopup('manager_information_check.html',600,691)">
                             회원정보
                         </button>
                     </div>
@@ -294,105 +333,110 @@
         </div>
 
     </div>
-<br>
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <div class="form-check-radio1">
-        <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios1" value="option1" checked="" style="transform: scale(1.5);">
-        <label class="form-check-label" for="optionsRadios1">Chart </label>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios2" value="option2" style="transform: scale(1.5);">
-        <label class="form-check-label" for="optionsRadios2">Table </label><br>
-    </div>
-    <div style="margin-left: 10px;">
-        <form>
-            <div class="mb-3">
-                <label for="fromDate" class="form-label">from</label>
-                <input type="datetime-local" class="form-control" id="fromDate" aria-describedby="dateTimeHelp">
-                <label for="toDate" class="form-label">to</label>
-                <input type="datetime-local" class="form-control" id="toDate" aria-describedby="dateTimeHelp">
-            </div>
-        </form>
-    </div>
-
+    <br>
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <div class="form-check-radio2">
-            <br>
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            <label class="form-check-label" for="optionsRadios1">총 상품</label>
+        <div class="form-check-radio1">
+            <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios1" value="option1"
+                   checked="" style="transform: scale(1.5);">
+            <label class="form-check-label" for="optionsRadios1">Chart </label>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
+            <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios2" value="option2"
+                   style="transform: scale(1.5);">
+            <label class="form-check-label" for="optionsRadios2">Table </label><br>
         </div>
-        <div class="searchButton">
-<!--            <button type="button" id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>-->
-            <button type="button" id="fetchData" class="btn btn-primary">Search</button>
+        <div style="margin-left: 10px;">
+            <form>
+                <div class="mb-3">
+                    <label for="fromDate" class="form-label">from</label>
+                    <input type="datetime-local" class="form-control" id="fromDate" aria-describedby="dateTimeHelp">
+                    <label for="toDate" class="form-label">to</label>
+                    <input type="datetime-local" class="form-control" id="toDate" aria-describedby="dateTimeHelp">
+                </div>
+            </form>
         </div>
-        <div class="small-table-section" id="smallTableSection">
-            <div class="mainForJumjuproductinquiryFormMainaside p-2" style="width: 100%; overflow: auto; max-height: 300px;">
-                <div class="scrollable-div2 w-100 h-100 product_table_div">
-                    <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                        <thead class>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="form-check-radio2">
+                <br>
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                       checked="">
+                <label class="form-check-label" for="optionsRadios1">총 상품</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
+            </div>
+            <div class="searchButton">
+                <!--            <button type="button" id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>-->
+                <button type="button" id="fetchData" class="btn btn-primary">Search</button>
+            </div>
+            <div class="small-table-section" id="smallTableSection">
+                <div class="mainForJumjuproductinquiryFormMainaside p-2"
+                     style="width: 100%; overflow: auto; max-height: 300px;">
+                    <div class="scrollable-div2 w-100 h-100 product_table_div">
+                        <table class="table table-hover"
+                               style="width: 100%; margin: 0; padding: 0; text-align: center;">
+                            <thead class>
                             <tr class="table-primary sticky-top" style="font-size: 120%;">
                                 <th scope="col">상품번호</th>
                                 <th scope="col">상품명</th>
                             </tr>
-                        </thead>
-                        <tbody  id="productTable">
-                    <tr class="table-light">
-                        <th scope="row">P1101</th>
-                        <td>아이스 아메리카노</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">P1103</th>
-                        <td>아이스 카페라떼</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">P1103</th>
-                        <td>아이스 카페라떼</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">P1103</th>
-                        <td>아이스 카페라떼</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">P1103</th>
-                        <td>아이스 카페라떼</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">P1103</th>
-                        <td>아이스 카페라떼</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">P1102</th>
-                        <td>아메리카노</td>
-                    </tr>
-                </tbody>
-            </table>
+                            </thead>
+                            <tbody id="productTable">
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1101</th>-->
+                            <!--                        <td>아이스 아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1103</th>-->
+                            <!--                        <td>아이스 카페라떼</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1103</th>-->
+                            <!--                        <td>아이스 카페라떼</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1103</th>-->
+                            <!--                        <td>아이스 카페라떼</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1103</th>-->
+                            <!--                        <td>아이스 카페라떼</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-light">-->
+                            <!--                        <th scope="row">P1103</th>-->
+                            <!--                        <td>아이스 카페라떼</td>-->
+                            <!--                    </tr>-->
+                            <!--                    <tr class="table-success">-->
+                            <!--                        <th scope="row">P1102</th>-->
+                            <!--                        <td>아메리카노</td>-->
+                            <!--                    </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 </aside>
 <script src="../../javascripts/userAPI/getUser.js"></script>
 <script src="../../javascripts/module_popup/showPopup.js"></script>
@@ -431,7 +475,7 @@
     });
 </script>
 
-  <script>
+<script>
     window.addEventListener('DOMContentLoaded', function () {
         initializePage();
     });
@@ -502,7 +546,7 @@
 </script>
 <script>
     let smallTableSection = document.getElementById('smallTableSection');
-    smallTableSection.addEventListener('dblclick',function () {
+    smallTableSection.addEventListener('dblclick', function () {
         let leftPosition = (screen.width - 600) / 2;
         let topPosition = (screen.height - 570) / 2;
         let options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
