@@ -344,7 +344,7 @@ public class OrderSheetService {
 
 
     @Transactional
-    public void createOrderSheet(List<Integer> productIds, List<Integer> counts, LocalDateTime orderTime, String loggedInUserId) {
+    public void createOrderSheet(List<Long> productIds, List<Integer> counts, LocalDateTime orderTime, String loggedInUserId) {
         // 새로운 주문서 생성
         // 세션에서 로그인한 사용자의 ID 가져오기
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
@@ -370,12 +370,12 @@ public class OrderSheetService {
         for (int i = 0; i < productIds.size(); i++) {
             IncludeEntity includeEntity = new IncludeEntity();
             includeEntity.setIdOrdersheet(orderSheet);
-            includeEntity.setIdMerchandise(merchandiseRepository.findById(Long.valueOf(productIds.get(i))).orElseThrow());
+            includeEntity.setIdMerchandise(merchandiseRepository.findById(productIds.get(i)).orElseThrow());
 
             includeEntity.setOrderCount(counts.get(i).shortValue());
 
             // 상품 데이터 조회
-            MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(Long.valueOf(productIds.get(i))).orElseThrow();
+            MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(productIds.get(i)).orElseThrow();
             includeEntity.setTotalCost(merchandiseEntity.getCost() * counts.get(i));
             includeEntity.setSales(merchandiseEntity.getPrice() * counts.get(i));
 

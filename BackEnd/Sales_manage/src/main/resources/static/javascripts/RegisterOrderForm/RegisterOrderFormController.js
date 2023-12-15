@@ -281,34 +281,72 @@ function eventListenerPostProduct(){
     postBtn.addEventListener('click',postProduct);
 }
 
+//날짜 변환
+function convertTimeType() {
+    const date = new Date();
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    console.log((`${formattedDate} ${formattedTime}`));
+    return ((`${formattedDate} ${formattedTime}`));
+}
+
+
 //등록할 때
 function postProduct(){
     //url만들고
-    const url = 'https://dummyjson.com/posts/add';
-    //점주 id
-    const JumjuID = "text";
+    let productList=[];
+    let countList=[];
+    let setDate = convertTimeType();
 
-    //주문 목록
-    let productArray = [];
-
-    //보내는 json 파일
-    let productJson = {
-        "jumjuID" : JumjuID,
-        "productArray" :productArray
-    };
     const querySearchAfterScript = document.getElementById('querySearchAfterScript');
     const querySearchAfterScriptchild = querySearchAfterScript.getElementsByTagName('input');
+
     for(let i=0; i<querySearchAfterScriptchild.length; i++){
         //string
-        let productID =  querySearchAfterScriptchild[i].id.toString();
+        let productID = (parseInt(querySearchAfterScriptchild[i].id.toString()));
         //value 숫자(개수)
-        let count = querySearchAfterScriptchild[i].value;
-        let arrayList = {
-            "productID" : productID,
-            "count" : count
-        }
-        productArray.push(arrayList);
+        let count = (parseInt(querySearchAfterScriptchild[i].value));
+        productList.push(productID);
+        countList.push(count);
     }
+    console.log(productList);
+    let url = `/orderSheet`;
+    const postData = {
+        product_id: productList,
+        count: countList,
+        setDateTime: setDate,
+        // 기타 필요한 데이터 추가
+    };
+    console.log(postData);
+    fetch(url, {
+        method: 'POST',
+        // 필요한 경우 추가적인 헤더를 설정할 수 있습니다.
+        headers: {
+            // 예: 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(postData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
     const destroyChild = querySearchAfterScript.children;
     //테이블 모두 삭제
     Array.from(destroyChild).forEach(function(element) {
@@ -316,3 +354,5 @@ function postProduct(){
     });
     calSum();
 }
+
+
