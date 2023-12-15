@@ -18,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -120,6 +117,9 @@ public class OrderSheetService {
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
+
+
+
         if ("manager".equals(loggedInUserRole)) {
             List<BrandOfficeEntity> BrandOffice = brandOfficeRepository.findAllById(brandofficeId);
             // 'manager' 권한이라면 모든 상품 데이터의 매출 정보 가져오기
@@ -194,6 +194,11 @@ public class OrderSheetService {
                 totalSales += sales;
             }
 
+            if ("manager".equals(loggedInUserRole)) {
+                salesData.addAll(getAllSalesData(startDate, endDate));
+            }
+
+
             Object[] totalData = new Object[]{"총매출", totalProfit, totalSales};
             salesData.add(totalData);
             return salesData;
@@ -201,6 +206,39 @@ public class OrderSheetService {
 
 
     }
+
+
+    public List<Object[]> getAllSalesData(LocalDateTime startDate, LocalDateTime endDate) {
+        // 여러 메서드 중에서 findAllSalesDataBetweenDates 메서드 활용
+        List<Object[]> existingData = merchandiseRepository.findAllSalesDataBetweenDates(startDate, endDate);
+
+        // idBrandoffice를 키로 하는 맵을 생성하여 데이터를 묶기
+        Map<Long, List<Object[]>> groupedData = existingData.stream()
+                .collect(Collectors.groupingBy(array -> (Long) array[0]));
+
+        // 새로운 리스트에 묶은 데이터를 추가
+        List<Object[]> resultData = new ArrayList<>();
+        for (Map.Entry<Long, List<Object[]>> entry : groupedData.entrySet()) {
+            Long idBrandoffice = entry.getKey();
+            List<Object[]> salesDataList = entry.getValue();
+
+            int totalProfit = salesDataList.stream()
+                    .mapToInt(array -> Math.toIntExact((Long) array[6])) // 6은 영업이익에 해당하는 index
+                    .sum();
+            int totalSales = salesDataList.stream()
+                    .mapToInt(array -> Math.toIntExact((Long) array[7])) // 7은 매출액에 해당하는 index
+                    .sum();
+
+            // 새로운 배열을 생성하여 결과 리스트에 추가
+            Object[] resultArray = {idBrandoffice, "", "", "", totalProfit, totalSales};
+            resultData.add(resultArray);
+        }
+
+
+
+        return resultData;
+    }
+
     @Transactional
     public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, List<Long> brandofficeId, String loggedInUserRole, String loggedInUserId) {
         List<Object[]> chartData;
