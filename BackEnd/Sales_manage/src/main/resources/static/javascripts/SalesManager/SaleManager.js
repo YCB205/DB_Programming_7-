@@ -217,7 +217,7 @@ function drawBarChart() {
             labels: labels,
             datasets: [
                 {
-                    label: '순이익',
+                    label: '영업이익',
                     data: salesData,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
@@ -240,7 +240,7 @@ function drawBarChart() {
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Bar Chart'
+                    text: ''
                 }
             }
         }
@@ -249,62 +249,122 @@ function drawBarChart() {
 }
 
 
-function drawDoughnut(){
+function drawDoughnut() {
     const canvas = document.getElementById('div3');
     if (myDoughnut !== undefined) {
         myDoughnut.destroy();
     }
-    myDoughnut = new Chart(canvas,{
-        type: 'doughnut',
-        data:{
-            labels: labels,
-            datasets: [{
-                label:'순이익',
-                data: salesData
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '순이익'
+
+    const totalSalesIndex = labels.indexOf('총매출');
+    if (totalSalesIndex !== -1) {
+        const totalSales = salesData[totalSalesIndex];
+
+        // Extract relevant data for individual products
+        const productData = labels.slice(0, totalSalesIndex).map((label, index) => {
+            const sales = salesData[index];
+            return {
+                label: label,
+                percentage: (sales / totalSales) * 100,
+                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+            };
+        });
+
+        // Calculate the percentage for "항목을 제외한 나머지 비율"
+        const restPercentage = 100 - productData.reduce((sum, item) => sum + item.percentage, 0);
+
+        // Add "항목을 제외한 나머지 비율" to the product data only if it's 1% or more
+        if (restPercentage >= 1) {
+            productData.push({
+                label: "항목을 제외한 나머지 비율",
+                percentage: restPercentage,
+                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+            });
+        }
+
+        myDoughnut = new Chart(canvas, {
+            type: 'doughnut',
+            data: {
+                labels: productData.map(item => item.label),
+                datasets: [{
+                    data: productData.map(item => item.percentage.toFixed(1)),
+                    backgroundColor: productData.map(item => item.color),
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '영업이익 (%)'
+                    }
                 }
             }
-        }
-    })
+        });
+    } else {
+        console.error("총매출 데이터가 없습니다.");
+    }
 }
 
-function drawDoughnut2(){
+function drawDoughnut2() {
     const canvas = document.getElementById('div4');
     if (myDoughnut2 !== undefined) {
         myDoughnut2.destroy();
     }
-    myDoughnut2 = new Chart(canvas,{
-        type: 'doughnut',
-        data:{
-            labels: labels,
-            datasets: [{
-                label:'매출액',
-                data: profitsData
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '매출액'
+
+    const totalProfitsIndex = labels.indexOf('총매출');
+    if (totalProfitsIndex !== -1) {
+        const totalProfits = profitsData[totalProfitsIndex];
+
+        // Extract relevant data for individual products
+        const productData = labels.slice(0, totalProfitsIndex).map((label, index) => {
+            const profits = profitsData[index];
+            return {
+                label: label,
+                percentage: (profits / totalProfits) * 100,
+                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+            };
+        });
+
+        // Calculate the percentage for "항목을 제외한 나머지 비율"
+        const restPercentage = 100 - productData.reduce((sum, item) => sum + item.percentage, 0);
+
+        // Add "항목을 제외한 나머지 비율" to the product data only if it's 1% or more
+        if (restPercentage >= 1) {
+            productData.push({
+                label: "항목을 제외한 나머지 비율",
+                percentage: restPercentage,
+                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+            });
+        }
+
+        myDoughnut2 = new Chart(canvas, {
+            type: 'doughnut',
+            data: {
+                labels: productData.map(item => item.label),
+                datasets: [{
+                    data: productData.map(item => item.percentage.toFixed(1)),
+                    backgroundColor: productData.map(item => item.color),
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '매출액 (%)'
+                    }
                 }
             }
-        }
-    })
+        });
+    } else {
+        console.error("총매출 데이터가 없습니다.");
+    }
 }
 
 window.addEventListener('message',function (event){

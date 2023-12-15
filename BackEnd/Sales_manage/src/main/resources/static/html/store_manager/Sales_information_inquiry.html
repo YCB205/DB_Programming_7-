@@ -19,7 +19,7 @@
 
         .scrollable-div {
             overflow-y: auto;
-            max-height: 500px;
+            max-height: 915px;
         }
 
         .scroll::-webkit-scrollbar {
@@ -172,16 +172,16 @@
             <div class="w-100 h-100 m-0 p-0 scrollable-div scroll-hidden" id="showChart">
                 <div class="d-flex w-100" style="height: 70vh;">
                     <div style="height: 100%; width: 100%; display: flex;" >
-                        <div style="width: 100%; height: 100%;">
+                        <div style="width: 100%; height: 100%; display: flex; justify-content: center;">
                         <canvas id="div2"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex w-100" style=" height: 70vh;">
+                <div class="d-flex w-100" style=" height: 70vh; margin-top: 8%; margin-bottom: 20%;">
                     <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
                         <canvas id="div3"></canvas>
                     </div>
-                    <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                    <div style="flex: 1; display: flex; justify-content: center; align-items: center; ">
                         <canvas id="div4"></canvas>
                     </div>
                 </div>
@@ -291,9 +291,9 @@
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script>
     document.getElementById('showPopup').addEventListener('click', function () {
-        var leftPosition = (screen.width - 600) / 2;
-        var topPosition = (screen.height - 570) / 2;
-        var options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
+        var leftPosition = (screen.width - 660) / 2;
+        var topPosition = (screen.height - 660) / 2;
+        var options = 'width=660,height=661,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
         window.open('./OrderManager_AddProduct.html', 'Popup', options);
     });
