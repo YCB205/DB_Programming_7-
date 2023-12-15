@@ -81,8 +81,8 @@ function getFetch(startdate, enddate){
             product.push(value.merchandiseName.toString());
         })
     }
-    const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
-    const url2 = `/chartOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate;
+    const url = `/allOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate+"&brandoffice_id="+"";
+    const url2 = `/chartOrderproducts?search_merchandise=${product}&startDateTime=`+startDate +"&endDateTime="+endDate+"&brandoffice_id="+"";
     fetch(url)
         .then(response => response.json())
         .then(data=>{

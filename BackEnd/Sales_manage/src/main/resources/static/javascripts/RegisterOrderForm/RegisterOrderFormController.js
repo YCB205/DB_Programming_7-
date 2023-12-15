@@ -231,12 +231,13 @@ function calSum(){
             tableCount.value = 1;
         tableCount = tableCount.value;
         let tablePrice = tableTd[1].textContent;
+        tablePrice = parseInt(tablePrice.slice(0, -1));
         console.log(tableCount);
         console.log(tablePrice);
         sum += Number(tablePrice) *  tableCount;
     }
     const priceSum = document.getElementById('priceSum');
-    priceSum.textContent = sum;
+    priceSum.textContent = sum + '원';
 }
 
 function deleteRow(value){
