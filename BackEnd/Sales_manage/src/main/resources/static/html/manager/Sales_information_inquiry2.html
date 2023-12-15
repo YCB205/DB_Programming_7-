@@ -196,7 +196,7 @@
                 <div class="text-center text-white fs-5"><strong>지 점</strong></div>
                 <div class="btn-group-vertical bg-white d-flex" role="group"
                      aria-label="Basic radio toggle button group" id="btngroup">
-                     <input type="checkbox" class="btn-check" name="btncheck" id="btncheck" autocomplete="off" checked="">
+                     <input type="radio" class="btn-check" name="btncheck" id="btncheck" autocomplete="off" checked="">
                     <label class="btn btn-outline-primary rounded-0 m-0" for="btncheck">총 지점</label>
                 </div>
             </div>
@@ -206,37 +206,29 @@
         <div class="scrollable-div w-100 h-100 product_table_div">
             <div class="chart-and-table">
                 <div class="chart-section" id="chartSection">
-                    <canvas id="myChart"></canvas>
+                    <div class="d-flex w-100" style="height: 70vh;">
+                        <div style="height: 100%; width: 100%; display: flex;" >
+                            <div style="width: 100%; height: 100%;">
+                                <canvas id="myAllChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex w-100" style=" height: 70vh;">
+                        <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
+                            <canvas id="partChartTable"></canvas>
+                        </div>
+                        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                            <canvas id="partChartTable2"></canvas>
+                        </div>
+                    </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <script>
-                        const ctx = document.getElementById('myChart');
-    
-                        new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                datasets: [{
-                                    label: '# of Votes',
-                                    data: [12, 19, 3, 5, 2, 3],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    </script>
                 </div>
             <div class="table-section" id="tableSection">
             <div class="mainForJumjuSalesinfromationinquiryFormMain p-2" 
             style="width: 100%; padding-left: 1%; overflow: auto;">
                 <div class="scrollable-div w-100 h-100 product_table_div">
                     <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
-                        <thead class>
+                        <thead>
                         <tr class="table-primary sticky-top" style="font-size: 120%;">
                             <th scope="col">지점</th>
                             <th scope="col">품목명</th>
@@ -246,247 +238,7 @@
                             <th scope="col">총매출</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">공주대 천안점</th>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td> 
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th rowspan="4" scope="row" style="vertical-align: middle;">동대문점</th>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
+                        <tbody id="tbody">
                         </tbody>
                     </table>
             </div>
@@ -554,10 +306,10 @@
     <div style="margin-left: 10px;">
         <form>
             <div class="mb-3">
-                <label for="startDateTime" class="form-label">from</label>
-                <input type="datetime-local" class="form-control" id="startDateTime" aria-describedby="dateTimeHelp">
-                <label for="endDateTime" class="form-label">to</label>
-                <input type="datetime-local" class="form-control" id="endDateTime" aria-describedby="dateTimeHelp">
+                <label for="fromDate" class="form-label">from</label>
+                <input type="datetime-local" class="form-control" id="fromDate" aria-describedby="dateTimeHelp">
+                <label for="toDate" class="form-label">to</label>
+                <input type="datetime-local" class="form-control" id="toDate" aria-describedby="dateTimeHelp">
             </div>
         </form>
     </div>
@@ -572,19 +324,20 @@
             <label class="form-check-label" for="optionsRadios2">상품별</label><br><br>
         </div>
         <div class="searchButton">
-            <button type="button" button id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>
+<!--            <button type="button" id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>-->
+            <button type="button" id="fetchData" class="btn btn-primary">Search</button>
         </div>
         <div class="small-table-section" id="smallTableSection">
             <div class="mainForJumjuproductinquiryFormMainaside p-2" style="width: 100%; overflow: auto; max-height: 300px;">
                 <div class="scrollable-div2 w-100 h-100 product_table_div">
-                    <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;" id="productTable">
+                    <table class="table table-hover" style="width: 100%; margin: 0; padding: 0; text-align: center;">
                         <thead class>
                             <tr class="table-primary sticky-top" style="font-size: 120%;">
                                 <th scope="col">상품번호</th>
                                 <th scope="col">상품명</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  id="productTable">
                     <tr class="table-light">
                         <th scope="row">P1101</th>
                         <td>아이스 아메리카노</td>
@@ -711,16 +464,16 @@
         var tableRadio = document.getElementById('searchRadios2');
 
         if (chartRadio.checked) {
-            chartSection.style.display = 'block';
+            chartSection.style.display = '';
             tableSection.style.display = 'none';
             hideSmallTable();
             checkBoxContainer.style.display = 'none';
         } else if (tableRadio.checked) {
             chartSection.style.display = 'none';
-            tableSection.style.display = 'block';
+            tableSection.style.display = '';
             toggleSmallTableVisibility();
             if (document.getElementById('optionsRadios2').checked) {
-                checkBoxContainer.style.display = 'block';
+                checkBoxContainer.style.display = '';
             } else {
                 checkBoxContainer.style.display = 'none';
             }
@@ -746,6 +499,16 @@
         var smallTableSection = document.getElementById('smallTableSection');
         smallTableSection.style.display = 'none';
     }
+</script>
+<script>
+    let smallTableSection = document.getElementById('smallTableSection');
+    smallTableSection.addEventListener('dblclick',function () {
+        let leftPosition = (screen.width - 600) / 2;
+        let topPosition = (screen.height - 570) / 2;
+        let options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
+        //아래에 있는 user_impormation_check.html로 열림
+        window.open('../store_manager/OrderManager_AddProduct.html', 'Popup', options);
+    })
 </script>
 <script src="../../javascripts/SalesManager/ManagerForSales.js"></script>
 
