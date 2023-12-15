@@ -222,6 +222,9 @@ public class OrderSheetService {
             Long idBrandoffice = entry.getKey();
             List<Object[]> salesDataList = entry.getValue();
 
+            // Extract officeName from the first element of salesDataList
+            String officeName = (String) salesDataList.get(0)[1];
+
             int totalProfit = salesDataList.stream()
                     .mapToInt(array -> Math.toIntExact((Long) array[6])) // 6은 영업이익에 해당하는 index
                     .sum();
@@ -230,14 +233,13 @@ public class OrderSheetService {
                     .sum();
 
             // 새로운 배열을 생성하여 결과 리스트에 추가
-            Object[] resultArray = {idBrandoffice, "", "", "", "" , totalProfit, totalSales};
+            Object[] resultArray = {idBrandoffice, officeName, "총매출", "", "", "", totalProfit, totalSales};
             resultData.add(resultArray);
         }
 
-
-
         return resultData;
     }
+
 
     @Transactional
     public List<Object[]> getAllChartData(List<String> productNames, LocalDateTime startDate, LocalDateTime endDate, List<Long> brandofficeId, String loggedInUserRole, String loggedInUserId) {
