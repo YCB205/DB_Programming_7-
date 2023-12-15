@@ -6,16 +6,12 @@ window.onload = async function (){
     //category 아이디 값 가져오기
     const category =document.getElementById('category');
     await initCategory(category);
-    // 라디오 이벤트 리스너 및 상품별 테이블 띄우기
+    //라디오 이벤트 리스너 및 상품별 테이블 띄우기
     await radioEventListner(category);
-    // category별 찾기 함수
+    //category별 찾기 함수
     search();
-    // 주문서 등록 함수
+    //주문서 등록 함수
     eventListenerPostProduct();
-    // 수량 입력 제한 이벤트 리스너 등록
-    limitQuantityInput();
-    // 특수문자를 확인하는 정규식
-    const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
 }
 async function initCategory(category){
     //fetch함수 부르기
@@ -42,15 +38,6 @@ async function initCategory(category){
         console.log(key.toString());
     }
     addTableRow(data);
-}
-
-// 특수문자 입력 여부를 확인하고 경고 메시지를 표시하는 함수
-function checkSpecialCharacters(input) {
-    if (specialCharacterRegex.test(input)) {
-        alert('특수문자는 입력할 수 없습니다.');
-        return false;
-    }
-    return true;
 }
 
 function categoryRadioFetch(){
@@ -119,17 +106,13 @@ async function addTableRow(data){
             tdThird.textContent = item.price+'원';
 
             tdFourth.className = 'col-3';
-            tdFourth.textContent = item.cost+'원';
+            tdFourth.textContent = item.cost;
 
             // 행에 열 요소들 추가
             newRow.appendChild(thFirst);
             newRow.appendChild(tdSecond);
             newRow.appendChild(tdThird);
             newRow.appendChild(tdFourth);
-
-            // 판매가와 원가를 계산할 때는 '원'을 제거하고 숫자로 변환
-            let numericPrice = parseInt(item.price);
-            let numericCost = parseInt(item.cost);
 
             //newRow행클릭시 이벤트 리스너 등록;
             newRow.addEventListener('dblclick', function () {
@@ -172,27 +155,6 @@ function dbClickEventListener(newRow){
             return;
         }
     }
-// 수량 입력 제한 함수
-    function limitQuantityInput() {
-        const querySearchAfterScript = document.getElementById('querySearchAfterScript');
-        querySearchAfterScript.addEventListener('input', function (event) {
-            const target = event.target;
-            if (target.tagName === 'INPUT' && target.type === 'number') {
-                // 수량이 0 미만이면 1로 설정
-                if (target.value < 1) {
-                    target.value = 1;
-                }
-                // 수량이 200 초과이면 200으로 설정
-                if (target.value > 200) {
-                    target.value = 200;
-                }
-                // 합계 갱신
-                calSum();
-            }
-        });
-    }
-
-
     //아니면 행을 더함
     const value = document.createElement('tr');
     value.className = 'text-center';
@@ -269,12 +231,13 @@ function calSum(){
             tableCount.value = 1;
         tableCount = tableCount.value;
         let tablePrice = tableTd[1].textContent;
+        tablePrice = parseInt(tablePrice.slice(0, -1));
         console.log(tableCount);
         console.log(tablePrice);
-        sum += Number(tablePrice.replace('원', '')) *  tableCount;
+        sum += Number(tablePrice) *  tableCount;
     }
     const priceSum = document.getElementById('priceSum');
-    priceSum.textContent = sum + '원';  // '원' 추가
+    priceSum.textContent = sum + '원';
 }
 
 function deleteRow(value){
@@ -283,26 +246,15 @@ function deleteRow(value){
 }
 
 //상품별 검색 옵션
-// 검색 옵션 입력 이벤트 리스너에 특수문자 확인 로직 추가
-function search() {
+function search(){
     const optionInput = document.getElementById('optionInput');
     const optionBtn = document.getElementById('optionBtn');
-    optionBtn.addEventListener('click', function () {
-        if (checkSpecialCharacters(optionInput.value)) {
-            // 특수문자가 없으면 옵션 검색 함수 실행
-            serachOptionFetch(optionInput.value);
-        }
-    });
+    optionBtn.addEventListener('click',function (){
+        console.log(optionInput.value);
+        //옵션 검색 함수 실행
+        serachOptionFetch(optionInput.value);
+    })
 
-    // 엔터 키 이벤트 리스너 등록
-    optionInput.addEventListener('keyup', function (event) {
-        if (event.key === 'Enter') {
-            if (checkSpecialCharacters(optionInput.value)) {
-                // 특수문자가 없으면 옵션 검색 함수 실행
-                serachOptionFetch(optionInput.value);
-            }
-        }
-    });
 }
 
 function serachOptionFetch(optionInput){

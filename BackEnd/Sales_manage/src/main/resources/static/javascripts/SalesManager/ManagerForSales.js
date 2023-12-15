@@ -22,7 +22,11 @@ window.onload = function () {
     endDate.addEventListener('change', function () {
         checkTimeValid();
     })
-
+    let btncheck = document.getElementById('btncheck');
+    btncheck.addEventListener("click", function () {
+        changeChart(btncheck.value);
+        hideTable(btncheck.value);
+    })
 }
 
 
@@ -185,6 +189,7 @@ function addTableRow(data) {
     for (let index = 0; index < groupedAndConvertedData.length - 1; index++) {
         const ordersheet = groupedAndConvertedData[index];
         let trClass = document.createElement('tr');
+        index % 2 === 0 ? trClass.setAttribute('class', 'table-right') : trClass.setAttribute('class', 'table-success');
         let th = document.createElement('th');
         th.setAttribute('rowspan', ordersheet.length + 1);
         th.setAttribute('scope', 'row');
@@ -206,9 +211,11 @@ function addTableRow(data) {
             let td3 = document.createElement('td');
             let td4 = document.createElement('td');
             let td5 = document.createElement('td');
+
+            jdex % 2 === 0 ? tr.setAttribute('class', 'table-right') : tr.setAttribute('class', 'table-success');
             td1.textContent = data.category;
-            td2.textContent = data.name;
-            td3.textContent = data.id;
+            td2.textContent = data.id;
+            td3.textContent = data.name;
             td4.textContent = data.profit;
             td5.textContent = data.sales;
 
@@ -372,11 +379,30 @@ function drawDoughnut2() {
 }
 
 function changeChart(value) {
+    if(value.toString()==="all"){
+        console.log(salesData);
+        console.log(profitsData);
+        myBarChart.data.datasets[0].data = salesData;
+        myBarChart.data.datasets[1].data = profitsData;
+        myBarChart.data.labels = labels;
+
+        myDoughnut.data.datasets[0].data = salesData;
+        myDoughnut2.data.datasets[0].data = profitsData;
+
+        myDoughnut.data.labels = labels;
+        myDoughnut2.data.labels = labels;
+
+        myBarChart.update();
+        myDoughnut.update();
+        myDoughnut2.update();
+        return;
+    }
     let newlabe = [];
     let newsale = [];
     let newprofits = [];
     let jumjunInfo = jumjuMap.get(value);
     console.log(jumjunInfo);
+
     jumjunInfo.forEach((value, key) => {
         newlabe.push(key);
         newsale.push(value[0]);
@@ -433,6 +459,12 @@ window.addEventListener('beforeunload', function (event) {
 function hideTable(value) {
     let tbody = document.getElementById('tbody');
     let trList = tbody.querySelectorAll('tr');
+    if(value.toString()==='all'){
+        for (let i = 0; i < trList.length; i++) {
+                    trList[i].style.display ='';
+            }
+        return;
+    }
     console.log(trList.length);
     for (let i = 0; i < trList.length; i++) {
         let th = trList[i].querySelector('th');
