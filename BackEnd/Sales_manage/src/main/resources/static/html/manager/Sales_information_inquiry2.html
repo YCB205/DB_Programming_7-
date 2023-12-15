@@ -226,7 +226,7 @@
         <div class="mainForJumjuRegisterOrderFormAside">
             <div style="height: 10%"></div>
             <div class="rounded scroll-hidden overflow-y-scroll" style="border: 2px solid #22523f; background: #22523f; margin: 3px 3px 2px; height: 60vh;">
-                <div class="text-center text-white fs-5"><strong>지 점</strong></div>
+                <div class="text-center sticky-top text-white fs-5" style="background-color: #22513f"><strong>지 점</strong></div>
                 <div class="" style="">
                     <div class="btn-group-vertical bg-white d-flex w-100 h-100" role="group"
                          aria-label="Basic radio toggle button group" id="btngroup">
@@ -547,9 +547,9 @@
 <script>
     let smallTableSection = document.getElementById('smallTableSection');
     smallTableSection.addEventListener('dblclick', function () {
-        let leftPosition = (screen.width - 600) / 2;
-        let topPosition = (screen.height - 570) / 2;
-        let options = 'width=600,height=563,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
+        let leftPosition = (screen.width - 660) / 2;
+        let topPosition = (screen.height - 660) / 2;
+        let options = 'width=660,height=661,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
         window.open('../store_manager/OrderManager_AddProduct.html', 'Popup', options);
     })
