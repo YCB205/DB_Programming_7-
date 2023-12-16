@@ -106,7 +106,7 @@ async function addTableRow(data){
             tdThird.textContent = item.price+'원';
 
             tdFourth.className = 'col-3';
-            tdFourth.textContent = item.cost;
+            tdFourth.textContent = item.cost+'원';
 
             // 행에 열 요소들 추가
             newRow.appendChild(thFirst);
