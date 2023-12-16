@@ -156,21 +156,22 @@ function dbClickEventListener(newRow){
         }
     }
     // 수량 변경 이벤트 리스너 등록
-    input.addEventListener('change', function() {
+    input.addEventListener('change', function () {
         // 사용자가 입력한 수량 값 가져오기
         let newQuantity = parseInt(input.value, 10);
 
         // 입력된 값이 0에서 300 사이의 숫자인지 확인
-        if (isNaN(newQuantity) || newQuantity < 0 || newQuantity > 300) {
+        if (isNaN(newQuantity) || newQuantity < 1 || newQuantity > 300) {
             // 범위를 벗어나면 경고 팝업 표시
-            alert('수량은 0에서 300 사이의 숫자만 입력 가능합니다.');
+            alert('수량은 1에서 300 사이의 숫자만 입력 가능합니다.');
             // 기존 값으로 복원
             input.value = 1;
         }
 
         calSum(); // 합계 업데이트
     });
-    //아니면 행을 더함
+
+        //아니면 행을 더함
     const value = document.createElement('tr');
     value.className = 'text-center';
     value.setAttribute('id',`${newRow.id.toString()}`);
