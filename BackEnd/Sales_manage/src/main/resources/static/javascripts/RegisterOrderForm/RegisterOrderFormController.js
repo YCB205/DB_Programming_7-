@@ -225,23 +225,34 @@ function calSum() {
     let sum = 0;
     for (let i = 0; i < tr.length; i++) {
         let tableTd = tr[i].getElementsByTagName('td');
-        //수량 가져오기
-        let tableCount = tableTd[0].querySelector('input');
-        if (tableCount.value < 0) {
+        // 수량 가져오기
+        let tableCount = tableTd[1].querySelector('input');
+
+        // 수량이 1 미만이면 1로 설정
+        if (tableCount.value < 1) {
+            alert('수량은 1 이상이어야 합니다.');
             tableCount.value = 1;
         }
+
+        // 수량이 300을 초과하면 300으로 설정
+        if (tableCount.value > 300) {
+            alert('수량은 300 이하이어야 합니다.');
+            tableCount.value = 300;
+        }
+
         tableCount = tableCount.value;
-        let tablePrice = tableTd[1].textContent;
+        let tablePrice = tableTd[2].textContent;
         tablePrice = parseInt(tablePrice.slice(0, -1));
         console.log("수량:", tableCount);
         console.log("가격:", tablePrice);
         sum += Number(tablePrice) * tableCount;
-
-
-        const priceSum = document.getElementById('priceSum');
-        priceSum.textContent = sum + '원';
     }
 
+    const priceSum = document.getElementById('priceSum');
+    priceSum.textContent = sum + '원';
+}
+
+// 나머지 코드는 그대로 유지
     function deleteRow(value) {
         value.remove();
         calSum();
@@ -293,7 +304,6 @@ function calSum() {
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const seconds = String(date.getSeconds()).padStart(2, '0');
-
         const formattedDate = `${year}-${month}-${day}`;
         const formattedTime = `${hours}:${minutes}:${seconds}`;
         console.log((`${formattedDate} ${formattedTime}`));
@@ -355,6 +365,5 @@ function calSum() {
             element.remove();
         });
         calSum();
-    }
 }
 
