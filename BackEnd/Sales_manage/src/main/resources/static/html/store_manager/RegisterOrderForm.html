@@ -6,7 +6,6 @@
     <link href="../../CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../../CSS/MainpageForUser.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <style>
         .brand_name_div span {
             font-weight: 700;
@@ -240,12 +239,6 @@
     function checkSpecialCharacters(inputElement) {
         var inputValue = inputElement.value;
 
-        // 입력값이 공백 또는 빈 문자열인 경우 경고 메시지 표시
-        if (inputValue.trim() === '' || inputValue === '') {
-            showAlert('공백은 검색할 수 없습니다.');
-            return;
-        }
-
         // 특수문자를 제외한 문자 및 공백을 허용
         var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
 
@@ -272,23 +265,13 @@
             event.preventDefault(); // "Enter" 키의 기본 동작 방지
 
             // 입력값이 아무 것도 입력되지 않은 경우 경고 메시지 표시
-            if (inputValue.trim() === '') {
-                showAlert('아무 것도 입력되지 않았습니다.');
+            if (document.getElementById('optionInput').value.trim() === '') {
+                showAlert('검색어를 입력하세요.');
                 return;
             }
 
             getOrderSheet();
             return;
-        }
-
-        // 특수문자를 제외한 문자 및 공백을 허용
-        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
-
-        if (!regex.test(inputValue)) {
-            event.preventDefault(); // 특수문자 입력을 막음
-            showAlert('특수문자는 입력할 수 없습니다.');
-        } else {
-            hideAlert();
         }
     }
 
@@ -301,6 +284,10 @@
         // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
     }
 </script>
+
+
+
+
 
 </body>
 </html>
