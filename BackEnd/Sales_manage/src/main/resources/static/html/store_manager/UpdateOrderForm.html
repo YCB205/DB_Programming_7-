@@ -157,6 +157,16 @@
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/OrderSheet/putOrderSheet.js"></script>
 <script>
+    function checkQuantityRange(inputElement) {
+        var quantity = parseInt(inputElement.value);
+        if (isNaN(quantity) || quantity < 1 || quantity > 300) {
+            alert("1에서 300까지의 수량을 입력하세요.");
+            inputElement.value = 1;
+        }
+        updateOrderRow();
+    }
+</script>
+<script>
 
     window.addEventListener('message', function (event) {
         if (event.data === 'UpdateProduct') {
@@ -262,7 +272,7 @@ document.getElementById('closeBtn').addEventListener('click', function () {
                     productRow.appendChild(td);
                 }
                 var inputTd = document.createElement('td');
-                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()"
+                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" max="300" style="width: 50px" oninput="updateOrderRow()"
                     onkeydown="preventNegativeInput(event)" onblur="setDefaultIfEmpty(this)" value="${1}" >`;
                 productRow.appendChild(inputTd);
 
@@ -335,22 +345,6 @@ document.getElementById('closeBtn').addEventListener('click', function () {
         orderCells[2].textContent = totalSales + "원";
         orderCells[3].textContent = totalProfit + "원";
 
-        //수량 제한
-        var inputElement = this; // 현재 input 요소
-        var inputValue = parseInt(inputElement.value);
-
-        // 입력값이 1 미만이거나 300 초과인 경우 1로 설정
-        if (inputValue < 1 || inputValue > 300) {
-            inputElement.value = 1;
-
-            // 경고 메시지 팝업창 띄우기
-            showAlertPopup('1에서 300까지의 수량을 입력하세요.');
-        }
-
-    }
-    // 경고 메시지 팝업창 띄우는 함수
-    function showAlertPopup(message) {
-        alert(message); // 간단한 alert 대신 팝업창 라이브러리를 사용할 수 있습니다.
     }
 
     // 문자열에서 숫자 부분을 추출하는 함수
