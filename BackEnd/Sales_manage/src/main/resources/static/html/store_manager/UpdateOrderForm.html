@@ -224,7 +224,7 @@ document.getElementById('closeBtn').addEventListener('click', function () {
             for (var j = i; j < i + 6; j++) {
                 var td = document.createElement('td');
                 if (j%6===0){
-                    td.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()"
+                    td.innerHTML = `<input type="number" class="numberInput" min="1" max="300" style="width: 50px" oninput="updateOrderRow()"
                 onblur="setDefaultIfEmpty(this)" onkeydown="preventNegativeInput(event)" value="${convertStringToNumber(productData[j])}" >`;
                 } else {
                     td.textContent = productData[j];

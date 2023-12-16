@@ -45,13 +45,7 @@ function getDataAsJSON() {
     var productRows = document.getElementById('productTableBody').getElementsByTagName('tr');
 
     for (var i = 0; i < productRows.length; i++) {
-        var columns = productRows[i].getElementsByTagName('td');
-
-        var orderCountInput = columns[5].getElementsByTagName('input')[0];
-        var orderCount = parseInt(orderCountInput.value);
-
-        // 수량을 1에서 300 사이로 제한
-        orderCount = Math.min(300, Math.max(1, orderCount))
+    var columns = productRows[i].getElementsByTagName('td');
 
     var merchandise = {
     "categori": columns[0].textContent.trim(),
@@ -59,7 +53,7 @@ function getDataAsJSON() {
     "merchandiseName": columns[2].textContent.trim(),
     "cost": parseInt(convertStringToNumber(columns[3].textContent.trim())),
     "price": parseInt(convertStringToNumber(columns[4].textContent.trim())),
-    "orderCount": orderCount
+    "orderCount": parseInt(columns[5].getElementsByTagName('input')[0].value)
 };
 
     orderData.merchandise.push(merchandise);
