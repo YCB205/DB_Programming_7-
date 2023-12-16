@@ -155,6 +155,21 @@ function dbClickEventListener(newRow){
             return;
         }
     }
+    // 수량 변경 이벤트 리스너 등록
+    input.addEventListener('change', function () {
+        // 사용자가 입력한 수량 값 가져오기
+        let newQuantity = parseInt(input.value, 10);
+
+        // 입력된 값이 0에서 300 사이의 숫자인지 확인
+        if (isNaN(newQuantity) || newQuantity < 1 || newQuantity > 300) {
+            // 범위를 벗어나면 경고 팝업 표시
+            alert('수량은 1에서 300 사이의 숫자만 입력 가능합니다.');
+            // 기존 값으로 복원
+            input.value = 1;
+        }
+
+        calSum(); // 합계 업데이트
+    });
 
         //아니면 행을 더함
     const value = document.createElement('tr');
@@ -217,153 +232,143 @@ function dbClickEventListener(newRow){
 
 }
 
-// 합계를 구하는 함수
-function calSum() {
+//합계를 구하는 함수
+function calSum(){
     const querySearchAfterScript = document.getElementById('querySearchAfterScript');
     const tr = querySearchAfterScript.getElementsByTagName('tr');
-    // 총합을 구하는 sum
+    //총합을 구하는 sum
     let sum = 0;
-    for (let i = 0; i < tr.length; i++) {
+    for(let i=0; i < tr.length;i++) {
         let tableTd = tr[i].getElementsByTagName('td');
-        // 수량 가져오기
-        let tableCount = tableTd[1].querySelector('input');
-
-        // 수량이 1 미만이면 1로 설정
-        if (tableCount.value < 1) {
-            alert('수량은 1 이상이어야 합니다.');
+        //수량 가져오기
+        console.log(tableTd);
+        let tableCount = tableTd[0].querySelector('input');
+        if(tableCount.value < 0)
             tableCount.value = 1;
-        }
-
-        // 수량이 300을 초과하면 300으로 설정
-        if (tableCount.value > 300) {
-            alert('수량은 300 이하이어야 합니다.');
-            tableCount.value = 300;
-        }
-
         tableCount = tableCount.value;
-        let tablePrice = tableTd[2].textContent;
+        let tablePrice = tableTd[1].textContent;
         tablePrice = parseInt(tablePrice.slice(0, -1));
-        console.log("수량:", tableCount);
-        console.log("가격:", tablePrice);
-        sum += Number(tablePrice) * tableCount;
+        console.log(tableCount);
+        console.log(tablePrice);
+        sum += Number(tablePrice) *  tableCount;
     }
-
     const priceSum = document.getElementById('priceSum');
     priceSum.textContent = sum + '원';
 }
 
-// 나머지 코드는 그대로 유지
-    function deleteRow(value) {
-        value.remove();
-        calSum();
-    }
+function deleteRow(value){
+    value.remove();
+    calSum();
+}
 
 //상품별 검색 옵션
-    function search() {
-        const optionInput = document.getElementById('optionInput');
-        const optionBtn = document.getElementById('optionBtn');
-        optionBtn.addEventListener('click', function () {
-            console.log(optionInput.value);
-            //옵션 검색 함수 실행
-            serachOptionFetch(optionInput.value);
-        })
+function search(){
+    const optionInput = document.getElementById('optionInput');
+    const optionBtn = document.getElementById('optionBtn');
+    optionBtn.addEventListener('click',function (){
+        console.log(optionInput.value);
+        //옵션 검색 함수 실행
+        serachOptionFetch(optionInput.value);
+    })
 
-    }
+}
 
-    function serachOptionFetch(optionInput) {
-        let categoryList = []
-        const categoy = document.getElementById('category');
-        const categoryInputList = categoy.querySelectorAll('input');
-        for (let i = 0; categoryInputList.length; i++) {
-            if (categoryInputList[i].checked) {
-                categoryList.push(categoryInputList[i].value);
-                break;
-            }
+function serachOptionFetch(optionInput){
+    let categoryList = []
+    const categoy = document.getElementById('category');
+    const categoryInputList = categoy.querySelectorAll('input');
+    for(let i = 0; categoryInputList.length; i++){
+        if(categoryInputList[i].checked){
+            categoryList.push(categoryInputList[i].value);
+            break;
         }
-        const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                addTableRow(data);
-            })
     }
+    const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data=>{
+            addTableRow(data);
+        })
+}
 
 //등록 이벤트 리스너
-    function eventListenerPostProduct() {
-        const postBtn = document.getElementById('registerPostBtn');
-        postBtn.addEventListener('click', postProduct);
-    }
+function eventListenerPostProduct(){
+    const postBtn = document.getElementById('registerPostBtn');
+    postBtn.addEventListener('click',postProduct);
+}
 
 //날짜 변환
-    function convertTimeType() {
-        const date = new Date();
+function convertTimeType() {
+    const date = new Date();
 
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
-        const formattedTime = `${hours}:${minutes}:${seconds}`;
-        console.log((`${formattedDate} ${formattedTime}`));
-        return ((`${formattedDate} ${formattedTime}`));
-    }
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    console.log((`${formattedDate} ${formattedTime}`));
+    return ((`${formattedDate} ${formattedTime}`));
+}
 
 
 //등록할 때
-    function postProduct() {
-        //url만들고
-        let productList = [];
-        let countList = [];
-        let setDate = convertTimeType();
+function postProduct(){
+    //url만들고
+    let productList=[];
+    let countList=[];
+    let setDate = convertTimeType();
 
-        const querySearchAfterScript = document.getElementById('querySearchAfterScript');
-        const querySearchAfterScriptchild = querySearchAfterScript.getElementsByTagName('input');
+    const querySearchAfterScript = document.getElementById('querySearchAfterScript');
+    const querySearchAfterScriptchild = querySearchAfterScript.getElementsByTagName('input');
 
-        for (let i = 0; i < querySearchAfterScriptchild.length; i++) {
-            //string
-            let productID = (parseInt(querySearchAfterScriptchild[i].id.toString()));
-            //value 숫자(개수)
-            let count = (parseInt(querySearchAfterScriptchild[i].value));
-            productList.push(productID);
-            countList.push(count);
-        }
-        console.log(productList);
-        let url = `/orderSheet`;
-        const postData = {
-            product_id: productList,
-            count: countList,
-            setDateTime: setDate,
-            // 기타 필요한 데이터 추가
-        };
-        console.log(postData);
-        fetch(url, {
-            method: 'POST',
-            // 필요한 경우 추가적인 헤더를 설정할 수 있습니다.
-            headers: {
-                // 예: 'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: JSON.stringify(postData),
+    for(let i=0; i<querySearchAfterScriptchild.length; i++){
+        //string
+        let productID = (parseInt(querySearchAfterScriptchild[i].id.toString()));
+        //value 숫자(개수)
+        let count = (parseInt(querySearchAfterScriptchild[i].value));
+        productList.push(productID);
+        countList.push(count);
+    }
+    console.log(productList);
+    let url = `/orderSheet`;
+    const postData = {
+        product_id: productList,
+        count: countList,
+        setDateTime: setDate,
+        // 기타 필요한 데이터 추가
+    };
+    console.log(postData);
+    fetch(url, {
+        method: 'POST',
+        // 필요한 경우 추가적인 헤더를 설정할 수 있습니다.
+        headers: {
+            // 예: 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(postData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-        const destroyChild = querySearchAfterScript.children;
-        //테이블 모두 삭제
-        Array.from(destroyChild).forEach(function (element) {
-            element.remove();
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
-        calSum();
+
+    const destroyChild = querySearchAfterScript.children;
+    //테이블 모두 삭제
+    Array.from(destroyChild).forEach(function(element) {
+        element.remove();
+    });
+    calSum();
 }
+
 
