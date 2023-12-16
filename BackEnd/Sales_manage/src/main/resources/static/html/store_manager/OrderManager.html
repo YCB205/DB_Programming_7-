@@ -392,12 +392,6 @@
     function checkSpecialCharacters(inputElement) {
         var inputValue = inputElement.value;
 
-        // 입력값이 공백 또는 빈 문자열인 경우 경고 메시지 표시
-        if (inputValue.trim() === '' || inputValue === '') {
-            showAlert('공백은 검색할 수 없습니다.');
-            return;
-        }
-
         // 특수문자를 제외한 문자 및 공백을 허용
         var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
 
