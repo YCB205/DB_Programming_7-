@@ -422,15 +422,14 @@ thead {
                         <label class="col-form-label mt-3" for="merchandiseName">상품명</label>
                             <input  type="text" class="form-control" placeholder="상품명을 검색하세요." id="merchandiseName">
                       </div>
-                      <div class="form-group">
-                        <label class="col-form-label mt-3" for="cost">원가</label>
-                        <input type="text" class="form-control" placeholder="원가를 입력하세요." id="cost">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label mt-3" for="price">판매가</label>
-                        <input type="text" class="form-control" placeholder="판매가를 입력하세요." id="price">
-                    </div>
-            </div>
+                        <div class="form-group">
+                            <label class="col-form-label mt-3" for="cost">원가</label>
+                            <input type="number" class="form-control" placeholder="원가를 입력하세요." id="cost" min="0" max="1000000">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label mt-3" for="price">판매가</label>
+                            <input type="number" class="form-control" placeholder="판매가를 입력하세요." id="price" min="0" max="1000000">
+                        </div>
             <div class="card-footer">
                 <button onclick="postProduct()" type="button" class="btn btn-info">등 록</button>
                 <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">취 소</button>
@@ -491,11 +490,30 @@ thead {
 </aside>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"></script>
-    <script src="../../javascripts/module_popup/showPopup.js"></script>
-    <script src="../../javascripts/userAPI/getUser.js"></script>
-<script src="../../javascripts/userAPI/logout.js"></script>
+  <script src="../../javascripts/module_popup/showPopup.js"></script>
+  <script src="../../javascripts/userAPI/getUser.js"></script>
+  <script src="../../javascripts/userAPI/logout.js"></script>
   <script src="../../javascripts/product/postProduct.js"></script>
-    <script>
+  <script>
+  // 원가 입력란
+  var costInput = document.getElementById('cost');
+  costInput.addEventListener('input', function () {
+  if (costInput.value < 0 || costInput.value > 1000000) {
+  alert('원가는 0에서 1,000,000 사이의 값을 입력하세요.');
+  costInput.value = ''; // 값 초기화 또는 이전 값으로 복원할 수 있습니다.
+  }
+  });
+
+  // 판매가 입력란
+  var priceInput = document.getElementById('price');
+  priceInput.addEventListener('input', function () {
+  if (priceInput.value < 0 || priceInput.value > 1000000) {
+  alert('판매가는 0에서 1,000,000 사이의 값을 입력하세요.');
+  priceInput.value = ''; // 값 초기화 또는 이전 값으로 복원할 수 있습니다.
+  }
+  });
+  </script>
+  <script>
         // 취소버튼 구현
         document.getElementById('closeBtn').addEventListener('click', function () {
             location.reload();

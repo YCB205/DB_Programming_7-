@@ -316,12 +316,12 @@
             </div>
         </div>
     </div>
-    <div class="second border">
-        <div class="form-group position-relative" style="width: 100%; height: 15%;">
+    <div class="second">
+        <div class="form-group position-relative" style="width: 100%; height: 15%; margin-top: 4%; margin-bottom: 7%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
-                <br><input onkeydown="handleKeyDown(event)" id="searchProductName" type="text" class="form-control" placeholder="상품명을 입력하세요."
-                           aria-label="Recipient's productname" aria-describedby="button-addon2">
-                <button onclick="getAllProducts()" class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                <input type="text" class="form-control" placeholder="상품명을 입력하세요" aria-label="Recipient's username"
+                       aria-describedby="button_add2" id='optionInput' oninput="checkSpecialCharacters(this)">
+                <button class="btn btn-primary" type="button" id="optionBtn" onclick="getOrderSheet()">검색</button>
             </div>
         </div>
         <div class="" style="margin: 10px; padding: 10px; text-align: center;">
@@ -367,7 +367,71 @@
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/product/getAllProducts.js"></script>
 <script src="../../javascripts/product/showPopupUpdateProduct.js"></script>
+<script>
+    function checkSpecialCharacters(inputElement) {
+        var inputValue = inputElement.value;
 
+        // 입력값이 공백 또는 빈 문자열인 경우 경고 메시지 표시
+        if (inputValue.trim() === '' || inputValue === '') {
+            showAlert('공백은 검색할 수 없습니다.');
+            return;
+        }
+
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            // 특수문자가 포함된 경우 입력을 취소하고 경고 메시지 표시
+            inputElement.value = inputValue.replace(/[^\w\s가-힣]/g, ''); // 특수문자 제거
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
+
+        // 글자 제한을 10자로 설정 (원하는 길이로 변경 가능)
+        if (inputValue.length > 10) {
+            inputElement.value = inputValue.slice(0, 10);
+            showAlert('글자는 10자까지만 입력 가능합니다.');
+        }
+    }
+
+    function handleKeyDown(event) {
+        var inputValue = event.key;
+
+        // Enter 키 입력 시 검색 실행
+        if (event.key === 'Enter') {
+            event.preventDefault(); // "Enter" 키의 기본 동작 방지
+
+            // 입력값이 아무 것도 입력되지 않은 경우 경고 메시지 표시
+            if (inputValue.trim() === '') {
+                showAlert('아무 것도 입력되지 않았습니다.');
+                return;
+            }
+
+            getOrderSheet();
+            return;
+        }
+
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            event.preventDefault(); // 특수문자 입력을 막음
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
+    }
+
+    function showAlert(message) {
+        window.alert(message);
+    }
+
+    function hideAlert() {
+        // 아무 작업 없음
+        // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
+    }
+</script>
 <script>
     window.addEventListener('message', function (event) {
         if (event.data === 'refreshParent') {
