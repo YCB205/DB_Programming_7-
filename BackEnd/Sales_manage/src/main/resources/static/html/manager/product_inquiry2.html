@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
-    
+
 <style>
 /* 헤더 내 첫 번째 드롭다운 메뉴 */
 .dropdown-menu {
@@ -151,8 +151,8 @@ thead {
             <div class="row h-100">
                 <div class="col-2 g-0 brand_name_div">
                     <a href="MainManager.html">
-                        <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
-                        style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
+                          style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
                     </a>
                 </div>
                 <div class="col-1 g-0"></div>
@@ -168,34 +168,35 @@ thead {
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-1 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
+                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton2" data-bs-toggle="dropdown" style="font-size: 30px" aria-expanded="false">
                             상품
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_inquiry2.html">상품 조회</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_management.html">상품 관리</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="UpdateOrderFormAddProduct2.html">상품 등록</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateNewProduct.html">상품 등록</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-1 g-0"></div>
                 <div class="col-2 g-0">
-                    <div class="dropdown h-100 d-flex justify-content-center align-items-center">
-                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3" style="font-size: 30px" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown h-100 d-flex justify-content-center align-items-center" style="opacity: 0.95;">
+                        <button class="btn bg-transparent btn-lg" href="#" type="button" id="dropdownButton3" data-bs-toggle="dropdown" style="font-size: 30px; height: 60px;" aria-expanded="false">
                             지점 및 점주
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Branch-ManagersManagement.html">지점 및 점주 계정 관리</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Createanewbranch.html">새 지점 생성</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateanewStoreManager.html">점주 계정 생성</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="Branch-ManagersManagement.html" class="dropdown-item fw-bold" style="color: #3E7E69;">지점 및 점주 계정 관리</a></li>
+                            <li><a href="Createanewbranch.html" class="dropdown-item fw-bold" style="color: #3E7E69;">새 지점 생성</a></li>
+                            <li><a href="CreateanewStoreManager.html" class="dropdown-item fw-bold" style="color: #3E7E69;">점주 계정 생성</a></li>
+                            <li><a href="CreateanewManager.html" class="dropdown-item fw-bold adminView" style="color: #3E7E69;">매니저 계정 생성</a></li>
                         </ul>
-                      </div>
-                  </div>
-                  <div class="col-6 g-0"></div>
-              </div>
-          </div>
-      </header>
+                    </div>
+                </div>
+                <div class="col-6 g-0"></div>
+            </div>
+        </div>
+    </header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder">
         <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
