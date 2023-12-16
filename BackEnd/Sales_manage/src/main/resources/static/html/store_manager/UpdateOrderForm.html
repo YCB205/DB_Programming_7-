@@ -159,11 +159,76 @@
 <script>
     function checkQuantityRange(inputElement) {
         var quantity = parseInt(inputElement.value);
+
+        // 입력값이 숫자가 아니거나 1에서 300 범위를 벗어나면 경고 후 1로 설정
         if (isNaN(quantity) || quantity < 1 || quantity > 300) {
             alert("1에서 300까지의 수량을 입력하세요.");
             inputElement.value = 1;
         }
+
         updateOrderRow();
+    }
+
+    // input 값이 변경될 때 호출되는 함수
+    function updateOrderRow() {
+        var orderRow = document.getElementById('orderTableBody').getElementsByTagName('tr')[0];
+        var orderCells = orderRow.getElementsByTagName('td');
+
+        // productTableBody에 있는 tr들의 5번째, 6번째 td들의 값을 각각 int로 변환하여 배열에 저장
+        // 원가 계산
+        var productRows = document.getElementById('productTableBody').getElementsByTagName('tr');
+        var productCosts = Array.from(productRows).map(function (row) {
+            var cost = convertStringToNumber(row.getElementsByTagName('td')[3].textContent);
+            var quantity = convertStringToNumber(row.getElementsByClassName('numberInput')[0].value);
+            return cost * quantity;
+        });
+
+        // 판매가 계산
+        var productPrices = Array.from(productRows).map(function (row) {
+            var quantity = convertStringToNumber(row.getElementsByClassName('numberInput')[0].value);
+            var price = convertStringToNumber(row.getElementsByTagName('td')[4].textContent);
+            return price * quantity;
+        });
+
+        // 원가 합산 계산
+        var totalCost = productCosts.reduce(function (acc, val) {
+            return acc + val;
+        }, 0);
+
+        // 판매가 합산으로 매출액 계산
+        var totalSales = productPrices.reduce(function (acc, val) {
+            return acc + val;
+        }, 0);
+
+        // 영업 이익 = 매출액 - 원가 합산
+        var totalProfit = totalSales - totalCost;
+
+        orderCells[2].textContent = totalSales + "원";
+        orderCells[3].textContent = totalProfit + "원";
+    }
+
+    // 문자열에서 숫자 부분을 추출하는 함수
+    function convertStringToNumber(str) {
+        var numberStr = str.match(/\d+/);
+        return numberStr ? parseInt(numberStr[0]) : 0;
+    }
+
+    // 음수 입력 방지 함수
+    function preventNegativeInput(event) {
+        var keyCode = event.which || event.keyCode;
+
+        // 눌린 키가 마이너스 기호("-")인지 확인합니다.
+        if (keyCode === 189 || keyCode === 109) {
+            event.preventDefault();
+        }
+    }
+
+    // 입력 필드의 값이 비어있는 경우 자동으로 1로 입력되는 함수
+    function setDefaultIfEmpty(inputElement) {
+        // 입력 필드의 값이 비어 있는 경우 1로 설정합니다.
+        if (!inputElement.value.trim()) {
+            inputElement.value = 1;
+        }
     }
 </script>
 <script>
@@ -272,7 +337,7 @@ document.getElementById('closeBtn').addEventListener('click', function () {
                     productRow.appendChild(td);
                 }
                 var inputTd = document.createElement('td');
-                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" max="300" style="width: 50px" oninput="updateOrderRow()"
+                inputTd.innerHTML = `<input type="number" class="numberInput" min="1" style="width: 50px" oninput="updateOrderRow()"
                     onkeydown="preventNegativeInput(event)" onblur="setDefaultIfEmpty(this)" value="${1}" >`;
                 productRow.appendChild(inputTd);
 
