@@ -217,29 +217,30 @@ function dbClickEventListener(newRow){
 
 }
 
-//합계를 구하는 함수
-function calSum(){
+// 합계를 구하는 함수
+function calSum() {
     const querySearchAfterScript = document.getElementById('querySearchAfterScript');
     const tr = querySearchAfterScript.getElementsByTagName('tr');
-    //총합을 구하는 sum
+    // 총합을 구하는 sum
     let sum = 0;
-    for(let i=0; i < tr.length;i++) {
+    for (let i = 0; i < tr.length; i++) {
         let tableTd = tr[i].getElementsByTagName('td');
         //수량 가져오기
-        console.log(tableTd);
         let tableCount = tableTd[0].querySelector('input');
-        if(tableCount.value < 0)
+        if (tableCount.value < 0) {
             tableCount.value = 1;
+        }
         tableCount = tableCount.value;
         let tablePrice = tableTd[1].textContent;
         tablePrice = parseInt(tablePrice.slice(0, -1));
-        console.log(tableCount);
-        console.log(tablePrice);
-        sum += Number(tablePrice) *  tableCount;
+        console.log("수량:", tableCount);
+        console.log("가격:", tablePrice);
+        sum += Number(tablePrice) * tableCount;
+
+
+        const priceSum = document.getElementById('priceSum');
+        priceSum.textContent = sum + '원';
     }
-    const priceSum = document.getElementById('priceSum');
-    priceSum.textContent = sum + '원';
-}
 
 function deleteRow(value){
     value.remove();
