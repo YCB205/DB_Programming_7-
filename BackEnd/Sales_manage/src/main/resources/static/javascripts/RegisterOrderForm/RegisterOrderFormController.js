@@ -245,16 +245,39 @@ function deleteRow(value){
     calSum();
 }
 
-//상품별 검색 옵션
-function search(){
+// 상품별 검색 옵션
+function search() {
     const optionInput = document.getElementById('optionInput');
     const optionBtn = document.getElementById('optionBtn');
-    optionBtn.addEventListener('click',function (){
-        console.log(optionInput.value);
-        //옵션 검색 함수 실행
-        serachOptionFetch(optionInput.value);
-    })
 
+    // 엔터 키 이벤트 처리
+    optionInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            searchOption(optionInput.value);
+        }
+    });
+
+    optionBtn.addEventListener('click', function () {
+        searchOption(optionInput.value);
+    });
+}
+
+function searchOption(optionInput) {
+    let categoryList = [];
+    const category = document.getElementById('category');
+    const categoryInputList = category.querySelectorAll('input');
+    for (let i = 0; categoryInputList.length; i++) {
+        if (categoryInputList[i].checked) {
+            categoryList.push(categoryInputList[i].value);
+            break;
+        }
+    }
+    const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            addTableRow(data);
+        });
 }
 
 function serachOptionFetch(optionInput){
