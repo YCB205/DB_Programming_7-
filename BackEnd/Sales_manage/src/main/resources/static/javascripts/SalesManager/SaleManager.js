@@ -138,9 +138,9 @@ function addTableRow(data){
             th.textContent = ordersheet[0];
             td.textContent = ordersheet[1];
             td2.textContent = ordersheet[2];
-            td3.textContent = ordersheet[4];
-            td4.textContent = ordersheet[5];
-            td5.textContent = ordersheet[3];
+            td3.textContent = ordersheet[3];
+            td4.textContent = `${ordersheet[4]}원`;
+            td5.textContent = `${ordersheet[5]}원`;
             tr.appendChild(th);
             tr.appendChild(td);
             tr.appendChild(td2);

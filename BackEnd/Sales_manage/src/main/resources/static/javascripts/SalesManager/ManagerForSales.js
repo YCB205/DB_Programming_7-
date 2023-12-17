@@ -220,8 +220,8 @@ function addTableRow(data) {
             td1.textContent = data.category;
             td2.textContent = data.id;
             td3.textContent = data.name;
-            td4.textContent = data.profit;
-            td5.textContent = data.sales;
+            td4.textContent = `${data.profit}원`;
+            td5.textContent = `${data.sales}원`;
 
             list[0] += data.profit;
             list[1] += data.sales;
@@ -253,8 +253,8 @@ function addTableRow(data) {
                             profit += value[0];
                             sales += value[1];
                         })
-                        td4.textContent = profit;
-                        td5.textContent = sales;
+                        td4.textContent = `${data.profit}원`;
+                        td5.textContent = `${data.sales}원`;
                         categoryMap.set(data.category, list2);
                     }
             }
@@ -291,6 +291,7 @@ function drawBarChart() {
         let sumProfit = 0;
         jumjuMap.forEach((value, key) => {
             labels.push(key);
+
             let sale = value.get("총매출");
             salesData.push(sale[0]);
             sumSale += sale[0];
@@ -378,12 +379,13 @@ function drawDoughnut() {
     if (myDoughnut !== undefined) {
         myDoughnut.destroy();
     }
+    console.log("labels_doughnut:"+salesData2);
     myDoughnut = new Chart(canvas, {
         type: 'doughnut',
         data: {
             labels: labels,
             datasets: [{
-                label: '순이익',
+                label: '영업이익',
                 data: salesData2
             }]
         },
@@ -439,6 +441,7 @@ function changeChart(value) {
         myBarChart.data.datasets[1].data = profitsData;
         myBarChart.data.labels = labels;
 
+
         myDoughnut.data.datasets[0].data = salesData2;
         myDoughnut2.data.datasets[0].data = profitsData2;
 
@@ -451,6 +454,8 @@ function changeChart(value) {
         return;
     }
     let newlabe = [];
+    let newlabe2 = [];
+    let newlabeBar = [];
     let newsale = [];
     let newprofits = [];
 
@@ -486,15 +491,34 @@ function changeChart(value) {
     })
     myBarChart.data.datasets[0].data = newsale;
     myBarChart.data.datasets[1].data = newprofits;
+
     myBarChart.data.labels = newlabe;
+    myBarChart.update();
 
     myDoughnut.data.datasets[0].data = newsale2;
     myDoughnut2.data.datasets[0].data = newprofits2;
 
-    myDoughnut.data.labels = newlabe;
-    myDoughnut2.data.labels = newlabe;
+    newlabe2=newlabe;
+    const totalSalesIndex = newlabe2.indexOf("총매출");
 
-    myBarChart.update();
+    if (totalSalesIndex !== -1) {
+        // "총매출"을 "항목을 제외한 나머지 비율"로 대체
+        newlabe2[totalSalesIndex] = "항목을 제외한 나머지 비율";
+        console.log("변경된 레이블" + newlabe2);
+
+        // 변경된 레이블이 모든 제외할 항목을 포함하는지 확인
+        const excludedItems  = ["블렌디드", "스타벅스 피지오", "프라푸치노"];
+        if (excludedItems .every(item => newlabe2.includes(item))) {
+            // 배열에서 해당 항목 제거
+            newlabe2.splice(totalSalesIndex, 1);
+            console.log("제외된 항목이 제거되었습니다"+newlabe2);
+        }
+    }
+
+    myDoughnut.data.labels = newlabe2;
+    myDoughnut2.data.labels = newlabe2;
+
+
     myDoughnut.update();
     myDoughnut2.update();
 }

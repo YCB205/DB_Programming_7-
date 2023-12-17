@@ -33,6 +33,10 @@ window.onload =function () {
     });
 }
 
+
+var temp = "";
+fetchProduct( temp );
+
 function fetchProduct(input){
     let category = [];
     console.log(input.toString());

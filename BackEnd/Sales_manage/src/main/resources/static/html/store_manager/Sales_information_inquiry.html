@@ -158,9 +158,10 @@
                         <th scope="col" class="col-2">품목명</th>
                         <th scope="col" class="col-2">상품번호</th>
                         <th scope="col" class="col-2">상품명</th>
+                        <th scope="col" class="col-2">판매 중</th>
                         <th scope="col" class="col-2">영업이익</th>
                         <th scope="col" class="col-2">총매출</th>
-                        <th scope="col" class="col-2">판매 여부</th>
+
                     </tr>
                     </thead>
                 </table>
@@ -269,23 +270,25 @@
             &nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;
         </button>
     </div>
-    <table class="search table m-0">
-        <thead>
-        <tr class="text-center">
-            <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-2">상품 번호</th>
-            <th scope="col" style="background-color:rgb(0, 198, 122)" class="col-4">상품명</th>
-        </tr>
-        </thead>
-    </table>
-    <div class="overflow-y-auto scroll" style="width: 100%; height:21.5%;" id="showPopup">
-        <div class="scrollable-div scroll-hidden w-100 h-100 m-0 p-0">
-            <table class="search table">
-                <tbody id="chart">
 
-                </tbody>
-            </table>
+        <table class="search table m-0" id="showPopup" style="display: none">
+            <thead>
+            <tr class="text-center">
+                <th scope="col" style="background-color: #78c2ad; color: #ffffff;" class="col-2">상품 번호</th>
+                <th scope="col" style="background-color: #78c2ad; color: #ffffff;" class="col-4">상품명</th>
+            </tr>
+            </thead>
+        </table>
+        <div id="showPopup2" class="overflow-y-auto scroll" style="width: 100%; height:21.5%; display: none" >
+            <div class="scrollable-div scroll-hidden w-100 h-100 m-0 p-0">
+                <table class="search table">
+                    <tbody id="chart">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+
 </aside>
 <script src="../../javascripts/SalesManager/SaleManager.js" type="module">
 </script>
@@ -299,6 +302,39 @@
         var options = 'width=660,height=661,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
         window.open('./OrderManager_AddProduct.html', 'Popup', options);
+    });
+    document.getElementById('showPopup2').addEventListener('click', function () {
+        var leftPosition = (screen.width - 660) / 2;
+        var topPosition = (screen.height - 660) / 2;
+        var options = 'width=660,height=661,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
+        //아래에 있는 user_impormation_check.html로 열림
+        window.open('./OrderManager_AddProduct.html', 'Popup', options);
+    });
+
+
+    // Get the radio buttons
+    var radio1 = document.getElementById('optionsRadios1');
+    var radio2 = document.getElementById('optionsRadios2');
+
+    // Get the elements to be affected
+    var showPopupElement = document.getElementById('showPopup');
+    var showPopup2Element = document.getElementById('showPopup2');
+
+    // Add event listeners to the radio buttons
+    radio1.addEventListener('change', function () {
+        if (radio1.checked) {
+            // If optionsRadios1 is checked, hide showPopup and showPopup2
+            showPopupElement.style.display = 'none';
+            showPopup2Element.style.display = 'none';
+        }
+    });
+
+    radio2.addEventListener('change', function () {
+        if (radio2.checked) {
+            // If optionsRadios2 is checked, show showPopup and hide showPopup2
+            showPopupElement.style.display = 'block';
+            showPopup2Element.style.display = 'block';
+        }
     });
 </script>
 </body>

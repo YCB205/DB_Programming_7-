@@ -53,6 +53,11 @@
             .second.product_table_tbody tr:nth-child(2n+1) td:nth-child(-n+5) {background-color: #ffffff;}
             .second.product_table_tbody tr:nth-child(2n) td:nth-child(-n+5) {background-color: #EBFCFF;}
 
+            .product_table_thead th:nth-child(1),
+            .product_table_tbody td:nth-child(1) {
+                width: 30%;
+            }
+
             
         }
         
@@ -280,6 +285,9 @@ for (let t = 0; t < tables.length; t++) {
         // 아무 작업 없음
         // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
     }
+
+
+
 </script>
 <script src="../../javascripts/SalesManager/AddProduct.js"></script>
 </body>

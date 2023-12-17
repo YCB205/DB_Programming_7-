@@ -49,7 +49,7 @@
         }
 
         .scrollable-div { /* section의 큰테이블 크기 조절 */
-            max-height: 70vh;
+            max-height: 708px;
             overflow: hidden; /* 스크롤바를 숨김 */
         }
 
@@ -242,7 +242,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex w-100" style=" height: 70vh;">
+                        <div class="d-flex w-100" style=" height: 70vh; margin-top: 8%; margin-bottom: 16%;">
                             <div style="flex: 1; height: 100%; display: flex; justify-content: center; align-items: center;">
                                 <canvas id="partChartTable"></canvas>
                             </div>
@@ -362,15 +362,15 @@
                 <!--            <button type="button" id="showPopup" class="btn btn-primary" onclick="showPopup('OrderManager2_AddProduct.html', 600, 700)">Search</button>-->
                 <button type="button" id="fetchData" class="btn btn-primary">Search</button>
             </div>
-            <div class="small-table-section" id="smallTableSection">
+            <div class="small-table-section" id="smallTableSection" style="width: 344px;">
                 <div class="mainForJumjuproductinquiryFormMainaside p-2"
                      style="width: 100%; overflow: auto; max-height: 300px;">
                     <div class="scrollable-div2 w-100 h-100 product_table_div">
                         <table class="table table-hover"
                                style="width: 100%; margin: 0; padding: 0; text-align: center;">
                             <thead class>
-                            <tr class="table-primary sticky-top" style="font-size: 120%;">
-                                <th scope="col">상품번호</th>
+                            <tr class="table-primary sticky-top" style="font-size: 110%;">
+                                <th scope="col" style="width: 30%;">상품번호</th>
                                 <th scope="col">상품명</th>
                             </tr>
                             </thead>
@@ -539,13 +539,14 @@
 </script>
 <script>
     let smallTableSection = document.getElementById('smallTableSection');
-    smallTableSection.addEventListener('dblclick', function () {
+    smallTableSection.addEventListener('click', function () {
         let leftPosition = (screen.width - 660) / 2;
         let topPosition = (screen.height - 660) / 2;
         let options = 'width=660,height=661,left=' + leftPosition + ',top=' + topPosition + ',location=no, resizable=no, toolbar=no menubar=no'
         //아래에 있는 user_impormation_check.html로 열림
         window.open('../store_manager/OrderManager_AddProduct.html', 'Popup', options);
     })
+
 </script>
 <script src="../../javascripts/SalesManager/ManagerForSales.js"></script>
 
