@@ -261,7 +261,7 @@ function drawDoughnut() {
             return {
                 label: label,
                 percentage: (sales / totalSales) * 100,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             };
         });
 
@@ -273,7 +273,7 @@ function drawDoughnut() {
             productData.push({
                 label: "항목을 제외한 나머지 비율",
                 percentage: restPercentage,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             });
         }
 
@@ -283,7 +283,7 @@ function drawDoughnut() {
                 labels: productData.map(item => item.label),
                 datasets: [{
                     data: productData.map(item => item.percentage.toFixed(1)),
-                    backgroundColor: productData.map(item => item.color),
+                    // backgroundColor: productData.map(item => item.color),
                 }]
             },
             options: {
@@ -319,8 +319,8 @@ function drawDoughnut2() {
             const profits = profitsData[index];
             return {
                 label: label,
-                percentage: (profits / totalProfits) * 100,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                percentage: (profits / totalProfits) * 100
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             };
         });
 
@@ -332,7 +332,7 @@ function drawDoughnut2() {
             productData.push({
                 label: "항목을 제외한 나머지 비율",
                 percentage: restPercentage,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             });
         }
 
@@ -342,7 +342,7 @@ function drawDoughnut2() {
                 labels: productData.map(item => item.label),
                 datasets: [{
                     data: productData.map(item => item.percentage.toFixed(1)),
-                    backgroundColor: productData.map(item => item.color),
+                    // backgroundColor: productData.map(item => item.color),
                 }]
             },
             options: {

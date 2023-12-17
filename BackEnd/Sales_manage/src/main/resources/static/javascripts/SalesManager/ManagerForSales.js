@@ -342,7 +342,7 @@ function drawBarChart() {
             labels: labels,
             datasets: [
                 {
-                    label: '순이익',
+                    label: '영업이익',
                     data: salesData,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
@@ -365,7 +365,7 @@ function drawBarChart() {
                 },
                 title: {
                     display: true,
-                    text: '지점별 총매출과 순이익'
+                    text: ''
                 }
             }
         }
@@ -395,7 +395,7 @@ function drawDoughnut() {
                 },
                 title: {
                     display: true,
-                    text: '순이익'
+                    text: '영업이익(%)'
                 }
             }
         }
@@ -424,7 +424,7 @@ function drawDoughnut2() {
                 },
                 title: {
                     display: true,
-                    text: '매출액'
+                    text: '매출액(%)'
                 }
             }
         }
