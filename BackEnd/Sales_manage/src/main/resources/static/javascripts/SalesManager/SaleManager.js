@@ -1,5 +1,6 @@
 let trlList;
 window.onload = function () {
+    showChart();
     //버튼에 이벤트리스너 등록하기
     const btn = document.getElementById('fetchData');
     btn.addEventListener('click',function () {
@@ -22,7 +23,6 @@ window.onload = function () {
         checkTimeValid();
     })
     //라디오 선택 될 때 마다 값 바꿔주기
-    showChart();
 }
 
 //시간을 입력받아 현재 시간이 유효한지 확인하기
@@ -150,7 +150,6 @@ function addTableRow(data){
             console.log(tr);
             tbody.appendChild(tr);
             //맵을 생성
-            const getRadio = document.getElementById('optionsRadios2');
             const getRadio2 = document.getElementById('optionsRadios1');
             if(getRadio2.checked) {
                 if (myMap.has(ordersheet[0])) {
@@ -189,9 +188,6 @@ function addTableRow(data){
     drawBarChart();
     drawDoughnut();
     drawDoughnut2();
-    const showChart = document.getElementById('showChart');
-    showChart.style.display = 'none';
-    index = 0;
 }
 
 
