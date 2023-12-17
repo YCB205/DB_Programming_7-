@@ -399,9 +399,9 @@ thead {
         }
 
         // 글자 제한을 10자로 설정 (원하는 길이로 변경 가능)
-        if (inputValue.length > 10) {
-            inputElement.value = inputValue.slice(0, 10);
-            showAlert('글자는 10자까지만 입력 가능합니다.');
+        if (inputValue.length > 30) {
+            inputElement.value = inputValue.slice(0, 30);
+            showAlert('글자는 30자까지만 입력 가능합니다.');
         }
     }
 
