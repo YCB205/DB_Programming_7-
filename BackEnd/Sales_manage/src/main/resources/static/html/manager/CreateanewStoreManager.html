@@ -510,7 +510,7 @@ thead {
       // ID 입력을 미리 검증하는 함수
       function validateIdInput() {
           var idStoreManagerInput = document.getElementById('idStoremanager');
-          var managerId = idStoremanagerInput.value;
+          var managerId = idStoreManagerInput.value;
 
           // 입력된 값이 올바른지 확인
           if (!isAlphanumeric(managerId)) {
@@ -540,7 +540,21 @@ thead {
       function createManager() {
           if (validateIdInput()) {
               // 아이디가 올바르면 생성 로직 수행
-              postManager();
+              var password = document.getElementById('passwd').value;
+              var passwordCheck = document.getElementById('passwdCheck').value;
+
+              if (password !== passwordCheck) {
+                  // 비밀번호가 일치하지 않을 때 알람 표시
+                  document.getElementById('passwordMismatch').classList.remove('d-none');
+                  setTimeout(function () {
+                      document.getElementById('passwordMismatch').classList.add('d-none');
+                  }, 3000);
+
+                  return; // 비밀번호가 일치하지 않으면 아래 로직 수행하지 않고 종료
+              }
+
+              // 일치할 경우 API 호출
+              postStoreManager();
           } else {
               alert('아이디를 올바르게 입력하세요.');
           }
@@ -557,38 +571,5 @@ thead {
       });
   </script>
 
-  <script>
-        // 취소버튼 구현
-        document.getElementById('closeBtn').addEventListener('click', function () {
-            // window.close();
-        });
-
-        document.getElementById('createBtn').addEventListener('click', function () {
-            if(document.getElementById('check').value==='Y'){
-
-                // 비밀번호와 비밀번호 확인 값 비교
-                var password = document.getElementById('passwd').value;
-                var passwordCheck = document.getElementById('passwdCheck').value;
-
-                if (password !== passwordCheck) {
-                    // 비밀번호가 일치하지 않을 때 알람 표시
-                    document.getElementById('passwordMismatch').classList.remove('d-none');
-                    setTimeout(function () {
-                        document.getElementById('passwordMismatch').classList.add('d-none');
-                    }, 3000);
-
-                    return; // 비밀번호가 일치하지 않으면 아래 로직 수행하지 않고 종료
-                }
-
-                // 일치할 경우 API 호출
-                postStoreManager();
-            } else {
-                alert('아이디 중복확인을 클릭하세요.');
-                document.getElementById('idStoremanager').value = '';
-            }
-
-        });
-
-    </script>
 </body>
 </html>
