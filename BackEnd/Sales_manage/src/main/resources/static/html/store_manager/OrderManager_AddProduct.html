@@ -83,7 +83,8 @@
             <div class="body_first">
               <div style="display: flex; justify-content: center; ">
                 <img src="../../image/Icon_serch.png" alt="" style="width: 10%;">
-                <input class="input_store_name" type="text" value="" placeholder="상품의 이름을 입력하세요." id="inputProduct">
+                <input class="input_store_name" type="text" value="" placeholder="상품의 이름을 입력하세요." id="inputProduct"
+                       oninput="checkSpecialCharacters(this)">
               </div>
             </div>
             <div class="body_second"></div>
@@ -220,9 +221,65 @@ for (let t = 0; t < tables.length; t++) {
     });
   }
 }
+</script>
+<script>
+    function checkSpecialCharacters(inputElement) {
+        var inputValue = inputElement.value;
 
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
 
+        if (!regex.test(inputValue)) {
+            // 특수문자가 포함된 경우 입력을 취소하고 경고 메시지 표시
+            inputElement.value = inputValue.replace(/[^\w\s가-힣]/g, ''); // 특수문자 제거
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
 
+        // 글자 제한을 30자로 설정 (원하는 길이로 변경 가능)
+        if (inputValue.length > 30) {
+            inputElement.value = inputValue.slice(0, 30);
+            showAlert('글자는 30자까지만 입력 가능합니다.');
+        }
+    }
+
+    function handleKeyDown(event) {
+        var inputValue = event.key;
+
+        // Enter 키 입력 시 검색 실행
+        if (event.key === 'Enter') {
+            event.preventDefault(); // "Enter" 키의 기본 동작 방지
+
+            // 입력값이 아무 것도 입력되지 않은 경우 경고 메시지 표시
+            if (inputValue.trim() === '') {
+                showAlert('아무 것도 입력되지 않았습니다.');
+                return;
+            }
+
+            getOrderSheet();
+            return;
+        }
+
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            event.preventDefault(); // 특수문자 입력을 막음
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
+    }
+
+    function showAlert(message) {
+        window.alert(message);
+    }
+
+    function hideAlert() {
+        // 아무 작업 없음
+        // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
+    }
 </script>
 <script src="../../javascripts/SalesManager/AddProduct.js"></script>
 </body>
