@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 
     <style>
+        a {
+            text-decoration-line: none;
+        }
         /* 헤더 내 첫 번째 드롭다운 메뉴 */
         .dropdown-menu {
             position: absolute;
@@ -303,7 +306,7 @@
             <div class="container-fluid h-100" style="">
                 <div class="row h-100" style="">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary">
+                        <button onclick="logout()" type="button" class="btn btn-primary">
                             로그아웃
                         </button>
                     </div>
@@ -316,7 +319,7 @@
             </div>
         </div>
     </div>
-    <div class="second">
+    <div class="second border">
         <div class="form-group position-relative" style="width: 100%; height: 15%; margin-top: 4%; margin-bottom: 7%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
                 <input type="text" class="form-control" placeholder="상품명을 입력하세요" aria-label="Recipient's username"
@@ -371,12 +374,6 @@
     function checkSpecialCharacters(inputElement) {
         var inputValue = inputElement.value;
 
-        // 입력값이 공백 또는 빈 문자열인 경우 경고 메시지 표시
-        if (inputValue.trim() === '' || inputValue === '') {
-            showAlert('공백은 검색할 수 없습니다.');
-            return;
-        }
-
         // 특수문자를 제외한 문자 및 공백을 허용
         var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
 
@@ -388,10 +385,10 @@
             hideAlert();
         }
 
-        // 글자 제한을 10자로 설정 (원하는 길이로 변경 가능)
-        if (inputValue.length > 10) {
-            inputElement.value = inputValue.slice(0, 10);
-            showAlert('글자는 10자까지만 입력 가능합니다.');
+        // 글자 제한을 30자로 설정 (원하는 길이로 변경 가능)
+        if (inputValue.length > 30) {
+            inputElement.value = inputValue.slice(0, 30);
+            showAlert('글자는 30자까지만 입력 가능합니다.');
         }
     }
 

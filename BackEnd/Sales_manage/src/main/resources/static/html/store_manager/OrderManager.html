@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+        a {
+            text-decoration-line: none;
+        }
         .brand_name_div span {
             font-weight: 700;
             letter-spacing: 0;
@@ -373,7 +376,8 @@
                     </div>
                     <div class="input-group mb-3">
                         <!-- 검색창에 maxlength 속성 추가 -->
-                        <input onkeydown="handleKeyDown(event)" oninput="checkSpecialCharacters(this)" id="search_merchandise" type="text" class="form-control" placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button" maxlength="20">
+                        <input onkeydown="handleKeyDown(event)" oninput="checkSpecialCharacters(this)" id="search_merchandise" type="text" class="form-control"
+                               placeholder="상품명을 입력하세요." aria-label="Text input with segmented dropdown button" maxlength="31">
                         <button onclick="getOrderSheet()" type="button" class="btn btn-primary">검색</button>
                     </div>
                     <div id="warning_message" style="color: red;"></div>
@@ -392,12 +396,6 @@
     function checkSpecialCharacters(inputElement) {
         var inputValue = inputElement.value;
 
-        // 입력값이 공백 또는 빈 문자열인 경우 경고 메시지 표시
-        if (inputValue.trim() === '' || inputValue === '') {
-            showAlert('공백은 검색할 수 없습니다.');
-            return;
-        }
-
         // 특수문자를 제외한 문자 및 공백을 허용
         var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
 
@@ -409,10 +407,10 @@
             hideAlert();
         }
 
-        // 글자 제한을 10자로 설정 (원하는 길이로 변경 가능)
-        if (inputValue.length > 10) {
-            inputElement.value = inputValue.slice(0, 10);
-            showAlert('글자는 10자까지만 입력 가능합니다.');
+        // 글자 제한을 30자로 설정 (원하는 길이로 변경 가능)
+        if (inputValue.length > 30) {
+            inputElement.value = inputValue.slice(0, 30);
+            showAlert('글자는 30자까지만 입력 가능합니다.');
         }
     }
 
@@ -422,12 +420,6 @@
         // Enter 키 입력 시 검색 실행
         if (event.key === 'Enter') {
             event.preventDefault(); // "Enter" 키의 기본 동작 방지
-
-            // 입력값이 아무 것도 입력되지 않은 경우 경고 메시지 표시
-            if (inputValue.trim() === '') {
-                showAlert('아무 것도 입력되지 않았습니다.');
-                return;
-            }
 
             getOrderSheet();
             return;

@@ -6,6 +6,12 @@ function postProduct() {
     const cost = document.querySelector('#cost').value;
     const price = document.querySelector('#price').value;
 
+    // 필드가 비어 있는지 확인
+    if (!categori || !idMerchandise || !merchandiseName || !cost || !price) {
+        alert('모든 정보를 입력하세요.');
+        return; // 필드가 하나라도 비어 있으면 함수 종료
+    }
+
     // 서버에게 보낼 데이터 객체 생성
     const data = {
         categori: categori,

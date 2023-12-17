@@ -4,6 +4,12 @@ function postBranch() {
     const officeName = document.querySelector('#officeName').value;
     const address = document.querySelector('#address').value;
 
+    // 필드가 비어 있는지 확인
+    if (!idStoreManager || !officeName || !address) {
+        alert('모든 정보를 입력하세요.');
+        return; // 필드가 하나라도 비어 있으면 함수 종료
+    }
+
     // 서버에게 보낼 데이터 객체 생성
     const data = {
         idStoreManager: idStoreManager,

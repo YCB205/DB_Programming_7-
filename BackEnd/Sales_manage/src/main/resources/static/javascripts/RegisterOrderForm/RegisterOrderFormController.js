@@ -106,7 +106,7 @@ async function addTableRow(data){
             tdThird.textContent = item.price+'원';
 
             tdFourth.className = 'col-3';
-            tdFourth.textContent = item.cost;
+            tdFourth.textContent = item.cost+'원';
 
             // 행에 열 요소들 추가
             newRow.appendChild(thFirst);
@@ -225,16 +225,20 @@ function calSum(){
     for(let i=0; i < tr.length;i++) {
         let tableTd = tr[i].getElementsByTagName('td');
         //수량 가져오기
-        console.log(tableTd);
         let tableCount = tableTd[0].querySelector('input');
-        if(tableCount.value < 0)
+        // 입력된 값이 숫자가 아니거나 허용 범위를 벗어나면 1로 설정
+        let tableCountValue = parseInt(tableCount.value);
+        if (isNaN(tableCountValue) || tableCountValue < 1 || tableCountValue > 300) {
+            // 경고창 띄우기
+            showAlert('1에서 300까지의 값을 입력하세요.');
             tableCount.value = 1;
-        tableCount = tableCount.value;
+            tableCountValue = 1;
+        } else {
+            hideAlert();
+        }
         let tablePrice = tableTd[1].textContent;
         tablePrice = parseInt(tablePrice.slice(0, -1));
-        console.log(tableCount);
-        console.log(tablePrice);
-        sum += Number(tablePrice) *  tableCount;
+        sum += Number(tablePrice) * tableCountValue;
     }
     const priceSum = document.getElementById('priceSum');
     priceSum.textContent = sum + '원';
@@ -245,16 +249,39 @@ function deleteRow(value){
     calSum();
 }
 
-//상품별 검색 옵션
-function search(){
+// 상품별 검색 옵션
+function search() {
     const optionInput = document.getElementById('optionInput');
     const optionBtn = document.getElementById('optionBtn');
-    optionBtn.addEventListener('click',function (){
-        console.log(optionInput.value);
-        //옵션 검색 함수 실행
-        serachOptionFetch(optionInput.value);
-    })
 
+    // 엔터 키 이벤트 처리
+    optionInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            searchOption(optionInput.value);
+        }
+    });
+
+    optionBtn.addEventListener('click', function () {
+        searchOption(optionInput.value);
+    });
+}
+
+function searchOption(optionInput) {
+    let categoryList = [];
+    const category = document.getElementById('category');
+    const categoryInputList = category.querySelectorAll('input');
+    for (let i = 0; categoryInputList.length; i++) {
+        if (categoryInputList[i].checked) {
+            categoryList.push(categoryInputList[i].value);
+            break;
+        }
+    }
+    const url = `/orderproducts?product_name=${optionInput.toString()}&category=${categoryList}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            addTableRow(data);
+        });
 }
 
 function serachOptionFetch(optionInput){
@@ -353,6 +380,14 @@ function postProduct(){
         element.remove();
     });
     calSum();
+}
+function showAlert(message) {
+    window.alert(message);
+}
+
+function hideAlert() {
+    // 아무 작업 없음
+    // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
 }
 
 

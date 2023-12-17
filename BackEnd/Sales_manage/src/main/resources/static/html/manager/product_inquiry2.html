@@ -8,8 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
-    
+
 <style>
+    a {
+        text-decoration-line: none;
+    }
 /* 헤더 내 첫 번째 드롭다운 메뉴 */
 .dropdown-menu {
     position: absolute;
@@ -151,8 +154,8 @@ thead {
             <div class="row h-100">
                 <div class="col-2 g-0 brand_name_div">
                     <a href="MainManager.html">
-                        <span id="brandName" class="d-flex align-items-center justify-content-left fs-1" 
-                        style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
+                    <span id="brandName" class="d-flex align-items-center justify-content-left fs-1"
+                          style="width: 100%; height: 100%; margin-left: 15%;">Brandname</span>
                     </a>
                 </div>
                 <div class="col-1 g-0"></div>
@@ -175,7 +178,7 @@ thead {
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="opacity: 0.95;">
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_inquiry2.html">상품 조회</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="product_management.html">상품 관리</a></li>
-                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="UpdateOrderFormAddProduct2.html">상품 등록</a></li>
+                            <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateNewProduct.html">상품 등록</a></li>
                         </ul>
                     </div>
                 </div>
@@ -189,13 +192,14 @@ thead {
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Branch-ManagersManagement.html">지점 및 점주 계정 관리</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="Createanewbranch.html">새 지점 생성</a></li>
                             <li><a class="dropdown-item fw-bold" style="color: #3E7E69;" href="CreateanewStoreManager.html">점주 계정 생성</a></li>
+                            <li><a href="CreateanewManager.html" class="dropdown-item fw-bold adminView" style="color: #3E7E69;">매니저 계정 생성</a></li>
                         </ul>
-                      </div>
-                  </div>
-                  <div class="col-6 g-0"></div>
-              </div>
-          </div>
-      </header>
+                    </div>
+                </div>
+                <div class="col-6 g-0"></div>
+            </div>
+        </div>
+    </header>
 <section class="section">
     <div class="mainForJumjuRegisterOrder">
         <div class="mainForJumjuRegisterOrderFormHeader gradient-primary-reverse d-flex align-items-center" style="width: 30%;">
@@ -259,7 +263,7 @@ thead {
         <div class="firstchild1 m-0" style="padding-bottom: 0%; padding-top: 8%;">
             <div class="firstchild3 bg-white" style="height: 80%; width: 77%;">
                 <span class="d-flex align-items-center justify-content-start"
-                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; font-weight: 900; margin-left: 5%;">공주대 천안캠</span>
+                      style="width: 100%; height: 100%; color: #4c7769; font-size: 23px; font-weight: 900; margin-left: 5%;">SalesManager</span>
             </div>
         </div>
         <div class="firstchild1">
@@ -268,7 +272,7 @@ thead {
             </div>
             <div class="firstchild3 p-1">
                 <span class="d-flex align-items-center fw-bold justify-content-start fs-5 text-white"
-                      style="width: 100%; height: 100%;">양창배</span>
+                      style="width: 100%; height: 100%;"></span>
             </div>
         </div>
         <div class="firstchild1">
@@ -301,9 +305,9 @@ thead {
     <div class="second border">
         <div class="form-group position-relative" style="width: 100%; height: 15%;">
             <div class="input-group mb-3 position-absolute top-50 start-50 translate-middle p-2">
-                <br><input onkeydown="handleKeyDown(event)" id="searchProductName" type="text" class="form-control" placeholder="상품명을 입력하세요."
-                       aria-label="Recipient's productname" aria-describedby="button-addon2">
-                <button onclick="getAllProducts()" class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                <input type="text" class="form-control" placeholder="상품명을 입력하세요" aria-label="Recipient's username"
+                       aria-describedby="button_add2" id='optionInput' oninput="checkSpecialCharacters(this)">
+                <button class="btn btn-primary" type="button" id="optionBtn" onclick="getOrderSheet()">검색</button>
             </div>
         </div>
         <div class="" style="margin: 10px; padding: 10px; text-align: center;">
@@ -348,7 +352,72 @@ thead {
 <script src="../../javascripts/module_popup/showPopup.js"></script>
 <script src="../../javascripts/userAPI/logout.js"></script>
 <script src="../../javascripts/product/getAllProducts.js"></script>
+<script>
+    function checkSpecialCharacters(inputElement) {
+        var inputValue = inputElement.value;
 
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            // 특수문자가 포함된 경우 입력을 취소하고 경고 메시지 표시
+            inputElement.value = inputValue.replace(/[^\w\s가-힣]/g, ''); // 특수문자 제거
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
+
+        // 글자 제한을 10자로 설정 (원하는 길이로 변경 가능)
+        if (inputValue.length > 10) {
+            inputElement.value = inputValue.slice(0, 10);
+            showAlert('글자는 10자까지만 입력 가능합니다.');
+        }
+    }
+
+    function handleKeyDown(event) {
+        var inputValue = event.key;
+
+        // Enter 키 입력 시 검색 실행
+        if (event.key === 'Enter') {
+            event.preventDefault(); // "Enter" 키의 기본 동작 방지
+
+            // 입력값이 아무 것도 입력되지 않은 경우 경고 메시지 표시
+            if (inputValue.trim() === '') {
+                showAlert('아무 것도 입력되지 않았습니다.');
+                return;
+            }
+
+            getOrderSheet();
+            return;
+        }
+
+        // 특수문자를 제외한 문자 및 공백을 허용
+        var regex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s]*$/;
+
+        if (!regex.test(inputValue)) {
+            event.preventDefault(); // 특수문자 입력을 막음
+            showAlert('특수문자는 입력할 수 없습니다.');
+        } else {
+            hideAlert();
+        }
+    }
+
+    function showAlert(message) {
+        window.alert(message);
+    }
+
+    function hideAlert() {
+        // 아무 작업 없음
+        // window.alert 함수를 사용하면 자동으로 팝업이 닫히므로 따로 처리할 필요가 없습니다.
+    }
+</script>
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.data === 'refreshParent') {
+            getAllProducts();
+        }
+    });
+</script>
 
 <script>
     window.addEventListener('message', function (event) {
