@@ -7,6 +7,12 @@ function putManager_User_information_check() {
     const name = document.getElementById('name').value;
     const phoneNumber = document.getElementById('phoneNumber').value;
 
+    // 필드가 비어 있는지 확인
+    if (!email || !idManager || !passwd || !name || !phoneNumber) {
+        alert('모든 정보를 입력하세요.');
+        return; // 필드가 하나라도 비어 있으면 함수 종료
+    }
+
     const userData = {
         email,
         id,
