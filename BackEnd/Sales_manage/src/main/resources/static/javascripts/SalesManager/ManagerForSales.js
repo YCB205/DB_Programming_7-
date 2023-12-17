@@ -142,7 +142,8 @@ let jumjuMap = new Map();
 let labels = [];
 let salesData = [];
 let profitsData = [];
-
+let salesData2 = [];
+let profitsData2 = [];
 function groupAndConvertToJSON(data) {
     const groupedData = {};
 
@@ -180,7 +181,9 @@ function addTableRow(data) {
     jumjuMap.clear();
     labels.length = 0;
     salesData.length = 0;
+    salesData2.length = 0;
     profitsData.length = 0;
+    profitsData2.length = 0;
     //자식요소 삭제하기
     while (tbody.firstChild) {
         console.log("삭제합니다..");
@@ -284,15 +287,29 @@ function drawBarChart() {
     canvas.style.width = '100%';
     let getRadio = document.getElementById('optionsRadios1');
     if(getRadio.checked) {
+        let sumSale = 0;
+        let sumProfit = 0;
         jumjuMap.forEach((value, key) => {
             labels.push(key);
-            console.log(value);
             let sale = value.get("총매출");
             salesData.push(sale[0]);
+            sumSale += sale[0];
             profitsData.push(sale[1]);
+            sumProfit += sale[1];
         })
+        console.log(sumSale);
+        console.log(sumProfit);
+        let sum2 = 0;
+        jumjuMap.forEach((value,key)=>{
+            let sale = value.get("총매출");
+            sum2 += (sale[0]/sumSale)*100;
+            salesData2.push((sale[0]/sumSale)*100);
+            profitsData2.push((sale[1]/sumProfit)*100);
+        })
+        console.log(sum2);
     }
     else{
+        let outsum = 0, outsum2 = 0;
         jumjuMap.forEach((value, key) => {
             labels.push(key);
             let sum1 = 0, sum2 = 0;
@@ -300,12 +317,25 @@ function drawBarChart() {
                 if(key!=="총매출") {
                     sum1 += value[0];
                     sum2 += value[1];
+                    outsum += value[0];
+                    outsum2 += value[1];
+                    console.log(outsum);
                 }
             })
             salesData.push(sum1);
             profitsData.push(sum2);
         })
+        let sum = 0;
+        for(let i= 0; i< salesData.length;i++){
+            sum += salesData[i];
+            console.log(sum);
+            salesData2.push((salesData[i]/outsum)*100);
+            profitsData2.push((profitsData[i]/outsum2)*100);
+        }
+        console.log(sum);
+        console.log(outsum);
     }
+
     myBarChart = new Chart(canvas, {
         type: 'bar',
         data: {
@@ -354,7 +384,7 @@ function drawDoughnut() {
             labels: labels,
             datasets: [{
                 label: '순이익',
-                data: salesData
+                data: salesData2
             }]
         },
         options: {
@@ -383,7 +413,7 @@ function drawDoughnut2() {
             labels: labels,
             datasets: [{
                 label: '매출액',
-                data: profitsData
+                data: profitsData2
             }]
         },
         options: {
@@ -409,8 +439,8 @@ function changeChart(value) {
         myBarChart.data.datasets[1].data = profitsData;
         myBarChart.data.labels = labels;
 
-        myDoughnut.data.datasets[0].data = salesData;
-        myDoughnut2.data.datasets[0].data = profitsData;
+        myDoughnut.data.datasets[0].data = salesData2;
+        myDoughnut2.data.datasets[0].data = profitsData2;
 
         myDoughnut.data.labels = labels;
         myDoughnut2.data.labels = labels;
@@ -423,20 +453,43 @@ function changeChart(value) {
     let newlabe = [];
     let newsale = [];
     let newprofits = [];
-    let jumjunInfo = jumjuMap.get(value);
-    console.log(jumjunInfo);
 
+    let newsale2 = [];
+    let newprofits2 = [];
+
+
+    let jumjunInfo = jumjuMap.get(value);
+    //총매출 정보 얻어오기
+    let wholeSale = jumjunInfo.get("총매출");
+    let sumSale = 0;
+    let sumProfit = 0;
     jumjunInfo.forEach((value, key) => {
         newlabe.push(key);
         newsale.push(value[0]);
         newprofits.push(value[1]);
+        if(value[0] !== wholeSale[0]) {
+            newsale2.push(value[0] / wholeSale[0] * 100);
+            newprofits2.push(value[1] / wholeSale[1] * 100);
+            sumSale += value[0];
+            sumProfit += value[1];
+        }
+        else{
+            if(sumSale !== wholeSale[0]){
+                let sum1;
+                let sum2;
+                sum1 = (wholeSale[0] - sumSale)/wholeSale[0] * 100;
+                sum2 = (wholeSale[1] - sumProfit)/wholeSale[1] * 100;
+                newsale2.push(sum1);
+                newprofits2.push(sum2);
+            }
+        }
     })
     myBarChart.data.datasets[0].data = newsale;
     myBarChart.data.datasets[1].data = newprofits;
     myBarChart.data.labels = newlabe;
 
-    myDoughnut.data.datasets[0].data = newsale;
-    myDoughnut2.data.datasets[0].data = newprofits;
+    myDoughnut.data.datasets[0].data = newsale2;
+    myDoughnut2.data.datasets[0].data = newprofits2;
 
     myDoughnut.data.labels = newlabe;
     myDoughnut2.data.labels = newlabe;
