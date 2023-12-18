@@ -93,7 +93,7 @@ function getAllProducts() {
                     const updateButton = document.createElement('a');
                     updateButton.setAttribute('class', 'btn btn-primary');
                     updateButton.setAttribute('target', '_self');
-                    updateButton.setAttribute('onclick', `showPopupUpdateProduct('updateProduct.html',600,582,\`tr.productTable${index}\`)`);
+                    updateButton.setAttribute('onclick', `showPopupUpdateProduct('updateProduct.html',600,600,\`tr.productTable${index}\`)`);
                     updateButton.innerHTML = '<i class="bi bi-pencil-square"></i>';
                     updateButtonCell.appendChild(updateButton);
                     row.appendChild(updateButtonCell);

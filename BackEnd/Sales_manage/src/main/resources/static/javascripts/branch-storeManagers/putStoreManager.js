@@ -34,7 +34,7 @@ function putStoreManager() {
         .then(data => {
             // 데이터가 JSON 형식이 아니라면 파싱을 시도하지 않음
             console.log(data);
-            window.opener.postMessage('refreshParent', '*');
+            window.opener.postMessage('updateStoreManager', '*');
             window.close();
         })
         .catch(error => {

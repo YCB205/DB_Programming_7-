@@ -234,11 +234,15 @@ document.getElementById('closeBtn').addEventListener('click', function () {
 
   window.addEventListener('message', function (event) {
       if (event.data === 'updateClosedBranch'){
-          getClosedBranch();
+          getStoreManagersIntoManagement();
           window.opener.postMessage('refreshParent', '*');
       }
       if (event.data === 'refreshParent'){
-          getClosedBranch();
+          getStoreManagersIntoManagement();
+          window.opener.postMessage('refreshParent', '*');
+      }
+      if (event.data === 'updateStoreManager'){
+          getStoreManagersIntoManagement();
           window.opener.postMessage('refreshParent', '*');
       }
   });

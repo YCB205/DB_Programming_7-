@@ -38,8 +38,9 @@ public class MerchandiseController {
                                                                    @RequestParam(value = "category") List<String> categories,
                                                                    HttpSession session)
     {
+        String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-        return merchandiseService.getAllProducts(productName, categories, loggedInUserId);
+        return merchandiseService.getAllProducts(productName, categories, loggedInUserId, loggedInUserRole);
     }
 
     @PutMapping("/products")

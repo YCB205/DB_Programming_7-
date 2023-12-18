@@ -58,7 +58,7 @@ function createTableRow(brandOffice, storeManager, index, rowClass) {
         <td class="col-2 text-center m-0">${storeManager.name}</td>
         <td class="col-4 text-center m-0">${brandOffice.address}</td>
         <td class="col-1 text-center m-0" style="padding-left: 0; padding-right: 0; border-bottom: 0px; background-color: #fff;">
-            <a style="width: 80%" class="btn btn-primary" target="_self" onclick="showPopupUpdateBranch('updateBranch.html',600,508,\`tr.branchTable${index + 1}\` )">
+            <a style="width: 80%" class="btn btn-primary" target="_self" onclick="showPopupUpdateBranch('updateBranch.html',600,525,\`tr.branchTable${index + 1}\` )">
                 <i class="bi bi-pencil-square"></i>
             </a>
         </td>`;

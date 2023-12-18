@@ -44,7 +44,7 @@ function createTableRow(brandOffice, index) {
         <td>${brandOffice.address}</td>
         <td>
             <a class="btn btn-info" target="_self" 
-            onclick="showPopupUpdateClosedBranch('updateClosedBranch.html',600,508,\`tr.branchTable${index}\` )">
+            onclick="showPopupUpdateClosedBranch('updateClosedBranch.html',600,525,\`tr.branchTable${index}\` )">
                 <i class="bi bi-pencil-square"></i>
             </a>
         </td>`;

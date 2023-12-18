@@ -129,11 +129,13 @@ public class MerchandiseService {
     }
 
 
-    public Map<String, List<Map<String, Object>>> getAllProducts(String productName, List<String> categories, String loggedInUserId) {
+    public Map<String, List<Map<String, Object>>> getAllProducts(String productName, List<String> categories, String loggedInUserId, String loggedInUserRole) {
         // 세션에서 로그인한 사용자의 ID 가져오기
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
+
+
         List<MerchandiseEntity> filteredList;
 
         if (productName.isEmpty()) {
@@ -150,6 +152,13 @@ public class MerchandiseService {
             categories = filteredList.stream()
                     .map(MerchandiseEntity::getCategori)
                     .distinct()
+                    .collect(Collectors.toList());
+        }
+
+        if ("store_manager".equals(loggedInUserRole)){
+            // 상품 데이터에서 salesStatus가 true(1)인 데이터만 필터링하여 재할당
+            filteredList = filteredList.stream()
+                    .filter(MerchandiseEntity::isSalesStatus)
                     .collect(Collectors.toList());
         }
 
