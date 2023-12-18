@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class OrderSheetController {
@@ -131,19 +134,32 @@ public class OrderSheetController {
 
     @PostMapping("/orderSheet")
     @ResponseBody
-    public void createOrderSheet(@RequestParam("product_id") List<Long> productIds,
-                                 @RequestParam("count") List<Short> counts,
-                                 @RequestParam("setDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime setDateTime,
-                                 HttpSession session) {
+    public void createOrderSheet(@RequestBody Map<String, Object> requestData, HttpSession session) {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
+
         if ("store_manager".equals(loggedInUserRole)) {
             String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
+            List<Integer> productIdsInteger = (List<Integer>) requestData.get("product_id");
+            List<Long> productIds = productIdsInteger.stream().map(Long::valueOf).collect(Collectors.toList());
+
+            List<Integer> countsInteger = (List<Integer>) requestData.get("count");
+            List<Short> counts = countsInteger.stream().map(Integer::shortValue).collect(Collectors.toList());
+
+            String setDateTimeStr = (String) requestData.get("setDateTime");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime setDateTime = LocalDateTime.parse(setDateTimeStr, formatter);
+
             orderSheetService.createOrderSheet(productIds, counts, setDateTime, loggedInUserId);
         } else {
             ResponseEntity.badRequest().build();
         }
-
     }
+
+
+
+
 
 }
 

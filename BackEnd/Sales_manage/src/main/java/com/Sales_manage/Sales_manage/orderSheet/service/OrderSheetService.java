@@ -405,7 +405,6 @@ public class OrderSheetService {
         // IncludeEntity에 데이터 추가
         for (int i = 0; i < productIds.size(); i++) {
             IncludeEntity includeEntity = new IncludeEntity();
-
             MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(productIds.get(i)).orElseThrow();
             includeEntity.setIdOrdersheet(orderSheet);
             includeEntity.setIdMerchandise(merchandiseEntity);

@@ -357,7 +357,7 @@ function postProduct(){
         method: 'POST',
         // 필요한 경우 추가적인 헤더를 설정할 수 있습니다.
         headers: {
-            // 예: 'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(postData),
     })
@@ -365,7 +365,7 @@ function postProduct(){
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.text();
+            return response.json();
         })
         .then(data => {
             console.log('Success:', data);
