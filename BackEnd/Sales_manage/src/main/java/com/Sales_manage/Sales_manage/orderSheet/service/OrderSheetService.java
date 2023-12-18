@@ -384,24 +384,20 @@ public class OrderSheetService {
 
 
     @Transactional
-    public void createOrderSheet(List<Long> productIds, List<Integer> counts, LocalDateTime orderTime, String loggedInUserId) {
+    public void createOrderSheet(List<Long> productIds, List<Short> counts, LocalDateTime orderTime, String loggedInUserId) {
         // 새로운 주문서 생성
         // 세션에서 로그인한 사용자의 ID 가져오기
         if (loggedInUserId == null || loggedInUserId.isEmpty()) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
         OrderSheetEntity orderSheet = new OrderSheetEntity();
-        orderSheet.setOrderTime(orderTime);
 
         // 피라미터로 받은 값(1)으로 고정. 실제로는 세션 등에서 사용자 정보를 받아올 수 있음.
-        BrandOfficeEntity brandOffice = new BrandOfficeEntity();
-        brandOffice.setIdBrandoffice(brandOfficeRepository.findIdBrandOfficeByLoggedInUserId(loggedInUserId));
-        orderSheet.setIdBrandoffice(brandOffice);
+        StoreManagerEntity storeManager = storeManagerRepository.findById(loggedInUserId).orElse(null);;
+        BrandOfficeEntity brandOffice = brandOfficeRepository.findByIdStoremanger(storeManager);
 
-        // 마지막 id_ordersheet 값 가져오기
-        Long lastOrderId = orderSheetRepository.findLastOrderId();
-        Long newOrderId = (lastOrderId != null) ? lastOrderId + 1 : 1;
-        orderSheet.setIdOrdersheet(newOrderId);
+        orderSheet.setOrderTime(orderTime);
+        orderSheet.setIdBrandoffice(brandOffice);
 
         // 주문서 저장
         orderSheetRepository.save(orderSheet);
@@ -409,13 +405,15 @@ public class OrderSheetService {
         // IncludeEntity에 데이터 추가
         for (int i = 0; i < productIds.size(); i++) {
             IncludeEntity includeEntity = new IncludeEntity();
-            includeEntity.setIdOrdersheet(orderSheet);
-            includeEntity.setIdMerchandise(merchandiseRepository.findById(productIds.get(i)).orElseThrow());
 
-            includeEntity.setOrderCount(counts.get(i).shortValue());
+            MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(productIds.get(i)).orElseThrow();
+            includeEntity.setIdOrdersheet(orderSheet);
+            includeEntity.setIdMerchandise(merchandiseEntity);
+
+            includeEntity.setOrderCount(counts.get(i));
 
             // 상품 데이터 조회
-            MerchandiseEntity merchandiseEntity = merchandiseRepository.findById(productIds.get(i)).orElseThrow();
+
             includeEntity.setTotalCost(merchandiseEntity.getCost() * counts.get(i));
             includeEntity.setSales(merchandiseEntity.getPrice() * counts.get(i));
 

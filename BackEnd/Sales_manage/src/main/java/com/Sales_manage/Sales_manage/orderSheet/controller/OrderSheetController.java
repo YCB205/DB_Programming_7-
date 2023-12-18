@@ -132,7 +132,7 @@ public class OrderSheetController {
     @PostMapping("/orderSheet")
     @ResponseBody
     public void createOrderSheet(@RequestParam("product_id") List<Long> productIds,
-                                 @RequestParam("count") List<Integer> counts,
+                                 @RequestParam("count") List<Short> counts,
                                  @RequestParam("setDateTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime setDateTime,
                                  HttpSession session) {
         String loggedInUserRole = (String) session.getAttribute("loggedInUserRole");
