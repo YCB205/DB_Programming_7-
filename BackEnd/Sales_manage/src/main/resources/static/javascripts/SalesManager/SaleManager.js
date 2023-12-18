@@ -1,5 +1,6 @@
 let trlList;
 window.onload = function () {
+    showChart();
     //버튼에 이벤트리스너 등록하기
     const btn = document.getElementById('fetchData');
     btn.addEventListener('click',function () {
@@ -22,7 +23,6 @@ window.onload = function () {
         checkTimeValid();
     })
     //라디오 선택 될 때 마다 값 바꿔주기
-    showChart();
 }
 
 //시간을 입력받아 현재 시간이 유효한지 확인하기
@@ -150,7 +150,6 @@ function addTableRow(data){
             console.log(tr);
             tbody.appendChild(tr);
             //맵을 생성
-            const getRadio = document.getElementById('optionsRadios2');
             const getRadio2 = document.getElementById('optionsRadios1');
             if(getRadio2.checked) {
                 if (myMap.has(ordersheet[0])) {
@@ -189,9 +188,6 @@ function addTableRow(data){
     drawBarChart();
     drawDoughnut();
     drawDoughnut2();
-    const showChart = document.getElementById('showChart');
-    showChart.style.display = 'none';
-    index = 0;
 }
 
 
@@ -265,7 +261,7 @@ function drawDoughnut() {
             return {
                 label: label,
                 percentage: (sales / totalSales) * 100,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             };
         });
 
@@ -277,7 +273,7 @@ function drawDoughnut() {
             productData.push({
                 label: "항목을 제외한 나머지 비율",
                 percentage: restPercentage,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             });
         }
 
@@ -287,7 +283,7 @@ function drawDoughnut() {
                 labels: productData.map(item => item.label),
                 datasets: [{
                     data: productData.map(item => item.percentage.toFixed(1)),
-                    backgroundColor: productData.map(item => item.color),
+                    // backgroundColor: productData.map(item => item.color),
                 }]
             },
             options: {
@@ -323,8 +319,8 @@ function drawDoughnut2() {
             const profits = profitsData[index];
             return {
                 label: label,
-                percentage: (profits / totalProfits) * 100,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                percentage: (profits / totalProfits) * 100
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             };
         });
 
@@ -336,7 +332,7 @@ function drawDoughnut2() {
             productData.push({
                 label: "항목을 제외한 나머지 비율",
                 percentage: restPercentage,
-                color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
+                // color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`,
             });
         }
 
@@ -346,7 +342,7 @@ function drawDoughnut2() {
                 labels: productData.map(item => item.label),
                 datasets: [{
                     data: productData.map(item => item.percentage.toFixed(1)),
-                    backgroundColor: productData.map(item => item.color),
+                    // backgroundColor: productData.map(item => item.color),
                 }]
             },
             options: {
