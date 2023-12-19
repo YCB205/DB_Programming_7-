@@ -168,6 +168,14 @@
 <script src="../../javascripts/branch-storeManagers/getStoreManagersIntoManagement.js"></script>
 <script src="../../javascripts/branch-storeManagers/showPopupStoreManager.js"></script>
 <script>
+
+    window.addEventListener('message', function (event) {
+        if (event.data === 'updateBranchManager'){
+            getStoreManagersIntoManagement();
+            window.opener.postMessage('refreshParent', '*');
+        }
+    });
+
     function checkSpecialCharacters(inputElement) {
         var inputValue = inputElement.value;
 
