@@ -1,6 +1,4 @@
-
 function putStore_manager_User_information_check() {
-
     const apiUrl = '/user';
 
     const email = document.getElementById('email').value;
