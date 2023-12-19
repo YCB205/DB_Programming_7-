@@ -32,4 +32,10 @@ function checkOverlapManagerId() {
             document.getElementById('check').value = 'N';
 
         });
+
+    if (validateIdInput()) {
+        // 아이디가 올바르면 중복 확인 로직 수행
+        // 이 부분에 중복 확인에 관련된 코드를 추가하세요.
+        document.getElementById('check').value = 'Y'; // 예시로 'Y' 설정
+    }
 }
