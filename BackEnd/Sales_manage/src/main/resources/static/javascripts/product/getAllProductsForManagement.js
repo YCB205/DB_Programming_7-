@@ -61,13 +61,15 @@ function getAllProducts() {
                     const product = products[i];
                     const row = document.createElement('tr');
 
+                    const previousRow = tbody.lastChild;
 
-                    // 카테고리명이 추가되는 경우
-                    if (i % 2 === 0) {
-                        row.classList.add('table-light', `productTable${index}`);
-                    } else {
+                    // 직전에 생성된 row의 클래스에 따라 현재 row에 클래스 추가
+                    if (previousRow && previousRow.classList.contains('table-light')) {
                         row.classList.add('table-success', `productTable${index}`);
+                    } else {
+                        row.classList.add('table-light', `productTable${index}`);
                     }
+
 
                     // 첫 번째 td에는 카테고리명 추가
                     const categoryCell = document.createElement('td');

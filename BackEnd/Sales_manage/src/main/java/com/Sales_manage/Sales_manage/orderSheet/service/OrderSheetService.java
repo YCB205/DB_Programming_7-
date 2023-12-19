@@ -105,6 +105,7 @@ public class OrderSheetService {
             }
 
         }
+        orderSheetResponses.sort(Comparator.comparing(OrderSheetResponse::getOrderTime));
 
         return orderSheetResponses;
     }
